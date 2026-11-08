@@ -28,10 +28,15 @@
     │   └── PRINCIPLES.md
     ├── assets/
     │   └── README.md
-    └── templates/
+    ├── templates/
+    │   ├── README.md
+    │   ├── STORY_TEMPLATE.md
+    │   └── CHARACTER_NOTE_TEMPLATE.md
+    └── addon/
         ├── README.md
-        ├── STORY_TEMPLATE.md
-        └── CHARACTER_NOTE_TEMPLATE.md
+        ├── SPECIFICATION.md
+        ├── API_RESEARCH.md
+        └── TEST_PLAN.md
 
 ## Responsibilities
 - Root documents define project identity, rules, direction, planned work, and repository history.
@@ -42,6 +47,7 @@
 - interaction/ records how Eldgrim communicates and participates in roleplay.
 - assets/ stores approved creative resources and provenance.
 - templates/ provides reusable formats.
+- addon/ contains the separate Forever-only addon specification, API research, data model, and test plan. Runtime code belongs here when implementation is explicitly started.
 
 ## Boundaries
-Amberhearth governance and guild operations belong in the ROARguild repository. Private canon does not belong in this public repository. Software implementation belongs in a separately specified technical project unless the creative explicitly changes that boundary.
+Amberhearth governance and guild operations belong in the ROARguild repository. Private canon does not belong in this public repository. The addon is a separate technical workstream and does not redefine character canon. Other software features require their own approved scope.

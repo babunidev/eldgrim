@@ -1,6 +1,6 @@
 # Concept
 
-**Status:** Established foundation; details continue to develop.
+**Status:** Established character foundation; technical addon scope approved separately.
 
 ## Core idea
 Eldgrim is a distinctive presence within the World of Warcraft Forever roleplaying world. This project develops the character's identity, voice, lore, relationship with Amberhearth, and experiences that emerge through interaction and storytelling.
@@ -12,10 +12,17 @@ The current creative direction describes Eldgrim as wise, playful, mischievous, 
 
 The character should feel present and responsive: capable of curiosity, warmth, surprise, strange observations, and quiet insight. Mystery is part of the experience, not a puzzle every story must solve.
 
-## Project boundaries
-This repository contains public-safe character and narrative documentation. Amberhearth governance and operations belong in the guild's own repository.
+## Technical companion
+A separate **Eldgrim addon for World of Warcraft Forever only** is approved and documented under addon/. Its first milestone is deliberately narrow: passively collect guild-chat messages and the available human-readable character information associated with each speaker, then save the archive locally through SavedVariables.
 
-Any future addon, bot, assistant, or autonomous embodiment must be specified as a separate technical effort. A character concept is not evidence that software exists.
+The first milestone has no in-game interface, commands, chat output, notifications, sounds, addon communication, network activity, AI, summaries, or interpretation. It is a local recorder, not an in-game chatbot. The technical project does not change Eldgrim's character canon or reveal concealed lore.
+
+The addon scope is approved; implementation and in-game verification have not yet begun.
+
+## Project boundaries
+This repository contains public-safe character and narrative documentation alongside the separately scoped addon workstream. Amberhearth governance and operations remain in the guild's own repository.
+
+Any additional bot, assistant, autonomous behavior, or feature beyond the approved recorder must be specified and approved separately. A character concept or technical specification is not evidence that software exists.
 
 ## Creative principles
 1. Character before mechanics.

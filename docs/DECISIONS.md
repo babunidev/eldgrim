@@ -13,10 +13,18 @@ A concise record of meaningful creative and structural decisions.
 **Status:** Established foundation.
 
 ## 2026-11-08 — Separate character canon from guild operations and software
-**Decision:** This repository is the character and narrative home. Amberhearth's governance belongs in its guild repository. Any future technical embodiment must be separately specified.
+**Decision:** Character and narrative material remains distinct from Amberhearth governance. Guild operations belong in the ROARguild repository. Technical work must remain in its own clearly identified area and must not silently alter character canon.
 **Status:** Established.
+
+## 2026-11-08 — Approve the Eldgrim Forever addon recorder
+**Decision:** Add a dedicated addon workstream under addon/ in this repository. The addon targets World of Warcraft Forever only. Its first milestone is a passive local archive of guild messages and available human-readable information about the characters who send them.
+**Recording scope:** Character name, race, class, level, faction, zone, profession names and skill ranks, achievement points when available, plus each guild message and its timestamp.
+**Behavior boundary:** No in-game interface, slash commands, chat output, notifications, sounds, addon messaging, network communication, AI, summaries, interpretation, roster scanning, or character inspection in the first milestone. Officer chat and all other channels are excluded.
+**Storage boundary:** Use account-wide SavedVariables. Do not persist account identities, GUIDs, club/member/message/chat-line IDs, or other technical identifiers. Any identifier required for a transient lookup must be discarded before saving.
+**Status:** Scope approved and documented; implementation and in-game verification not started.
 
 ## Open decisions
 - Further details of Eldgrim's public identity and history.
 - The precise scope of recurring in-world interactions.
-- Whether any technical embodiment will be pursued and, if so, in which separate project.
+- Whether the local archive will later be used by a separate external tool; this is outside the first addon milestone.
+- Exact runtime behavior of Forever's chat-event and community-message APIs on the current client build.

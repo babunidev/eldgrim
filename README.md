@@ -1,6 +1,6 @@
 # Eldgrim
 
-Eldgrim is a character and narrative project set within the wider World of Warcraft Forever roleplaying world. This repository keeps the character's identity, voice, lore, relationship with Amberhearth, and developing narrative experiences in one place.
+Eldgrim is a character and narrative project set within the wider World of Warcraft Forever roleplaying world. This repository keeps the character's identity, voice, lore, relationship with Amberhearth, and developing narrative experiences in one place. It also contains a separately maintained technical workstream for the Eldgrim World of Warcraft Forever addon.
 
 ## The foundation
 
@@ -20,31 +20,36 @@ The rank names are recorded here without assigning duties, privileges, or progre
 
 ## Project scope
 
-This repository is the creative and narrative home for Eldgrim. It is separate from:
+This repository contains two distinct workstreams:
+
+- **Character and narrative:** Eldgrim's public identity, voice, lore, relationships, and stories.
+- **Technical addon:** a separate World of Warcraft Forever addon, documented under addon/. Its approved first milestone is a passive local guild-chat recorder.
+
+The addon is an out-of-character technical project. It does not define Eldgrim's in-world powers, motives, or canon. Its current documentation does not mean that addon code has been implemented.
+
+The repository remains separate from:
 
 - **ROAR**, the wider creative and development project around World of Warcraft Forever.
-- **Amberhearth**, the in-game fellowship initiated by Eldgrim.
-- Any future addon, bot, or autonomous software implementation. Technical embodiment remains separate from the character's established lore unless and until it is deliberately specified.
-
-The repository begins with documentation and creative structure. Its presence does not imply that a bot, addon, or other software has been implemented.
+- **Amberhearth**, the in-game fellowship initiated by Eldgrim. Guild governance and operations belong in the ROARguild repository.
 
 ## Documentation map
 
 | Location | Purpose |
 | --- | --- |
-| `AGENTS.md` | Working rules for contributors and AI assistance |
-| `CONCEPT.md` | Core creative direction and project boundaries |
-| `ROADMAP.md` | Staged development, with proposed work distinguished from completed work |
-| `CHANGELOG.md` | Meaningful repository changes |
-| `docs/` | Documentation standards, decisions, history, and canon policy |
-| `character/` | Eldgrim's public identity, personality, and voice |
-| `lore/` | Amberhearth, fires, and the shared mythic setting |
-| `narrative/` | Story development, quests, and narrative material |
-| `interaction/` | How Eldgrim appears and communicates within the project |
-| `assets/` | Visual, audio, and other creative resources |
-| `templates/` | Reusable formats for future documentation |
+| AGENTS.md | Working rules for contributors and AI assistance |
+| CONCEPT.md | Core creative direction and project boundaries |
+| ROADMAP.md | Staged development, with proposed work distinguished from completed work |
+| CHANGELOG.md | Meaningful repository changes |
+| docs/ | Documentation standards, decisions, history, and canon policy |
+| character/ | Eldgrim's public identity, personality, and voice |
+| lore/ | Amberhearth, fires, and the shared mythic setting |
+| narrative/ | Story development, quests, and narrative material |
+| interaction/ | How Eldgrim appears and communicates within the project |
+| assets/ | Visual, audio, and other creative resources |
+| templates/ | Reusable formats for future documentation |
+| addon/ | Forever-only addon specification, API research, data model, and test plan |
 
-See [docs/PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md) for the complete structure.
+See [docs/PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md) for the complete structure and [addon/README.md](addon/README.md) for the addon workstream.
 
 ## Canon and secrecy
 
@@ -54,6 +59,6 @@ Unconfirmed ideas must be labelled as developing, proposed, or open rather than 
 
 ## Current status
 
-<badge>Documentation foundation</badge>
+**Character project:** documentation foundation established.
 
-The initial work establishes the project structure and records the creative foundation available at this stage. It does not settle every aspect of Eldgrim's identity, the fellowship's procedures, future narrative arcs, or any technical implementation.
+**Addon:** first-milestone scope, Forever API research, data model, and test plan documented. No addon source code has been implemented or tested in-game.
