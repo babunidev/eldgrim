@@ -37,7 +37,7 @@ The author record can contain:
 - Zone.
 - Achievement points.
 - Two profession names and skill ranks.
-- Faction.
+- Faction (`Enum.PvPFaction`: 0 = Horde, 1 = Alliance).
 - Other guild, presence, account, and identifier fields that Eldgrim must ignore.
 
 The function may return nothing, requires clubs to be initialized, and is restricted during chat-messaging lockdown. `Enum.ClubType.Guild` has value `2`. The implementation accepts the author record only when the returned club type is Guild, the content exactly matches the current event text, and the author name exactly matches the event sender. It converts `messageId.epoch` from microseconds to seconds. The epoch and position are used only transiently; a bounded in-memory cache prevents the same last-line identifier from being reused and no technical identifier is saved.
