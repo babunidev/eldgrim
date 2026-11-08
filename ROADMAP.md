@@ -29,15 +29,15 @@ This roadmap records areas of development, not promises or fixed deadlines.
 ## Assets — open
 - [ ] Add approved visual or audio assets with provenance and usage notes.
 
-## Eldgrim addon — approved scope; implementation not started
+## Eldgrim addon — approved scope; initial implementation created
 - [x] Establish Forever-only support and a separate technical documentation area.
 - [x] Define the first milestone as passive, local guild-chat recording.
 - [x] Define the compact character-profile and timestamped-message data model.
 - [x] Research the relevant Forever API surface and document its limitations.
 - [ ] Verify chat-event and community-message correlation in the current Forever client.
 - [ ] Verify character enrichment and Forever race-name mapping in-game.
-- [ ] Implement the recorder using account-wide SavedVariables.
-- [ ] Test reload, logout, cold-start persistence, chat lockdown, and missing profile data.
+- [x] Implement the initial recorder using account-wide SavedVariables.
+- [ ] Test reload, logout, cold-start persistence, chat lockdown, and missing profile data in-game.
 - [ ] Verify that the addon has no visible or audible output and records no unrelated channels.
 
 The addon remains a recorder only until the creative approves a broader scope. A documented task is not an implemented feature, and API documentation is not an in-game test.

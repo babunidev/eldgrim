@@ -25,7 +25,7 @@ This repository contains two distinct workstreams:
 - **Character and narrative:** Eldgrim's public identity, voice, lore, relationships, and stories.
 - **Technical addon:** a separate World of Warcraft Forever addon, documented under addon/. Its approved first milestone is a passive local guild-chat recorder.
 
-The addon is an out-of-character technical project. It does not define Eldgrim's in-world powers, motives, or canon. Its current documentation does not mean that addon code has been implemented.
+The addon is an out-of-character technical project. It does not define Eldgrim's in-world powers, motives, or canon. An initial Lua and TOC implementation now exists under addon/Eldgrim; its in-game behavior and persistence remain unverified.
 
 The repository remains separate from:
 
@@ -47,7 +47,7 @@ The repository remains separate from:
 | interaction/ | How Eldgrim appears and communicates within the project |
 | assets/ | Visual, audio, and other creative resources |
 | templates/ | Reusable formats for future documentation |
-| addon/ | Forever-only addon specification, API research, data model, and test plan |
+| addon/ | Forever-only addon source, specification, API research, data model, and tests |
 
 See [docs/PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md) for the complete structure and [addon/README.md](addon/README.md) for the addon workstream.
 
@@ -61,4 +61,4 @@ Unconfirmed ideas must be labelled as developing, proposed, or open rather than 
 
 **Character project:** documentation foundation established.
 
-**Addon:** first-milestone scope, Forever API research, data model, and test plan documented. No addon source code has been implemented or tested in-game.
+**Addon:** initial Forever-only Lua/TOC implementation and mock tests exist. Local syntax and mock behavior checks passed; in-game event correlation, profile enrichment, and SavedVariables persistence remain unverified.

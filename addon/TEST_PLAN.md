@@ -3,7 +3,7 @@
 **Target:** World of Warcraft Forever only.  
 **Baseline:** Version 1.60.1, interface 16001.  
 **Build reference:** 1.60.1.70862 (latest public build found on 2026-11-08).  
-**Status:** Not run. No addon implementation exists yet.
+**Status:** Local Lua syntax validation and mocked behavior tests passed with texlua. All in-game checks remain not run.
 
 ## 1. Client and loading
 - [ ] Confirm the installed client is World of Warcraft Forever.
@@ -59,10 +59,15 @@
 
 ## 8. Automated checks
 
-After source code is created:
-- [ ] Run Lua syntax validation.
-- [ ] Run static checks against the current Forever API declarations.
-- [ ] Add and run tests for profile merging, timestamp conversion, missing fields, and duplicate prevention.
-- [ ] Record exact commands and results.
+Current automated checks:
+- [x] Lua syntax validation via `loadfile` in the mock test harness.
+- [x] Mocked behavior tests for guild-only registration, message capture, timestamp conversion, local-time fallback, profile enrichment and updates, missing/unknown fields, mismatched author/content/club type, lockdown handling, duplicate correlation keys, and exclusion of technical identifiers from saved data.
+- [ ] Static checks against the current Forever API declarations.
 
-Automated checks and mocked tests do not replace in-game testing. Do not mark any item complete until the corresponding test has actually been performed in the stated Forever build.
+Run the repeatable mock suite from the repository root:
+
+```sh
+texlua addon/tests/test_recorder.lua addon/Eldgrim/Eldgrim.lua
+```
+
+The mock suite is not an in-game test. Do not mark any in-game item complete until it has actually been performed in the stated Forever build.

@@ -17,7 +17,7 @@ A separate **Eldgrim addon for World of Warcraft Forever only** is approved and 
 
 The first milestone has no in-game interface, commands, chat output, notifications, sounds, addon communication, network activity, AI, summaries, or interpretation. It is a local recorder, not an in-game chatbot. The technical project does not change Eldgrim's character canon or reveal concealed lore.
 
-The addon scope is approved; implementation and in-game verification have not yet begun.
+The initial Lua and TOC implementation now exists under addon/Eldgrim. In-game event correlation, character enrichment, and SavedVariables persistence remain unverified.
 
 ## Project boundaries
 This repository contains public-safe character and narrative documentation alongside the separately scoped addon workstream. Amberhearth governance and operations remain in the guild's own repository.

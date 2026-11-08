@@ -36,7 +36,12 @@
         ├── README.md
         ├── SPECIFICATION.md
         ├── API_RESEARCH.md
-        └── TEST_PLAN.md
+        ├── TEST_PLAN.md
+        ├── Eldgrim/
+        │   ├── Eldgrim.toc
+        │   └── Eldgrim.lua
+        └── tests/
+            └── test_recorder.lua
 
 ## Responsibilities
 - Root documents define project identity, rules, direction, planned work, and repository history.
@@ -47,7 +52,7 @@
 - interaction/ records how Eldgrim communicates and participates in roleplay.
 - assets/ stores approved creative resources and provenance.
 - templates/ provides reusable formats.
-- addon/ contains the separate Forever-only addon specification, API research, data model, and test plan. Runtime code belongs here when implementation is explicitly started.
+- addon/ contains the separate Forever-only addon source, manifest, specification, API research, data model, test plan, and mock tests. The installable addon directory is addon/Eldgrim/.
 
 ## Boundaries
 Amberhearth governance and guild operations belong in the ROARguild repository. Private canon does not belong in this public repository. The addon is a separate technical workstream and does not redefine character canon. Other software features require their own approved scope.

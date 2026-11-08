@@ -1,6 +1,6 @@
 # Eldgrim Addon — First-Milestone Specification
 
-**Status:** Approved scope; implementation not started.  
+**Status:** Approved scope; initial Lua/TOC implementation created. In-game verification pending.  
 **Target:** World of Warcraft Forever only.  
 **Research baseline:** Version 1.60.1, interface 16001; latest public build found during research: 1.60.1.70862.
 
