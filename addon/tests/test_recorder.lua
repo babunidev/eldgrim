@@ -334,6 +334,7 @@ local forbiddenValues = {
     ["old private whisper text"] = true,
     ["old private emote text"] = true,
     ["Old Recipient"] = true,
+    ["old v1 guild text"] = true,
 }
 
 local function inspectSavedData(value)
@@ -410,6 +411,23 @@ dofile(addonFile)
 local clean = EldgrimDB.members["Clean Member"]
 assert(clean.activity.total == 2)
 assert(clean.messages == nil and clean.guildRank == nil)
+inspectSavedData(EldgrimDB)
+
+-- The original schema-1 database used the member-name map as its root.
+EldgrimDB = {
+    ["Legacy V1 Member"] = {
+        level = 10,
+        messages = {
+            { timestamp = 1800000240, message = "old v1 guild text" },
+        },
+    },
+}
+dofile(addonFile)
+local legacyV1 = EldgrimDB.members["Legacy V1 Member"]
+assert(EldgrimDB.schemaVersion == 3)
+assert(legacyV1.activity.total == 1)
+assert(legacyV1.activity.byType.GUILD == 1)
+assert(legacyV1.messages == nil and legacyV1.level == nil)
 inspectSavedData(EldgrimDB)
 
 print("Eldgrim privacy-first activity-counter mock tests passed. These are not in-game tests.")
