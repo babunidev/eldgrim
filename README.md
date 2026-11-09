@@ -1,6 +1,6 @@
 # Eldgrim
 
-Eldgrim is a character and narrative project set within the wider World of Warcraft Forever roleplaying world. This repository keeps the character's identity, voice, lore, relationship with Amberhearth, and developing narrative experiences in one place. It also contains a separately maintained technical workstream for the Eldgrim World of Warcraft Forever addon.
+Eldgrim is a character and narrative project set within the wider World of Warcraft Forever roleplaying world. This repository keeps the character's identity, voice, lore, relationship with Amberhearth, and developing narrative experiences in one place. It also documents two separate technical workstreams: the World of Warcraft Forever addon and a proposed local Discord agent.
 
 ## The foundation
 
@@ -20,12 +20,13 @@ The rank names are recorded here without assigning duties, privileges, or progre
 
 ## Project scope
 
-This repository contains two distinct workstreams:
+This repository contains three distinct workstreams:
 
 - **Character and narrative:** Eldgrim's public identity, voice, lore, relationships, and stories.
 - **Technical addon:** a separate World of Warcraft Forever addon, documented under addon/. Its approved first milestone is a passive local guild-chat recorder.
+- **Local agent:** a developing design for a once-daily Python process that uses local Ollama inference, Discord's HTTP API, and a private SQLite database. Its architecture and boundaries are documented under agent/. No agent implementation or deployment exists yet.
 
-The addon is an out-of-character technical project. It does not define Eldgrim's in-world powers, motives, or canon. An initial Lua and TOC implementation now exists under addon/Eldgrim; its in-game behavior and persistence remain unverified.
+The addon and agent are out-of-character technical projects. Neither defines Eldgrim's in-world powers, motives, or canon. The addon remains a passive recorder and is not integrated with the agent. The agent is a separate proposed communication system; it must not be described as operational until implemented and verified.
 
 The repository remains separate from:
 
@@ -48,17 +49,22 @@ The repository remains separate from:
 | assets/ | Visual, audio, and other creative resources |
 | templates/ | Reusable formats for future documentation |
 | addon/ | Forever-only addon source, specification, API research, data model, and tests |
+| agent/ | Local agent architecture, scope, security, memory, and operations documentation |
 
-See [docs/PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md) for the complete structure and [addon/README.md](addon/README.md) for the addon workstream.
+See [docs/PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md) for the complete structure, [addon/README.md](addon/README.md) for the addon workstream, and [agent/README.md](agent/README.md) for the agent design.
 
 ## Canon and secrecy
 
 This is a public repository. Documents here must not disclose concealed character information or private motives intended to remain unknown to the in-world fellowship. Public documentation should describe only what is safe to make public. Private canon must be kept outside this repository unless it is deliberately approved for publication.
 
-Unconfirmed ideas must be labelled as developing, proposed, or open rather than presented as established lore.
+The agent's runtime database, actual conversations, credentials, and private runtime instructions must also remain outside Git. The agent documentation describes public architecture and implementation requirements, not private character secrets or live user data.
+
+Unconfirmed ideas must be labelled as developing, proposed, or open rather than presented as established lore or implemented behavior.
 
 ## Current status
 
 **Character project:** documentation foundation established.
 
 **Addon:** initial Forever-only Lua/TOC implementation and mock tests exist. Local syntax and mock behavior checks passed; in-game event correlation, profile enrichment, and SavedVariables persistence remain unverified.
+
+**Agent:** architecture and technical specifications documented as a developing workstream. No Python agent, Discord application integration, SQLite runtime database, systemd unit, or deployment has been implemented or tested.

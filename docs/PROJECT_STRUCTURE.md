@@ -32,18 +32,26 @@
     │   ├── README.md
     │   ├── STORY_TEMPLATE.md
     │   └── CHARACTER_NOTE_TEMPLATE.md
-    └── addon/
+    ├── addon/
+    │   ├── README.md
+    │   ├── SPECIFICATION.md
+    │   ├── API_RESEARCH.md
+    │   ├── TEST_PLAN.md
+    │   ├── Eldgrim/
+    │   │   ├── Eldgrim.toc
+    │   │   └── Eldgrim.lua
+    │   └── tests/
+    │       └── test_recorder.lua
+    └── agent/
         ├── README.md
+        ├── ARCHITECTURE.md
         ├── SPECIFICATION.md
-        ├── API_RESEARCH.md
-        ├── TEST_PLAN.md
-        ├── Eldgrim/
-        │   ├── Eldgrim.toc
-        │   └── Eldgrim.lua
-        └── tests/
-            └── test_recorder.lua
+        ├── SECURITY.md
+        ├── MEMORY.md
+        └── OPERATIONS.md
 
 ## Responsibilities
+
 - Root documents define project identity, rules, direction, planned work, and repository history.
 - docs/ defines documentation practice, decisions, and development history.
 - character/ contains public character identity, personality, and voice.
@@ -53,6 +61,8 @@
 - assets/ stores approved creative resources and provenance.
 - templates/ provides reusable formats.
 - addon/ contains the separate Forever-only addon source, manifest, specification, API research, data model, test plan, and mock tests. The installable addon directory is addon/Eldgrim/.
+- agent/ contains the proposed local agent's architecture, scope, security, memory, and operations documentation. It is documentation only at this stage; no Python source, systemd unit, or runtime data belongs here yet.
 
 ## Boundaries
-Amberhearth governance and guild operations belong in the ROARguild repository. Private canon does not belong in this public repository. The addon is a separate technical workstream and does not redefine character canon. Other software features require their own approved scope.
+
+Amberhearth governance and guild operations belong in the ROARguild repository. Private canon does not belong in this public repository. The addon is a separate technical workstream and does not redefine character canon. The agent is also separate from character canon and from the addon; it does not automatically gain access to addon data. Runtime memory, actual conversations, credentials, private prompts, and logs remain outside Git. Other software features require their own approved scope.
