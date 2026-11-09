@@ -1,8 +1,8 @@
 ## Interface: 16001
 ## Title: Eldgrim
-## Notes: Silent local guild-member conversation archive for World of Warcraft Forever.
+## Notes: Privacy-first local guild activity counter for World of Warcraft Forever.
 ## Author: Babuni
-## Version: 0.2.0-alpha
+## Version: 0.3.0-alpha
 ## SavedVariables: EldgrimDB
 
 Eldgrim.lua

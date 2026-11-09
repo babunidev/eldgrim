@@ -1,52 +1,36 @@
 -- Eldgrim - World of Warcraft Forever
--- Passive local archive of current guild members' player-chat messages.
+-- Passive local counters for current guild members' chat activity.
+-- Message contents are never read, stored, displayed, or transmitted.
 -- No UI, slash commands, chat output, notifications, sounds, or addon messaging.
 
 local GUILD_CLUB_TYPE = 2
-local GUILD_STREAM_TYPE = 1
-local OFFICER_STREAM_TYPE = 2
-local DATABASE_SCHEMA_VERSION = 2
-local RECENT_MESSAGE_KEY_LIMIT = 128
+local DATABASE_SCHEMA_VERSION = 3
 
-local RACE_NAMES = {
-    [1] = "Human",
-    [2] = "Orc",
-    [3] = "Dwarf",
-    [4] = "Night Elf",
-    [5] = "Undead",
-    [6] = "Tauren",
-    [7] = "Gnome",
-    [8] = "Troll",
-    [95] = "High Order Skyborne",
-    [96] = "Windshaper Skyborne",
+local ACTIVITY_TYPES = {
+    GUILD = true,
+    OFFICER = true,
+    SAY = true,
+    YELL = true,
+    WHISPER_IN = true,
+    WHISPER_OUT = true,
+    PARTY = true,
+    RAID = true,
+    RAID_WARNING = true,
+    INSTANCE = true,
+    CHANNEL = true,
+    COMMUNITY = true,
+    EMOTE = true,
 }
 
-local CLASS_TOKENS = {
-    WARRIOR = true,
-    PALADIN = true,
-    HUNTER = true,
-    ROGUE = true,
-    PRIEST = true,
-    SHAMAN = true,
-    MAGE = true,
-    WARLOCK = true,
-    DRUID = true,
-}
-
-local FACTION_NAMES = {
-    [0] = "Horde",
-    [1] = "Alliance",
-}
-
--- Only player-authored in-game chat events are registered. System, NPC,
--- combat-log, addon, Battle.net, and Discord-relay messages are excluded.
+-- Each delivered player-chat event becomes one counter increment.
+-- The event's message-text argument is deliberately not assigned or inspected.
 local CHAT_EVENTS = {
     CHAT_MSG_GUILD = "GUILD",
     CHAT_MSG_OFFICER = "OFFICER",
     CHAT_MSG_SAY = "SAY",
     CHAT_MSG_YELL = "YELL",
-    CHAT_MSG_WHISPER = "WHISPER",
-    CHAT_MSG_WHISPER_INFORM = "WHISPER",
+    CHAT_MSG_WHISPER = "WHISPER_IN",
+    CHAT_MSG_WHISPER_INFORM = "WHISPER_OUT",
     CHAT_MSG_PARTY = "PARTY",
     CHAT_MSG_PARTY_LEADER = "PARTY",
     CHAT_MSG_RAID = "RAID",
@@ -57,22 +41,15 @@ local CHAT_EVENTS = {
     CHAT_MSG_CHANNEL = "CHANNEL",
     CHAT_MSG_COMMUNITIES_CHANNEL = "COMMUNITY",
     CHAT_MSG_EMOTE = "EMOTE",
-    CHAT_MSG_TEXT_EMOTE = "TEXT_EMOTE",
+    CHAT_MSG_TEXT_EMOTE = "EMOTE",
 }
-
-local recentMessageKeys = {}
-local recentMessageQueue = {}
-local nextRecentMessageSlot = 1
 
 local memberNameLookup = {}
 local selfMemberName
 local currentGuildClubId
 local focusedGuildClubId
-local guildStreamId
-local officerStreamId
 local clubsInitialized = false
 local rosterRefreshPending = false
-local streamsRefreshPending = false
 
 local function normalizeCharacterName(name)
     if type(name) ~= "string" then
@@ -120,99 +97,177 @@ local function isChatMessagingLockedDown()
     return not ok or restricted ~= false
 end
 
-local function buildCharacterProfile(source)
+local function cleanCount(value)
+    if type(value) == "number" and value >= 0 then
+        return math.floor(value)
+    end
+
+    return 0
+end
+
+local function emptyActivity()
+    return {
+        total = 0,
+        byType = {},
+        byDay = {},
+    }
+end
+
+local function getDayKey(timestamp)
+    if type(date) == "function" then
+        local ok, dayKey = pcall(date, "%Y-%m-%d", timestamp)
+        if ok and type(dayKey) == "string" and dayKey ~= "" then
+            return dayKey
+        end
+    end
+
+    -- Fallback is an epoch-day key, not an individual event timestamp.
+    return tostring(math.floor(timestamp / 86400))
+end
+
+local function copyTypeCounts(source)
+    local result = {}
     if type(source) ~= "table" then
-        return {}
+        return result
     end
 
-    local profile = {}
-    local raceName = RACE_NAMES[source.race]
-    if raceName then
-        profile.race = raceName
-    end
-
-    local classID = source.classID
-    local classAPI = C_CreatureInfo and C_CreatureInfo.GetClassInfo
-    if type(classID) == "number" and type(classAPI) == "function" then
-        local ok, classInfo = pcall(classAPI, classID)
-        if ok and type(classInfo) == "table"
-            and type(classInfo.classFile) == "string"
-            and CLASS_TOKENS[classInfo.classFile]
-            and type(classInfo.className) == "string"
-            and classInfo.className ~= "" then
-            profile.class = classInfo.className
+    for activityType in pairs(ACTIVITY_TYPES) do
+        local count = cleanCount(source[activityType])
+        if count > 0 then
+            result[activityType] = count
         end
     end
 
-    if type(source.level) == "number" and source.level > 0 then
-        profile.level = source.level
-    end
-
-    local factionName = FACTION_NAMES[source.faction]
-    if factionName then
-        profile.faction = factionName
-    end
-
-    if type(source.zone) == "string" and source.zone ~= "" then
-        profile.zone = source.zone
-    end
-
-    if type(source.achievementPoints) == "number" and source.achievementPoints >= 0 then
-        profile.achievementPoints = source.achievementPoints
-    end
-
-    local professions = {}
-
-    local function addProfession(name, skill)
-        if type(name) ~= "string" or name == "" then
-            return
-        end
-
-        local profession = { name = name }
-        if type(skill) == "number" and skill >= 0 then
-            profession.skill = skill
-        end
-        professions[#professions + 1] = profession
-    end
-
-    addProfession(source.profession1Name, source.profession1Rank)
-    addProfession(source.profession2Name, source.profession2Rank)
-
-    if #professions > 0 then
-        profile.professions = professions
-    end
-
-    return profile
+    return result
 end
 
-local function applyCharacterProfile(character, source)
-    local profile = buildCharacterProfile(source)
-    for field, value in pairs(profile) do
-        character[field] = value
+local function sumCounts(counts)
+    local total = 0
+    for _, count in pairs(counts) do
+        total = total + count
+    end
+    return total
+end
+
+local function sanitizeActivity(source)
+    local activity = emptyActivity()
+    if type(source) ~= "table" then
+        return activity
     end
 
-    if type(source) == "table"
-        and type(source.guildRank) == "string"
-        and source.guildRank ~= "" then
-        character.guildRank = source.guildRank
+    activity.byType = copyTypeCounts(source.byType)
+    activity.total = cleanCount(source.total)
+    if activity.total == 0 then
+        activity.total = sumCounts(activity.byType)
+    end
+
+    if type(source.byDay) == "table" then
+        for dayKey, sourceDay in pairs(source.byDay) do
+            if (type(dayKey) == "string" or type(dayKey) == "number")
+                and type(sourceDay) == "table" then
+                local day = {
+                    total = 0,
+                    byType = copyTypeCounts(sourceDay.byType),
+                }
+                day.total = cleanCount(sourceDay.total)
+                if day.total == 0 then
+                    day.total = sumCounts(day.byType)
+                end
+
+                if day.total > 0 then
+                    activity.byDay[tostring(dayKey)] = day
+                end
+            end
+        end
+    end
+
+    return activity
+end
+
+local function incrementActivity(activity, activityType, dayKey)
+    if type(activity) ~= "table" or not ACTIVITY_TYPES[activityType] then
+        return
+    end
+
+    if type(activity.byType) ~= "table" then
+        activity.byType = {}
+    end
+    if type(activity.byDay) ~= "table" then
+        activity.byDay = {}
+    end
+
+    activity.total = cleanCount(activity.total) + 1
+    activity.byType[activityType] = cleanCount(activity.byType[activityType]) + 1
+
+    if type(dayKey) == "string" and dayKey ~= "" then
+        local day = activity.byDay[dayKey]
+        if type(day) ~= "table" then
+            day = {
+                total = 0,
+                byType = {},
+            }
+            activity.byDay[dayKey] = day
+        elseif type(day.byType) ~= "table" then
+            day.byType = {}
+        end
+
+        day.total = cleanCount(day.total) + 1
+        day.byType[activityType] = cleanCount(day.byType[activityType]) + 1
     end
 end
 
-local function getMemberRecord(name)
-    local members = EldgrimDB.members
-    local character = members[name]
-    if type(character) ~= "table" then
-        character = { messages = {} }
-        members[name] = character
-    elseif type(character.messages) ~= "table" then
-        character.messages = {}
+local function legacyActivityType(messageRecord)
+    if type(messageRecord) ~= "table" then
+        return nil
     end
 
-    return character
+    local channel = messageRecord.channel
+    if channel == nil then
+        channel = "GUILD"
+    end
+
+    if channel == "WHISPER" then
+        if messageRecord.direction == "OUT" then
+            return "WHISPER_OUT"
+        end
+        return "WHISPER_IN"
+    end
+
+    if channel == "TEXT_EMOTE" then
+        return "EMOTE"
+    end
+
+    if ACTIVITY_TYPES[channel] then
+        return channel
+    end
+
+    return nil
+end
+
+local function aggregateLegacyMessages(activity, messages)
+    if type(messages) ~= "table" then
+        return
+    end
+
+    for _, messageRecord in ipairs(messages) do
+        local activityType = legacyActivityType(messageRecord)
+        if activityType then
+            local dayKey
+            if type(messageRecord.timestamp) == "number"
+                and messageRecord.timestamp > 0 then
+                dayKey = getDayKey(messageRecord.timestamp)
+            end
+
+            -- Deliberately never read messageRecord.message or any recipient,
+            -- message ID, chat-line ID, or other message payload.
+            incrementActivity(activity, activityType, dayKey)
+        end
+    end
 end
 
 local function initializeDatabase()
-    if type(EldgrimDB) ~= "table" then
+    local existing = EldgrimDB
+    if type(existing) ~= "table" then
         EldgrimDB = {
             schemaVersion = DATABASE_SCHEMA_VERSION,
             members = {},
@@ -220,28 +275,27 @@ local function initializeDatabase()
         return
     end
 
-    if EldgrimDB.schemaVersion == DATABASE_SCHEMA_VERSION
-        and type(EldgrimDB.members) == "table" then
-        return
+    local sourceMembers = existing.members
+    if type(sourceMembers) ~= "table" then
+        -- Version 1 used the character-name map as the database root.
+        sourceMembers = existing
     end
 
-    -- Migrate the original name-keyed guild archive without discarding history.
-    -- Every message in the old schema came from CHAT_MSG_GUILD, so its channel
-    -- can be labelled accurately during migration.
     local migratedMembers = {}
-    for name, character in pairs(EldgrimDB) do
-        if type(name) == "string" and type(character) == "table" then
-            if type(character.messages) ~= "table" then
-                character.messages = {}
+    for name, sourceMember in pairs(sourceMembers) do
+        if type(name) == "string" and type(sourceMember) == "table" then
+            local activity = sanitizeActivity(sourceMember.activity)
+
+            if existing.schemaVersion ~= DATABASE_SCHEMA_VERSION then
+                aggregateLegacyMessages(activity, sourceMember.messages)
             end
 
-            for _, messageRecord in ipairs(character.messages) do
-                if type(messageRecord) == "table" and messageRecord.channel == nil then
-                    messageRecord.channel = "GUILD"
-                end
-            end
-
-            migratedMembers[name] = character
+            -- Whitelist only the character name (the map key), membership
+            -- state, and aggregate activity. All profile/message fields vanish.
+            migratedMembers[name] = {
+                isGuildMember = sourceMember.isGuildMember == true,
+                activity = activity,
+            }
         end
     end
 
@@ -251,15 +305,19 @@ local function initializeDatabase()
     }
 end
 
-local function rememberMessageKey(key)
-    local oldKey = recentMessageQueue[nextRecentMessageSlot]
-    if oldKey then
-        recentMessageKeys[oldKey] = nil
+local function getMemberRecord(name)
+    local members = EldgrimDB.members
+    local character = members[name]
+    if type(character) ~= "table" then
+        character = {
+            activity = emptyActivity(),
+        }
+        members[name] = character
+    elseif type(character.activity) ~= "table" then
+        character.activity = emptyActivity()
     end
 
-    recentMessageQueue[nextRecentMessageSlot] = key
-    recentMessageKeys[key] = true
-    nextRecentMessageSlot = (nextRecentMessageSlot % RECENT_MESSAGE_KEY_LIMIT) + 1
+    return character
 end
 
 local function clearCurrentRosterLookup()
@@ -273,32 +331,6 @@ local function markAllMembersFormer()
             character.isGuildMember = false
         end
     end
-end
-
-local function readGuildStreamIDs(clubId)
-    local api = C_Club and C_Club.GetStreams
-    if type(api) ~= "function" then
-        return nil, nil
-    end
-
-    local ok, streams = pcall(api, clubId)
-    if not ok or type(streams) ~= "table" then
-        return nil, nil
-    end
-
-    local foundGuildStream
-    local foundOfficerStream
-    for _, stream in ipairs(streams) do
-        if type(stream) == "table" and type(stream.streamId) == "number" then
-            if stream.streamType == GUILD_STREAM_TYPE then
-                foundGuildStream = stream.streamId
-            elseif stream.streamType == OFFICER_STREAM_TYPE then
-                foundOfficerStream = stream.streamId
-            end
-        end
-    end
-
-    return foundGuildStream, foundOfficerStream
 end
 
 local function refreshGuildRoster()
@@ -331,9 +363,6 @@ local function refreshGuildRoster()
         if clubsInitialized then
             currentGuildClubId = nil
             focusedGuildClubId = nil
-            guildStreamId = nil
-            officerStreamId = nil
-            streamsRefreshPending = false
             clearCurrentRosterLookup()
             markAllMembersFormer()
             return true
@@ -385,7 +414,6 @@ local function refreshGuildRoster()
             else
                 local character = getMemberRecord(name)
                 character.isGuildMember = true
-                applyCharacterProfile(character, memberInfo)
                 nextCurrentMembers[name] = true
                 addMemberNameToLookup(nextLookup, name)
 
@@ -397,7 +425,6 @@ local function refreshGuildRoster()
     end
 
     -- Do not mark missing entries as former unless every roster row was read.
-    -- A partial API response must not erase a member's current status.
     if scanComplete then
         for name, character in pairs(EldgrimDB.members) do
             if type(character) == "table" then
@@ -409,11 +436,9 @@ local function refreshGuildRoster()
     memberNameLookup = nextLookup
     selfMemberName = nextSelfMemberName
     currentGuildClubId = clubId
-    guildStreamId, officerStreamId = readGuildStreamIDs(clubId)
-    streamsRefreshPending = false
 
-    -- A partial read is still a completed attempt: known members are eligible,
-    -- unread names fail closed, and missing records are not marked former.
+    -- A partial scan is fail-closed for capture: only names read successfully
+    -- are eligible, and unread members are not marked former.
     return true
 end
 
@@ -422,109 +447,41 @@ local function resolveCurrentMemberName(name)
     return key and memberNameLookup[key] or nil
 end
 
-local function getMatchedCommunityData(event, message, senderName, canonicalName)
-    local expectedStreamId
-    if event == "CHAT_MSG_GUILD" then
-        expectedStreamId = guildStreamId
-    elseif event == "CHAT_MSG_OFFICER" then
-        expectedStreamId = officerStreamId
-    else
-        return nil, nil
-    end
-
-    if expectedStreamId == nil or currentGuildClubId == nil then
-        return nil, nil
-    end
-
-    local api = C_Club and C_Club.GetInfoFromLastCommunityChatLine
-    if type(api) ~= "function" then
-        return nil, nil
-    end
-
-    local ok, messageInfo, clubId, streamId, clubType = pcall(api)
-    if not ok or type(messageInfo) ~= "table"
-        or clubId ~= currentGuildClubId
-        or streamId ~= expectedStreamId
-        or clubType ~= GUILD_CLUB_TYPE then
-        return nil, nil
-    end
-
-    local author = messageInfo.author
-    if type(author) ~= "table"
-        or type(messageInfo.content) ~= "string"
-        or messageInfo.content ~= message
-        or type(author.name) ~= "string"
-        or resolveCurrentMemberName(author.name) ~= canonicalName
-        or resolveCurrentMemberName(senderName) ~= canonicalName then
-        return nil, nil
-    end
-
-    local timestamp
-    local messageKey
-    local messageId = messageInfo.messageId
-    if type(messageId) == "table" then
-        local epoch = messageId.epoch
-        local position = messageId.position
-
-        if type(epoch) == "number" and epoch > 0 then
-            timestamp = math.floor(epoch / 1000000)
-        end
-
-        if type(epoch) == "number" and epoch > 0 and type(position) == "number" then
-            messageKey = tostring(clubId) .. ":" .. tostring(streamId)
-                .. ":" .. tostring(epoch) .. ":" .. tostring(position)
-            if recentMessageKeys[messageKey] then
-                return nil, nil
-            end
-        end
-    end
-
-    if messageKey then
-        rememberMessageKey(messageKey)
-    end
-
-    return buildCharacterProfile(author), timestamp
-end
-
 local function recordChatEvent(event, ...)
-    -- The lockdown check must happen before reading or comparing chat payloads.
+    -- Do not inspect chat payloads while the client has chat-messaging lockdown.
     if isChatMessagingLockedDown() then
         return
     end
 
     if rosterRefreshPending then
         clearCurrentRosterLookup()
-        -- Retry readiness after a deferred/early event. Member enumeration only
-        -- begins once AreMembersReady reports true; FocusMembers is called once.
         rosterRefreshPending = not refreshGuildRoster()
     end
 
-    if streamsRefreshPending and currentGuildClubId ~= nil then
-        guildStreamId, officerStreamId = readGuildStreamIDs(currentGuildClubId)
-        streamsRefreshPending = false
-    end
-
-    local message, playerName, _, channelName, _, _, _, _, channelBaseName,
-        _, _, _, _, _, _, _, _, discordInfo = ...
-    if type(message) ~= "string" or message == "" or type(discordInfo) == "table" then
+    local activityType = CHAT_EVENTS[event]
+    if not activityType then
         return
     end
 
-    local senderName = playerName
-    local direction
-    local recipient
+    -- select(2, ...) retrieves only the speaker field. The first argument,
+    -- containing message text, is never assigned to a local or inspected.
+    local playerName = select(2, ...)
 
-    if event == "CHAT_MSG_WHISPER" then
-        direction = "IN"
-    elseif event == "CHAT_MSG_WHISPER_INFORM" then
-        -- For outgoing whispers, playerName is the recipient. The speaker is
-        -- the local character, identified from the guild roster's isSelf row.
-        senderName = selfMemberName
-        direction = "OUT"
-        recipient = playerName
+    -- Community events may represent Discord relays rather than in-game chat.
+    if event == "CHAT_MSG_COMMUNITIES_CHANNEL"
+        and select("#", ...) >= 18
+        and type(select(18, ...)) == "table" then
+        return
     end
 
-    local canonicalName = resolveCurrentMemberName(senderName)
+    local speakerName = playerName
+    if event == "CHAT_MSG_WHISPER_INFORM" then
+        -- Outgoing whisper events identify the recipient in playerName.
+        -- Count the activity for this local character, without saving recipient.
+        speakerName = selfMemberName
+    end
+
+    local canonicalName = resolveCurrentMemberName(speakerName)
     if not canonicalName then
         return
     end
@@ -534,45 +491,15 @@ local function recordChatEvent(event, ...)
         return
     end
 
-    local profile, communityTimestamp = getMatchedCommunityData(
-        event, message, senderName, canonicalName
-    )
-    if type(profile) == "table" then
-        for field, value in pairs(profile) do
-            character[field] = value
+    local dayKey
+    if type(time) == "function" then
+        local ok, timestamp = pcall(time)
+        if ok and type(timestamp) == "number" and timestamp > 0 then
+            dayKey = getDayKey(timestamp)
         end
     end
 
-    local timestamp = communityTimestamp
-    if type(timestamp) ~= "number" then
-        timestamp = type(time) == "function" and time() or nil
-    end
-    if type(timestamp) ~= "number" then
-        return
-    end
-
-    local messageRecord = {
-        timestamp = timestamp,
-        channel = CHAT_EVENTS[event],
-        message = message,
-    }
-
-    if direction then
-        messageRecord.direction = direction
-    end
-    if type(recipient) == "string" and recipient ~= "" then
-        messageRecord.recipient = recipient
-    end
-
-    if CHAT_EVENTS[event] == "CHANNEL" or CHAT_EVENTS[event] == "COMMUNITY" then
-        local displayName = type(channelBaseName) == "string" and channelBaseName ~= ""
-            and channelBaseName or channelName
-        if type(displayName) == "string" and displayName ~= "" then
-            messageRecord.channelName = displayName
-        end
-    end
-
-    character.messages[#character.messages + 1] = messageRecord
+    incrementActivity(character.activity, activityType, dayKey)
 end
 
 initializeDatabase()
@@ -626,8 +553,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
             end
         end
 
-        -- The aggregate CLUB_MEMBERS_UPDATED event normally follows. Defer the
-        -- full scan until then; the next chat event is a safe fallback trigger.
+        -- The aggregate CLUB_MEMBERS_UPDATED event normally follows.
         clearCurrentRosterLookup()
         rosterRefreshPending = true
         return
@@ -657,70 +583,14 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
         return
     end
 
-    if event == "CLUB_MEMBER_UPDATED" or event == "CLUB_MEMBER_ROLE_UPDATED" then
-        if isChatMessagingLockedDown() then
-            clearCurrentRosterLookup()
-            rosterRefreshPending = true
-            return
-        end
-
-        local eventClubId, memberId = ...
-        if currentGuildClubId == nil or eventClubId ~= currentGuildClubId then
-            return
-        end
-
-        local getMemberInfo = C_Club and C_Club.GetMemberInfo
-        if type(getMemberInfo) ~= "function" then
-            return
-        end
-
-        local ok, memberInfo = pcall(getMemberInfo, currentGuildClubId, memberId)
-        if not ok or type(memberInfo) ~= "table"
-            or type(memberInfo.name) ~= "string" or memberInfo.name == "" then
-            return
-        end
-
-        local canonicalName = resolveCurrentMemberName(memberInfo.name)
-        local character = canonicalName and EldgrimDB.members[canonicalName]
-        if type(character) == "table" and character.isGuildMember == true then
-            applyCharacterProfile(character, memberInfo)
-        end
-        return
-    end
-
-    if event == "CLUB_SELF_MEMBER_ROLE_UPDATED" then
-        clearCurrentRosterLookup()
-        if isChatMessagingLockedDown() then
-            rosterRefreshPending = true
-            return
-        end
-        rosterRefreshPending = not refreshGuildRoster()
-        return
-    end
-
-    if event == "CLUB_STREAMS_LOADED" then
-        if isChatMessagingLockedDown() then
-            streamsRefreshPending = true
-            return
-        end
-
-        local eventClubId = ...
-        if currentGuildClubId ~= nil and eventClubId == currentGuildClubId then
-            guildStreamId, officerStreamId = readGuildStreamIDs(currentGuildClubId)
-            streamsRefreshPending = false
-        end
-        return
-    end
-
     if CHAT_EVENTS[event] then
         recordChatEvent(event, ...)
     end
 end)
 
 local function registerEvent(event)
-    -- Some event variants are not emitted by every Forever build. Register the
-    -- documented event when present without allowing one missing event to stop
-    -- the rest of the recorder from loading.
+    -- Some event variants are not emitted by every Forever build. Register
+    -- documented variants without allowing one missing event to stop loading.
     pcall(eventFrame.RegisterEvent, eventFrame, event)
 end
 
@@ -731,11 +601,7 @@ registerEvent("CLUB_MEMBERS_UPDATED")
 registerEvent("CLUB_ADDED")
 registerEvent("CLUB_MEMBER_ADDED")
 registerEvent("CLUB_MEMBER_REMOVED")
-registerEvent("CLUB_MEMBER_UPDATED")
-registerEvent("CLUB_MEMBER_ROLE_UPDATED")
-registerEvent("CLUB_SELF_MEMBER_ROLE_UPDATED")
 registerEvent("CLUB_REMOVED")
-registerEvent("CLUB_STREAMS_LOADED")
 
 for event in pairs(CHAT_EVENTS) do
     registerEvent(event)

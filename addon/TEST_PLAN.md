@@ -1,96 +1,73 @@
-# Eldgrim Addon — Guild-Member Conversation Archive Test Plan
+# Eldgrim Addon — Privacy-First Activity Counter Test Plan
 
 **Target:** World of Warcraft Forever only.
 **Baseline:** Version 1.60.1, interface 16001.
-**Latest public build found:** 1.60.1.70862 (2026-11-07).
-**Status:** Local Lua syntax validation and mocked behavior tests passed with texlua. Expanded roster and channel behavior remains unverified in-game. The creative reported that the earlier guild-only recorder worked after a reload; the exact client build and individual checks were not recorded.
+**Latest public build found during research:** 1.60.1.70862 (2026-11-07).
+**Status:** Local Lua syntax validation and mocked behavior tests passed with texlua. Live roster synchronization, chat-event delivery, and SavedVariables persistence remain unverified in-game.
 
 ## 1. Client and loading
 - [ ] Confirm the installed client is World of Warcraft Forever.
 - [ ] Record the exact version, build, and interface reported by the running client.
 - [ ] Confirm the addon loads with its Forever-only manifest.
-- [ ] Confirm account-wide SavedVariables initialize and migrate from the previous schema.
+- [ ] Confirm account-wide SavedVariables initialize and migrate to schema version 3.
 
-## 2. Guild roster synchronization
-- [ ] After initial clubs load, verify `C_Club.FocusMembers` is called once for the current guild and the client loads the member list.
-- [ ] Verify `C_Club.FocusMembers` is not called repeatedly for the same guild or while chat-messaging lockdown is active.
-- [ ] After initial clubs load, verify every current guild member receives an entry in `EldgrimDB.members`.
-- [ ] Verify members with no messages still have an empty `messages` array.
-- [ ] Verify full character names, including surnames, are stored and matched.
-- [ ] Verify rank, race, class, level, faction, zone, professions, and achievement points when supplied.
-- [ ] Verify missing profile fields remain absent rather than guessed.
-- [ ] Verify the local character is identified from the roster's `isSelf` field.
-- [ ] Verify member additions create entries and member removals mark entries former without deleting history.
-- [ ] Verify a member-info update refreshes human-readable fields without replacing message history.
-- [ ] Verify an incomplete roster scan does not mark unread members as former.
-- [ ] Verify roster updates are event-driven and no polling occurs.
+## 2. Guild roster
+- [ ] Verify the current guild roster loads after initial clubs are ready.
+- [ ] Verify `C_Club.FocusMembers` is called once for the current guild, not repeatedly.
+- [ ] Verify every current guild member gets an entry, including members with zero activity.
+- [ ] Verify only the full character name and membership status are saved from roster data.
+- [ ] Verify member additions, removals, rejoining, guild changes, and incomplete roster responses.
+- [ ] Verify former members retain aggregate counters but receive no new counters.
+- [ ] Verify the roster is event-driven and no polling occurs.
+- [ ] Verify no calls are made during chat-messaging lockdown.
 
-## 3. Supported message capture
-- [ ] Guild chat: receive and send; verify one record per message.
-- [ ] Officer chat: receive and send; verify one record per message.
-- [ ] Say and yell: verify messages from guild members are recorded.
-- [ ] Incoming whispers: verify the message is filed under the guild member who sent it.
-- [ ] Outgoing whispers: verify the message is filed under the local guild member, with recipient and `OUT` direction.
+## 3. Activity event counting
+- [ ] Guild chat: incoming and local player's own message.
+- [ ] Officer chat: incoming and local player's own message.
+- [ ] Say and yell.
+- [ ] Incoming character whispers.
+- [ ] Outgoing character whispers: attribute the count to the local guild member, without storing the recipient.
 - [ ] Party and party-leader chat.
 - [ ] Raid, raid-leader, and raid-warning chat.
 - [ ] Instance and instance-leader chat.
-- [ ] Custom channels such as General and Trade; verify the human-readable channel name.
-- [ ] Community streams; verify the human-readable stream name.
-- [ ] Custom and standard player text emotes.
-- [ ] Verify a guild member's message is recorded only when the event is actually delivered to this client.
+- [ ] Custom channels such as General and Trade.
+- [ ] Community channels; verify Discord-relayed events are excluded.
+- [ ] Standard and text emotes; both increment `EMOTE`.
+- [ ] Verify each delivered event increments exactly one lifetime counter and one daily counter.
+- [ ] Verify non-guild members are ignored in every supported channel.
+- [ ] Verify activity not delivered to the local client is not counted.
 
-## 4. Member-only filtering and exclusions
-- [ ] Verify messages from non-guild members are ignored in every supported channel.
-- [ ] Verify former members' new messages are ignored after a complete roster update.
-- [ ] Verify former members' historical messages remain intact.
-- [ ] Verify rejoining members become current again and continue their existing history.
-- [ ] Verify system messages, NPC/creature messages, combat-log and loot notices, addon messages, Battle.net conversations, and Discord-relay messages are excluded.
-- [ ] Verify whispers exchanged between two other players are not captured.
-- [ ] Verify say/yell messages outside the client's received range are not captured.
+## 4. Privacy and data minimization
+- [ ] Inspect SavedVariables after a normal save and confirm no message text is present.
+- [ ] Confirm no individual message records or per-message timestamps exist.
+- [ ] Confirm no whisper recipient, direction, channel name, message ID, or chat-line ID is saved.
+- [ ] Confirm no race, class, level, faction, zone, profession, achievement, rank, notes, presence, GUID, account, or member/club IDs are saved.
+- [ ] Confirm the code does not call `C_Club.GetInfoFromLastCommunityChatLine`.
+- [ ] Confirm the event handler does not assign or inspect the message-text argument.
+- [ ] Confirm no Discord-relayed community message is counted.
+- [ ] Confirm no custom addon messages, external services, UI, slash commands, chat output, sounds, or notifications exist.
 
-## 5. Name matching and attribution
-- [ ] Verify full Forever names match between roster rows and chat-event senders.
-- [ ] Verify supported space/hyphen display variants resolve to the same full name.
-- [ ] Verify the addon never matches by first name alone.
-- [ ] Verify outgoing whisper event payloads are attributed to the local character, not the recipient.
-- [ ] Verify guild and officer community-message author/content/club/stream checks reject stale or unrelated records.
+## 5. Migration and persistence
+- [ ] Load an existing schema-1 or schema-2 SavedVariables file.
+- [ ] Verify old message records become aggregate counters by activity type.
+- [ ] Verify old timestamps are used only to create daily buckets.
+- [ ] Verify old message text and all profile fields disappear from the in-memory schema.
+- [ ] Use `/reload` or log out normally, then inspect the SavedVariables file with the client closed.
+- [ ] Restart the client and verify schema version 3 and aggregate counters are restored.
+- [ ] Confirm the on-disk file is not considered sanitized until the first successful save after migration.
+- [ ] Confirm a forced client crash can lose counters accumulated since the last save.
 
-## 6. Timestamps and channels
-- [ ] Verify matched guild and officer messages use the community-message epoch timestamp.
-- [ ] Verify a wrong club, stream, author, or content falls back to local receipt time and does not enrich the profile.
-- [ ] Verify all other channels use local receipt time.
-- [ ] Verify each message stores a channel label and optional whisper/channel context.
-- [ ] Verify repeated identical messages are not deduplicated merely because their text matches.
-
-## 7. Restrictions and failure handling
+## 6. Restrictions and failure handling
 - [ ] Test while chat-messaging lockdown is active.
-- [ ] Verify restricted chat and roster APIs are skipped without Lua errors.
+- [ ] Verify restricted roster/chat operations are skipped without Lua errors.
+- [ ] Verify missing APIs, nil member records, partial roster data, and unavailable date/time helpers fail safely.
+- [ ] Verify lifetime counters still increment if daily date derivation is unavailable.
 - [ ] Verify no attempt is made to bypass lockdown or inspect secret values.
-- [ ] Verify missing APIs, nil member records, partial roster data, missing streams, and unavailable author data fail safely.
-- [ ] Verify roster refresh events for initial load, member changes, stream load, guild join, and guild leave.
 
-## 8. Saved data
-- [ ] Use `/reload` and verify the archive is written.
-- [ ] Log out normally and verify the archive is written.
-- [ ] Fully exit and restart the client; verify the archive is restored.
-- [ ] Verify all current guild members are present, including those with no messages.
-- [ ] Verify old schema messages are preserved and labelled `GUILD` after migration.
-- [ ] Verify former members remain in the archive with `isGuildMember = false`.
-- [ ] Verify no GUIDs, account identifiers, club/member/message/chat-line IDs, numeric race/class IDs, notes, or presence fields are saved.
-- [ ] Confirm a forced client crash can lose unsaved in-memory records.
-
-## 9. Quiet operation
-- [ ] Verify there are no visible frames, buttons, menus, or indicators.
-- [ ] Verify there are no slash commands, chat messages, notifications, or sounds.
-- [ ] Verify there is no custom addon messaging or external service use.
-- [ ] Verify the only network-dependent operation is the standard game-client `C_Club.FocusMembers` roster subscription required by the approved roster scan.
-- [ ] Verify there is no roster polling or background character inspection.
-
-## 10. Automated checks
-
+## 7. Automated checks
 Current automated checks:
 - [x] Lua syntax validation via `loadfile` in the mock test harness.
-- [x] Mocked tests for database migration, roster creation and updates, current/former status, profile updates, member-only filtering, supported channel records, outgoing whisper attribution, guild/officer stream matching, local-time fallback, lockdown, partial roster handling, and exclusion of technical identifiers.
+- [x] Mocked tests for roster loading, current/former membership, rejoining, partial scans, all supported activity categories, outgoing whisper attribution, Discord relay exclusion, migration, and data minimization.
 - [ ] Static checks against the current installed Forever API declarations.
 
 Run from the repository root:
@@ -99,4 +76,4 @@ Run from the repository root:
 texlua addon/tests/test_recorder.lua addon/Eldgrim/Eldgrim.lua
 ```
 
-The mock suite is not an in-game test. Do not mark any in-game item complete until it has actually been performed in the stated Forever build.
+Mock tests are not in-game tests. Do not mark any in-game item complete until it has actually been performed in the stated Forever build.

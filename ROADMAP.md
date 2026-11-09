@@ -29,17 +29,17 @@ This roadmap records areas of development, not promises or fixed deadlines.
 ## Assets — open
 - [ ] Add approved visual or audio assets with provenance and usage notes.
 
-## Eldgrim addon — expanded scope approved; implementation created
+## Eldgrim addon — privacy-first activity counter implemented
 - [x] Establish Forever-only support and a separate technical documentation area.
-- [x] Define a passive local archive of the current guild roster and member conversations.
-- [x] Research the Forever guild roster, chat-event, community-message, and lockdown APIs.
-- [x] Implement event-driven guild roster synchronization and member entries.
-- [x] Implement member-only recording across supported player-chat channels, including officer chat and outgoing whisper attribution.
-- [x] Preserve existing guild-chat history through schema migration and retain former-member archives.
-- [x] Add mocked tests for roster updates, member filtering, channel capture, timestamps, migration, and technical-field exclusion.
-- [ ] Verify initial roster loading and member add/remove/update events in the current Forever client.
-- [ ] Verify every supported chat event, full-name matching, and outgoing whisper attribution in-game.
-- [ ] Test reload, logout, cold-start persistence, lockdown, and partial roster failures in-game.
-- [ ] Verify that the addon has no visible or audible output and no custom addon messages or external services.
+- [x] Define a passive local activity counter for the current guild roster.
+- [x] Retain only member names, membership state, and aggregate activity counts.
+- [x] Count supported guild, officer, say, yell, whisper, party, raid, instance, custom/community, and emote events from current guild members.
+- [x] Aggregate activity by type and calendar day; do not store message contents or individual event records.
+- [x] Migrate the previous message archive into aggregate counters and discard message/profile fields in the new schema.
+- [x] Add mocked tests for roster updates, member filtering, channel counters, privacy, migration, and lockdown.
+- [ ] Verify initial roster loading and member add/remove events in the current Forever client.
+- [ ] Verify supported chat-event delivery, full-name matching, and outgoing whisper attribution in-game.
+- [ ] Test migration, reload, logout, cold-start persistence, lockdown, and partial roster failures in-game.
+- [ ] Inspect the SavedVariables file after the first successful post-migration save and confirm no message text remains.
 
-The addon remains a passive local archive. A documented task is not an implemented feature, and API documentation or mocked tests are not in-game verification.
+The addon remains a passive local activity counter. A documented task is not an implemented feature, and API documentation or mocked tests are not in-game verification.

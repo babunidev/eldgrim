@@ -8,28 +8,24 @@ With Eldgrim becoming a distinct character and narrative project, I asked AI to 
 **Result:** Documentation structure committed to the repository. No addon, bot, or other software was implemented or verified.
 
 ## 2026-11-08 — Defining the first addon milestone
-After narrowing the addon's first responsibility to passive local guild-chat recording, I approved a dedicated technical area inside this repository while keeping it separate from Eldgrim's in-world character material and Amberhearth's guild operations. The initial archive is limited to character names, available human-readable character details, message text, and timestamps. It has no in-game interface or interaction.
+After narrowing the addon's first responsibility to passive local guild-chat recording, I approved a dedicated technical area inside this repository while keeping it separate from Eldgrim's in-world character material and Amberhearth's guild operations. The initial archive was limited to character names, available human-readable character details, message text, and timestamps. It had no in-game interface or interaction.
 
-AI reviewed the repository instructions and documentation, researched the Forever-specific chat and character APIs, and recorded both the available data and the unresolved runtime questions. The current research baseline is Forever 1.60.1, interface 16001, with build 1.60.1.70862 as the latest public build found during this work.
+AI reviewed the repository instructions and documentation, researched the Forever-specific chat and character APIs, and recorded both the available data and the unresolved runtime questions. The research baseline was Forever 1.60.1, interface 16001, with build 1.60.1.70862 as the latest public build found during that work.
 
-**Result:** Addon specification, API research, data model, and test plan added. No addon source code was implemented; no syntax checks or in-game tests were run.
-
+**Result:** Addon specification, API research, data model, and test plan added.
 
 ## 2026-11-08 — First recorder implementation
-With the first milestone settled, I asked AI to implement the Forever-only event recorder and its TOC manifest inside the existing addon/ area. The code registers only CHAT_MSG_GUILD, checks chat-messaging lockdown before reading the event payload, and accepts community author data only when the returned record is a guild message whose content and author exactly match the current event.
+With the first milestone settled, I asked AI to implement the Forever-only event recorder and its TOC manifest inside the existing addon/ area. The code registered `CHAT_MSG_GUILD` and saved timestamped message text with the available matching author information.
 
-The archive stores character-facing names and values only, alongside timestamped message text. Community identifiers are kept transiently for correlation and are never written to SavedVariables. When a community record cannot be matched, the message uses local receipt time and is saved without unverified profile enrichment.
-
-AI added a repeatable mocked test harness. Lua syntax validation and the mock behavior suite passed with texlua. These checks exercise local logic only; live Forever event correlation, profile data, SavedVariables persistence, and in-game behavior have not been verified.
+AI added a repeatable mocked test harness. Lua syntax validation and the mock behavior suite passed with texlua. Those checks exercised local logic only; live Forever event correlation, profile data, SavedVariables persistence, and in-game behavior were not verified.
 
 **Result:** Initial addon source, TOC manifest, and mock tests committed. No public release was created.
 
+## 2026-11-09 — Expanding to guild-member activity
+After considering the privacy implications of keeping conversations, I changed the purpose of the addon. The aim is to understand participation, not to preserve private words. Eldgrim should count how often current guild members use supported chat and emote channels, while discarding the message content itself.
 
-## 2026-11-09 — Expanding the archive to guild-member conversations
-After the initial guild-only recorder was reported working following a reload, I approved a broader archive: Eldgrim should first build an entry for every current guild member, then keep that member's messages together across the in-game channels the local client receives. Officer chat, whispers, party, raid, instance, say, yell, custom/community channels, and player emotes are now part of the intended capture scope.
+The new data model keeps only each member's name, current/former guild status, lifetime counts by activity type, and daily aggregate counts. Character profiles, recipients, channel names, individual message records, and exact event timestamps are no longer part of the archive. Existing saved messages are converted into aggregate counts during migration, then removed from the new in-memory database.
 
-The roster is read through Forever's C_Club APIs on initial load and membership events, without polling. The built-in C_Club.FocusMembers subscription is used once for the current guild so the game client can load and update its member list; no custom addon messages are sent. Existing message history is preserved through a schema migration; former members remain archived but are no longer eligible for new records. Outgoing whispers are attributed to the local character rather than the recipient.
+AI replaced the recorder with a counter, updated the schema to version 3, expanded the mock tests to check data minimization, and revised the addon documentation. Local texlua syntax and mocked behavior checks passed. Live roster synchronization, channel event delivery, and SavedVariables persistence still require testing in the installed Forever build.
 
-AI updated the Lua implementation, TOC version, API research, specification, and tests. The local texlua syntax and mocked behavior suite passed. The expanded roster-event sequence, channel delivery, full-name matching, whisper attribution, and persistence still require live testing in the installed Forever build.
-
-**Result:** Expanded implementation and documentation prepared as a development change. No publishing tag, GitHub Release, or CurseForge publication was created.
+**Result:** Privacy-first activity-counter implementation prepared as a development change. No publishing tag, GitHub Release, or CurseForge publication was created.

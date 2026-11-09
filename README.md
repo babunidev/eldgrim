@@ -23,9 +23,9 @@ The rank names are recorded here without assigning duties, privileges, or progre
 This repository contains two distinct workstreams:
 
 - **Character and narrative:** Eldgrim's public identity, voice, lore, relationships, and stories.
-- **Technical addon:** a separate World of Warcraft Forever addon, documented under addon/. Its approved milestone is a passive local archive of the current guild roster and messages from guild members across supported player-chat channels.
+- **Technical addon:** a separate World of Warcraft Forever addon, documented under addon/. Its approved milestone is a passive local activity counter for the current guild roster and current guild members' supported chat activity.
 
-The addon is an out-of-character technical project. It does not define Eldgrim's in-world powers, motives, or canon. The expanded Lua and TOC implementation exists under addon/Eldgrim. Live roster synchronization, channel delivery, full-name matching, and persistence still require in-game verification.
+The addon is an out-of-character technical project. It does not define Eldgrim's in-world powers, motives, or canon. The privacy-first Lua and TOC implementation exists under addon/Eldgrim. Local syntax and mocked counter/migration checks pass; live roster synchronization, chat-event delivery, and SavedVariables persistence still require in-game verification.
 
 The repository remains separate from:
 
@@ -61,4 +61,4 @@ Unconfirmed ideas must be labelled as developing, proposed, or open rather than 
 
 **Character project:** documentation foundation established.
 
-**Addon:** Forever-only guild roster and member-chat archive implementation and mock tests exist. Local syntax and mocked behavior checks passed; live roster updates, channel event delivery, full-name matching, and SavedVariables persistence require in-game verification.
+**Addon:** Forever-only guild roster and activity-counter implementation and mock tests exist. Local Lua syntax and mocked behavior checks passed; live roster updates, supported channel event delivery, member matching, and SavedVariables persistence require in-game verification.

@@ -17,22 +17,25 @@ A concise record of meaningful creative and structural decisions.
 **Status:** Established.
 
 ## 2026-11-08 — Approve the Eldgrim Forever addon recorder
-**Decision:** Add a dedicated addon workstream under addon/ in this repository. The addon targets World of Warcraft Forever only. Its first milestone is a passive local archive of guild messages and available human-readable information about the characters who send them.
-**Recording scope:** Character name, race, class, level, faction, zone, profession names and skill ranks, achievement points when available, plus each guild message and its timestamp.
-**Behavior boundary:** No in-game interface, slash commands, chat output, notifications, sounds, addon messaging, network communication, AI, summaries, interpretation, roster scanning, or character inspection in the first milestone. Officer chat and all other channels are excluded.
-**Storage boundary:** Use account-wide SavedVariables. Do not persist account identities, GUIDs, club/member/message/chat-line IDs, or other technical identifiers. Any identifier required for a transient lookup must be discarded before saving.
-**Status:** Original scope superseded by the expanded decision below; retained as development history.
+**Decision:** Add a dedicated addon workstream under addon/ in this repository. The addon targets World of Warcraft Forever only. Its first milestone was a passive local guild-chat archive.
+**Historical scope:** The original recorder briefly stored message text, timestamps, and available character details. That implementation and scope are superseded by the privacy-first activity-counter decision below.
+**Status:** Retained as development history; no longer current.
 
-## 2026-11-09 — Expand Eldgrim into a guild-member conversation archive
-**Decision:** Expand the addon to build a local entry for every current guild member and record that member's player-authored messages across supported in-game chat channels, including guild and officer chat, say, yell, character whispers, party, raid, instance, custom/community channels, and player emotes.
-**Membership rule:** Only messages whose speaker matches the current guild roster are recorded. Outgoing whispers are attributed to the local character when that character is a current guild member; the recipient is stored separately.
-**Roster rule:** Read the guild roster through Forever's C_Club APIs on initial load and relevant membership events. Call the built-in C_Club.FocusMembers subscription once for the current guild, then wait for member-list readiness. Do not poll or scan unrelated characters. Create entries for members with no messages. Preserve former members' existing history and mark them as former after a complete roster scan; do not record new messages from them.
-**Storage rule:** Migrate the old archive to schema version 2 under EldgrimDB.members, preserve existing messages, and continue to exclude technical identifiers, account data, notes, and presence information.
-**Behavior boundary:** The addon remains silent and passive. No UI, slash commands, chat output, notifications, sounds, custom addon messaging, external services, AI, summaries, or interpretation. The standard FocusMembers subscription may cause normal game-client/server roster traffic; it is not custom addon messaging.
-**Status:** Scope approved; implementation and mocked checks created; live Forever verification pending.
+## 2026-11-09 — Expand to a guild-member conversation archive
+**Decision:** Build an entry for every current guild member and capture that member's player-authored messages across supported in-game chat channels.
+**Historical scope:** The expanded archive included guild and officer chat, say, yell, character whispers, party, raid, instance, custom/community channels, and player emotes. It stored individual message records and some character-profile data.
+**Status:** Superseded by the privacy-first activity-counter decision below. The content-recording implementation is not the current design.
+
+## 2026-11-09 — Replace message collection with activity counters
+**Decision:** Eldgrim must measure guild-member participation without retaining what members say. Each supported chat or emote event from a current guild member increments an aggregate counter for that member.
+**Activity scope:** Guild, officer, say, yell, incoming/outgoing character whispers, party, raid, raid warning, instance, custom channels, community channels, and emotes. Standard and text emotes share one `EMOTE` counter. Outgoing whispers count for the local character; their recipient is not retained.
+**Storage rule:** Save only full character name, current/former guild membership, lifetime total and per-type counts, and daily aggregate counts. Do not save message text, individual message records, exact event timestamps, recipients, channel names, or character-profile details.
+**Migration:** Convert previous saved message records into aggregate counts by type and day, then discard the message records and profile fields from the new schema.
+**Behavior boundary:** Keep the addon silent and local. No UI, slash commands, chat output, notifications, sounds, custom addon messaging, external services, AI, summaries, or interpretation. The built-in FocusMembers roster subscription may cause normal game-client/server traffic.
+**Status:** Approved; schema version 3 implementation and mocked tests created; live Forever verification pending.
 
 ## Open decisions
 - Further details of Eldgrim's public identity and history.
 - The precise scope of recurring in-world interactions.
-- Whether the local archive will later be used by a separate external tool; this is outside the current addon scope.
-- Exact runtime behavior of Forever's chat-event and community-message APIs on the current client build.
+- Whether the local activity metrics will later be used by a separate external tool; this is outside the current addon scope.
+- Exact runtime behavior of Forever's guild roster and chat-event APIs on the current client build.

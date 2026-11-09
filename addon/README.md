@@ -4,23 +4,52 @@ A separate technical workstream for the Eldgrim World of Warcraft Forever addon.
 
 ## Current milestone
 
-**Approved scope:** a passive, local archive of the current guild roster and the player-authored chat messages from guild members.
+**Approved scope:** a privacy-first local activity counter for the current guild roster.
 
-Eldgrim builds a local entry for every current guild member, then records that member's messages from guild, officer, say, yell, whisper, party, raid, instance, custom-channel, community, and player-emote events supported by the client. The speaker must match a current guild member. Messages are grouped under the member's full character name and include channel and timestamp information.
+Eldgrim creates an entry for every current guild member and counts the player's chat activity when the local Forever client delivers a supported chat event. It records aggregate counts by activity type and calendar day. It does not record message text, individual message records, recipients, channel names, or exact event timestamps.
 
-Roster synchronization uses the game's built-in `C_Club.FocusMembers` member subscription and membership events; there is no polling or custom addon messaging. Former members retain their old archive, but new messages from them are not recorded. The addon can only capture messages delivered to the local character's client.
+Activity categories:
+- Guild and officer chat.
+- Say and yell.
+- Incoming and outgoing character whispers.
+- Party, raid, raid warning, and instance chat.
+- Custom chat channels and community channels.
+- Player emotes (standard and text emotes are combined as `EMOTE`).
 
-The addon has no in-game interface, slash commands, chat output, notifications, sounds, custom addon messages, external services, AI, summaries, or interpretation. The built-in roster subscription may use normal game-client/server traffic to load guild member data. System/NPC messages, Battle.net conversations, and Discord-relay messages are excluded.
+Only current guild members are counted. Outgoing whispers are attributed to the local character; the recipient is not saved. Messages relayed from Discord are excluded. The addon can only count events delivered to the local character's client.
+
+The roster is synchronized through the game's built-in `C_Club.FocusMembers` subscription and membership events. This may use normal game-client/server traffic to load guild member data. Eldgrim sends no custom addon messages and does not poll.
+
+## Privacy boundary
+
+SavedVariables contain only:
+- The character's full name as the member key.
+- Current/former guild membership status.
+- Lifetime activity total and counts by activity type.
+- Daily aggregate totals and counts by activity type.
+
+The addon does not save message content, per-message timestamps, message/line IDs, whisper recipients, channel names, guild rank, race, class, level, faction, zone, professions, achievements, notes, presence, account identifiers, or GUIDs.
+
+The WoW chat event API supplies message text as an event argument. Eldgrim deliberately does not assign or inspect that argument; it uses the speaker field only to match the current guild roster and increment a counter. No message-content API is called.
 
 ## Status
 
-**Expanded implementation created; local syntax and mocked behavior checks passed; in-game verification pending.**
+**Implementation created; local Lua syntax and mocked behavior checks passed; in-game verification pending.**
 
-The installable addon source is in `Eldgrim/`:
+Installable addon source:
 - `Eldgrim/Eldgrim.toc` — Forever manifest and account-wide SavedVariables declaration.
-- `Eldgrim/Eldgrim.lua` — passive guild roster synchronizer and member-chat recorder.
+- `Eldgrim/Eldgrim.lua` — guild roster synchronizer and privacy-first activity counter.
 
-A repeatable mocked test is in `tests/test_recorder.lua`. It covers schema migration, roster creation and updates, current/former membership, member-only message filtering, supported chat events, outgoing whisper attribution, timestamps, lockdown, and exclusion of technical identifiers. These tests do not prove that the event sequence works in-game.
+Mock tests:
+- `tests/test_recorder.lua` — schema migration, roster creation/updates, channel counters, member-only filtering, lockdown, and proof that message text/profile fields are not retained.
+
+Run from the repository root:
+
+```sh
+texlua addon/tests/test_recorder.lua addon/Eldgrim/Eldgrim.lua
+```
+
+Mock tests do not prove live in-game behavior.
 
 ## Install for local testing
 
@@ -28,30 +57,34 @@ A repeatable mocked test is in `tests/test_recorder.lua`. It covers schema migra
 2. Confirm the resulting paths are `Interface/AddOns/Eldgrim/Eldgrim.toc` and `Interface/AddOns/Eldgrim/Eldgrim.lua`.
 3. Enable **Eldgrim** in the AddOns list at the character-selection screen.
 4. Log in and allow the guild/club member list to finish loading.
-5. Send and receive messages in the supported channels as guild members.
-6. Use `/reload` or log out normally, then inspect `WTF/Account/<account>/SavedVariables/Eldgrim.lua` after the client has saved.
+5. Let guild members use the supported chat channels.
+6. Use `/reload` or log out normally, then inspect `WTF/Account/<account>/SavedVariables/Eldgrim.lua` after the client has saved and closed.
 
-The addon intentionally has no commands or visible confirmation. SavedVariables are written by the game during its normal save lifecycle, not immediately to disk after each message. Do not inspect or edit the file while the client is running.
+### Migrating from the previous message archive
 
-## Documents and tests
+The new schema converts existing message records into aggregate counts, using any existing timestamps only to assign a calendar-day bucket. It then discards the message records and all saved character-profile fields. No message text is copied into the new database.
 
-- [SPECIFICATION.md](SPECIFICATION.md) — approved behavior, saved fields, and data model.
-- [API_RESEARCH.md](API_RESEARCH.md) — Forever-specific API findings, source links, and unresolved behavior.
-- [TEST_PLAN.md](TEST_PLAN.md) — required in-game checks before the archive can be considered verified.
-- [tests/test_recorder.lua](tests/test_recorder.lua) — repeatable mocked behavior and syntax test.
+The game writes SavedVariables during its normal save lifecycle, not immediately. After installing this version, log in once and then `/reload` or log out normally so the migrated database is written. Until that save occurs, the existing file on disk can still contain the previous message text. Do not inspect or edit SavedVariables while the client is running.
 
-Run the mock suite from the repository root:
+## Data location
 
-```sh
-texlua addon/tests/test_recorder.lua addon/Eldgrim/Eldgrim.lua
+The account-wide SavedVariables file is:
+
+```text
+World of Warcraft/_forever_/WTF/Account/<account>/SavedVariables/Eldgrim.lua
 ```
 
-The mock suite is not an in-game test.
+The game owns the save lifecycle. A crash can lose counters accumulated since the last successful save.
+
+## Documents
+
+- [SPECIFICATION.md](SPECIFICATION.md) — approved behavior and data model.
+- [API_RESEARCH.md](API_RESEARCH.md) — Forever API findings and unresolved runtime behavior.
+- [TEST_PLAN.md](TEST_PLAN.md) — required in-game checks.
+- [tests/test_recorder.lua](tests/test_recorder.lua) — automated mock tests.
 
 ## Compatibility
 
-World of Warcraft Forever only. Manifest interface: 16001. The latest public build found during this research is 1.60.1.70862 (2026-11-07). Recheck the installed client build and API after updates.
+World of Warcraft Forever only. Manifest interface: 16001. The current research baseline is build 1.60.1.70862 (2026-11-07); recheck the installed client build after game updates.
 
-The race-name table includes the Forever race IDs. High Order Skyborne ID 95 remains provisional pending confirmation against the installed live client. Unknown race values are omitted.
-
-This addon project is separate from Eldgrim's in-world character canon and from Amberhearth guild administration.
+This addon project is separate from Eldgrim's in-world character canon and Amberhearth guild administration.
