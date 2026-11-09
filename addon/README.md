@@ -85,6 +85,6 @@ The game owns the save lifecycle. A crash can lose counters accumulated since th
 
 ## Compatibility
 
-World of Warcraft Forever only. Manifest interface: 16001. The current research baseline is build 1.60.1.70862 (2026-11-07); recheck the installed client build after game updates.
+World of Warcraft Forever only. Manifest version: 0.3.0-alpha; interface: 16001. The current research baseline is build 1.60.1.70862 (2026-11-07); recheck the installed client build after game updates.
 
 This addon project is separate from Eldgrim's in-world character canon and Amberhearth guild administration.

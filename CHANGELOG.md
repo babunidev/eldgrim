@@ -4,6 +4,7 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-09 — Privacy-first activity counters
 - Replaced the conversation-archive scope with a privacy-first activity counter for current guild members.
+- Bumped the addon TOC to 0.3.0-alpha (interface 16001).
 - Changed storage to schema version 3: member name, membership status, lifetime totals, per-type totals, and daily aggregate counts only.
 - Removed message text, individual message records, exact event timestamps, recipients, channel names, and character profile fields from the saved data model.
 - Changed the event handler to use the speaker field only and increment a counter; it no longer calls the community-message content API.
