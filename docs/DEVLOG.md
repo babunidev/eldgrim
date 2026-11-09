@@ -23,3 +23,13 @@ The archive stores character-facing names and values only, alongside timestamped
 AI added a repeatable mocked test harness. Lua syntax validation and the mock behavior suite passed with texlua. These checks exercise local logic only; live Forever event correlation, profile data, SavedVariables persistence, and in-game behavior have not been verified.
 
 **Result:** Initial addon source, TOC manifest, and mock tests committed. No public release was created.
+
+
+## 2026-11-09 — Expanding the archive to guild-member conversations
+After the initial guild-only recorder was reported working following a reload, I approved a broader archive: Eldgrim should first build an entry for every current guild member, then keep that member's messages together across the in-game channels the local client receives. Officer chat, whispers, party, raid, instance, say, yell, custom/community channels, and player emotes are now part of the intended capture scope.
+
+The roster is read through Forever's C_Club APIs on initial load and membership events, without polling. The built-in C_Club.FocusMembers subscription is used once for the current guild so the game client can load and update its member list; no custom addon messages are sent. Existing message history is preserved through a schema migration; former members remain archived but are no longer eligible for new records. Outgoing whispers are attributed to the local character rather than the recipient.
+
+AI updated the Lua implementation, TOC version, API research, specification, and tests. The local texlua syntax and mocked behavior suite passed. The expanded roster-event sequence, channel delivery, full-name matching, whisper attribution, and persistence still require live testing in the installed Forever build.
+
+**Result:** Expanded implementation and documentation prepared as a development change. No publishing tag, GitHub Release, or CurseForge publication was created.

@@ -15,11 +15,15 @@ The human creative owns the concept, canon, tone, scope, priorities, and final d
 - Do not add Retail, Classic Era, Vanilla, Burning Crusade, or other-client compatibility or fallback branches.
 - Verify every API against Forever-specific documentation or the current Forever client. Distinguish API-documented behavior, inference, and in-game verification. An API's presence in documentation does not prove that the intended event flow works in-game.
 - Respect chat-messaging lockdown and secret-value restrictions. Skip inaccessible data safely; never attempt to bypass client restrictions.
-- Keep the first addon milestone within addon/SPECIFICATION.md. Do not add an interface, slash commands, chat output, notifications, sounds, addon messages, network communication, AI, summaries, or interpretation.
-- Persist only the approved character-facing information and guild messages. Do not persist account identities, GUIDs, club/member/message/chat-line IDs, or other technical identifiers. An identifier may be used transiently for a verified lookup or correlation, but must be discarded before saving.
+- Keep the approved addon scope within addon/SPECIFICATION.md: a silent local archive of the current guild roster and player-authored messages from current guild members across supported chat events.
+- Include guild and officer chat, say, yell, character whispers, party, raid, instance, custom/community channels, and player text-emote events when the Forever client delivers them and the speaker matches the current guild roster.
+- Use Forever's C_Club APIs to scan only the current guild roster. Call C_Club.FocusMembers once per current guild to subscribe the game client to member updates; use AreMembersReady before reading the list. This built-in roster subscription may cause normal client/server traffic, but no custom addon messages or external services are allowed.
+- Persist each current guild member as a full-name-keyed entry, including members with no messages. Preserve former members' existing archive and mark membership false after a complete roster scan; never add new messages from former members.
+- Keep the addon passive: no in-game UI, slash commands, chat output, notifications, sounds, custom addon messages, external services, AI, summaries, or interpretation.
+- Persist only approved human-readable character fields and message records. Do not persist account identities, GUIDs, club/member/message/chat-line IDs, numeric race/class IDs, notes, presence, or other technical identifiers. IDs may be used transiently for verified lookups or correlation, then discarded before saving.
 - Use SavedVariables for local persistence. Do not assume an addon can write or append arbitrary files. Document the save lifecycle and verify persistence in the current client.
 - Do not invent missing character details. Omit unavailable fields rather than guessing.
-- Do not scan the entire guild roster, inspect characters, or poll in the first milestone. Enrich a character only from information associated with a guild message, using a targeted lookup only if verified and necessary.
+- Do not scan unrelated rosters, inspect characters outside the current guild, or poll. Refresh the current guild roster only on initial load and relevant membership events. Match full character names, never first names alone. Attribute outgoing whispers to the local guild member and store the recipient separately.
 
 ## Canon discipline
 - Treat the current repository and explicit creative decisions as the source of truth.

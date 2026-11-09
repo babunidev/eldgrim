@@ -29,15 +29,17 @@ This roadmap records areas of development, not promises or fixed deadlines.
 ## Assets — open
 - [ ] Add approved visual or audio assets with provenance and usage notes.
 
-## Eldgrim addon — approved scope; initial implementation created
+## Eldgrim addon — expanded scope approved; implementation created
 - [x] Establish Forever-only support and a separate technical documentation area.
-- [x] Define the first milestone as passive, local guild-chat recording.
-- [x] Define the compact character-profile and timestamped-message data model.
-- [x] Research the relevant Forever API surface and document its limitations.
-- [ ] Verify chat-event and community-message correlation in the current Forever client.
-- [ ] Verify character enrichment and Forever race-name mapping in-game.
-- [x] Implement the initial recorder using account-wide SavedVariables.
-- [ ] Test reload, logout, cold-start persistence, chat lockdown, and missing profile data in-game.
-- [ ] Verify that the addon has no visible or audible output and records no unrelated channels.
+- [x] Define a passive local archive of the current guild roster and member conversations.
+- [x] Research the Forever guild roster, chat-event, community-message, and lockdown APIs.
+- [x] Implement event-driven guild roster synchronization and member entries.
+- [x] Implement member-only recording across supported player-chat channels, including officer chat and outgoing whisper attribution.
+- [x] Preserve existing guild-chat history through schema migration and retain former-member archives.
+- [x] Add mocked tests for roster updates, member filtering, channel capture, timestamps, migration, and technical-field exclusion.
+- [ ] Verify initial roster loading and member add/remove/update events in the current Forever client.
+- [ ] Verify every supported chat event, full-name matching, and outgoing whisper attribution in-game.
+- [ ] Test reload, logout, cold-start persistence, lockdown, and partial roster failures in-game.
+- [ ] Verify that the addon has no visible or audible output and no custom addon messages or external services.
 
-The addon remains a recorder only until the creative approves a broader scope. A documented task is not an implemented feature, and API documentation is not an in-game test.
+The addon remains a passive local archive. A documented task is not an implemented feature, and API documentation or mocked tests are not in-game verification.

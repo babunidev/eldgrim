@@ -1,10 +1,12 @@
 # Eldgrim Addon — Forever API Research
 
-**Research date:** 2026-11-08  
+**Research date:** 2026-11-09  
 **Target:** World of Warcraft Forever 1.60.1  
 **Interface:** 16001  
 **Latest public build found during this research:** 1.60.1.70862 (2026-11-07)  
-**Status:** Initial Lua/TOC implementation created. The API surface is documented; event-to-author correlation, profile enrichment, and persistence still require in-game verification.
+**Status:** Expanded Lua/TOC implementation created. API surfaces are documented for Forever/Camelot; roster event delivery, chat-event delivery, name matching, and persistence still require in-game verification.
+
+**Scope update (2026-11-09):** The original research below was written for the first guild-only milestone. The approved scope now includes a current guild-member roster and messages from supported player-chat channels. The expanded APIs and event set are documented in the final section; earlier guild-only scope statements are historical.
 
 ## 1. Evidence and version discipline
 
@@ -137,3 +139,108 @@ The source stores only the character-facing fields and message records approved 
 | SavedVariables reload and cold-start behavior on the user's current build | Must be tested in-game |
 
 No API calls, event correlation, profile enrichment, or SavedVariables behavior have been tested in-game. The source passed local Lua syntax validation and mocked behavior tests with texlua; these tests do not prove live Forever compatibility.
+
+
+## Expanded guild-member archive research — 2026-11-09
+
+### Guild roster APIs
+
+The expanded implementation uses the current guild club only:
+
+- `C_Club.GetGuildClubId()` identifies the player's guild club.
+- `C_Club.GetClubInfo(clubId)` verifies that the club type is Guild (value 2).
+- `C_Club.FocusMembers(clubId)` starts receiving updates for the guild's member list. The function is declared for Camelot; the wowlua emulator marks its implementation as guessed rather than implemented. The Communities member-list UI uses this call before checking readiness, which is a reference usage pattern rather than proof of Forever runtime behavior. Eldgrim calls it once for the current guild.
+- `C_Club.AreMembersReady(clubId)` gates roster enumeration.
+- `C_Club.GetClubMembers(clubId)` returns opaque member IDs.
+- `C_Club.GetMemberInfo(clubId, memberId)` provides the member record. The implementation whitelists name, isSelf, guildRank, race, classID (used only to resolve a class name), level, faction, zone, profession names/ranks, and achievement points.
+- `C_Club.GetStreams(clubId)` provides stream IDs. `Enum.ClubStreamType.Guild` is 1 and `Officer` is 2.
+
+The FocusMembers call is the game's built-in roster subscription. It may cause normal client/server traffic to load and update guild member data. It is not custom addon messaging or an external service. The addon does not call it repeatedly for the same guild and skips it during chat-messaging lockdown.
+
+Sources:
+- [C_Club API reference](https://wowlua.dev/api/C_Club)
+- [C_Club.GetGuildClubId](https://warcraft.wiki.gg/wiki/API:C_Club.GetGuildClubId)
+- [C_Club.GetClubInfo](https://warcraft.wiki.gg/wiki/API:C_Club.GetClubInfo)
+- [C_Club.AreMembersReady](https://warcraft.wiki.gg/wiki/API:C_Club.AreMembersReady)
+- [C_Club.GetClubMembers](https://warcraft.wiki.gg/wiki/API:C_Club.GetClubMembers)
+- [C_Club.GetMemberInfo](https://warcraft.wiki.gg/wiki/API:C_Club.GetMemberInfo)
+- [C_Club.GetStreams](https://warcraft.wiki.gg/wiki/API:C_Club.GetStreams)
+- [Communities member-list UI reference](https://github.com/Gethe/wow-ui-source/blob/live/Interface/AddOns/Blizzard_Communities/CommunitiesMemberList.lua) — reference usage only, not Forever runtime proof.
+
+### Roster events and readiness
+
+Roster refresh is event-driven, not polled:
+
+- `INITIAL_CLUBS_LOADED` starts the first attempt.
+- `CLUB_MEMBERS_UPDATED` triggers a full roster refresh.
+- `CLUB_ADDED` and `CLUB_REMOVED` refresh guild membership when the affected club is the current guild.
+- `CLUB_MEMBER_ADDED` and `CLUB_MEMBER_REMOVED` invalidate the in-memory allowlist; the full scan waits for the aggregate update event or the next accessible chat event to avoid duplicate scans.
+- `PLAYER_GUILD_UPDATE` handles local guild changes.
+- `CLUB_MEMBER_UPDATED` and `CLUB_MEMBER_ROLE_UPDATED` refresh one member's human-readable profile and rank.
+- `CLUB_SELF_MEMBER_ROLE_UPDATED` refreshes the roster for a local rank change.
+- `CLUB_STREAMS_LOADED` refreshes the Guild/Officer stream mapping.
+
+The wowlua emulator marks INITIAL_CLUBS_LOADED as implemented, but marks the other listed club/member/stream update events as not implemented in its emulated event model. This is an emulator limitation, not proof that the live Forever client does not emit them. All roster event delivery must be verified in-game. If a scan is partial, the addon does not mark unread members as former and does not admit unknown names to the allowlist.
+
+Sources:
+- [INITIAL_CLUBS_LOADED](https://wowlua.dev/api/events/INITIAL_CLUBS_LOADED)
+- [CLUB_MEMBERS_UPDATED](https://wowlua.dev/api/events/CLUB_MEMBERS_UPDATED)
+- [CLUB_ADDED](https://wowlua.dev/api/events/CLUB_ADDED)
+- [CLUB_MEMBER_ADDED](https://wowlua.dev/api/events/CLUB_MEMBER_ADDED)
+- [CLUB_MEMBER_REMOVED](https://wowlua.dev/api/events/CLUB_MEMBER_REMOVED)
+- [CLUB_MEMBER_UPDATED](https://wowlua.dev/api/events/CLUB_MEMBER_UPDATED)
+- [CLUB_MEMBER_ROLE_UPDATED](https://wowlua.dev/api/events/CLUB_MEMBER_ROLE_UPDATED)
+- [CLUB_SELF_MEMBER_ROLE_UPDATED](https://wowlua.dev/api/events/CLUB_SELF_MEMBER_ROLE_UPDATED)
+- [CLUB_REMOVED](https://wowlua.dev/api/events/CLUB_REMOVED)
+- [CLUB_STREAMS_LOADED](https://wowlua.dev/api/events/CLUB_STREAMS_LOADED)
+
+### Supported player-chat event families
+
+The implementation registers the following events, then requires the speaker to resolve to a current guild member:
+
+| Event family | Stored channel |
+| --- | --- |
+| `CHAT_MSG_GUILD` | `GUILD` |
+| `CHAT_MSG_OFFICER` | `OFFICER` |
+| `CHAT_MSG_SAY` | `SAY` |
+| `CHAT_MSG_YELL` | `YELL` |
+| `CHAT_MSG_WHISPER`, `CHAT_MSG_WHISPER_INFORM` | `WHISPER` with direction |
+| `CHAT_MSG_PARTY`, `CHAT_MSG_PARTY_LEADER` | `PARTY` |
+| `CHAT_MSG_RAID`, `CHAT_MSG_RAID_LEADER` | `RAID` |
+| `CHAT_MSG_RAID_WARNING` | `RAID_WARNING` |
+| `CHAT_MSG_INSTANCE_CHAT`, `CHAT_MSG_INSTANCE_CHAT_LEADER` | `INSTANCE` |
+| `CHAT_MSG_CHANNEL` | `CHANNEL` plus human-readable channel name |
+| `CHAT_MSG_COMMUNITIES_CHANNEL` | `COMMUNITY` plus human-readable channel name |
+| `CHAT_MSG_EMOTE` | `EMOTE` |
+| `CHAT_MSG_TEXT_EMOTE` | `TEXT_EMOTE` |
+
+The core Guild, Officer, Say, Yell, Whisper, Party, Raid, Instance, and Emote events are marked implemented by the wowlua emulator. Some leader, warning, custom-channel, community-channel, and text-emote events are declared for Camelot but are not implemented by the emulator. Optional event registration is protected with pcall, so an unavailable event does not stop the addon loading. Live event delivery still requires in-game testing.
+
+For `CHAT_MSG_WHISPER_INFORM`, the event's player-name field is the recipient, not the speaker. Eldgrim attributes the message to the local character identified by the roster's isSelf row and stores the recipient separately. Incoming whispers are attributed to their sender. Community/channel payloads may include discordInfo for Discord-relayed messages; those records are skipped. Battle.net conversations and Discord relays are not recorded.
+
+Full Forever character names are matched, including surnames. Case and space/hyphen display variants are normalized conservatively; first-name-only matching is never used. Messages are captured only when delivered to the local client's event stream.
+
+Sources:
+- [CHAT_MSG_GUILD](https://warcraft.wiki.gg/wiki/CHAT_MSG_GUILD)
+- [CHAT_MSG_OFFICER](https://wowlua.dev/api/events/CHAT_MSG_OFFICER)
+- [CHAT_MSG_SAY](https://wowlua.dev/api/events/CHAT_MSG_SAY)
+- [CHAT_MSG_YELL](https://wowlua.dev/api/events/CHAT_MSG_YELL)
+- [CHAT_MSG_WHISPER](https://wowlua.dev/api/events/CHAT_MSG_WHISPER)
+- [CHAT_MSG_WHISPER_INFORM](https://wowlua.dev/api/events/CHAT_MSG_WHISPER_INFORM)
+- [CHAT_MSG_PARTY](https://wowlua.dev/api/events/CHAT_MSG_PARTY)
+- [CHAT_MSG_RAID](https://wowlua.dev/api/events/CHAT_MSG_RAID)
+- [CHAT_MSG_INSTANCE_CHAT](https://wowlua.dev/api/events/CHAT_MSG_INSTANCE_CHAT)
+- [CHAT_MSG_CHANNEL](https://wowlua.dev/api/events/CHAT_MSG_CHANNEL)
+- [CHAT_MSG_COMMUNITIES_CHANNEL](https://wowlua.dev/api/events/CHAT_MSG_COMMUNITIES_CHANNEL)
+- [CHAT_MSG_EMOTE](https://wowlua.dev/api/events/CHAT_MSG_EMOTE)
+- [CHAT_MSG_TEXT_EMOTE](https://wowlua.dev/api/events/CHAT_MSG_TEXT_EMOTE)
+- [CHAT_MSG_RAID_WARNING](https://wowlua.dev/api/events/CHAT_MSG_RAID_WARNING)
+- [C_Club.GetInfoFromLastCommunityChatLine](https://warcraft.wiki.gg/wiki/API:C_Club.GetInfoFromLastCommunityChatLine) — API-documented for Forever 1.60.1; the wowlua emulator classifies the implementation as guessed, so the live result remains unverified.
+
+### Saved data and migration
+
+Schema version 2 stores a `members` map keyed by full character name. Every current roster member receives an entry, even with no messages. Former members remain with `isGuildMember = false` and retain their old messages, but are excluded from future capture. The previous name-keyed schema is migrated without discarding history; existing messages are labelled `GUILD`.
+
+Technical IDs, account identifiers, notes, presence, and numeric race/class IDs are never saved. Club/member/message IDs are used only transiently. Guild/Officer messages use the community-message epoch only when club, stream, author, and content all match; other channels use local receipt time.
+
+The mock test suite validates local logic only. Roster event delivery, the FocusMembers readiness flow, all optional chat events, full-name matching, outgoing whisper attribution, and SavedVariables persistence remain in-game verification requirements.
