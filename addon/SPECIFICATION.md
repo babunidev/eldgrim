@@ -6,7 +6,7 @@
 
 ## 1. Purpose
 
-Measure how active current guild members are in the chat and emote channels visible to the local player, without collecting what they say. Eldgrim is an activity counter, not a conversation archive.
+Measure how active current guild members are in the chat and emote channels visible to the local player, without collecting what they say. Eldgrim is an activity counter, not a conversation archive. These aggregates are intended to be the activity signal for a separate future agent; that agent is outside this addon's scope and must not receive chat content.
 
 ## 2. Core rules
 

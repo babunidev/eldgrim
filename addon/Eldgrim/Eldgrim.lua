@@ -258,8 +258,8 @@ local function aggregateLegacyMessages(activity, messages)
                 dayKey = getDayKey(messageRecord.timestamp)
             end
 
-            -- Deliberately never read messageRecord.message or any recipient,
-            -- message ID, chat-line ID, or other message payload.
+            -- Deliberately never read the old text field, recipient, message ID,
+            -- chat-line ID, or any other message payload.
             incrementActivity(activity, activityType, dayKey)
         end
     end

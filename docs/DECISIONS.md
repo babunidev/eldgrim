@@ -31,11 +31,12 @@ A concise record of meaningful creative and structural decisions.
 **Activity scope:** Guild, officer, say, yell, incoming/outgoing character whispers, party, raid, raid warning, instance, custom channels, community channels, and emotes. Standard and text emotes share one `EMOTE` counter. Outgoing whispers count for the local character; their recipient is not retained.
 **Storage rule:** Save only full character name, current/former guild membership, lifetime total and per-type counts, and daily aggregate counts. Do not save message text, individual message records, exact event timestamps, recipients, channel names, or character-profile details.
 **Migration:** Convert previous saved message records into aggregate counts by type and day, then discard the message records and profile fields from the new schema.
+**Downstream boundary:** Any future agent is intended to use these aggregate activity metrics only; it must not receive or depend on chat content. That agent remains a separate scope and is not implemented by this addon.
 **Behavior boundary:** Keep the addon silent and local. No UI, slash commands, chat output, notifications, sounds, custom addon messaging, external services, AI, summaries, or interpretation. The built-in FocusMembers roster subscription may cause normal game-client/server traffic.
 **Status:** Approved; schema version 3 implementation and mocked tests created; live Forever verification pending.
 
 ## Open decisions
 - Further details of Eldgrim's public identity and history.
 - The precise scope of recurring in-world interactions.
-- Whether the local activity metrics will later be used by a separate external tool; this is outside the current addon scope.
+- How a separate future activity-based agent consumes the aggregate metrics remains outside this addon's implementation scope; it must not receive chat content.
 - Exact runtime behavior of Forever's guild roster and chat-event APIs on the current client build.

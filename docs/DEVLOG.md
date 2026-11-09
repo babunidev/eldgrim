@@ -24,7 +24,7 @@ AI added a repeatable mocked test harness. Lua syntax validation and the mock be
 ## 2026-11-09 — Expanding to guild-member activity
 After considering the privacy implications of keeping conversations, I changed the purpose of the addon. The aim is to understand participation, not to preserve private words. Eldgrim should count how often current guild members use supported chat and emote channels, while discarding the message content itself.
 
-The new data model keeps only each member's name, current/former guild status, lifetime counts by activity type, and daily aggregate counts. Character profiles, recipients, channel names, individual message records, and exact event timestamps are no longer part of the archive. Existing saved messages are converted into aggregate counts during migration, then removed from the new in-memory database.
+The new data model keeps only each member's name, current/former guild status, lifetime counts by activity type, and daily aggregate counts. These aggregates are intended as the sole activity signal for a separate future agent. Character profiles, recipients, channel names, individual message records, and exact event timestamps are no longer part of the archive. Existing saved messages are converted into aggregate counts during migration, then removed from the new in-memory database.
 
 AI replaced the recorder with a counter, updated the schema to version 3, expanded the mock tests to check data minimization, and revised the addon documentation. Local texlua syntax and mocked behavior checks passed. Live roster synchronization, channel event delivery, and SavedVariables persistence still require testing in the installed Forever build.
 
