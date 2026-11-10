@@ -36,10 +36,23 @@ Eldgrim's disciplinary scope is guild spaces, guild activities and conduct direc
 
 **Status:** Founder-confirmed working policy; not evidence of implemented autonomous moderation.
 
+## Confirmed appeal intake, evidence and remedies — questions 171–180
+
+**Appeal access and timing (Q171–173).** Members may challenge consequential warnings, demotions, timeouts, kicks and bans through a **confidential bot or designated human route**, with a usable fallback after Discord removal. No public accusation or unnecessary personal disclosure is required. There is **no absolute appeal-expiry deadline**; credible new evidence or a significant procedural mistake may justify later review, subject to the availability of evidence and approved retention rules. Where operationally possible, acknowledge an appeal **within 7 calendar days** and aim to decide it **within 14 days**. Communicate delays and never claim that a review occurred when it did not. These are response targets, not automatic decisions.
+
+**Proof and protection (Q174–176).** Consequential sanctions require specific, reasonably reliable evidence connecting the member to the conduct. Consider context, corroboration and conflicting accounts. Rumor, internal standing, uncertain character identity or unverified AI summaries are not independently sufficient. Severe sanctions demand stronger confidence. Examine only authorized case material and preserve the minimum justified case findings, references and audit metadata under Q136. Never create a permanent guild-chat transcript or import incident records into narrative memory. A pending investigation may justify only a proportionate, least-restrictive **temporary protective** measure supported by credible current risk; explain and promptly review it. It is not a finding of guilt.
+
+**Independent review and correction (Q177–178).** A founder-involved complaint goes to a designated impartial human who was not personally involved. Provide necessary evidence through a controlled process without direct access to the founder's PC-local memory database (Q138); the founder must not suppress relevant evidence or direct the outcome. A successful appeal reverses/reduces sanctions, restores feasible roles/permissions, corrects administrative records and informs the member. Any public correction must be proportionate and protect confidential case details.
+
+**Unfounded allegations and unresolved cases (Q179–180).** Protect good-faith reporting, including unproven reports. Deliberate fabrication or retaliation requires separate reliable evidence and ordinary fair process; unsuccessful reports do not imply malice. If guilt remains unresolved, record uncertainty and impose no speculative sanction. Any continuing protection must be based on credible current risk, reviewed periodically and lifted when no longer justified.
+
+**Status:** Founder-confirmed **working governance**, not a ratified charter or live appeal/moderation workflow. Exact intake channel, after-ban access, reviewer appointment, secure case evidence handling and timing automation are **not implemented or verified**. Q136's ordinary **180-day maximum** for administrative audits remains subject to documented exceptions; Q172 does not authorize indefinite case archives.
+
 ## Refinement queue
 
 - [ ] Which behaviors warrant each sanction, and what are the durations?
-- [ ] What evidence, right of reply, review, and appeal apply?
+- [x] Confirm evidence standards, appeal rights, no absolute expiry, response targets, impartial review and remedies (Q171–180).
+- [ ] Implement and verify confidential appeal intake (including post-ban access), reviewer appointment, evidence handling and review deadlines.
 - [ ] Which interventions may occur outside the daily cycle?
 
 ---
