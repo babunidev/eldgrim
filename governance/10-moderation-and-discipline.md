@@ -67,3 +67,12 @@ Randomness can serve roleplay or harmless tie-breaking. It should not determine 
 - **Q71 — Prior warnings:** Minor and moderate violations ordinarily receive a warning and chance to improve. Serious or critical violations may justify stronger action without a warning. Repeated misconduct may lead to escalation, always subject to proportionality.
 
 **Still open:** independent evidence thresholds, handling single unverified accusations, permanent-ban criteria, formal appeal review, reinstatement, and off-cycle emergency response. These are policy decisions, not proof of automated enforcement.
+
+
+## Confirmed procedures — questions 72–74
+
+- **Q72 — Permanent removal:** A ban is reserved for severe abuse, credible safety threats, deliberate exposure of private information, serious exploitation, or repeated harmful misconduct despite prior intervention. It requires reliable evidence, documented reasons and access to an appeal mechanism. Inactivity, disagreement or low internal standing alone cannot justify a ban.
+- **Q73 — Emergency intervention:** Credible urgent threats to members, privacy or community safety permit immediate, proportionate restrictions or removal without advance warning or hearing. Such actions must be recorded and reviewed afterward; ordinary disputes do not qualify as emergencies.
+- **Q74 — Offline protection:** The always-online bot may execute only explicitly authorized, predefined emergency protections while the local AI is inactive; designated human custodians may intervene. Complex judgments await the next agent session. Every emergency action must be logged and reviewed. **No continuous AI monitoring or completed automated enforcement is implied.**
+
+**Open details:** precise ban-appeal process, evidence standards, emergency safeguards and implementation verification.
