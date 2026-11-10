@@ -8,7 +8,9 @@ Reviewing AI's drafts, I corrected three things: Eldgrim is an entity and must n
 
 AI made the corrections and built the reset into the switch that holds back ranks. It removes ranks only from members who never completed the Forge, so a later promotion cannot be undone by accident, and records former ranks first. Deploying, AI found that its own copy step had left the files unreadable for the service account; the bot was offline for about seven minutes until AI fixed the permissions and wrote a safer update script.
 
-**Result:** Deployed with 64 passing tests and the new panel texts. The rank switch was previewed (73 of 74 members must complete the Forge) and stays off until I have tested the Forge.
+Testing the Forge myself, I found it rejected a full character name: WoW Forever gives every character a first name and a surname, and AI had built the check for a single name. AI verified the naming rules from Blizzard's announcement and a rules guide, then split the question into first name and surname with the same limits the game uses.
+
+**Result:** Deployed with 65 passing tests and the new panel texts. The rank switch was previewed (73 of 74 members must complete the Forge) and stays off until I have tested the Forge.
 
 ## 2026-11-10 — Building the multi-character Forge
 

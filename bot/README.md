@@ -30,7 +30,7 @@ The existing Babuni Gaming Discord bot is the foundation. Verified on 2026-11-10
 1. Newcomers receive the Forge role on arrival and see only the Forge channel.
 2. They accept the hearth rules, which include Discord's Terms of Service and Community Guidelines and say what Eldgrim remembers: registered characters, conversations with Eldgrim, and guild activity recorded in the game, such as guild chat, emotes, and presence at events.
 3. Eldgrim asks how many characters they bring. There is no fixed limit; the software accepts up to 50 to catch typing mistakes.
-4. For each character: name, then faction, race, and class, each named plainly in the question. Faction is asked because Skyborne exist on both sides.
+4. For each character: first name and surname, then faction, race, and class, each named plainly in the question. WoW Forever requires both names, each 2–12 letters with accents allowed, no spaces, hyphens, apostrophes, or numbers, and no letter three times in a row; the Forge checks the same rules and capitalises like the game. Faction is asked because Skyborne exist on both sides.
 5. On completion they receive the roles of all their characters and the rank **Ember**, and the Forge disappears.
 
 Everyone passes through the new Forge, including existing members; only the server owner is exempt. Ember is given on completion rather than on arrival, because Discord cannot hide channels that a role grants explicitly. The channels currently visible to everyone (all-chat, looking-for-group, wow-addons, morkahja, azeroth-moments) will be visible to the ranks only, so the Forge is all a newcomer sees.
