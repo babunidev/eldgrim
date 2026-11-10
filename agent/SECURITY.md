@@ -31,7 +31,7 @@ The initial agent:
 - Polls only explicitly configured channels.
 - Uses message metadata only to identify eligible mentions and maintain cursors.
 - Passes content to Ollama only for eligible messages that explicitly mention Eldgrim.
-- Stores only eligible inbound messages and relevant bot replies.
+- Holds eligible inbound mentions only in a **temporary per-run collection**, then purges them (Q100). Separately authorized shared guild-channel observations for Q138 may also be staged temporarily, subject to notice, permission checks and deletion; do not turn them into a raw-message archive.
 - Does not archive unrelated messages, authors, attachments, embeds, or channel activity.
 
 Polling channel history still exposes message objects and metadata for the selected channels. The documentation must not describe this as if the bot receives no information about other messages.
@@ -99,7 +99,18 @@ Prompt wording is supplementary. The permission checks in Python are the actual 
 
 **Approved policy (Q131–137, Q139–140):** A clear privacy notice precedes onboarding; optional personalization may be declined. Importing game observations requires disclosed purposes and a valid processing basis. Raw imported chat is deleted after authorized analysis. Eligible personal memories are deleted/anonymized within **30 days of departure** absent specific justified retention; ordinary administrative audits last **up to 180 days**, with documented exceptions; routine backups last **no more than 30 days**, and restored copies reapply deletion records. Provide private authorized-human personal-data requests and a documented incident response. **Q138 (revised and confirmed):** Eldgrim's narrative observations come from **shared guild chat and designated shared Discord guild channels**, not private member conversations or whispers. Temporarily staged raw messages are purged after processing; selected interpreted memories persist **only on the founder's PC**. The founder is the **only human with direct database access**; authorized local AI may use it. Other guild custodians receive no direct access. The live server bot's minimum necessary operational registration/administrative state remains separate. Shared source messages can still be personal data; privacy safeguards apply. Procedures and technical controls must be implemented and tested before production; no deployed compliance claim is made.
 
-## 9. Proactive actions
+## 9. Founder-confirmed tool and action safeguards — questions 141–150
+
+- **Q141–142:** Allow only registered, purpose-specific tools for approved communication, Discord administration, quests, rank/recognition decisions and **proposed** bank allocations. Validate tool names, schema, target, delegated permissions, governance rules, action quotas and protected boundaries **outside the model**.
+- **Q143–144:** Delegated Discord channel/role/permission administration may be autonomous through validated audited bot operations. Server destruction, ownership transfer, unrelated services, infrastructure credentials and security-control changes are **outside delegated authority** and require explicit founder authorization. The existing manual approval path remains in effect until a verified replacement exists.
+- **Q145:** Guild chat, Discord content and retrieved data are untrusted input; never promote them into policy, tool permissions or disclosure authorization.
+- **Q146–147:** Fail safely and log minimal outcomes; never claim unverified success or leave a permanent raw-message archive or question queue after a failed run. While the local AI is offline, the bot performs its existing functions and only **predefined** emergency protections, with temporary shared-source staging subject to Q138.
+- **Q148–149:** Audit consequential actions with minimal necessary type, target, time, rule/reason, result and reviewer data; omit raw chat and full inferred profiles. Use unique action identifiers and reconcile ambiguous external results before any retry. Never duplicate a sanction, reward or allocation merely because of a lost response.
+- **Q150:** Separate verified facts, interpretations and fiction. Uncertain allegations, quest completion, bank inventory and administrative outcomes cannot justify consequential actions without verification.
+
+These are **approved design requirements**, not proof of implemented AI administration, tool authorization, idempotency or live auditing.
+
+## 10. Proactive actions
 
 Proactive messages are disabled in the initial milestone. If enabled later:
 
@@ -109,13 +120,13 @@ Proactive messages are disabled in the initial milestone. If enabled later:
 - The agent must not repeat the same action after an ambiguous network failure.
 - The operator must be able to disable proactive posting without changing the model prompt.
 
-## 10. Operational controls
+## 11. Operational controls
 
 - Use a one-shot systemd service.
 - Prevent concurrent runs with a process lock.
 - Apply network timeouts and bounded retries.
 - Respect Discord rate limits.
 - Keep an action log without private message content.
-- Preserve pending work when a run fails.
+- Preserve only necessary safe operational checkpoints and idempotency state when a run fails; **do not** retain a durable unanswered-question backlog or permanent raw-message collection (Q100, Q138, Q146).
 - Unload Ollama after the session.
 - Do not automatically retry an unsafe or ambiguous external action.
