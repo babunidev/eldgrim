@@ -300,3 +300,16 @@ A concise record of meaningful creative and structural decisions.
 **Boundary:** Founder-confirmed working governance, not a ratified charter or legal compliance certification. No retention, deletion, consent, backup or incident-response implementation was changed or tested.
 
 **Next:** Resolve Q138; then Q141–150 of 193.
+
+
+## 2026-11-10 — Resolve Q138: shared guild sources, founder-only local memory
+
+**Founder revision accepted:** Eldgrim's character/community narrative memory is derived from **guild-visible material**, especially World of Warcraft Forever guild chat and designated shared Discord guild channels, **not private conversations or private-channel content**. Raw collected messages may be staged temporarily by the server bot or game addon and transferred for processing; afterward all raw staging, including server copies, is deleted. The local AI selects relevant, supported interpretations and stores them **only in a database on the founder's PC**. **Only the founder has direct human access** to this local memory database; the authorized local AI may use it. No other guild custodian or officer receives direct access.
+
+**Distinctions:** Shared/public-to-guild source material is not a public memory database. Internal standing and inferred profiles remain confidential (Q64), and publicly posted material may still be personal data subject to Q131–137 and Q139–140. The **existing deployed server bot's necessary operational Character Forge, registration, role and administration state** remains distinct from the local Eldgrim narrative memory. Private administrative appeals, safety reports, onboarding and data requests are not imported as narrative memories.
+
+**Superseded:** The unapproved Q138 human-custodian access scheme and earlier proposals for a **persistent server-hosted combined Eldgrim narrative-memory database**. The existing live bot's operational database is not declared deleted or migrated.
+
+**Implementation boundary:** This is a founder-confirmed design decision. Raw shared-channel collection may require additional Discord permissions and lawful notices; secure transport, raw-data deletion, addon archive cleanup, local AI/database integration and access controls remain unimplemented or unverified.
+
+**Next:** Questions 141–150 of 193.
