@@ -4,6 +4,8 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-10
 
+- Confirmed Q81–90: reinstatement after bans, adult-only Forge onboarding, required character data, unlimited membership character policy, ownership checks, character updates and departures, preservation of earned ranks, voluntary onboarding, and daily local-AI/server-bot separation. Documentation only.
+
 - Confirmed Q78–80: private disciplinary appeals, founder or impartial human review, and reversal/correction of erroneous sanctions. Updated governance register and moderation chapter; changed interview cadence to ten questions per batch. Documentation only.
 
 - Confirmed Q75–77: individual accountability in group incidents, distinction between mistakes/jokes and deliberate misconduct, and prohibition of random disciplinary outcomes. Documentation only.
