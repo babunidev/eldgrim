@@ -40,4 +40,13 @@ This roadmap records areas of development, not promises or fixed deadlines.
 - [ ] Test reload, logout, cold-start persistence, chat lockdown, and missing profile data in-game.
 - [ ] Verify that the addon has no visible or audible output and records no unrelated channels.
 
+## Eldgrim Discord bot — direction approved
+- [x] Approve Eldgrim's Discord presence based on the existing Babuni Gaming bot.
+- [x] Put the existing bot under version control and back it up.
+- [ ] Move the bot to the creative's server.
+- [ ] Rename the bot to Eldgrim and give it a new profile image.
+- [ ] Specify, build, and test multi-character onboarding.
+- [ ] Specify, build, and test once-a-day replies to @Eldgrim mentions.
+- [ ] Transfer addon data to the server and build Eldgrim's database.
+
 The addon remains a recorder only until the creative approves a broader scope. A documented task is not an implemented feature, and API documentation is not an in-game test.

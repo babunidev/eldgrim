@@ -6,6 +6,7 @@ Eldgrim is a character and narrative project in the World of Warcraft Forever ro
 Keep these areas distinct:
 - Character, lore, and narrative documents describe Eldgrim as an in-world character.
 - addon/ describes the out-of-character software project. Addon behavior does not establish character canon.
+- bot/ describes Eldgrim's Discord bot, another out-of-character software workstream. Bot behavior does not establish character canon either.
 - Amberhearth governance and guild operations belong in the ROARguild repository.
 
 The human creative owns the concept, canon, tone, scope, priorities, and final decisions. AI may assist with research, organization, drafting, review, implementation, testing, and documentation when requested.

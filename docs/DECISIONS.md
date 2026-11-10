@@ -23,8 +23,18 @@ A concise record of meaningful creative and structural decisions.
 **Storage boundary:** Use account-wide SavedVariables. Do not persist account identities, GUIDs, club/member/message/chat-line IDs, or other technical identifiers. Any identifier required for a transient lookup must be discarded before saving.
 **Status:** Scope approved and documented; implementation and in-game verification not started.
 
+## 2026-11-10 — Eldgrim appears on Discord as the guild bot
+**Decision:** Rename the existing Babuni Gaming Discord bot to Eldgrim, move it to an always-online server, and expand it. Eldgrim keeps the current administration capabilities, including rank management and channel creation, and the Character Forge.
+**First feature:** Multi-character onboarding. Newcomers receive a gate role automatically, state how many guild characters they have, give each character's name, class, and race, and then gain access to the server.
+**Identity:** New name and profile image on Discord. Hosted on the creative's existing server.
+**Conversation:** Eldgrim is active once a day and reacts only to messages that mention @Eldgrim. Onboarding, welcomes, administration, and data storage run continuously.
+**Further scope:** Store member and character data on the server as the basis of Eldgrim's database, later combined with the addon's in-game data.
+**Boundary:** The addon remains a silent local recorder. The bot does not define character canon. Details are tracked in bot/README.md.
+**Status:** Direction approved; specification developing; nothing implemented.
+
 ## Open decisions
 - Further details of Eldgrim's public identity and history.
 - The precise scope of recurring in-world interactions.
-- Whether the local archive will later be used by a separate external tool; this is outside the first addon milestone.
+- How the addon's local archive is transferred to the bot's server; the first addon milestone itself remains local-only.
+- Open bot decisions listed in bot/README.md.
 - Exact runtime behavior of Forever's chat-event and community-message APIs on the current client build.

@@ -19,10 +19,15 @@ The first milestone has no in-game interface, commands, chat output, notificatio
 
 The initial Lua and TOC implementation now exists under addon/Eldgrim. In-game event correlation, character enrichment, and SavedVariables persistence remain unverified.
 
+## Discord presence
+Eldgrim will also appear on the guild Discord server as a bot. The existing Babuni Gaming Discord bot will be renamed to Eldgrim, moved from the creative's PC to an always-online server, and expanded. Eldgrim keeps the current administration and Character Forge capabilities, and guides newcomers through declaring their in-game characters. Eldgrim speaks only once a day and only in reply to messages that mention @Eldgrim. The member and character data it stores on the server will form the basis of Eldgrim's database, later combined with the addon's in-game records.
+
+The direction is approved; the specification is developing under bot/. No Eldgrim-specific bot code or server deployment exists yet. Like the addon, the bot does not define Eldgrim's in-world canon.
+
 ## Project boundaries
 This repository contains public-safe character and narrative documentation alongside the separately scoped addon workstream. Amberhearth governance and operations remain in the guild's own repository.
 
-Any additional bot, assistant, autonomous behavior, or feature beyond the approved recorder must be specified and approved separately. A character concept or technical specification is not evidence that software exists.
+Any additional assistant, autonomous behavior, or feature beyond the approved recorder and the approved Discord direction must be specified and approved separately. A character concept or technical specification is not evidence that software exists.
 
 ## Creative principles
 1. Character before mechanics.

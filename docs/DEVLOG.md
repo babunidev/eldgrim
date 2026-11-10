@@ -23,3 +23,12 @@ The archive stores character-facing names and values only, alongside timestamped
 AI added a repeatable mocked test harness. Lua syntax validation and the mock behavior suite passed with texlua. These checks exercise local logic only; live Forever event correlation, profile data, SavedVariables persistence, and in-game behavior have not been verified.
 
 **Result:** Initial addon source, TOC manifest, and mock tests committed. No public release was created.
+
+## 2026-11-10 — Bringing Eldgrim to Discord
+Eldgrim should be present where the guild gathers outside the game. Rather than starting a new bot, I decided to rename and expand the existing guild Discord bot, which already runs the Character Forge, and to move it to a server so it is always online. Its first new task is to ask newcomers which characters they play in the guild before opening the server to them.
+
+AI inspected the existing bot and the installed addon. The addon's saved archive held 79 guild messages from 8 characters but no character details, so profile enrichment does not yet work in-game. AI recorded the direction, data flow, and open questions under bot/.
+
+Eldgrim will speak only once a day, and only to those who call on him with @Eldgrim. AI then copied the existing bot's source into its own local git repository, backed up its configuration, state, and service file, and confirmed that the 51 existing unit tests pass on the copy.
+
+**Result:** Direction documented and bot source under version control. The running bot, server, and Discord configuration were not changed.

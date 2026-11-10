@@ -14,4 +14,9 @@ Meaningful repository and documentation changes are recorded here.
 - Added a repeatable mock test harness under addon/tests/; Lua syntax validation and mocked behavior checks passed with texlua.
 - No in-game tests, public tags, GitHub Releases, or CurseForge publication were performed.
 
+## 2026-11-10
+- Recorded the approved direction for Eldgrim's Discord presence: rename and expand the existing guild bot, move it to an always-online server, and add multi-character onboarding, message replies, and a member and character database.
+- Added bot/README.md with the approved direction, proposed data flow, open decisions, and planned order. No bot code was changed.
+- Recorded that Eldgrim replies once a day and only to @Eldgrim mentions, and that the bot gets a new name and profile image.
+
 This changelog describes repository changes, not in-world events.
