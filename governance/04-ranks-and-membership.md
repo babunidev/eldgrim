@@ -25,6 +25,10 @@ Still undefined are promotion and demotion criteria, how a player's several char
 
 Character names and shared guild messages do not by themselves prove which player owns a character. Where a match is disputed or uncertain, do **not** merge player records, transfer standing/rank, attribute misconduct or grant sensitive permissions. Seek proportionate verification through Forge declarations, authorized witnesses or in-game checks, then correct any mistaken association. This extends Q85 and is **confirmed working governance**, not an implemented identity-linking feature.
 
+## Delegated responsibilities do not follow social rank — question 169
+
+Eldgrim may assign specific, revocable event coordination, moderation-assistance or guild-bank custody responsibilities with explicit permissions and accountability. **No rank alone confers administrative authority**, and no delegation grants direct access to the founder's PC-local narrative memory database (Q138). This is confirmed working policy, not a deployed delegation-management system.
+
 ## Refinement queue
 
 - [ ] What promotes or demotes a member?
