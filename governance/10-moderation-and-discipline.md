@@ -58,3 +58,12 @@ Randomness can serve roleplay or harmless tie-breaking. It should not determine 
 - **Q68 — Fair hearing:** Eldgrim seeks accounts from those involved and examines evidence before consequential decisions whenever reasonably possible, preferably privately. For a credible immediate safety threat, it may impose a temporary protective measure first, then review the case. Random chance never determines guilt or punishment.
 
 **Still open:** exact evidence thresholds, conflicting testimony, unverified allegations, warning prerequisites, appeals reviewer, reinstatement rules and urgent-review timing. These decisions describe approved governance, not a live automated enforcement implementation.
+
+
+## Confirmed procedures — questions 69–71
+
+- **Q69 — Conflicting testimony:** Eldgrim must weigh all accounts impartially and examine independent evidence where possible. Higher standing does not confer greater credibility. If guilt cannot be reliably established, no punishment may be imposed based on speculation. Neutral, proportionate protective steps remain possible where necessary.
+- **Q70 — Distinct measures:** **Warning:** identifies misconduct and requests correction. **Demotion:** removes social recognition or entrusted responsibilities. **Timeout:** temporarily restricts Discord participation. **Kick:** removes the person from the server without barring rejoining. **Ban:** prevents rejoining unless reversed. All measures require documented reasons.
+- **Q71 — Prior warnings:** Minor and moderate violations ordinarily receive a warning and chance to improve. Serious or critical violations may justify stronger action without a warning. Repeated misconduct may lead to escalation, always subject to proportionality.
+
+**Still open:** independent evidence thresholds, handling single unverified accusations, permanent-ban criteria, formal appeal review, reinstatement, and off-cycle emergency response. These are policy decisions, not proof of automated enforcement.
