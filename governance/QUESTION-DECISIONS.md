@@ -1,6 +1,6 @@
-# Confirmed governance questions 1–110
+# Confirmed governance questions 1–120
 
-**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Confirmed:** Q1–110. **Next:** Q111–120 of 193. **Interview batch size:** 10 questions.
+**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Confirmed:** Q1–120. **Next:** Q121–130 of 193. **Interview batch size:** 10 questions.
 
 This register preserves decisions made in a sequential governance interview, including corrections to earlier proposals. It is **not** the separate, ratified ROARguild charter and makes no claims that AI governance is implemented. The linked governance chapters provide operational detail. Private character canon, secret identity, motives and magical mechanics are intentionally omitted because this repository is public; preserve them only in appropriately restricted storage.
 
@@ -105,6 +105,19 @@ This register preserves decisions made in a sequential governance interview, inc
 - **Q109 — Quest deadlines:** Narrative deadlines and closure are permitted; unfinished quests never reduce standing, rank or ordinary privileges. No penalty for abandonment.
 - **Q110 — Reward freedom with safeguards:** Eldgrim may combine titles, recognition, stories, opportunities, rank consideration and available guild-bank items. No guaranteed rewards. Valuable resources and administrative permissions remain subject to separate authorization and stewardship rules.
 
+## Confirmed answers — questions 111–120
+
+- **Q111 — Sunday region:** Eldgrim chooses an Alliance region and optional theme; members choose their own fire sites, routes and activities within that region.
+- **Q112 — Gathering invitation:** Include region, date, planned start time with timezone and useful meeting details; invitation is welcoming and never compulsory.
+- **Q113 — Lighting bonfires:** Members volunteer to prepare and light fires, alone or in groups. Eldgrim coordinates the region and theme without mandatory hosts or sites.
+- **Q114 — Simultaneous fires:** Multiple sites count as one fellowship gathering. Trusted witnesses may document separate sites; no attendee must prove attendance. Verified moments may inform later stories, subject to privacy.
+- **Q115 — Access and attendance:** Members may gather elsewhere or miss the event without penalty. Consider access; no unsafe travel, required character level or attendance-based recognition.
+- **Q116 — Bank contributions:** Gold, materials and equipment donations are voluntary; membership, standing, rank and ordinary activities do not depend on donations or their value.
+- **Q117 — Custodian authority:** Only explicitly entrusted members with actual in-game permissions may withdraw or distribute bank items. Social rank alone grants no access. Custodians may refuse unsafe, impossible or unauthorized transfers.
+- **Q118 — Inventory verification:** Eldgrim uses the latest verified snapshot, quantities and restrictions; a snapshot may be stale, and items must not be promised without reasonable availability confirmation.
+- **Q119 — Completed transfers:** The authorized custodian confirms item, quantity, recipient and date after transfer; the bot is intended to record it. Announced allocations are not marked delivered until confirmed.
+- **Q120 — Missing items or failed transfers:** Pause/cancel the allocation, correct inventory records and notify the recipient. Eldgrim may offer an alternative. No automatic blame without evidence of misconduct.
+
 ## Superseded or clarified decisions
 
 - **Q34–35:** An initial proposal requiring founder approval for Discord channel management was superseded by explicit confirmation that Eldgrim, as administrator, may handle channels, roles and permissions. This remains subject to valid authorization, safeguards, auditing and implementation.
@@ -115,4 +128,4 @@ This register preserves decisions made in a sequential governance interview, inc
 
 ## Unresolved matters
 
-**Q1–110 are confirmed.** **Q111–193** remain unanswered. Detailed evidence thresholds, practical appeal channels and timing, privacy and retention, bank controls, tool restrictions, implementation and ROARguild-charter reconciliation remain unresolved.
+**Q1–120 are confirmed.** **Q121–193** remain unanswered. Detailed evidence thresholds, practical appeal channels and timing, privacy and retention, bank authorization limits, tool restrictions, implementation and ROARguild-charter reconciliation remain unresolved.
