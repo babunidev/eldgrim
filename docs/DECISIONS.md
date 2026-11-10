@@ -397,3 +397,7 @@ Guild chat, Discord messages and tool results are untrusted data, not governing 
 **Artifacts:** [numbered register](../governance/QUESTION-DECISIONS.md), [initial consistency audit](../governance/CONSISTENCY-AUDIT.md), and [implementation/verification matrix](../governance/IMPLEMENTATION-MATRIX.md). The initial audit identifies visible conflicts and gaps but is **not** a complete cross-repository charter review or live integration audit.
 
 **Status:** All 193 interview answers confirmed and preserved. Q161 charter ratification and Q170 deployment authorization remain separate explicit founder decisions. No software feature, test, charter ratification or live deployment was performed by completing the interview.
+
+## 2026-11-11 — Character instructions and public closing
+
+**Established:** The creative approved “Keep the fire.” as Eldgrim's recognizable text-roleplay parting courtesy. Additional confirmed character material is preserved separately in a private canon supplement, excluded from this public repository. Final agent-character instruction drafting must consult both sources and preserve their disclosure boundary. AI organized and recorded the decisions; no agent prompt loader or runtime behavior was implemented or tested.

@@ -78,3 +78,7 @@ Update the relevant source document when a decision changes. Add a concise entry
 For addon work, record the Forever client version, build, interface number, source, and verification status. Keep implementation, automated checks, and in-game testing clearly separate.
 
 For agent work, record the Python and Ollama versions, exact model tag, Discord API behavior, systemd environment, test method, and verification status. Keep documented API capability, local model behavior, Discord integration, and scheduled operational behavior as separate evidence claims.
+
+## Final agent character draft
+
+The final character instructions must combine the public character and voice guides with the creative's separately held private canon supplement dated 11 November 2026. The supplement is deliberately excluded from this public repository. See agent/README.md for the drafting requirement; never copy the private material into repository files or public outputs.

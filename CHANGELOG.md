@@ -97,3 +97,7 @@ Meaningful repository and documentation changes are recorded here.
 - No in-game tests, public tags, GitHub Releases, or CurseForge publication were performed.
 
 This changelog describes repository changes, not in-world events.
+
+## 2026-11-11 — Character instruction sources
+
+- Recorded the approved public closing in character/VOICE.md and added final-agent drafting requirements that include separately held private canon without exposing it in this public repository. Documentation only.
