@@ -85,7 +85,7 @@ The application must use bounded request timeouts, bounded retries, and a maximu
 
 ### Discord HTTP API
 
-The initial design uses the channel message-history endpoint:
+The initial **mention-only** design uses the channel message-history endpoint:
 
 - GET /channels/{channel_id}/messages
 - Query parameters include after and limit.
@@ -93,11 +93,11 @@ The initial design uses the channel message-history endpoint:
 - The bot needs View Channel and Read Message History in each configured channel.
 - Sending replies requires Send Messages in the destination channel.
 
-The agent polls only an explicit channel allowlist. It must not discover channels, scan the whole server, enumerate members, or collect unrelated conversations.
+The agent polls only an explicit channel allowlist. It must not discover channels, scan the whole server, enumerate members, or collect unrelated conversations. **Q138** additionally authorizes **guild-visible material in explicitly designated shared channels** as a future narrative-memory source, subject to member notice, valid processing basis, channel allowlisting and technical permission checks. This is distinct from @Eldgrim mentions used for question selection.
 
 #### Mention-only content boundary
 
-The initial design does not enable the privileged Message Content Intent.
+The initial **mention-only** design does not enable the privileged Message Content Intent. Reading **general shared-channel message content** for Q138 may require that privileged intent and separate approval/configuration; it is not a capability of the current mention-only design.
 
 Discord documents that, without this intent, content fields are empty except for messages sent by the app, DMs with the app, messages in which the app is mentioned, and certain message-context-command cases. This makes direct mentions a viable initial interaction boundary without granting broad message-content access.
 
@@ -225,7 +225,18 @@ Guild-chat archives from the Forever addon may become **temporary authorized ana
 
 These constraints are approved **design requirements**, not implemented or tested agent features.
 
-## 9. Explicit non-goals
+## 9. Confirmed local-memory pipeline — question 138
+
+1. **Sources:** Use only authorized guild-visible messages from World of Warcraft Forever **guild chat** and **explicitly designated shared Discord guild channels**. Do not ingest whispers, private member conversations or private-channel content into Eldgrim's narrative memory. Mentions to Eldgrim remain a distinct temporary question-selection collection (Q100).
+2. **Temporary collection:** The always-online bot may stage raw shared-channel content on the server; the game addon already archives guild chat locally in SavedVariables. Securely transfer only authorized temporary input to the founder's PC. No long-term raw transcript archive on the server. The precise transport and permission mechanism is not yet designed.
+3. **Local interpretation:** The founder's PC runs the AI, selects relevant supported observations about members, characters and shared experiences, and saves **only interpreted memory** to its **local SQLite database**. The founder is the only human with direct access; the authorized local AI uses it under application controls. Internal standing remains confidential.
+4. **Purge:** Delete temporary raw collections after processing, including server staging and local raw copies. The addon SavedVariables archive requires a separate safe deletion process before production integration; do not modify the live addon file without an approved procedure.
+5. **Separate live bot operations:** The deployed bot keeps necessary Character Forge/role/administration data on the server. This is not Eldgrim's narrative-memory database and is not a justification for permanent raw-chat storage.
+6. **Privacy:** Guild-visible source messages may still contain personal data. Preserve Q131–137 and Q139–140 rights and safeguards, and never assume general shared-channel content is readable without the appropriate Discord permissions.
+
+**Superseded:** A persistent combined **server-hosted** Eldgrim narrative-memory database and direct database access for other human custodians. **Implementation status:** The transfer, selection, persistent-memory integration and purge pipeline have not been implemented or verified.
+
+## 10. Explicit non-goals
 
 - A continuously connected Discord Gateway bot.
 - Instant or real-time replies.
@@ -238,7 +249,7 @@ These constraints are approved **design requirements**, not implemented or teste
 - Automatic access to the Forever addon archive in the initial milestone. Approved later (2026-11-10).
 - Publication of private canon or concealed character information.
 
-## 10. Official technical references
+## 11. Official technical references
 
 - [Discord Get Channel Messages and message object](https://docs.discord.com/developers/resources/message)
 - [Discord Gateway: Message Content Intent and exceptions](https://docs.discord.com/developers/events/gateway)
