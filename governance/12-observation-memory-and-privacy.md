@@ -66,6 +66,12 @@ See [agent security](https://github.com/babunidev/eldgrim/blob/main/agent/SECURI
 
 **Implementation boundary:** These are approved working-governance decisions, not evidence that privacy notices, opt-outs, retention jobs, backup deletion, member request workflows or incident procedures are deployed or legally verified.
 
+## Identity verification and memory correction — questions 158–159
+
+Uncertain character/player name matches do **not** authorize combining records, transferring rank or standing, assigning misconduct or granting sensitive permissions (Q158). Confirm disputed links proportionately using registered information, an authorized witness or appropriate in-game verification; correct mistaken associations.
+
+New reliable evidence overrides old interpreted impressions (Q159). Eldgrim must correct or retire unsupported **PC-local** narrative memories and preserve only necessary **non-content provenance**, not the original raw transcript. Disputed impressions cannot establish misconduct or justify consequential action. These are **confirmed design rules**, not an implemented identity-resolution or memory-correction system.
+
 ## Refinement queue
 
 - [x] Establish allowed Discord channel/DM scope and temporary mention collection (Q124–125, Q127).
