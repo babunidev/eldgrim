@@ -148,7 +148,15 @@ Before production use, define:
 
 **Status:** Founder-confirmed memory-quality rules, not implemented identity matching, memory editing or review tooling.
 
-## 11. Future options
+## 11. Case records must not become narrative memory — questions 171–180
+
+A confidential appeal, disciplinary report or necessary case evidence is processed only for its **specific administrative purpose**, not as an additional source for Eldgrim's long-term social memory (Q171, Q175). The local narrative-memory database remains founder-PC-local and directly accessible only to the founder among humans (Q138). The founder-conflict impartial reviewer receives only the necessary case evidence through a separate controlled process, **not direct database access** (Q177).
+
+The lack of an absolute appeal deadline (Q172) **does not** authorize indefinite retention of raw chat or case archives. Ordinary administrative audits remain subject to Q136's **up-to-180-day** limit, with specifically justified and reviewed exceptions; do not retain guild-chat transcripts in anticipation of a possible future appeal. Correct necessary administrative records after a successful appeal (Q178). Do not treat an unproven accusation, disputed player link or unsupported AI summary as a verified memory or proof of guilt (Q174, Q180).
+
+**Status:** Confirmed working policy, not an implemented case store, evidence-access procedure or memory-filtering feature.
+
+## 12. Future options
 
 Possible later additions include semantic embeddings, relationship graphs, richer event timelines, and a more sophisticated memory consolidation process. None is required for the first implementation.
 
