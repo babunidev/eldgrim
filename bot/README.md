@@ -97,6 +97,14 @@ Existing bot operations and predefined protections continue when the founder is 
 
 **Q170:** New autonomous administration cannot replace the live manual preview/approval workflow until binding-charter reconciliation, independently validated tools/permissions, action audits and duplicate protection, privacy/appeal workflows and a working emergency stop are **implemented and verified**, followed by **explicit founder deployment authorization**. These are approved design requirements; no autonomous migration or new deployment is claimed.
 
+## Confirmed appeals and incident boundaries (Q171–180)
+
+Future administration must offer a **confidential appeal route** through the bot or designated human, including an **out-of-server fallback** for removed members (Q171). There is no absolute appeal expiry; explain when evidence is no longer available under lawful retention (Q172). Target acknowledgement within **7 calendar days** where operationally possible and substantive review within **14 days**, reporting delays rather than claiming a decision occurred (Q173).
+
+Consequential sanctions require reasonably reliable evidence, not rumor, internal standing, uncertain character links or unverified AI summaries (Q174). Store only justified, purpose-limited case outcomes and minimal audit references under Q136; **do not** create permanent raw guild-chat archives or feed private appeals into Eldgrim's PC-local narrative memory (Q175). Temporary restrictions protect against credible current risks without presuming guilt (Q176). Founder-conflict appeals go to an impartial human, who has **no direct access** to the local memory database (Q177). Successful appeals require feasible restoration, administrative correction and appropriate notice (Q178). Good-faith reporting is protected; fabrication/retaliation requires separate evidence (Q179). Unresolved allegations do not justify punitive findings, and protective measures require continuing review (Q180).
+
+**Status:** Working-governance requirements only. No appeal intake/fallback, deadline management, impartial reviewer workflow, automated sanction or evidence-retention mechanism is claimed implemented or verified.
+
 ## Open decisions
 
 - How to securely collect and transfer shared Discord-channel and addon raw material **to the founder's PC**, then verify deletion of temporary server copies and local raw archives.
