@@ -58,3 +58,9 @@ Most importantly, the earlier interpretation of zero as disengagement conflicts 
 - **Q62:** Unverified interpretations and rumors cannot reduce standing. Negative adjustments require reliable evidence; ambiguous jokes, statements and unsupported AI inferences do not justify penalties. Positive recognition requires reasonably supported observations.
 
 **Not yet settled:** formal source reliability criteria; correction/appeal workflow; handling of the existing-members baseline when no score has been stored; relationship between a score and specific promotions or moderation. A score must not be treated as independently sufficient proof of misconduct. The earlier description of 0 as "disengaged" is superseded: inactivity is neutral, not a negative score state.
+
+
+## Interview update — questions 63–64
+
+- **Q63 — Established:** Standing may inform promotion and rewards, but it is **never sufficient on its own** to justify discipline. Sanctions require an independently established violation of existing guild rules.
+- **Q64 — Open, revision requested:** The creative did **not** accept the proposed private standing review and founder-escalation procedure. The replacement mechanism is undecided; do not describe the original proposal as policy.
