@@ -133,3 +133,10 @@ The creative approved ten decisions describing Eldgrim's Sunday invitations and 
 The creative approved ten more governance decisions. Bank reservations and valuable transfers now require documented limits and human verification; disputed allocations have a review path. Eldgrim's observation scope excludes unrelated private conversations and restricts memory to relevant, supported impressions. Raw chat and temporary mention collections must not become hidden permanent archives, and members have private correction and departure-related deletion processes to be developed. AI synchronized the relevant governance chapters and decision register.
 
 **Result:** Documentation committed to GitHub. No bot, agent, addon, data purge or legal-compliance procedure was implemented or tested.
+
+
+## 2026-11-10 — Define privacy lifecycle, hold record access for revision
+
+Nine privacy decisions were approved, covering clear member notices, optional personalization, in-game data processing, temporary raw-chat handling, interpreted-memory retention, audit records, backups, private data requests and breach response. Q138, about who can inspect private records, was marked for revision rather than accepted. AI synchronized the governance register and privacy chapter without assuming the disputed access model.
+
+**Result:** Governance documentation committed. No bot, agent, addon, database, deletion job, consent flow or security incident process was implemented or tested.
