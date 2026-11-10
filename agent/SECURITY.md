@@ -127,7 +127,17 @@ These are **approved design requirements**, not proof of implemented AI administ
 
 **Status:** Approved design, not deployed appeal, evidence-review, deletion, sanction or deadline-management software.
 
-## 12. Proactive actions
+## 12. Founder-confirmed emergency stop, tool verification and recovery (Q181–190)
+
+- **Q181–182 — Kill switch:** The founder and explicitly appointed technical custodians may stop automation immediately for credible security, safety or serious operational issues. A custodian receives no constitutional power or direct access to PC-local narrative memory (Q138). Stop new AI posts, sanctions, rank changes, bank proposals and administrative actions; safely cancel pending work, block silent timer/service reactivation, log the stop and require authorized recovery. Independently safe essential bot services may continue only if separable.
+- **Q183–184 — Secrets and permission boundaries:** Keep tokens and secrets out of Git/model context; separate server credentials from founder-local memory, restrict access, revoke former operators and rotate exposed credentials. Validate every action's target, protected roles, permissions and governance limits **in application code**. Never allow self-escalation, ownership transfer or bypass of founder-reserved infrastructure/security boundaries.
+- **Q185–186 — Verification and rollout:** Before exposing tools to the model, test valid/invalid inputs, denied permissions, unauthorized targets, retries, partial failures and recovery with synthetic/non-production data; record defects. Roll out only approved, tested operations with reversibility, retaining human approval for unverified actions and obtaining Q170's explicit founder deployment authorization. Unexpected behavior suspends the affected automation.
+- **Q187–188 — Recovery and downtime:** Protect and test backups within Q137's **30-day routine maximum**; verify integrity and reapply deletion records before restored service. When local AI/PC/network is unavailable, the bot performs only existing verified onboarding, roles and predefined protections. No fabricated AI judgments, unanswered-question backlog or duplicate actions. Authorized temporary shared-source staging is still subject to Q138.
+- **Q189–190 — Incident and review:** Isolate suspected compromise, revoke credentials, preserve only necessary evidence, follow Q140's notification/remediation duties and verify safe recovery before resumption. Periodically inspect tool permissions, audit outcomes, privacy retention, backups, emergency controls, appeals and cross-document conflicts. Maintenance does not amend policy or grant powers.
+
+**Status:** Founder-confirmed **design and deployment requirements**, not an implemented kill switch, completed security tests, proven backup restore, compromised-token response, approved autonomy rollout or ratified policy.
+
+## 13. Proactive actions
 
 Proactive messages are disabled in the initial milestone. If enabled later:
 
@@ -137,7 +147,7 @@ Proactive messages are disabled in the initial milestone. If enabled later:
 - The agent must not repeat the same action after an ambiguous network failure.
 - The operator must be able to disable proactive posting without changing the model prompt.
 
-## 13. Operational controls
+## 14. Operational controls
 
 - Use a one-shot systemd service.
 - Prevent concurrent runs with a process lock.
