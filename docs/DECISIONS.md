@@ -353,3 +353,12 @@ Guild chat, Discord messages and tool results are untrusted data, not governing 
 **Status:** Founder-confirmed working governance only. The confidential intake route, post-ban fallback, reviewer assignment, case evidence controls, deadline tracking and administrative retention/deletion remain unimplemented. Q136's ordinary 180-day audit limit is not overridden by the unlimited appeal-submission period. No new autonomous moderation or appeal system was deployed or tested.
 
 **Next:** Q181–190 of 193.
+
+
+## 2026-11-10 — Confirm emergency shutdown, technical security and recovery (Q181–190)
+
+**Founder decision:** All ten Q181–190 proposals were accepted. The founder and expressly designated technical custodians may immediately suspend unsafe automation, without gaining constitutional amendment authority or direct access to the founder's PC-local narrative-memory database. Shutdown stops new AI posts, sanctions, rank changes, bank proposals and administrative actions, safely cancels pending work, prevents silent restart and requires authorized recovery; independently safe bot services may continue. Protect and separate credentials; revoke and rotate access as necessary. Validate Discord actions and protected permissions outside the model, and test allowed/denied inputs, retries, partial failures and recovery with synthetic/non-production data. Move from manual approval to autonomy only through an approved, verified, reversible rollout under Q170 founder authorization. Protect/test backups within Q137's routine 30-day maximum and reapply deletions after restoration. Offline bot operations stay within existing verified functions; compromise triggers isolation, Q140 response and verified recovery. Review governance and technical safeguards periodically, without silent policy amendments.
+
+**Status:** Founder-confirmed working design requirements, not a ratified charter, appointed technical custodian, implemented emergency stop, completed tool/backup testing, autonomy rollout or deployment authorization. These requirements do not supersede the founder-only PC-local narrative-memory access boundary (Q138).
+
+**Next:** Final questions Q191–193 of 193.
