@@ -36,9 +36,9 @@ The intended one-shot service should:
 2. Load non-secret configuration and private credentials from outside Git.
 3. Acquire a process lock.
 4. Validate the database and local dependencies.
-5. Poll Discord and process eligible work.
-6. Use Ollama only when there is work to process.
-7. Persist outcomes and pending actions.
+5. Gather all eligible @Eldgrim mentions since the previous collection, either from a bot-side temporary buffer or through a bot-mediated collection round (mechanism open).
+6. During the daily session, use Ollama as needed to select at most one question per member, randomly or for narrative suitability, and optionally answer.
+7. Persist allowed outcomes and separately authorized memories; discard the temporary mention collection after processing and start a new collection. Never roll over unselected questions.
 8. Unload the model and close resources.
 9. Release the lock and exit with an accurate status code.
 
@@ -95,7 +95,7 @@ These commands are operational references only; no systemd units currently exist
 - Respect Discord rate limits and retry guidance.
 - Use bounded exponential backoff for transient network failures.
 - Do not advance channel cursors after incomplete intake or failed database writes.
-- Preserve eligible messages as pending work if Ollama is unavailable.
+- Do not create a durable unanswered-question queue. Define the behavior of temporary mention collections on failed or interrupted runs before implementation.
 - Record ambiguous message-send outcomes for reconciliation rather than blindly sending duplicates.
 - Release the process lock during all normal and exceptional exits.
 - Ensure model unloading is attempted during cleanup.
