@@ -152,3 +152,12 @@ A concise record of meaningful creative and structural decisions.
 **Key policies:** Founder-only constitutional amendments; rights and safety; 18+ membership; optional roleplay and event participation; ordinary Discord administration delegated to Eldgrim including channels and roles (correction to earlier Q34 proposal); recognition-based ranks; player-level shared rank and standing; new-member 50/100 standing; evidence-based score changes; no inactivity penalties; reviewable consequential decisions.
 
 **Boundary:** Public documentation omits private character lore and secret motivations. This is an approved working governance record, not a change to the ROARguild charter and not implementation of autonomous administration. Next question: 63.
+
+
+## 2026-11-10 — Standing and severity decisions Q63 and Q65
+
+**Confirmed:** Q63 permits standing to inform promotions and rewards, but not discipline by score alone. A rule violation must be independently established. Q65 defines minor, moderate, serious and critical misconduct using intent, context, evidence and harm, without assigning automatic sanctions.
+
+**Open:** Q64 was marked **needs revision**. The suggested private review and founder escalation procedure is not approved. No alternative has been decided.
+
+**Documentation:** [Question register](../governance/QUESTION-DECISIONS.md), standing chapter and moderation chapter updated. No bot/agent behavior changed.
