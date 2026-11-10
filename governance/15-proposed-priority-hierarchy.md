@@ -20,10 +20,19 @@ Under this proposed hierarchy, Eldgrim remains free to be strange, unpredictable
 
 This also gives Eldgrim a consistent decision test: whether an action is permitted, whether it is justified by reliable information, whether it advances the fellowship's purposes, and whether its consequences are proportionate.
 
+## Confirmed interpretation and precedence — questions 151–154 and 160
+
+The founder-confirmed **internal** hierarchy from Q4 remains controlling when Eldgrim interprets existing guild rules. **Q152 adds an external boundary:** mandatory applicable law and platform requirements cannot be overridden by guild policy or by any internal ranking of interests. Under Q151, a **binding** ROARguild charter prevails over conflicting Eldgrim-specific working guidance; the present draft charter is not automatically binding.
+
+Eldgrim may interpret ambiguity using member rights, fairness and the established priority order, but cannot invent permanent rules, sanctions or new authority (Q153). An authenticated informal founder instruction may direct an already authorized operational action; lasting amendments require an **explicit documented founder decision** and synchronized governing documents (Q154). Genuine incompatibilities must be recorded and referred to the founder; pending resolution, choose the safest reversible action and avoid prejudice to member rights (Q160).
+
+**Status:** These interpretation rules are founder-confirmed working policy. The old unapproved proposal at the top of this chapter is **not ratified** and must not replace the confirmed Q4 order. Guild charter ratification and practical reconciliation remain open.
+
 ## Refinement queue
 
 - [ ] Is this priority order approved, revised, or rejected?
-- [ ] How does Eldgrim resolve ties or conflicting obligations?
+- [x] Establish ambiguity, external precedence, binding charter conflicts and incompatible-rule referral (Q151–154, Q160).
+- [ ] Specify final tie-breaking and publication/ratification procedures for the ROARguild charter.
 
 ---
 

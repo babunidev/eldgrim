@@ -1,77 +1,50 @@
 # Eldgrim
 
-Eldgrim is a character and narrative project set within the wider World of Warcraft Forever roleplaying world. This repository keeps the character's identity, voice, lore, relationship with Amberhearth, and developing narrative experiences in one place. It also documents three separate technical workstreams: the World of Warcraft Forever addon, a proposed local Discord agent, and the always-online Eldgrim Discord bot.
+Eldgrim is a mysterious presence in the **Amberhearth** fellowship on World of Warcraft Forever. This repository is where its public character, stories and future ways of interacting with the guild take shape.
 
-## The foundation
+The character is part of an unfolding roleplaying story. The software that supports that story—Discord bot, local AI agent and game addon—is documented separately. **A technical feature does not define Eldgrim's in-world powers or establish new canon.**
 
-Eldgrim initiated **Amberhearth**, a fellowship conceived as a home for travelers, stories, and companionship. Eldgrim stands outside the fellowship's rank structure rather than occupying a conventional member or officer position.
+## Begin with the story
 
-The name **Eldgrim** replaces the earlier working label **Oracle**. The two names may appear in historical notes, but current documentation should use Eldgrim.
+Eldgrim set the idea of Amberhearth in motion. The fellowship has since been founded by Jasmine Amberbrew, who gathered signatures in Kharanos after hearing a voice at the campfires.
 
-Amberhearth's current rank names are:
+A few entry points:
 
-- Ember
-- Wayfarer
-- Kindler
-- Hearthkeeper
-- Hearthwarden
+- [Character](character/README.md) — who Eldgrim appears to be, and how it speaks.
+- [Lore](lore/README.md) — the hearth, the fires and their place in the fellowship.
+- [Narrative](narrative/README.md) — developing stories and in-world material.
+- [Interaction](interaction/README.md) — how Eldgrim appears and communicates.
 
-The rank names are recorded here without assigning duties, privileges, or progression rules that have not been established.
+Only public-safe details belong here. Deliberately concealed character information is not published in the repository.
 
-## Project scope
+## What is being built
 
-This repository contains four distinct workstreams:
+| Part | Purpose | Current position |
+| --- | --- | --- |
+| [Discord bot](bot/README.md) | Always-online member onboarding and authorized server operations | Running on the server; Character Forge and rank handling are documented as live |
+| [Local agent](agent/README.md) | A once-daily voice and bounded decision process using Ollama on the creative's PC | Designed; AI posting, local interpreted memory and autonomous administration not implemented |
+| [WoW Forever addon](addon/README.md) | Passive recording of permitted guild-facing information | Initial source and mock checks exist; full in-game integration remains unverified |
+| [Governance rulebook](governance/README.md) | Chapter-by-chapter framework for proposed stewardship, rights and safeguards | Working draft; **not a ratified charter** |
 
-- **Character and narrative:** Eldgrim's public identity, voice, lore, relationships, and stories.
-- **Technical addon:** a separate World of Warcraft Forever addon, documented under addon/. Its approved first milestone is a passive local guild-chat recorder.
-- **Local agent:** a developing design for a once-daily Python process that uses local Ollama inference, Discord's HTTP API, and a private SQLite database. Its architecture and boundaries are documented under agent/. No agent implementation or deployment exists yet.
-- **Discord bot:** Eldgrim's always-online presence on the guild Discord server, documented under bot/. The existing bot runs on the creative's server; renaming and new features are in progress.
+Eldgrim is an entity, referred to as **it**. The old working label *Oracle* survives only in earlier records.
 
-The addon, agent, and bot are out-of-character technical projects. None defines Eldgrim's in-world powers, motives, or canon. The addon remains a passive recorder; using its archive in Eldgrim's database is approved but not built. The server bot is Eldgrim's always-online part and the agent its once-daily voice; the agent must not be described as operational until implemented and verified.
+The bot and agent have different jobs: the bot continues its verified server-side functions while the local agent is intended to run periodically on the creative's computer. The separate addon supplies another possible source of observation. None of those planned connections should be described as operational merely because it has been specified.
 
-The repository remains separate from:
+## The governance chapters
 
-- **ROAR**, the wider creative and development project around World of Warcraft Forever.
-- **Amberhearth**, the in-game fellowship initiated by Eldgrim. The binding guild charter and practical operations belong in ROARguild. Eldgrim's chapter-by-chapter **working governance framework** is maintained in governance/ here and is not yet ratified.
+The [rulebook](governance/README.md) divides the framework into sixteen readable chapters, from the fellowship's identity and social rules through privacy, appeals, technical limits and unresolved constitutional questions. Its numbered decision register records founder answers separately from adopted guild policy.
 
-## Documentation map
+**Guild-wide binding rules and operations belong in [ROARguild](https://github.com/babunidev/ROARguild)**. A design approved for refinement does not automatically become enforceable policy or authorize new autonomous action.
 
-| Location | Purpose |
+## Following the development
+
+| Question | Document |
 | --- | --- |
-| AGENTS.md | Working rules for contributors and AI assistance |
-| CONCEPT.md | Core creative direction and project boundaries |
-| ROADMAP.md | Staged development, with proposed work distinguished from completed work |
-| CHANGELOG.md | Meaningful repository changes |
-| docs/ | Documentation standards, decisions, history, and canon policy |
-| governance/ | Eldgrim's public, chapter-by-chapter draft governance framework and refinement queues |
-| character/ | Eldgrim's public identity, personality, and voice |
-| lore/ | Amberhearth, fires, and the shared mythic setting |
-| narrative/ | Story development, quests, and narrative material |
-| interaction/ | How Eldgrim appears and communicates within the project |
-| assets/ | Visual, audio, and other creative resources |
-| templates/ | Reusable formats for future documentation |
-| addon/ | Forever-only addon source, specification, API research, data model, and tests |
-| agent/ | Local agent architecture, scope, security, memory, and operations documentation |
-| bot/ | Eldgrim Discord bot direction, status, open decisions, and planned order |
+| What is the core vision? | [Concept](CONCEPT.md) |
+| What comes next? | [Roadmap](ROADMAP.md) |
+| Which decisions are established or still open? | [Decisions](docs/DECISIONS.md) |
+| How did the project develop? | [Development journal](docs/DEVLOG.md) · [Changelog](CHANGELOG.md) |
+| How does it fit together? | [Project structure](docs/PROJECT_STRUCTURE.md) |
+| How should code and documentation be handled? | [AGENTS.md](AGENTS.md) · [Documentation guide](docs/DOCUMENTATION.md) |
 
-See [docs/PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md) for the complete structure, [addon/README.md](addon/README.md) for the addon workstream, and [agent/README.md](agent/README.md) for the agent design.
-
-## Canon and secrecy
-
-This is a public repository. Documents here must not disclose concealed character information or private motives intended to remain unknown to the in-world fellowship. Public documentation should describe only what is safe to make public. Private canon must be kept outside this repository unless it is deliberately approved for publication.
-
-The agent's runtime database, actual conversations, credentials, and private runtime instructions must also remain outside Git. The agent documentation describes public architecture and implementation requirements, not private character secrets or live user data.
-
-Unconfirmed ideas must be labelled as developing, proposed, or open rather than presented as established lore or implemented behavior.
-
-Read the [governance rulebook](governance/README.md) for the 16 separate chapters and outstanding questions.
-
-## Current status
-
-**Character project:** documentation foundation established.
-
-**Addon:** initial Forever-only Lua/TOC implementation and mock tests exist. Local syntax and mock behavior checks passed; in-game event correlation, profile enrichment, and SavedVariables persistence remain unverified.
-
-**Agent:** architecture and technical specifications documented as a developing workstream. No Python agent, Discord application integration, SQLite runtime database, systemd unit, or deployment has been implemented or tested.
-
-**Discord bot:** the existing bot runs on the creative's server with a confirmed Discord connection. Renaming, onboarding, and replies are not implemented yet.
+This is a public repository. Credentials, runtime member data, private messages, local agent memory and concealed character instructions stay outside Git. Technical records distinguish source-level design, tests, live integration and unverified plans.

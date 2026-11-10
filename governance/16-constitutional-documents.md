@@ -16,10 +16,37 @@ Private character canon must not be committed to public GitHub repositories. Nar
 
 Overall assessment: The creative direction is well established, and many operational responsibilities have already been identified. The missing foundation is a precise hierarchy of obligations, enforceable limits, evidence standards, privacy rights, and correction procedures. Until those are settled, Eldgrim's autonomous authority is an approved design objective rather than a sufficiently defined system of governance.
 
+## Confirmed document and amendment boundaries — questions 151–154 and 160
+
+The separate **ROARguild charter**, once binding, takes precedence over conflicting Eldgrim-specific working guidance (Q151); the existing ROARguild draft is **not** silently ratified by this rulebook. Mandatory law and platform requirements take precedence over all conflicting guild instructions (Q152). Eldgrim interprets existing rules, but cannot create permanent new rules, sanctions or authority (Q153). Informal founder instructions may direct **already authorized** operations; durable policy amendments require an **explicit documented founder decision**, with affected documents synchronized (Q154). Unresolved contradictory approved rules must be logged and referred to the founder rather than silently rewritten by the agent (Q160).
+
+**Still open:** How the charter is formally adopted, versioned, announced and reconciled across repositories; exact effective-date and reviewer procedures. This chapter is a **working documentation plan**, not a ratified constitution.
+
+## Founder-confirmed adoption and document lifecycle — questions 161–163 and 166–168
+
+- **Q161 — Ratification:** A guild charter becomes binding only after the founder **explicitly approves a specific version**, sets its effective date and makes it accessible to members. A GitHub commit, draft or AI-generated document is not ratification. The current ROARguild charter remains a developing draft.
+- **Q162 — Document responsibilities:** ROARguild charter = guild-wide rights, conduct and member obligations; Eldgrim constitution = Eldgrim's mission, authority and restrictions; governance procedures = operational execution. Cross-reference rather than duplicate conflicting provisions. Concealed character canon remains outside public governance.
+- **Q163 — Notice:** Publish material changes, their effective date and a link to the current rules; require renewed acknowledgement where materially changed obligations or data practices warrant it. No hidden enforceable rules.
+- **Q166 — Member proposals:** Members may propose, question and criticize policy without retaliation. Eldgrim may summarize proposals but has no amendment authority.
+- **Q167 — Amendment record:** Record authenticated founder approval, changed sections, reason, effective date and prior version. Synchronize affected authoritative documents and public change history without exposing private case information.
+- **Q168 — Founder absent:** Existing rules remain in force. Delegated operations and predefined protections continue; no one silently inherits the founder's power to amend policy. Defer unresolved new-rule and irreversible decisions.
+
+**Status:** Founder-confirmed **working governance**, not a charter ratification. No specific charter version has been approved here, no effective date set and no guild-wide notice issued by these documentation changes.
+
+## Completed interview and remaining adoption gate — questions 191–193
+
+The founder has explicitly accepted all **193 of 193** interview answers. Q191 requires a consistency audit across the confirmed answers, sixteen chapters and the separate ROARguild charter, preserving the latest explicit decisions and logging unresolved conflicts rather than inventing resolutions. The initial [consistency audit](CONSISTENCY-AUDIT.md) records visible gaps; full cross-repository reconciliation remains open.
+
+Q192 requires [implementation traceability](IMPLEMENTATION-MATRIX.md) from rule to component, behavior, tests, dependencies and evidence. A documented requirement is not an implemented, tested or deployed system.
+
+Under Q193, interview completion establishes a **consolidated founder-confirmed working baseline**, **not** an automatically ratified charter, new binding member obligations or authorization to activate autonomous administration. The separate Q161 charter-ratification process and Q170 verified deployment gate remain controlling.
+
 ## Refinement queue
 
-- [ ] Which document owns each enforceable rule?
-- [ ] How are chapters approved, amended, versioned, and synchronized with ROARguild?
+- [x] Assign guild charter, Eldgrim constitution and operational procedures to distinct responsibilities (Q162).
+- [x] Establish founder-only explicit documented amendment and charter precedence principles (Q151–154).
+- [x] Confirm required founder ratification, effective date, notice, amendment history and founder-absence boundaries (Q161–163, Q166–168).
+- [ ] Apply the approved process to an identified ROARguild charter version; publish it and verify acknowledgement/synchronization where required.
 
 ---
 

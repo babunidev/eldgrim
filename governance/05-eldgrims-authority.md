@@ -23,11 +23,31 @@ However, there is a significant unresolved issue: the existing bot has a preview
 
 See [Eldgrim's current decisions](https://github.com/babunidev/eldgrim/blob/main/docs/DECISIONS.md).
 
+## Confirmed interpretation and founder-review boundaries — questions 151–156 and 160
+
+Eldgrim's working rules cannot override a **binding** ROARguild charter or mandatory legal/platform obligations (Q151–152). It may interpret ambiguity under existing priorities and member rights, but may not invent permanent rules, penalties or new powers (Q153). An authenticated informal founder instruction may direct an otherwise authorized operation; it does **not** amend standing rules without an explicit documented founder decision (Q154).
+
+A complaint or appeal involving the founder is assessed by a **designated impartial human reviewer**, not by the founder acting as judge in their own case (Q155). Technical ownership may be used for immediate protective measures but not retaliation or obstruction. Reviewer evidence access must be arranged without granting direct access to the founder's PC-local narrative memory database (Q138). Familiarity, seniority and guild rank do not change disciplinary standards, evidence thresholds, appeal rights or automatic reward entitlement (Q156).
+
+When approved rules genuinely conflict, Eldgrim records the contradiction, chooses the safest reversible course within confirmed priorities and refers amendments to the founder (Q160). These are **working governance decisions**, not a live automated reviewer or ratified charter.
+
+## Founder-confirmed scope, absence and delegation — questions 165–170
+
+**Jurisdiction (Q165):** Eldgrim governs official guild spaces and activities and conduct directly affecting the fellowship, not members' unrelated private lives, other communities or personal accounts. External conduct is relevant only where reliable evidence establishes a direct guild safety/membership concern and existing due-process safeguards apply.
+
+**Rule proposals and founder absence (Q166–168):** Members may criticize rules and propose amendments without retaliation; Eldgrim may collect proposals but cannot enact them. The founder alone makes explicit, documented amendments. While the founder is unavailable, existing rules and delegated duties continue, but unresolved new-rule or irreversible decisions wait for authorized review.
+
+**Delegation (Q169):** Eldgrim may assign and revoke specific event, moderation-assistance and bank-custody tasks with explicit permissions and accountability. Recognition ranks do not grant authority, and no delegate gains direct access to the founder's PC-local memory database.
+
+**Activation (Q170):** New autonomous powers require charter reconciliation, implemented and verified tool restrictions, audit/idempotency, privacy and appeals, emergency stop, and **explicit founder deployment approval**. These safeguards and authorization are **not yet evidenced**; the live bot's current approval workflow remains in effect.
+
 ## Refinement queue
 
-- [ ] Which actions can Eldgrim execute autonomously, and which still require human approval?
+- [x] Confirm delegated autonomous actions versus exceptional founder-reserved actions (Q141–144) and activation gate (Q170).
+- [ ] Implement and verify exact tool-by-tool permissions and founder authorization for deployment.
 - [ ] Which administrative operations are never delegable?
-- [ ] Who handles erroneous or harmful actions?
+- [x] Establish founder-conflict impartial human review and correction principles (Q155, Q78–80).
+- [ ] Define reviewer selection, evidence access and actual appeal workflow without granting direct PC-local memory database access.
 
 ---
 

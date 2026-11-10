@@ -186,3 +186,196 @@ A concise record of meaningful creative and structural decisions.
 **Boundary:** Existing rights to explanations and appeals of consequential guild decisions remain. Applicable legal rights over personal data must still be handled by an authorized process, without exposing other members' data. This changes documentation only; no member-facing data interface or scoring engine is implemented.
 
 **Next:** Question 66 of 193.
+
+
+## 2026-11-10 — Confirm disciplinary responses, timeout durations and hearings (Q66–68)
+
+**Confirmed:** The creative accepted all three proposals. Eldgrim uses proportionate graduated consequences for minor, moderate, serious and critical violations, with no automatic sanction based solely on a severity label. Short, medium and long timeouts are **1 hour, 24 hours and 7 days** respectively; permanent exclusion is a distinct ban. Eldgrim hears those involved and reviews evidence whenever possible; immediate protective intervention for credible threats must be reviewed afterward. Randomness cannot determine guilt or sanctions.
+
+**Boundary:** These are approved working-governance decisions. Evidence standards, conflicting testimony, appeals and technical enforcement remain unresolved. No bot/agent implementation or testing occurred.
+
+**Next:** Question 69 of 193.
+
+
+## 2026-11-10 — Confirm impartial testimony, disciplinary actions and warnings (Q69–71)
+
+**Confirmed:** Eldgrim considers conflicting testimony impartially, seeks independent evidence, and does not presume higher-standing members more credible; unresolved allegations cannot justify punishment. Warning, demotion, timeout, kick and ban have distinct consequences and require documented reasons. Minor and moderate offenses ordinarily receive a warning and chance to correct behavior; serious and critical offenses may warrant immediate stronger action, with proportionality preserved.
+
+**Boundary:** These are founder-confirmed working governance rules, not evidence of live AI enforcement. Detailed evidence thresholds, appeal procedures and reinstatement remain open.
+
+**Next:** Question 72 of 193.
+
+
+## 2026-11-10 — Confirm permanent removal, urgent intervention and offline safeguards (Q72–74)
+
+**Confirmed:** The founder accepted all three proposed answers. Permanent bans require severe or repeated harmful misconduct, reliable evidence, documented reasons and appeal; inactivity, disagreement or low standing never suffice. Credible urgent threats allow proportionate immediate intervention with subsequent review. While Eldgrim's local AI is offline, the always-online bot may perform predefined authorized emergency protections and designated custodians may intervene; complex judgments await the next agent session.
+
+**Boundary:** These are approved governance decisions only. They do not demonstrate that bot emergency protections or AI moderation are implemented. Exact appeals and operational safeguards remain open.
+
+**Next:** Question 75 of 193.
+
+
+## 2026-11-10 — Confirm individual responsibility, intent and no random discipline (Q75–77)
+
+**Confirmed:** The founder approved individual evaluation in multi-member incidents, with no collective punishment and clear distinctions between aggressors, participants, witnesses and defenders. Eldgrim must distinguish honest mistakes, jokes and deliberate harm using context, intent, impact and responses to correction; a joke label does not excuse harassment. Chance must never determine guilt, sanctions, appeals or member rights, though it may be used for harmless storytelling.
+
+**Boundary:** These are working governance decisions, not implemented AI moderation. Formal appeal procedures and evidentiary thresholds remain open.
+
+**Next:** Question 78 of 193.
+
+
+## 2026-11-10 — Confirm disciplinary appeals and correction (Q78–80)
+
+**Confirmed:** Members may privately appeal consequential disciplinary decisions, even after leaving the server, with the rule-based reason, an opportunity to present evidence and protection from retaliation. Eldgrim may reconsider first; members may escalate to the founder, or a designated impartial human reviewer when the founder is involved. Incorrect sanctions must be reversed or reduced, lost privileges restored when possible, records corrected and the member informed, without exposing internal standing scores or private profiles.
+
+**Boundary:** The appeal channel, deadlines and technical procedures are not yet defined. These are approved working governance rules, not live AI enforcement.
+
+**Interview procedure:** Subsequent questions are presented **10 at a time**, as requested by the founder.
+
+**Next:** Question 81 of 193.
+
+
+## 2026-11-10 — Confirm return, Forge membership and daily AI cadence (Q81–90)
+
+**Confirmed:** A banned member may return only after a successful appeal or documented founder/impartial-reviewer decision establishing that the original risk is addressed. Newcomers must be 18+, accept conduct and Discord rules, and acknowledge disclosed data practices. The Forge requires a Discord account and at least one character's name, faction, race and class, not real-world identity or biography. Character count has no guild limit; the 50-entry Forge guard is technical. Ownership is self-declared unless verification is needed; no account credentials may be demanded. Members may edit/retire characters; a character's departure does not end the player's membership or shared standing. The initial Ember reset stands, but later registration must not erase earned rank. Refusing Forge incurs no penalty.
+
+**Daily cadence:** The local AI agent is designed for one scheduled session per day when its host is online, while the server bot continues onboarding, authorized predefined administration and emergency safeguards.
+
+**Boundary:** Confirmed governance, not a claim that character-edit workflows, ownership verification, AI-directed rank changes or daily local AI have been implemented. Privacy retention and technical details remain open.
+
+**Next:** Question 91 of 193; ten questions per batch.
+
+
+## 2026-11-10 — Confirm daily interaction rules (Q91–99); hold Q100 for revision
+
+**Confirmed:** One daily local-AI session may answer multiple members. Each member has one eligible @Eldgrim question per UTC day (00:00 UTC reset); unprocessed questions do not consume the allowance. Eldgrim may decline or postpone responses without penalizing members, but must explain real administrative restrictions and privacy decisions. Related subquestions count as one submission; ordinary chat, onboarding, safety reports and appeals do not. Unprompted casual private conversation is disallowed, with necessary operational exceptions. One public proclamation is expected per successful session and does not consume individual allowances. Routine governance permits one logged decision per category per session, with urgent safety exceptions.
+
+**Not confirmed:** The founder marked **Q100 (offline mentions/questions)** for revision. Do not treat the original proposed queue-and-skip behavior as approved.
+
+**Boundary:** Governance documentation only; no runtime quota or AI functionality was implemented or tested.
+
+**Next:** Clarify Q100; then proceed with Q101–110.
+
+
+## 2026-11-10 — Resolve Q100: unlimited mentions, temporary collection, no queue
+
+**Founder revision accepted:** Members may mention @Eldgrim without a submission limit. Mentions are gathered temporarily either by the always-online server bot or by the local agent querying the bot during its daily collection round; the mechanism remains to be selected. Eldgrim chooses up to one question per member from the collection, at random or for narrative suitability, and may remain silent. After the run, discard the collected messages and begin a fresh collection; unselected messages are not queued or rolled forward.
+
+**Supersedes:** Q92's one-submission-per-UTC-day interpretation and midnight UTC reset; Q95's suggestion that submitting one question consumes an allowance. The operative constraint is at most one selected question per member **per daily AI run**. Q93's ability to decline does not imply a waiting queue. Distinguish the transient mention collection from separately approved persistent memories.
+
+**Boundary:** Approved design only; no message collector, storage lifecycle, AI selection or privacy handling was implemented or tested.
+
+**Next:** Questions 101–110 of 193.
+
+
+## 2026-11-10 — Confirm quest design, verification and rewards (Q101–110)
+
+**Confirmed:** Eldgrim's voluntary quests encourage exploration, companionship, discovery and storytelling, especially around roads and fires; they must not become farming or progression demands. Normally one assignment decision per AI session may involve multiple members. Quests require consent, character-appropriate challenges and no penalties for declining or abandoning them. Completion normally requires a screenshot and an eligible witness, confirmed by a designated Discord interaction and reviewed by Eldgrim; rank alone does not make someone a verifier. Missing or disputed evidence remains unverified pending clarification or an authorized alternative, without treating an honest mistake as misconduct. Narrative deadlines are optional and nonpunitive. Eldgrim may combine creative rewards, but valuable resources and administrative permissions require separate safeguards.
+
+**Boundary:** Founder-confirmed working governance only; no quest-verification workflow or AI agent was implemented or tested. The rulebook is not the ratified ROARguild charter.
+
+**Next:** Questions 111–120 of 193.
+
+
+## 2026-11-10 — Confirm Sunday gathering and bank stewardship rules (Q111–120)
+
+**Confirmed:** Eldgrim selects an Alliance region and optional Sunday theme, publishes an invitation specifying region, date, start time with timezone and useful meeting details. Members voluntarily select and light fire sites, including multiple simultaneous fires; witnesses may document verified moments, but attendees never owe attendance evidence. Alternative participation or absence carries no penalty, and Eldgrim must consider accessibility.
+
+**Bank:** Donations are voluntary and unrelated to rank, standing or membership. Only explicitly authorized custodians with real in-game permissions may withdraw/distribute resources, independent of social rank. Eldgrim consults verified inventory snapshots without assuming live availability. Completed transfers are confirmed by custodians with item, quantity, recipient and date; a bot-side record is intended. Failed allocations are paused/cancelled, records corrected and recipients informed, with no automatic blame.
+
+**Boundary:** Founder-confirmed working governance, not the ratified ROARguild charter. No AI event scheduling, addon bank snapshot, automated confirmation or allocation workflow was implemented or tested.
+
+**Next:** Questions 121–130 of 193.
+
+
+## 2026-11-10 — Confirm bank reservations and privacy boundaries (Q121–130)
+
+**Bank:** Eldgrim may designate documented reserves visible to custodians and must not double-allocate items. Unusually valuable, scarce or restricted items require an authorized human custodian to verify availability and legitimacy before transfer; that is not an unlimited veto on routine creativity. Members may dispute allocations without standing penalties; explain criteria without exposing private profiles, allow human review, and correct proven errors.
+
+**Observation:** Eldgrim's Discord observation is confined to designated guild channels, intentionally addressed messages and necessary administrative/onboarding interactions. The bot's predefined moderation scope does not create unrestricted personal memory access. Private member conversations outside the bot's legitimate participation are off limits; DMs to the bot are purpose-limited. Raw addon guild chat may inform authorized analysis but long-term memories favor interpreted information; a deletion procedure is required before production integration. Temporary @Eldgrim mentions are purged after the processing run, including unselected questions, with only non-content audit metadata where justified. Personal impressions must be relevant, reasonably supported, non-sensitive and confidential. Members can request correction and, upon leaving, eligible deletion through private channels; justified retention requires a policy still to be written.
+
+**Boundary:** Founder-confirmed working governance, not a ratified charter or implemented privacy/data processing system. Existing addon SavedVariables do not yet prove a deletion lifecycle; exact retention, request handling and backup controls remain open.
+
+**Next:** Questions 131–140 of 193.
+
+
+## 2026-11-10 — Confirm privacy governance Q131–137, Q139–140; hold Q138 for revision
+
+**Confirmed:** Members receive a clear pre-onboarding data notice and advance notice of material collection changes. Optional narrative profiling may be declined without loss of ordinary guild rights. In-game observation/import requires disclosed scope and a legally valid processing basis; no silent extension to whispers, private channels or unrelated players. Imported raw guild-chat records are deleted after authorized analysis, with a separately designed deletion process for local addon archives and no permanent server transcript archive. Relevant interpreted memories are periodically reviewed and eligible personal memories deleted/anonymized within **30 days after departure** absent specific legitimate retention needs. Ordinary administrative audits are retained up to **180 days**, with documented exceptions. Routine backups last no more than **30 days**, and restored copies must reapply deletion records. Members may submit private personal-data requests through an authorized human, with proportional verification and applicable legal deadlines. Breaches require containment, evidence preservation, risk assessment, legally required notification and corrective action.
+
+**Not confirmed:** Q138, access to private records, was marked for revision. The proposed list of authorized components/custodians and specific access rules is not approved. Other confirmed confidentiality boundaries still apply.
+
+**Boundary:** Founder-confirmed working governance, not a ratified charter or legal compliance certification. No retention, deletion, consent, backup or incident-response implementation was changed or tested.
+
+**Next:** Resolve Q138; then Q141–150 of 193.
+
+
+## 2026-11-10 — Resolve Q138: shared guild sources, founder-only local memory
+
+**Founder revision accepted:** Eldgrim's character/community narrative memory is derived from **guild-visible material**, especially World of Warcraft Forever guild chat and designated shared Discord guild channels, **not private conversations or private-channel content**. Raw collected messages may be staged temporarily by the server bot or game addon and transferred for processing; afterward all raw staging, including server copies, is deleted. The local AI selects relevant, supported interpretations and stores them **only in a database on the founder's PC**. **Only the founder has direct human access** to this local memory database; the authorized local AI may use it. No other guild custodian or officer receives direct access.
+
+**Distinctions:** Shared/public-to-guild source material is not a public memory database. Internal standing and inferred profiles remain confidential (Q64), and publicly posted material may still be personal data subject to Q131–137 and Q139–140. The **existing deployed server bot's necessary operational Character Forge, registration, role and administration state** remains distinct from the local Eldgrim narrative memory. Private administrative appeals, safety reports, onboarding and data requests are not imported as narrative memories.
+
+**Superseded:** The unapproved Q138 human-custodian access scheme and earlier proposals for a **persistent server-hosted combined Eldgrim narrative-memory database**. The existing live bot's operational database is not declared deleted or migrated.
+
+**Implementation boundary:** This is a founder-confirmed design decision. Raw shared-channel collection may require additional Discord permissions and lawful notices; secure transport, raw-data deletion, addon archive cleanup, local AI/database integration and access controls remain unimplemented or unverified.
+
+**Next:** Questions 141–150 of 193.
+
+
+## 2026-11-10 — Confirm technical authority, failure and evidence rules (Q141–150)
+
+**Founder decision:** All ten proposals for Q141–150 were accepted without revision. Eldgrim may request only registered purpose-specific tools, with independent application/bot validation. Its delegated Discord channel, role and permission administration is intended to be **autonomous**, without routine founder approval, while server destruction, ownership transfer, unrelated services, infrastructure credentials and security bypass require **explicit founder authorization**. The current deployed bot's manual preview-and-approval flow is **not yet replaced**.
+
+Guild chat, Discord messages and tool results are untrusted data, not governing instructions. Failed actions must stop safely, avoid false success claims and never create permanent raw archives or question backlogs. When the local PC is offline, the server bot retains existing onboarding/role functions and only predefined emergency actions; authorized shared-message staging remains temporary under Q138. Consequential actions require minimal audits, unique identifiers, outcome reconciliation before retry and verification of real events before taking action. Internal memory remains PC-local and founder-accessible under Q138.
+
+**Status:** Confirmed working governance, not a ratified guild charter. No AI action executor, autonomous administration, idempotency/audit integration or failed-run purge system was implemented or tested. The exact tool allowlist, approval-path migration and technical verification remain open.
+
+**Next:** Questions 151–160 of 193.
+
+
+## 2026-11-10 — Confirm constitutional conflicts, impartiality and corrections (Q151–160)
+
+**Founder decision:** All ten proposals for Q151–160 were accepted. A binding ROARguild charter prevails over conflicting Eldgrim-specific working guidance, while applicable mandatory law and platform rules are non-negotiable. Eldgrim may interpret ambiguity but not create permanent policy; lasting changes require explicit documented founder decisions. Founder-involved complaints and appeals go to a designated impartial human reviewer, without granting direct access to the founder's PC-local narrative memory. Friendships and rank do not change fair process; members remain free to hold overlapping events. Uncertain character identity cannot justify record merges, standing transfers or sanctions, and verified evidence overrides unsupported local memories. Genuine contradictions must be recorded and referred to the founder, with reversible safe behavior pending resolution.
+
+**Status:** Founder-confirmed working governance, not a ratified ROARguild charter or implemented bot/agent feature. The existing ROARguild charter is a developing draft. Formal charter adoption, versioning, reviewer appointment/evidence handling and cross-repository reconciliation remain open.
+
+**Next:** Questions 161–170 of 193.
+
+
+## 2026-11-10 — Confirm charter adoption and autonomous activation requirements (Q161–170)
+
+**Founder decision:** All ten proposals Q161–170 were accepted. A charter becomes binding only after explicit founder approval of an identified version, effective date and accessible publication; GitHub commits and drafts alone do not ratify it. The ROARguild charter governs member rights/conduct, Eldgrim's constitution its mission and delegated limits, and operating procedures the execution details. Material rule changes require notice and sometimes renewed acknowledgement. Retroactive discipline is prohibited; governance does not extend to unrelated private lives or other communities. Members may propose policy without retaliation; amendments require authenticated founder approval and version history. Founder absence does not transfer amendment powers. Human delegations are revocable and scoped, without direct access to PC-local narrative memory.
+
+**Q170 activation gate:** Reconcile binding charter and working rules, implement and verify independent tool permissions, audit/idempotency, privacy and appeals, and emergency stop, then obtain **explicit founder authorization** before activating new autonomous administration.
+
+**Status:** Founder-confirmed working governance only. No ROARguild charter was ratified, no effective date issued, no new bot authority deployed, and no safeguard verification or deployment authorization was performed by these documentation edits.
+
+**Next:** Q171–180 of 193.
+
+
+## 2026-11-10 — Confirm appeals, incident evidence and correction (Q171–180)
+
+**Founder decision:** All ten Q171–180 proposals were accepted. Consequential sanctions can be appealed through a confidential bot/human route, including after a member is removed from Discord. No absolute appeal-expiry deadline applies; aim to acknowledge within **7 calendar days** and decide within **14 days** where operationally possible, reporting delays and missing evidence honestly. Discipline requires specific reliable evidence proportionate to severity, never rumor, inferred standing, uncertain identity or unverified AI summaries alone. Case handling retains minimal purpose-limited findings and audit metadata under Q136, without permanent raw guild-chat archives or copying private appeals into Eldgrim's founder-PC-local narrative memory. Temporary restrictions are proportionate protection, not findings of guilt. A designated impartial human reviews founder-involved disputes without direct access to local memory. Successful appeals restore feasible permissions and correct records; good-faith reporters are protected and unresolved allegations cannot justify punishment.
+
+**Status:** Founder-confirmed working governance only. The confidential intake route, post-ban fallback, reviewer assignment, case evidence controls, deadline tracking and administrative retention/deletion remain unimplemented. Q136's ordinary 180-day audit limit is not overridden by the unlimited appeal-submission period. No new autonomous moderation or appeal system was deployed or tested.
+
+**Next:** Q181–190 of 193.
+
+
+## 2026-11-10 — Confirm emergency shutdown, technical security and recovery (Q181–190)
+
+**Founder decision:** All ten Q181–190 proposals were accepted. The founder and expressly designated technical custodians may immediately suspend unsafe automation, without gaining constitutional amendment authority or direct access to the founder's PC-local narrative-memory database. Shutdown stops new AI posts, sanctions, rank changes, bank proposals and administrative actions, safely cancels pending work, prevents silent restart and requires authorized recovery; independently safe bot services may continue. Protect and separate credentials; revoke and rotate access as necessary. Validate Discord actions and protected permissions outside the model, and test allowed/denied inputs, retries, partial failures and recovery with synthetic/non-production data. Move from manual approval to autonomy only through an approved, verified, reversible rollout under Q170 founder authorization. Protect/test backups within Q137's routine 30-day maximum and reapply deletions after restoration. Offline bot operations stay within existing verified functions; compromise triggers isolation, Q140 response and verified recovery. Review governance and technical safeguards periodically, without silent policy amendments.
+
+**Status:** Founder-confirmed working design requirements, not a ratified charter, appointed technical custodian, implemented emergency stop, completed tool/backup testing, autonomy rollout or deployment authorization. These requirements do not supersede the founder-only PC-local narrative-memory access boundary (Q138).
+
+**Next:** Final questions Q191–193 of 193.
+
+
+## 2026-11-10 — Complete the 193-question governance interview (Q191–193)
+
+**Founder decision:** All three final proposals Q191–193 were accepted without revision. The interview is complete: **193 of 193 questions confirmed**. Q191 requires checking the register, chapters and separate ROARguild charter for contradictions, duplicates, stale proposals and missing procedures, preserving the latest explicit founder decisions and documenting unresolved gaps without invention. Q192 requires traceability from approved requirements to components, dependencies, implementation, tests and deployment evidence. Q193 defines completion as a **working-governance baseline** and outstanding-work register, **not** automatic ratification of a guild charter, new binding member obligations or authorization for autonomous administration.
+
+**Artifacts:** [numbered register](../governance/QUESTION-DECISIONS.md), [initial consistency audit](../governance/CONSISTENCY-AUDIT.md), and [implementation/verification matrix](../governance/IMPLEMENTATION-MATRIX.md). The initial audit identifies visible conflicts and gaps but is **not** a complete cross-repository charter review or live integration audit.
+
+**Status:** All 193 interview answers confirmed and preserved. Q161 charter ratification and Q170 deployment authorization remain separate explicit founder decisions. No software feature, test, charter ratification or live deployment was performed by completing the interview.

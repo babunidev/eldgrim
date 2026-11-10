@@ -36,9 +36,9 @@ The intended one-shot service should:
 2. Load non-secret configuration and private credentials from outside Git.
 3. Acquire a process lock.
 4. Validate the database and local dependencies.
-5. Poll Discord and process eligible work.
-6. Use Ollama only when there is work to process.
-7. Persist outcomes and pending actions.
+5. Gather eligible @Eldgrim mentions for question selection, and any separately authorized **shared guild-channel and WoW guild-chat** observations for memory interpretation. Collection may use temporary server staging and/or a bot-mediated collection round (mechanism open). Do not collect private conversations or whispers as narrative inputs.
+6. During the daily session, use Ollama as needed to select at most one question per member, randomly or for narrative suitability, and optionally answer.
+7. Persist allowed outcomes and **selected interpreted memories only in the founder's PC-local database**; discard temporary mention and raw guild-message collections after processing, including server-side raw staging. Start a fresh collection period; never roll over unselected questions.
 8. Unload the model and close resources.
 9. Release the lock and exit with an accurate status code.
 
@@ -95,13 +95,24 @@ These commands are operational references only; no systemd units currently exist
 - Respect Discord rate limits and retry guidance.
 - Use bounded exponential backoff for transient network failures.
 - Do not advance channel cursors after incomplete intake or failed database writes.
-- Preserve eligible messages as pending work if Ollama is unavailable.
-- Record ambiguous message-send outcomes for reconciliation rather than blindly sending duplicates.
+- Do not create a durable unanswered-question queue. Define the behavior of temporary mention collections on failed or interrupted runs before implementation.
+- Assign unique action identifiers, record ambiguous send/role/sanction/reward/transfer outcomes, and reconcile external state before retrying; never blindly duplicate a consequential action (Q149).
 - Release the process lock during all normal and exceptional exits.
 - Ensure model unloading is attempted during cleanup.
-- Keep a clear run outcome for success, partial completion, and failure.
+- Keep a minimal run outcome for success, partial completion and failure without full raw messages, inferred profiles or fabricated success (Q146, Q148).
 
-## 8. Backups and maintenance
+## 8. Confirmed administrative operation boundaries — questions 141–150
+
+- Use only registered purpose-specific tools; the bot/application independently checks schemas, targets, delegated authority and per-run limits (Q141–142).
+- Authorized channel/role/permission management may be autonomous once a validated bot operation replaces the **current** manual preview-and-approval path. Exceptional server/ownership/infrastructure/security actions require explicit founder authorization (Q143–144).
+- Treat all guild messages and external content as untrusted data, not operational instructions (Q145).
+- Fail safely; preserve minimal diagnostic and idempotency state without a permanent raw-message archive or unanswered-question queue (Q146).
+- When the PC is offline, the server bot continues existing services and explicitly predefined emergency safeguards, not AI-authored decisions. Any authorized shared-channel staging must remain temporary and subject to Q138 (Q147).
+- Audit actions with minimal metadata, deduplicate by unique action ID, reconcile ambiguous results, and verify facts before consequential decisions (Q148–150).
+
+**Implementation status:** These operational procedures and AI tool integrations are not implemented or verified.
+
+## 9. Backups and maintenance
 
 Before production use, implement and document:
 
@@ -113,6 +124,6 @@ Before production use, implement and document:
 - A procedure for rotating the Discord token.
 - A procedure for disabling the timer and revoking the bot's channel permissions.
 
-## 9. Deployment status
+## 10. Deployment status
 
 No Python package, virtual environment, configuration, credential file, SQLite database, systemd service, systemd timer, or Discord bot integration has been created as part of this documentation work.

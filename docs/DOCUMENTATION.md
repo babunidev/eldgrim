@@ -38,6 +38,10 @@ The addon and agent must not silently expand one another's scope. Neither techni
 
 The [governance index](../governance/README.md) links all 16 chapters of the working framework. Each chapter records a source baseline, its decision status, and a refinement queue. A proposal does not become binding merely by appearing in a chapter; approved guild-wide rules must also be reconciled with ROARguild. Never place private character canon in the public rulebook.
 
+## Completed governance interview
+
+All **193** numbered questions are founder-confirmed in [QUESTION-DECISIONS.md](../governance/QUESTION-DECISIONS.md). The [consistency audit](../governance/CONSISTENCY-AUDIT.md) identifies known contradictions, stale drafts and missing procedures; the [implementation matrix](../governance/IMPLEMENTATION-MATRIX.md) maps requirements to components, tests and verification evidence. The interview is complete, but a **binding charter** requires Q161 ratification and **new autonomous administration** requires Q170 verification and explicit founder deployment approval. Never mark an untested feature implemented or infer adoption from a documentation commit.
+
 ## Canon layers
 
 - **Public canon:** information safe to present to readers and in-world characters.
