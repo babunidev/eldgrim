@@ -1,6 +1,6 @@
-# Confirmed governance questions 1–90
+# Confirmed governance questions 1–99 (Q100 revision pending)
 
-**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Confirmed:** Q1–90. **Next question:** 91 of 193. **Interview batch size:** 10 questions.
+**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Confirmed:** Q1–99. **Q100:** Needs revision; no answer approved. **Next:** Resolve Q100, then proceed with Q101–110 of 193. **Interview batch size:** 10 questions.
 
 This register preserves decisions made in a sequential governance interview, including corrections to earlier proposals. It is **not** the separate, ratified ROARguild charter and makes no claims that AI governance is implemented. The linked governance chapters provide operational detail. Private character canon, secret identity, motives and magical mechanics are intentionally omitted because this repository is public; preserve them only in appropriately restricted storage.
 
@@ -76,6 +76,22 @@ This register preserves decisions made in a sequential governance interview, inc
 - **Q89 — Declining onboarding:** A person who declines or leaves Forge stays outside registered-member channels or may leave freely, without standing penalties, discipline or pressure. They may return to complete onboarding later.
 - **Q90 — Daily session vs bot uptime:** The local AI runs one scheduled decision session per day **when the host computer is available**; ordinary conversational output is limited to that session. The server bot stays online for onboarding, predefined administration and emergency safeguards. Missed sessions do not imply background AI reasoning.
 
+## Confirmed answers — questions 91–99
+
+- **Q91 — Multiple member replies:** One daily AI session may reply to several eligible members, subject to their individual allowances. Once-daily refers to processing, not a one-message limit.
+- **Q92 — Per-member question allowance:** One eligible question per Discord member per **UTC calendar day**, resetting at **00:00 UTC**. Editing or repeating does not create more allowances. A question never processed does not consume the allowance.
+- **Q93 — Response discretion:** Eldgrim need not answer every eligible question. It may decline or postpone for safety, insufficient information, capacity or narrative reasons; unanswered questions do not penalize members.
+- **Q94 — Explanation of refusals:** Eldgrim may remain silent or mysterious for ordinary fictional/personal questions, but must explain actual administrative decisions, restrictions and privacy requests appropriately.
+- **Q95 — Eligible question definition:** A direct question or clear request explicitly addressed to **@Eldgrim** counts as one submission even with several related subquestions. Ordinary chat, onboarding, safety reports and disciplinary appeals do not consume the allowance.
+- **Q96 — Unprompted private conversation:** Eldgrim does not initiate casual private conversations. Necessary onboarding, administrative notices, safety communications and appeal responses are exceptions. Its daily public proclamation is separate.
+- **Q97 — Proclamation expectation:** One guild-wide proclamation is expected per successful daily AI session; it may contain a story, observation, invitation, quest or recognition. Skip if unsafe, technically impossible or misleading. Do not invent real guild activity.
+- **Q98 — Proclamation independence:** One guild-wide proclamation per successful session is separate from individual question allowances; administrative and safety notices count against neither.
+- **Q99 — Routine decisions:** Normally one decision per category per AI session: rank changes, quest assignments, recognition/rewards, guild-bank allocations and guild-wide proclamations. Log decisions; urgent safety intervention is exempt.
+
+## Pending revision — question 100
+
+- **Q100 — Questions while the local AI is offline:** The founder **rejected the initial proposal for revision**. No replacement rule has been approved. The initial proposal (not accepted) would have allowed the server bot to queue eligible mentions for the next AI session, skip stale or superseded questions, and continue predefined emergency protections. Await the founder's correction before recording an approved answer.
+
 ## Superseded or clarified decisions
 
 - **Q34–35:** An initial proposal requiring founder approval for Discord channel management was superseded by explicit confirmation that Eldgrim, as administrator, may handle channels, roles and permissions. This remains subject to valid authorization, safeguards, auditing and implementation.
@@ -85,4 +101,4 @@ This register preserves decisions made in a sequential governance interview, inc
 
 ## Unresolved matters
 
-**Q1–90 are confirmed.** Questions **91–193** remain open. Detailed evidence thresholds, practical appeal channels and timing, privacy and retention, bank controls, tool restrictions, daily quotas, implementation and ROARguild-charter reconciliation remain unresolved.
+**Q1–99 are confirmed.** **Q100 requires revision** and **Q101–193** remain unanswered. Detailed evidence thresholds, practical appeal channels and timing, privacy and retention, bank controls, tool restrictions, implementation and ROARguild-charter reconciliation remain unresolved.
