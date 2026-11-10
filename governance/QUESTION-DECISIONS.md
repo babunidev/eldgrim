@@ -1,6 +1,6 @@
-# Confirmed governance questions 1–120
+# Confirmed governance questions 1–130
 
-**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Confirmed:** Q1–120. **Next:** Q121–130 of 193. **Interview batch size:** 10 questions.
+**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Confirmed:** Q1–130. **Next:** Q131–140 of 193. **Interview batch size:** 10 questions.
 
 This register preserves decisions made in a sequential governance interview, including corrections to earlier proposals. It is **not** the separate, ratified ROARguild charter and makes no claims that AI governance is implemented. The linked governance chapters provide operational detail. Private character canon, secret identity, motives and magical mechanics are intentionally omitted because this repository is public; preserve them only in appropriately restricted storage.
 
@@ -118,6 +118,19 @@ This register preserves decisions made in a sequential governance interview, inc
 - **Q119 — Completed transfers:** The authorized custodian confirms item, quantity, recipient and date after transfer; the bot is intended to record it. Announced allocations are not marked delivered until confirmed.
 - **Q120 — Missing items or failed transfers:** Pause/cancel the allocation, correct inventory records and notify the recipient. Eldgrim may offer an alternative. No automatic blame without evidence of misconduct.
 
+## Confirmed answers — questions 121–130
+
+- **Q121 — Reserved bank items:** Eldgrim may document reasonable reserves for events, communal supplies and existing commitments, visible to authorized custodians. Do not silently allocate the same item twice.
+- **Q122 — Valuable bank items:** Eldgrim proposes allocations, but unusually valuable, scarce or restricted resources require an authorized human custodian's confirmation of availability and legitimacy before distribution. Custodians do not receive unrestricted veto power over ordinary creative decisions.
+- **Q123 — Bank allocation disputes:** Eldgrim explains relevant criteria without disclosing confidential profiles. A designated human reviewer may inspect the decision and transfer records; correct substantiated errors where possible. Disagreement alone does not affect standing.
+- **Q124 — Discord observation scope:** Eldgrim observes only explicitly designated guild channels and messages intentionally addressed to it, plus necessary onboarding and administrative interactions. The always-online bot may handle other messages strictly for predefined moderation; those messages are not automatically entered into Eldgrim's personal memory.
+- **Q125 — Private messages:** Eldgrim cannot inspect private conversations where its application is not a legitimate participant. Direct messages to the bot may be processed for their stated purpose, not automatically treated as public guild activity or material for storytelling.
+- **Q126 — In-game raw chat:** Raw addon guild-chat messages may serve as temporary authorized analysis input. Long-term member and character memories should retain relevant interpreted facts, topics and observations rather than verbatim conversation quotations. A defined raw-record deletion procedure is required before production integration.
+- **Q127 — Temporary mention purge:** Bot or agent retains eligible @Eldgrim mentions only through the daily processing run; afterward all collected message content, including unselected questions, is purged. Non-content operational audit metadata may persist without recreating a hidden message archive. This reinforces Q100.
+- **Q128 — Confidential personal impressions:** Long-term impressions include only relevant, reasonably supported interpretations of participation, character interests, helpfulness, conduct and shared experiences. Avoid sensitive real-world traits, unsupported psychological judgments and verbatim private conversations. Standing and inferred profiles stay confidential under Q64.
+- **Q129 — Correcting data:** Members may privately request correction of factual registration and consequential administrative records; an authorized human reviews disputes Eldgrim cannot resolve fairly. Internal impressions may be corrected without exposing confidential profiles. Applicable legal access and correction rights remain protected.
+- **Q130 — Departure:** Deactivate membership/character records and cease routine collection. Provide a private process for requesting deletion of eligible personal data; retain only what is legitimately required for safety, legal or administrative obligations under a defined retention policy. No retaliatory profiling.
+
 ## Superseded or clarified decisions
 
 - **Q34–35:** An initial proposal requiring founder approval for Discord channel management was superseded by explicit confirmation that Eldgrim, as administrator, may handle channels, roles and permissions. This remains subject to valid authorization, safeguards, auditing and implementation.
@@ -128,4 +141,4 @@ This register preserves decisions made in a sequential governance interview, inc
 
 ## Unresolved matters
 
-**Q1–120 are confirmed.** **Q121–193** remain unanswered. Detailed evidence thresholds, practical appeal channels and timing, privacy and retention, bank authorization limits, tool restrictions, implementation and ROARguild-charter reconciliation remain unresolved.
+**Q1–130 are confirmed.** **Q131–193** remain unanswered. Detailed evidence thresholds, practical appeal channels and timing, privacy and retention, bank authorization limits, tool restrictions, implementation and ROARguild-charter reconciliation remain unresolved.
