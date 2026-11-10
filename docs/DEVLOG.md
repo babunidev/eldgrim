@@ -8,11 +8,13 @@ Reviewing AI's drafts, I corrected three things: Eldgrim is an entity and must n
 
 AI made the corrections and built the reset into the switch that holds back ranks. It removes ranks only from members who never completed the Forge, so a later promotion cannot be undone by accident, and records former ranks first. Deploying, AI found that its own copy step had left the files unreadable for the service account; the bot was offline for about seven minutes until AI fixed the permissions and wrote a safer update script.
 
+Some members bring characters from other versions of World of Warcraft, so a single name has to be allowed as well as a first name and a surname. I also asked Eldgrim to call everyone who has not registered. AI posted that call in the Forge, where it waits for members who are offline.
+
 Testing the Forge myself, I found it rejected a full character name: WoW Forever gives every character a first name and a surname, and AI had built the check for a single name. AI verified the naming rules from Blizzard's announcement and a rules guide, then split the question into first name and surname with the same limits the game uses.
 
 After testing the Forge, I approved both switches. AI hid the five public channels behind the ranks, then removed every rank except mine. A dice bot kept its ranks, since a bot cannot complete the Forge.
 
-**Result:** Deployed with 65 passing tests and the new panel texts. The switches are on: 73 members see only the Forge until they finish it, and finishing grants Ember. The rank switch was previewed (73 of 74 members must complete the Forge) and stays off until I have tested the Forge.
+**Result:** The Forge is live. A character may have one name or two, and Eldgrim has called the 73 members who have not registered. They see only the Forge until they finish, and finishing grants Ember.
 
 ## 2026-11-10 — Building the multi-character Forge
 
