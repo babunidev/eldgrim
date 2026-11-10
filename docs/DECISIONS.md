@@ -130,6 +130,14 @@ A concise record of meaningful creative and structural decisions.
 
 **Status:** Documentation structure established; substantive policy gaps remain open.
 
+## 2026-11-11 — Eldgrim's roster comes before it acts
+
+**Decision:** Before Eldgrim writes an announcement or acts by itself, its overview of the guild is a roster on the founder's computer. Every member who arrives through the Character Forge or the Forever addon gets an entry. Sentences about that member are read for the run, reduced to keywords, and then deleted. The keywords stay on the entry. Eldgrim reads the roster and those keywords before it speaks or decides.
+
+**Boundary:** The roster is not a transcript and not the server's Forge database. An addon character is linked to a Discord member only by a verified registration. Uncertain matches are not merged. Lore can still be added to the pages Eldgrim reads; lore does not replace the roster.
+
+**Status:** Specified in agent/ROSTER.md. Not implemented.
+
 ## 2026-11-10 — Roar and Amberhearth are separate fellowships in the Forge
 
 **Decision:** After the hearth rules, and before any character, a member chooses Roar or Amberhearth. Roar receives the existing Roar role in addition to Ember. Amberhearth receives a new Amberhearth role in addition to Ember.

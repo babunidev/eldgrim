@@ -225,6 +225,8 @@ Guild-chat archives from the Forever addon may become **temporary authorized ana
 
 These constraints are approved **design requirements**, not implemented or tested agent features.
 
+The roster built from the Forge and the addon, and the reduction of sentences to keywords, is specified in [ROSTER.md](ROSTER.md). That roster is the overview a later run reads. Announcements and other independent actions wait until it exists.
+
 ## 9. Confirmed local-memory pipeline — question 138
 
 1. **Sources:** Use only authorized guild-visible messages from World of Warcraft Forever **guild chat** and **explicitly designated shared Discord guild channels**. Do not ingest whispers, private member conversations or private-channel content into Eldgrim's narrative memory. Mentions to Eldgrim remain a distinct temporary question-selection collection (Q100).

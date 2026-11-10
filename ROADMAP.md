@@ -58,7 +58,9 @@ This roadmap records areas of development, not promises or fixed deadlines.
 - [x] Accept one character name or two, and call unregistered members in the Forge and by direct message.
 - [x] Ask Roar or Amberhearth before characters, and retire the automatic Roar role for every rank.
 - [x] Specify the first daily proclamation. It is not scheduled or posting.
-- [ ] Choose the channel and the hour, then build and test one daily announcement.
+- [x] Specify the guild roster: one entry from Discord or the addon, sentences reduced to keywords, stored only on the founder's computer.
+- [ ] Build that roster and show a daily run updating it without keeping raw sentences.
+- [ ] Add the remaining lore Eldgrim reads, then choose the channel and the hour and post one daily announcement.
 - [ ] Let members write to Eldgrim, and keep what Eldgrim learns, before it answers them.
 - [ ] Specify, build, and test replies to @Eldgrim mentions. The founder confirmed the limits; the creative asked to build the daily proclamation first.
 - [ ] Transfer shared guild activity to the founder's PC, keep interpreted memory there, and delete the raw archive.

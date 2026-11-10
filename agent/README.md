@@ -34,6 +34,7 @@ If there is no eligible work and no due task, the service can finish without loa
 - [MEMORY.md](MEMORY.md) — private SQLite data model, retrieval, provenance, and retention questions.
 - [OPERATIONS.md](OPERATIONS.md) — intended Nobara/Linux scheduling, model lifecycle, logs, and deployment considerations.
 - [ANNOUNCEMENT.md](ANNOUNCEMENT.md) — the first daily proclamation: what it reads, what it may say, and what it does not do yet.
+- [ROSTER.md](ROSTER.md) — the guild roster on the founder's computer: Forge and addon doors, keywords instead of saved sentences, and the overview Eldgrim uses before it acts.
 
 ## Initial scope
 

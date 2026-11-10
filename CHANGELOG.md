@@ -2,6 +2,10 @@
 
 Meaningful repository and documentation changes are recorded here.
 
+## 2026-11-11
+
+- Specified Eldgrim's guild roster: Forge and addon entries on the founder's computer, sentences reduced to keywords, and no announcement until that roster exists.
+
 ## 2026-11-10 — Documentation readability
 
 - Rewrote the public entry point to separate Eldgrim's in-world identity from the Discord bot, planned local agent, WoW addon and unratified governance framework. No software or governance behavior was changed.

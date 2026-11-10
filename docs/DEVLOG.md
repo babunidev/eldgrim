@@ -2,6 +2,12 @@
 
 A concise account of meaningful project development, written from the human creative's perspective.
 
+## 2026-11-11 — The roster before Eldgrim acts
+
+Before Eldgrim writes to the guild or acts on its own, I want the way it knows the guild written down. It lives on my computer. Anyone who comes through the Forge or the addon gets an entry. When sentences come back about that person, Eldgrim turns them into keywords and keeps the keywords, not the sentences. That roster is the overview it uses to be itself. A little lore can still be added. The announcement waits until the roster is real.
+
+**Result:** Specified in agent/ROSTER.md. No database and no announcement have been built.
+
 ## 2026-11-10 — Roar and Amberhearth in the Forge
 
 Some people on the Discord belong to Roar, and some belong to Amberhearth. I asked for that choice in the Forge, after the rules and before the characters. Roar members keep the Roar role as well as Ember. Amberhearth members receive a new Amberhearth role and Ember. AI found that the Roar role had been given automatically to anyone with a guild rank, which would have erased the difference, and retired that automatic assignment.

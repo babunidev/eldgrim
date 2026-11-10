@@ -1,6 +1,6 @@
 # Daily proclamation
 
-**Status:** First version specified on 2026-11-10. Not implemented, not scheduled, and not posting.
+**Status:** First version specified on 2026-11-10. Not implemented, not scheduled, and not posting. It waits until the guild roster in [ROSTER.md](ROSTER.md) exists and a run has updated it.
 
 The creative set this ahead of replies to @Eldgrim. Eldgrim speaks to the guild once a day. Answers to people who mention it come later. Messages people write to Eldgrim are a later source of information; this first version does not read them.
 
