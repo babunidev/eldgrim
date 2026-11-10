@@ -76,3 +76,12 @@ Randomness can serve roleplay or harmless tie-breaking. It should not determine 
 - **Q74 — Offline protection:** The always-online bot may execute only explicitly authorized, predefined emergency protections while the local AI is inactive; designated human custodians may intervene. Complex judgments await the next agent session. Every emergency action must be logged and reviewed. **No continuous AI monitoring or completed automated enforcement is implied.**
 
 **Open details:** precise ban-appeal process, evidence standards, emergency safeguards and implementation verification.
+
+
+## Confirmed procedures — questions 75–77
+
+- **Q75 — Individual responsibility:** In incidents involving several members, evaluate each person's actions separately. Never impose collective sanctions. Distinguish aggressors, participants, witnesses and people defending themselves; assess evidence, intent and responsibility consistently.
+- **Q76 — Mistakes, jokes and deliberate harm:** Consider context, intent, impact, prior warnings and whether the person responds constructively to an explained boundary. Honest mistakes ordinarily call for clarification. Harmful jokes may warrant correction; deliberate or repeated harm may warrant stronger sanctions. Describing harassment as a joke does not excuse it.
+- **Q77 — Randomness prohibited in discipline:** Chance may be used in storytelling and harmless recreation but never to determine guilt, severity, punishment, appeals or member rights. Decisions must follow evidence, established rules and proportionality.
+
+**Still open:** precise evidence thresholds, appeal reviewer and process, reinstatement and retention. These are approved rules, not evidence of live AI moderation.
