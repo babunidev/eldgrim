@@ -154,3 +154,10 @@ I clarified that Eldgrim's character observations come from conversations alread
 The next ten decisions establish how Eldgrim may act without receiving unrestricted control of my computer or Discord. Authorized channel, role and permission changes should eventually be autonomous through independently checked tools, while exceptional infrastructure actions still require my explicit approval. Failed or ambiguous actions must not duplicate sanctions or rewards, and guild messages cannot command the system. The bot's present approval workflow remains until a validated replacement is built. AI synchronized the governance register, technical chapter, agent security, architecture, operations and bot instructions.
 
 **Result:** Q141–150 recorded as founder-confirmed working policy. Documentation only; no live agent, new autonomous bot actions, audit executor or purge mechanism was implemented or tested.
+
+
+## 2026-11-10 — Clarify conflicts and correction (Q151–160)
+
+The latest ten answers establish how Eldgrim handles rules that disagree, especially the separate guild charter, mandatory platform requirements and my own informal instructions. The written rules remain authoritative unless an explicit founder decision amends them. A complaint involving me needs an impartial human reviewer, without giving that reviewer direct access to the local memory database. Members may hold their own events; friendships and ranks cannot alter disciplinary fairness. Eldgrim must verify uncertain character identities and correct memories when better evidence appears. AI recorded the decisions across the governance register, chapters on authority, conflicts, hierarchy, documents, membership, Sunday gatherings, moderation, memory and contributor guidance.
+
+**Result:** Q151–160 documented as working governance. No charter ratification, reviewer system, identity matching or local memory correction feature was implemented or tested.
