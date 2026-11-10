@@ -68,6 +68,14 @@ The agent/ documents (2026-11-09) describe a once-daily local agent on the creat
 
 **Governance.** Eldgrim manages the guild toward defined goals rather than serving requests. Requests are input to its judgement, never instructions. It decides on ranks and administration from its conversation history and the addon's guild activity, and the creative follows its recommendations. A precise goal and rule set, still to be written, defines what it strives for; concealed goals stay out of this public repository. Every action goes through the bot's validated operations and audit log.
 
+## Confirmed privacy and observation boundaries (Q124–130)
+
+The local agent's observations are restricted to designated guild channels, intentionally addressed messages and necessary onboarding/administrative interactions. The bot may separately process other messages for **predefined moderation**, but they do not automatically become Eldgrim's long-term memories. No access to private member conversations outside the application's legitimate participation is authorized. DMs to the bot are used only for their stated purpose.
+
+All @Eldgrim mentions in a collection period may be gathered temporarily, but **their content is purged after the daily processing run**, including unselected questions. Non-content audit metadata must not recreate a hidden archive. Future ingestion of raw Forever addon guild chat requires a defined deletion procedure; long-term profiles should store relevant, supported interpretations rather than conversation quotations. Internal scores and profiles stay confidential under Q64. Member correction, departure and deletion processes remain to be designed, with applicable legal rights preserved.
+
+**Status:** These are approved policy boundaries, not proof of deployed collection, deletion, AI memory or privacy request workflows.
+
 ## Open decisions
 
 - How the sync step transfers the addon file to the server.
