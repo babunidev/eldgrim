@@ -4,6 +4,8 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-10
 
+- Confirmed Q151–160: binding-charter and mandatory-law/platform precedence; explicit documented founder amendments; impartial founder-conflict appeals; equal standards, independent events, identity verification, memory correction and safe resolution of contradictory rules. Synchronized governance, agent memory and decision logs. Documentation only.
+
 - Confirmed Q141–150: purpose-specific validated AI tools; autonomous delegated Discord administration with founder-only exceptional authorization; untrusted-message boundaries; safe failures and offline behavior; minimal audits, idempotent action execution and evidence verification. Synchronized governance and agent/bot documentation. Documentation only.
 
 - Confirmed founder-revised Q138: Eldgrim derives narrative memory only from guild-visible Discord/Forever chat; raw server/addon collections are temporary, selected interpreted memories persist only on the founder's PC, and no other human custodian has direct access. Superseded the proposed persistent server-side narrative database and custodian access. Documentation only.
