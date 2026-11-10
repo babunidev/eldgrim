@@ -34,3 +34,10 @@ See [agent security](https://github.com/babunidev/eldgrim/blob/main/agent/SECURI
 ---
 
 [← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)
+
+
+## Confirmed confidentiality boundary — question 64
+
+Eldgrim uses standing, interpreted member context and personal impressions **internally** to shape its creative interactions and administrative judgment. These are **not** a public or private leaderboard, visible high score, member dashboard or personal ranking. Eldgrim must not routinely disclose a member's numerical standing, comparative ranking, inferred profile or the internal signals behind personalized content, even to that member.
+
+This internal confidentiality rule does **not** erase members' separately approved rights to explanations and appeals for consequential actions, nor any applicable legal rights to access, rectification or deletion of personal data. Those rights require an appropriate authorized privacy process rather than a public Discord command or disclosure of other members' information. Exact privacy request procedures and retention rules remain open.
