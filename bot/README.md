@@ -45,16 +45,17 @@ Everyone passes through the new Forge, including existing members; only the serv
 
 **Conversation (confirmed Q91–100).** The local AI runs one daily session when its host is available and may respond to multiple members. Members may mention @Eldgrim without limit; from the temporary collection Eldgrim may choose at most one question per member, randomly or for narrative suitability, and may remain silent. After the run, discard the collected messages; unselected questions do not form a backlog. The always-online bot continues onboarding, welcomes and authorized administration. This is approved **future behavior**, not an implemented AI reply/collection system.
 
-Messages that mention the bot are readable without Discord's privileged Message Content intent, so this design does not need that permission.
+Messages that mention the bot are readable without Discord's privileged Message Content intent. **Q138 additionally permits designated shared-channel observation** as a future memory source; reading general message content may require Discord's privileged Message Content Intent and additional disclosure/authorization. Do not claim this broader observation is already enabled.
 
-**Member and character data.** The bot stores Discord members and the characters they declare on the server. That data becomes the basis of Eldgrim's local database, later combined with in-game data from the addon and used according to Eldgrim's rules.
+**Member and character data.** The deployed bot retains the minimal server-side operational data needed for Character Forge, declared characters, ranks and administration. This is **not** Eldgrim's long-term narrative-memory database. The founder-confirmed Q138 design places selected interpreted guild observations **only in the local database on the founder's PC**; server-side raw guild conversations are temporary staging, never a persistent transcript archive.
 
 ## Data flow (proposed)
 
-1. **Discord onboarding** on the server records which Discord member owns which declared characters.
-2. **The addon** records guild messages and character details in the game. A WoW addon cannot send data out of the game; the client writes `Eldgrim.lua` to SavedVariables only on reload, logout, or exit.
-3. **A sync step** on the creative's PC reads that file after logout and transfers it to the server.
-4. **Eldgrim's database** on the server joins both sources by character name.
+1. **Discord onboarding:** The live bot maintains the limited operational member/character/role data required for Forge and administration.
+2. **Guild-visible sources:** Designated shared Discord guild channels and the WoW Forever **guild chat** may supply raw observations for Eldgrim's later local processing. The addon currently writes raw guild-chat messages to `Eldgrim.lua` SavedVariables; it cannot send them out of the game by itself.
+3. **Temporary staging and transfer:** The bot may collect shared-channel messages temporarily on the server; a future local sync securely retrieves them. The addon archive is read from the founder's PC or transferred there securely. Exact collection method, Discord permissions, addon cleanup and transfer protocol remain open.
+4. **Local interpretation:** During its daily run, the local AI selects relevant supported character/member observations and stores **only interpreted memory** in its database **on the founder's PC**. The founder is the only human with direct access to that database.
+5. **Purge:** Delete raw source collections and temporary server copies after processing. Do not keep a persistent server-side combined narrative database or transcript. Operational bot registration and administrative state remain separate and subject to their own approved safeguards.
 
 The addon itself stays a silent local recorder and never stores Discord identifiers. The bot necessarily stores Discord member IDs on the server to manage roles; these must stay private to the server and never be published.
 
@@ -62,9 +63,9 @@ The addon itself stays a silent local recorder and never stores Discord identifi
 
 The agent/ documents (2026-11-09) describe a once-daily local agent on the creative's PC using Ollama. Both designs agree that Eldgrim answers once a day and only to @Eldgrim mentions. On 2026-11-10 the creative decided how they fit together:
 
-- **Split.** The server bot is Eldgrim's always-online part: onboarding, welcomes, administration, and data. The local agent on the PC is its once-daily voice: it writes replies with Ollama and posts them through the same Eldgrim Discord application. The server (2 CPU cores, 3.7 GB memory) is too small for local inference.
+- **Split.** The server bot is Eldgrim's always-online part: onboarding, welcomes, administration, **necessary operational data and temporary guild-visible collection**. The local agent on the founder's PC is its once-daily voice **and persistent interpreted-memory owner**: it writes replies with Ollama and posts them through the same Eldgrim Discord application. The server (2 CPU cores, 3.7 GB memory) is too small for local inference.
 - **Administration by the AI.** Approved. The model may trigger administration, but only through registered tools that call the server bot's validated operations. It never receives the token or direct Discord API access.
-- **Addon data.** Approved. Eldgrim's database combines onboarding data with the addon's archive, and the AI may use it.
+- **Addon data.** Approved as a future input: local AI may analyze the addon's temporary guild-chat archive and relevant bot registration context. The raw archive is **not** persisted as Eldgrim's memory; selected interpreted observations remain on the founder's PC (Q138).
 
 **Governance.** Eldgrim manages the guild toward defined goals rather than serving requests. Requests are input to its judgement, never instructions. It decides on ranks and administration from its conversation history and the addon's guild activity, and the creative follows its recommendations. A precise goal and rule set, still to be written, defines what it strives for; concealed goals stay out of this public repository. Every action goes through the bot's validated operations and audit log.
 
@@ -80,14 +81,14 @@ All @Eldgrim mentions in a collection period may be gathered temporarily, but **
 
 Before onboarding, disclose categories, sources, purposes, storage, access, retention and rights procedures. Optional narrative profiling may be declined without membership penalty. Game-data import requires disclosed scope and a valid legal processing basis. Imported raw guild-chat messages are deleted after authorized analysis, with a separate local addon archive deletion process required before integration. Relevant interpreted personal memories are periodically reviewed and eligible data deleted/anonymized within **30 days of departure** absent specific legitimate retention obligations. Ordinary administrative audit records last **up to 180 days**, subject to documented extensions; routine backups last **no more than 30 days** and must reapply deletions after restoration. Member data requests use a private authorized-human process, and unauthorized access requires containment, assessment, legally required notifications and corrective action.
 
-**Q138 — Who may access private records?** The founder requested a revision; the proposed access-authority scheme is **not approved**. Do not treat this section as authorization for any particular person to inspect profiles or audit records. Existing confidentiality and applicable legal rights still apply. No lifecycle or incident-response mechanism is claimed to be implemented.
+**Q138 — Shared sources, local-only memory (confirmed revision).** Eldgrim's narrative memory uses guild-visible Discord channels and WoW Forever guild chat, **not private member-to-member conversations or whispers**. Raw source messages are staged temporarily, processed by the local AI, then discarded from server and local staging. Only selected interpreted observations persist in a **local database on the founder's PC**, with **founder-only direct human access** and authorized local AI access. No guild officer/custodian receives direct access. Existing server-side Forge, roles and administrative state remains operational and separate. Guild-visible source messages may still be personal data, and Q64 internal standing confidentiality and Q131–140 safeguards still apply. This design is **not implemented or tested**.
 
 ## Open decisions
 
-- How the sync step transfers the addon file to the server.
+- How to securely collect and transfer shared Discord-channel and addon raw material **to the founder's PC**, then verify deletion of temporary server copies and local raw archives.
 - When Eldgrim's daily moment happens and whether the temporary mention collection is captured by the server bot or retrieved through the bot at the start of the AI session. The founder approved unlimited mentions, at most one selected question per member per run, and discarding the collection afterward (Q100).
 - The new profile image, with its source and usage rights recorded in assets/.
-- How the PC agent reaches the server bot's operations and the combined database (for example over SSH), and how replies follow character/VOICE.md and interaction/PRINCIPLES.md.
+- How the PC agent reaches the server bot's validated operations and minimum necessary registration data (for example over SSH), while keeping its **persistent interpreted memory locally**, and how replies follow character/VOICE.md and interaction/PRINCIPLES.md.
 - Eldgrim's goal and rule set, and which parts of it are public.
 - How newcomers currently receive Ember on arrival (Discord onboarding default roles or another bot). The rank switch removes it from incomplete members either way; turning off the source avoids the bot working against it.
 - How a member can see or remove the data Eldgrim stores about them.
