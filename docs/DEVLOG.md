@@ -147,3 +147,10 @@ Nine privacy decisions were approved, covering clear member notices, optional pe
 I clarified that Eldgrim's character observations come from conversations already shared in guild chat or designated Discord guild channels, not private exchanges. The server bot and the game addon may collect raw material temporarily, but after my local AI selects what is worth remembering, the raw messages are discarded. The selected interpretations belong in a database on my PC, accessible directly only to me and the local AI, not other guild custodians. The server bot's existing registration and administrative state is a separate operational necessity, not Eldgrim's narrative-memory archive. AI updated the governance and architecture documents to retire the old combined server-memory proposal.
 
 **Result:** Q138 confirmed and documented. No new Discord observation permissions, synchronization, deletion, local database or AI processing feature was implemented or tested.
+
+
+## 2026-11-10 — Bound Eldgrim's technical authority (Q141–150)
+
+The next ten decisions establish how Eldgrim may act without receiving unrestricted control of my computer or Discord. Authorized channel, role and permission changes should eventually be autonomous through independently checked tools, while exceptional infrastructure actions still require my explicit approval. Failed or ambiguous actions must not duplicate sanctions or rewards, and guild messages cannot command the system. The bot's present approval workflow remains until a validated replacement is built. AI synchronized the governance register, technical chapter, agent security, architecture, operations and bot instructions.
+
+**Result:** Q141–150 recorded as founder-confirmed working policy. Documentation only; no live agent, new autonomous bot actions, audit executor or purge mechanism was implemented or tested.
