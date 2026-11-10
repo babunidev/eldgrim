@@ -61,6 +61,12 @@ This roadmap records areas of development, not promises or fixed deadlines.
 
 The addon remains a recorder only until the creative approves a broader scope. A documented task is not an implemented feature, and API documentation is not an in-game test.
 
+## Eldgrim governance — working framework, not ratified
+
+- [x] Record the 10 November 2026 working framework as 16 editable chapters under governance/.
+- [ ] Resolve the conflicts and gaps collected in governance/14-conflicts-and-gaps.md.
+- [ ] Ratify the priority hierarchy and the final rule set. Until then, the chapters are not a constitution and do not turn on AI administration.
+
 ## Eldgrim local agent — architecture documented; implementation not started
 
 ### Documentation foundation — complete
