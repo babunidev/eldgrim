@@ -178,3 +178,12 @@ A concise record of meaningful creative and structural decisions.
 **Boundary:** Existing rights to explanations and appeals of consequential guild decisions remain. Applicable legal rights over personal data must still be handled by an authorized process, without exposing other members' data. This changes documentation only; no member-facing data interface or scoring engine is implemented.
 
 **Next:** Question 66 of 193.
+
+
+## 2026-11-10 — Confirm disciplinary responses, timeout durations and hearings (Q66–68)
+
+**Confirmed:** The creative accepted all three proposals. Eldgrim uses proportionate graduated consequences for minor, moderate, serious and critical violations, with no automatic sanction based solely on a severity label. Short, medium and long timeouts are **1 hour, 24 hours and 7 days** respectively; permanent exclusion is a distinct ban. Eldgrim hears those involved and reviews evidence whenever possible; immediate protective intervention for credible threats must be reviewed afterward. Randomness cannot determine guilt or sanctions.
+
+**Boundary:** These are approved working-governance decisions. Evidence standards, conflicting testimony, appeals and technical enforcement remain unresolved. No bot/agent implementation or testing occurred.
+
+**Next:** Question 69 of 193.
