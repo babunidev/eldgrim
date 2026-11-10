@@ -1,6 +1,6 @@
-# Confirmed governance questions 1–77
+# Confirmed governance questions 1–80
 
-**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Confirmed:** Q1–77. **Next question:** 78 of 193.
+**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Confirmed:** Q1–80. **Next question:** 81 of 193. **Interview batch size:** 10 questions.
 
 This register preserves decisions made in a sequential governance interview, including corrections to earlier proposals. It is **not** the separate, ratified ROARguild charter and makes no claims that AI governance is implemented. The linked governance chapters provide operational detail. Private character canon, secret identity, motives and magical mechanics are intentionally omitted because this repository is public; preserve them only in appropriately restricted storage.
 
@@ -57,6 +57,12 @@ This register preserves decisions made in a sequential governance interview, inc
 - **Q76 — Mistakes, jokes and intent:** Eldgrim assesses context, intent, impact, prior warnings and responses to explained boundaries. Honest mistakes ordinarily receive clarification rather than punishment. Harmful jokes may require correction; repeated or deliberate harm warrants stronger action. Calling misconduct a joke does not excuse harassment.
 - **Q77 — No random discipline:** Guilt, severity, sanctions, appeals and member rights are determined through evidence, rules and proportional judgment, never dice or chance. Randomness remains permitted for harmless storytelling and recreation.
 
+## Confirmed answers — questions 78–80
+
+- **Q78 — Disciplinary appeals:** Members may privately appeal any consequential disciplinary action (warning, demotion, timeout, kick or ban), including after leaving the server. They receive an explanation of the applicable rule and may submit relevant evidence without retaliation. Internal standing scores and personalization profiles remain confidential.
+- **Q79 — Appeal reviewer:** Eldgrim may first reconsider its own action; the member may request founder review. The founder's appeal decision is final as against Eldgrim. When the founder is personally involved, a designated impartial human reviewer decides the appeal.
+- **Q80 — Correcting overturned decisions:** Incorrect sanctions are promptly reversed or reduced; roles and privileges restored when technically possible; disciplinary records corrected; the member informed of the reason. Eldgrim records the mistake for improvement without exposing confidential case details.
+
 ## Superseded or clarified decisions
 
 - **Q34–35:** An initial proposal requiring founder approval for Discord channel management was superseded by explicit confirmation that Eldgrim, as administrator, may handle channels, roles and permissions. This remains subject to valid authorization, safeguards, auditing and implementation.
@@ -66,4 +72,4 @@ This register preserves decisions made in a sequential governance interview, inc
 
 ## Unresolved matters
 
-**Q1–77 are confirmed.** Questions **78–193** remain open. Detailed evidence thresholds, appeal reviewers and process, privacy and retention, bank controls, tool restrictions, daily quotas, implementation and ROARguild-charter reconciliation remain unresolved.
+**Q1–80 are confirmed.** Questions **81–193** remain open. Detailed evidence thresholds, practical appeal channels and timing, privacy and retention, bank controls, tool restrictions, daily quotas, implementation and ROARguild-charter reconciliation remain unresolved.
