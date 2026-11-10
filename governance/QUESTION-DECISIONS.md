@@ -1,6 +1,6 @@
-# Confirmed governance questions 1–80
+# Confirmed governance questions 1–90
 
-**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Confirmed:** Q1–80. **Next question:** 81 of 193. **Interview batch size:** 10 questions.
+**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Confirmed:** Q1–90. **Next question:** 91 of 193. **Interview batch size:** 10 questions.
 
 This register preserves decisions made in a sequential governance interview, including corrections to earlier proposals. It is **not** the separate, ratified ROARguild charter and makes no claims that AI governance is implemented. The linked governance chapters provide operational detail. Private character canon, secret identity, motives and magical mechanics are intentionally omitted because this repository is public; preserve them only in appropriately restricted storage.
 
@@ -63,6 +63,19 @@ This register preserves decisions made in a sequential governance interview, inc
 - **Q79 — Appeal reviewer:** Eldgrim may first reconsider its own action; the member may request founder review. The founder's appeal decision is final as against Eldgrim. When the founder is personally involved, a designated impartial human reviewer decides the appeal.
 - **Q80 — Correcting overturned decisions:** Incorrect sanctions are promptly reversed or reduced; roles and privileges restored when technically possible; disciplinary records corrected; the member informed of the reason. Eldgrim records the mistake for improvement without exposing confidential case details.
 
+## Confirmed answers — questions 81–90
+
+- **Q81 — Return after ban:** A permanently banned member may return only after a successful appeal or documented founder/impartial-reviewer decision establishing that the original risk has been addressed. Rejoining is never automatic.
+- **Q82 — Newcomer agreement:** Members must attest to being **18 or older**, accept the guild conduct rules and Discord requirements, and acknowledge disclosed data practices. Roleplay, events, quests and other activities remain voluntary.
+- **Q83 — Mandatory Forge details:** A Discord account, rules acceptance, and at least one declared character with name, faction, race and class. Real-world identity, level, profession, biography and roleplay backstory are not mandatory.
+- **Q84 — Character count:** No guild-imposed limit. The existing Forge's 50-entry cap is an input safeguard against mistakes, not a membership restriction. A supported procedure may add more characters.
+- **Q85 — Character ownership:** Registration begins as a declaration, not verified ownership. When disputed or needed for sensitive permissions, confirm reasonably in-game via authorized witness or addon-supported method; never demand account credentials.
+- **Q86 — Character changes:** Members may correct, add, replace or remove character records through Forge or authorized administration. Shared standing and rank remain attached to the person, not any one character.
+- **Q87 — Character departure:** Mark characters who transfer or retire as inactive/no longer affiliated; preserve other characters and the person's standing. A single character leaving does not automatically remove the member. Historical records remain subject to retention rules.
+- **Q88 — Existing member rollout:** Preserve the confirmed Forge migration: everyone except the Discord server owner passed through Forge and restarted at Ember; subsequent promotions are Eldgrim's intended responsibility. Re-registration or adding characters must not reset earned rank.
+- **Q89 — Declining onboarding:** A person who declines or leaves Forge stays outside registered-member channels or may leave freely, without standing penalties, discipline or pressure. They may return to complete onboarding later.
+- **Q90 — Daily session vs bot uptime:** The local AI runs one scheduled decision session per day **when the host computer is available**; ordinary conversational output is limited to that session. The server bot stays online for onboarding, predefined administration and emergency safeguards. Missed sessions do not imply background AI reasoning.
+
 ## Superseded or clarified decisions
 
 - **Q34–35:** An initial proposal requiring founder approval for Discord channel management was superseded by explicit confirmation that Eldgrim, as administrator, may handle channels, roles and permissions. This remains subject to valid authorization, safeguards, auditing and implementation.
@@ -72,4 +85,4 @@ This register preserves decisions made in a sequential governance interview, inc
 
 ## Unresolved matters
 
-**Q1–80 are confirmed.** Questions **81–193** remain open. Detailed evidence thresholds, practical appeal channels and timing, privacy and retention, bank controls, tool restrictions, daily quotas, implementation and ROARguild-charter reconciliation remain unresolved.
+**Q1–90 are confirmed.** Questions **91–193** remain open. Detailed evidence thresholds, practical appeal channels and timing, privacy and retention, bank controls, tool restrictions, daily quotas, implementation and ROARguild-charter reconciliation remain unresolved.
