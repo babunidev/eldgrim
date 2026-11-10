@@ -1,6 +1,6 @@
-# Confirmed governance questions 1–160
+# Confirmed governance questions 1–170
 
-**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Confirmed:** Q1–160 (160 questions). **Next:** Q161–170 of 193. **Interview batch size:** 10 questions.
+**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Confirmed:** Q1–170 (170 questions). **Next:** Q171–180 of 193. **Interview batch size:** 10 questions.
 
 This register preserves decisions made in a sequential governance interview, including corrections to earlier proposals. It is **not** the separate, ratified ROARguild charter and makes no claims that AI governance is implemented. The linked governance chapters provide operational detail. Private character canon, secret identity, motives and magical mechanics are intentionally omitted because this repository is public; preserve them only in appropriately restricted storage.
 
@@ -173,6 +173,19 @@ This register preserves decisions made in a sequential governance interview, inc
 - **Q159 — Contradicted memories:** Current reliable evidence overrides stale interpretations. Correct or retire unsupported **PC-local** interpreted memories; retain only necessary non-content provenance. Disputed impressions do not prove misconduct or authorize consequential actions.
 - **Q160 — Incompatible approved rules:** Document genuine contradictions, identify affected rights and operations, and refer amendments to the founder. Pending resolution, follow confirmed priorities and the safest reversible course; never silently invent constitutional rules.
 
+## Confirmed answers — questions 161–170
+
+- **Q161 — Binding charter adoption:** A draft guild charter becomes official only when the founder explicitly approves an identified version, assigns an effective date and makes it accessible to members. GitHub commits, drafts and Eldgrim-generated text do not independently ratify policy.
+- **Q162 — Document ownership:** The ROARguild charter governs guild-wide member rights, conduct and obligations. Eldgrim's constitution defines its purpose, delegated authority and limits. Operational procedures describe how decisions are executed. Documents cross-reference rather than duplicate conflicting rules. Concealed character canon stays out of public governance.
+- **Q163 — Member notice of changes:** Publish a clear notice describing meaningful amendments, affected members, effective date and current rules. Obtain renewed acknowledgement where necessary for materially changed membership obligations or data processing. No hidden binding rules.
+- **Q164 — No retroactive discipline:** Do not punish conduct that was permitted under the rules effective when it occurred. Present credible safety risks may justify proportionate **protective** action under already applicable safety rules, with explanation and appeal; do not disguise retroactive punishment as protection.
+- **Q165 — Jurisdiction:** Guild governance covers official guild spaces, activities and conduct directly affecting the fellowship. Eldgrim does not police unrelated private lives, personal accounts or other communities. Reliable evidence of external conduct matters only when it establishes a direct guild safety or membership concern, with existing rights and fair process.
+- **Q166 — Member proposals:** Every member may suggest rule changes, report contradictions and criticize policy without retaliation. Eldgrim may collect/summarize suggestions but cannot enact them; only the founder can approve amendments through the documented process.
+- **Q167 — Amendment history:** Record authenticated founder approval, affected sections, reason, effective date and previous version. Update authoritative documents and cross-references, preserving a public change history without disclosing private case details.
+- **Q168 — Founder unavailable:** Existing rules continue. Eldgrim and authorized custodians may carry out previously delegated operations and predefined safety measures but cannot assume constitutional amendment authority. Defer unresolved new-rule or irreversible decisions until authorized review is available.
+- **Q169 — Human delegation:** Eldgrim may assign clear, revocable responsibilities (e.g., event coordination, moderation assistance and bank custody) with explicit permissions and accountability. Social rank alone conveys no authority. Delegation does not permit direct access to Eldgrim's founder-PC-local memory database (Q138).
+- **Q170 — Activation gate:** Before Eldgrim exercises new autonomous administrative powers, reconcile binding charter and working governance, implement and verify independently validated tools and permissions, auditing, duplicate-action protection, privacy and appeals, and an effective emergency stop. The founder must explicitly authorize deployment **after** these safeguards are verified. Approved design is not deployment or proof of verification.
+
 ## Superseded or clarified decisions
 
 - **Q34–35:** An initial proposal requiring founder approval for Discord channel management was superseded by explicit confirmation that Eldgrim, as administrator, may handle channels, roles and permissions. This remains subject to valid authorization, safeguards, auditing and implementation.
@@ -184,4 +197,4 @@ This register preserves decisions made in a sequential governance interview, inc
 
 ## Unresolved matters
 
-**Q1–160 are confirmed.** **Q161–193 remain unanswered.** Formal charter adoption/reconciliation, practical appeal channels and deadlines, impartial review procedures, evidence thresholds, technical transfer and deletion mechanisms, privacy/retention implementation, specific tool allowlists, existing manual-approval versus future autonomy reconciliation and bank authorization limits remain unresolved.
+**Q1–170 are confirmed.** **Q171–193 remain unanswered.** Charter adoption, versioning and publication **requirements are approved but not yet executed**. Practical appeal channels and deadlines, impartial reviewer appointment, evidence thresholds, technical transfer and deletion, privacy/retention implementation, exact tool allowlists, migration from manual approval to verified autonomy, bank limits and the founder-authorized deployment gate remain unresolved in implementation.
