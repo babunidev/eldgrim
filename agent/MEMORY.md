@@ -129,7 +129,18 @@ Before production use, define:
 
 These policies remain open; indefinite retention must not be assumed to be approved.
 
-## 9. Future options
+## 9. Confirmed data boundaries — questions 124–130
+
+- **Q124:** Restrict the agent's observations to explicitly designated guild channels, messages intentionally addressed to Eldgrim, and necessary onboarding/administrative data. The server bot's predefined moderation processing is **not** general permission to copy other content into agent memory.
+- **Q125:** Do not access member-to-member private conversations to which the application is not a legitimate participant. Direct messages to the bot are purpose-limited and not automatically story material.
+- **Q126:** Future authorized analysis of the WoW addon's raw guild-chat archive is temporary. Long-term memories favor supported interpretations, topics and character-relevant observations, **not verbatim conversation quotations**. Define a raw-archive deletion procedure before integrating it into production.
+- **Q127:** Purge the temporary mention collection, including all unselected message content, after processing. Non-content audit metadata may persist where necessary, but may not recreate a hidden archive. This reinforces Q100; failure/partial-run semantics remain open.
+- **Q128:** Retain only relevant, supported interpretations of character interests, participation, helpfulness, conduct and shared experiences. Do not infer sensitive real-world traits or unsupported psychology. Private standing and impressions remain confidential under Q64, subject to applicable legal rights.
+- **Q129–130:** Provide a private correction process and an authorized human reviewer for unresolved consequential disputes. On departure deactivate membership/character records, cease routine collection, and allow requests for deletion of eligible data, subject to justified retention rules yet to be defined.
+
+**Implementation status:** No retention, deletion, access-request or data transfer mechanism has been implemented or verified in the local agent.
+
+## 10. Future options
 
 Possible later additions include semantic embeddings, relationship graphs, richer event timelines, and a more sophisticated memory consolidation process. None is required for the first implementation.
 
