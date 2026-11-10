@@ -4,6 +4,8 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-10
 
+- Confirmed Q66–68: graduated disciplinary measures, 1-hour/24-hour/7-day timeouts, and fair hearings with emergency protection and subsequent review; updated governance register and moderation chapter. Documentation only.
+
 - Named World of Warcraft Forever on the identity page and in the daily proclamation, so Eldgrim reads its setting.
 - Confirmed Q64: standing, inferred profiles and personalization signals are internal to Eldgrim, not member-facing scores or rankings; preserved rights concerning consequential decisions and applicable data protection. Documentation only.
 - Specified Eldgrim's first daily proclamation. It is written on the creative's computer from the solid character and governance pages, and replies to mentions wait.
