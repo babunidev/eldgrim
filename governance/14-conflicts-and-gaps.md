@@ -55,6 +55,12 @@ The founder confirmed technical-custodian emergency stop authority **without mem
 
 **Still unresolved operationally:** appointing technical custodians; implementing and testing shutdown/restart prevention, tool allowlists, backup/restore, credential separation and compromise response; reconciling the existing manual-approval bot with future autonomy; and obtaining explicit founder go-live authorization. These are approved requirements, not completed safeguards.
 
+## Final consistency and implementation review — questions 191–193
+
+The interview is complete: **193/193 founder-confirmed answers**. Q191 requires a full consistency audit across the register, chapters and separate ROARguild charter, with explicit supersessions and unresolved conflicts rather than inferred resolutions. The initial [consistency audit](CONSISTENCY-AUDIT.md) lists concrete documentation and operational gaps. Q192 maps all decision groups to components, dependencies, tests and evidence in the [implementation matrix](IMPLEMENTATION-MATRIX.md). Q193 distinguishes **interview completion** from charter ratification, new membership obligations and live autonomy.
+
+**Open:** Full cross-repository charter comparison, chapter-level cleanup, actual technical implementation, verification evidence, charter adoption and Q170 founder go-live authorization. The initial documentation audit is not a runtime audit or a claim that every conflict is resolved.
+
 ## Refinement queue
 
 - [ ] Which critical conflicts must be resolved before enabling autonomous moderation?
@@ -74,4 +80,4 @@ The founder confirmed technical-custodian emergency stop authority **without mem
 
 **Further clarified by Q141–160:** Eldgrim's authorized Discord administration is intended to be autonomous through independently validated tools, while exceptional infrastructure actions require founder authorization. Untrusted messages cannot grant permissions; failures fail safely; actions require minimal audits, idempotency and verification. **Still open:** The existing bot's manual approval workflow versus future autonomy, exact tool schemas and protected boundaries, secure transfer and deletion, actual privacy request implementation, remaining governance questions and ROARguild charter reconciliation. Q151–160 also establish binding-charter and mandatory-law/platform precedence, founder-only documented amendments, impartial founder-conflict review, fair treatment of independent events, identity/memory corrections and referral of incompatible rules. No autonomous administration is claimed as implemented.
 
-See the [confirmed question register](QUESTION-DECISIONS.md) for Q1–190.
+See the [confirmed question register](QUESTION-DECISIONS.md) for all Q1–193.
