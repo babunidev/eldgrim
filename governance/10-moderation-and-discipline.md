@@ -22,6 +22,12 @@ The present design does not yet establish:
 
 Randomness can serve roleplay or harmless tie-breaking. It should not determine whether a member is guilty of harassment or deserves permanent exclusion.
 
+## Impartial founder complaints and consistent standards — questions 155–156
+
+When the founder is personally involved in a complaint or appeal, a **designated impartial human reviewer** decides the merits (Q155). The founder may take necessary immediate protective action but cannot use technical ownership to retaliate or obstruct fair review. The reviewer does not thereby gain direct access to Eldgrim's founder-PC-local memory database (Q138); an authorized, privacy-preserving evidence procedure remains to be designed.
+
+Friendship, rank, long service and personal familiarity never alter evidence standards, misconduct definitions, proportionality, hearing or appeal rights (Q156). Harmless storytelling and personal recognition may reflect relationships, but do not establish guilt, innocence or automatic reward entitlement. These rules are **confirmed working policy**, not a deployed appeals process.
+
 ## Refinement queue
 
 - [ ] Which behaviors warrant each sanction, and what are the durations?
