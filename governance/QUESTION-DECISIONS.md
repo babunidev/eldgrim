@@ -1,6 +1,6 @@
-# Confirmed governance questions 1–130
+# Confirmed governance questions 1–137 and 139–140 (Q138 pending)
 
-**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Confirmed:** Q1–130. **Next:** Q131–140 of 193. **Interview batch size:** 10 questions.
+**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Confirmed:** Q1–137 and Q139–140 (139 questions). **Q138:** Needs revision; no answer approved. **Next:** Resolve Q138, then Q141–150 of 193. **Interview batch size:** 10 questions.
 
 This register preserves decisions made in a sequential governance interview, including corrections to earlier proposals. It is **not** the separate, ratified ROARguild charter and makes no claims that AI governance is implemented. The linked governance chapters provide operational detail. Private character canon, secret identity, motives and magical mechanics are intentionally omitted because this repository is public; preserve them only in appropriately restricted storage.
 
@@ -131,6 +131,22 @@ This register preserves decisions made in a sequential governance interview, inc
 - **Q129 — Correcting data:** Members may privately request correction of factual registration and consequential administrative records; an authorized human reviews disputes Eldgrim cannot resolve fairly. Internal impressions may be corrected without exposing confidential profiles. Applicable legal access and correction rights remain protected.
 - **Q130 — Departure:** Deactivate membership/character records and cease routine collection. Provide a private process for requesting deletion of eligible personal data; retain only what is legitimately required for safety, legal or administrative obligations under a defined retention policy. No retaliatory profiling.
 
+## Confirmed answers — questions 131–137 and 139–140
+
+- **Q131 — Privacy notice:** Before onboarding, provide a clear notice covering data categories, sources, purposes, storage locations, authorized access, retention periods and privacy-rights procedures. Disclose material changes before expanding collection.
+- **Q132 — Optional personalization:** Members may refuse optional narrative personalization and profiling without losing membership, rank or ordinary participation rights. Necessary registration, security and administrative processing remains limited to disclosed purposes and applicable law.
+- **Q133 — In-game observation conditions:** Before importing guild-chat or activity records, disclose scope and purposes to affected members and establish any legally required consent or other valid processing basis. No silent expansion to whispers, private channels, unrelated players or additional activity categories.
+- **Q134 — Raw in-game chat retention:** Imported raw messages are temporary analysis input and deleted after the authorized session once permitted interpreted information is extracted. A separate retention/deletion procedure for unprocessed local addon archives is required before production integration. No permanent server-side transcript archive.
+- **Q135 — Interpreted memory retention:** Relevant interpreted memories may be kept while membership is active, with periodic correction or removal of stale/unsupported impressions. Delete or anonymize eligible personal memories **within 30 days after departure** unless a specific legitimate retention obligation applies.
+- **Q136 — Administrative audit retention:** Ordinary administrative and disciplinary audit records are retained **up to 180 days**, then deleted or anonymized, except where unresolved appeals, credible safety concerns or legal obligations justify longer retention. Record each extension's purpose and review date.
+- **Q137 — Backups and deletion:** Restrict backup access, encrypt where appropriate, retain routine backups **no more than 30 days**, and reapply recorded deletions when restoring a backup before returning the system to service. No indefinite backup archive of deleted member data.
+- **Q139 — Personal-data requests:** Provide a private channel handled by an authorized human; verify requester identity proportionately, respond within applicable legal deadlines and provide access, correction, export or deletion where legally required. Protect others' data and do not turn confidential profiles into a member ranking feature (Q64).
+- **Q140 — Unauthorized disclosure:** Immediately contain incidents, revoke compromised access, preserve necessary evidence, assess data and risk, notify affected members and authorities where legally required, document remediation and suspend unsafe collection until protections are restored.
+
+## Pending revision — question 138
+
+- **Q138 — Who may access private records?** The founder marked the initial proposal **for revision**. No access-authority rule has been approved from this question. The rejected proposal suggested access only for Eldgrim's authorized processing components and specifically designated human custodians on a least-privilege basis, with separate credentials, sensitive-access auditing and no Discord disclosure of internal standing or inferred profiles. Await the founder's replacement before treating any of these specific Q138 terms as approved. Other confirmed confidentiality and legal-data-rights boundaries remain in force.
+
 ## Superseded or clarified decisions
 
 - **Q34–35:** An initial proposal requiring founder approval for Discord channel management was superseded by explicit confirmation that Eldgrim, as administrator, may handle channels, roles and permissions. This remains subject to valid authorization, safeguards, auditing and implementation.
@@ -141,4 +157,4 @@ This register preserves decisions made in a sequential governance interview, inc
 
 ## Unresolved matters
 
-**Q1–130 are confirmed.** **Q131–193** remain unanswered. Detailed evidence thresholds, practical appeal channels and timing, privacy and retention, bank authorization limits, tool restrictions, implementation and ROARguild-charter reconciliation remain unresolved.
+**Q1–137 and Q139–140 are confirmed (139 questions).** **Q138 needs revision; Q141–193 remain unanswered.** Access authority under Q138, detailed evidence thresholds, practical appeal channels and timing, implementation of privacy/retention procedures, bank authorization limits, tool restrictions, and ROARguild-charter reconciliation remain unresolved.
