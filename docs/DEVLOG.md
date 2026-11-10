@@ -2,6 +2,14 @@
 
 A concise account of meaningful project development, written from the human creative's perspective.
 
+## 2026-11-10 — Building the multi-character Forge
+
+With the bot renamed to Eldgrim and given its new image, I asked AI to build the multi-character onboarding. Every newcomer should see only the Forge, accept the hearth rules, name every character they bring, and become an Ember on completion. Existing members pass through it too; only I as server owner am exempt.
+
+AI checked the live permission layout and found that Discord cannot hide channels a role grants explicitly, so Ember now follows completion instead of arrival, and the five public channels will move to the ranks. A test also showed that hiding a channel from everyone would hide it from ranks relying on server-wide access, so every rank receives the former public access explicitly. AI rewrote the Forge, drafted the hearth rules and Eldgrim's texts, and replaced the old rank names in the bot.
+
+**Result:** Built and tested offline (61 tests). Not deployed; the texts await my approval, and the switches that hold back Ember and hide the public channels stay off until I approve them.
+
 ## 2026-11-10 — Moving the bot to the server
 
 To keep the bot online at all times, I approved moving it to my existing server under its own account. AI wrote the setup script, staged the code and configuration, stopped the desktop service, and transferred the bot's database; I ran the script with my server password. Two problems surfaced and AI fixed both: the service account could not read the Python environment, and the bot's token check rejected the file permissions systemd uses for system services.

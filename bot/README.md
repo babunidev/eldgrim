@@ -25,10 +25,17 @@ The existing Babuni Gaming Discord bot is the foundation. Verified on 2026-11-10
 **Server.** An Ubuntu 26.04 server with Python 3.14, which also hosts other services. Discord and the Python package index were reachable from it on 2026-11-10.
 
 **Character onboarding.** An extension of the Character Forge, using the same pattern of a gate channel and a gate role:
-1. Newcomers receive the gate role automatically and see only the onboarding channel.
-2. Eldgrim asks how many characters they have in the guild.
-3. For each character, Eldgrim asks the character name, class, and race.
-4. On completion, the member gains access to the relevant channels and to the Discord server in general.
+1. Newcomers receive the Forge role on arrival and see only the Forge channel.
+2. They accept the hearth rules, which include Discord's Terms of Service and Community Guidelines and say what Eldgrim remembers.
+3. Eldgrim asks how many characters they bring. There is no fixed limit; the software accepts up to 50 to catch typing mistakes.
+4. For each character: name, faction, race, and class. Faction is asked because Skyborne exist on both sides.
+5. On completion they receive the roles of all their characters and the rank **Ember**, and the Forge disappears.
+
+Everyone passes through the new Forge, including existing members; only the server owner is exempt. Ember is given on completion rather than on arrival, because Discord cannot hide channels that a role grants explicitly. The channels currently visible to everyone (all-chat, looking-for-group, wow-addons, morkahja, azeroth-moments) will be visible to the ranks only, so the Forge is all a newcomer sees.
+
+**Implementation status (2026-11-10):** built and tested offline (61 tests) in the bot repository, not yet deployed. Holding back Ember until completion and hiding the public channels are separate switches that stay off until approved. The member-facing texts in Eldgrim's voice await the creative's approval.
+
+**Server ownership.** As far as known, Discord does not allow transferring server ownership to a bot. The creative remains owner; Eldgrim holds Administrator.
 
 **Conversation.** Eldgrim speaks only once a day and reacts only to messages that mention @Eldgrim. He does not answer other messages or unaddressed questions. Onboarding, welcomes, administration, and data storage keep running at all times; the once-a-day rule applies to Eldgrim's replies.
 
@@ -62,7 +69,8 @@ The agent/ documents (2026-11-09) describe a once-daily local agent on the creat
 - The new profile image, with its source and usage rights recorded in assets/.
 - How the PC agent reaches the server bot's operations and the combined database (for example over SSH), and how replies follow character/VOICE.md and interaction/PRINCIPLES.md.
 - Eldgrim's goal and rule set, and which parts of it are public.
-- Whether onboarding replaces or extends the current faction, race, and class roles, and which roles each declared character grants.
+- Whether existing members who hold a higher rank keep it after completing the Forge, or restart at Ember.
+- How newcomers currently receive Ember on arrival (invite or another mechanism), so it can be replaced by the Forge role.
 - Where the bot source code lives: in this repository, or in its own repository linked from here.
 - What members are told about the data Eldgrim stores, and how a member can change or remove it.
 ## Planned order
