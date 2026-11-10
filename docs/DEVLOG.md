@@ -112,3 +112,10 @@ The creative approved ten more governance decisions concerning reinstatement, Fo
 The creative rejected the proposed waiting queue for questions addressed to Eldgrim. Members should be able to mention it freely. The bot or the local AI's collection round gathers these messages temporarily; Eldgrim then chooses up to one question per person, by chance or according to what suits the character's story. The collection is discarded after the run. AI reconciled this with the previously recorded daily question limit and revised the governance, agent and bot design documents.
 
 **Result:** Approved Q100 and synchronized public documentation. No collection system, local AI or retention behavior was implemented or tested.
+
+
+## 2026-11-10 — Establish the quest rules (Q101–110)
+
+The creative approved ten governance answers setting the purpose, frequency, consent, suitability, evidence, witness eligibility, completion handling, deadlines and reward boundaries for Eldgrim's quests. AI integrated them into the governance register and rewrote the quest chapter to remove the outdated assumption that higher rank alone authorizes verification.
+
+**Result:** Documentation committed to GitHub. No Discord quest workflow, local AI behavior or addon integration was implemented or tested.
