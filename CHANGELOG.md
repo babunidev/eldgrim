@@ -4,6 +4,8 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-10
 
+- Established governance/ with a 16-chapter Eldgrim rules framework, an index, chapter-by-chapter refinement queues, and explicit draft/approval boundaries; updated documentation links and live Forge status. Documentation only; no new policy ratified.
+
 - Sent one direct message, in Eldgrim's voice, to each member who has not registered.
 - Accepted one character name or two, and posted one Forge notice for members who have not registered. Offline members see it when they next open Discord.
 - Fixed the Forge to ask for each character's first name and surname, following WoW Forever's naming rules.

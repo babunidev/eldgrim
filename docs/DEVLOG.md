@@ -2,6 +2,12 @@
 
 A concise account of meaningful project development, written from the human creative's perspective.
 
+## 2026-11-10 — Preparing Eldgrim's governance chapters
+
+To work through Eldgrim's constitution chapter by chapter, I asked AI to put the consolidated guild rules and governance framework into the Eldgrim repository as separate Markdown documents. AI organized the sixteen chapters into governance/, added individual refinement queues, linked the rulebook from project documentation, and kept private character canon out of the public files. It also aligned the Forge status with the confirmed live deployment instead of preserving the earlier offline-only description.
+
+**Result:** The working rulebook is in GitHub as documentation; no new governance rules were ratified and no autonomous administration was implemented or tested.
+
 ## 2026-11-10 — Approving the Forge and the rank reset
 
 Reviewing AI's drafts, I corrected three things: Eldgrim is an entity and must never be called "he"; the notice covers all guild activity recorded in the game, including emotes and presence at events; and the Forge must make clear that race and class are being asked. Beyond that, I decided that everyone except me restarts at Ember, with Eldgrim deciding promotions afterwards.
