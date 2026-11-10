@@ -5,6 +5,7 @@ Meaningful repository and documentation changes are recorded here.
 ## 2026-11-10
 
 - Specified Eldgrim's first daily proclamation. It is written on the creative's computer from the solid character and governance pages, and replies to mentions wait.
+- Documented confirmed governance answers Q63 and Q65 (score cannot alone justify discipline; misconduct severity classes), and marked Q64 open for revision. Documentation only.
 - Saved confirmed governance answers Q1–62 in a numbered decision register, reconciled the relevant chapters, documented superseded proposals and updated decision/development logs. Documentation only; no runtime implementation changes.
 - Established governance/ with a 16-chapter Eldgrim rules framework, an index, chapter-by-chapter refinement queues, and explicit draft/approval boundaries; updated documentation links and live Forge status. Documentation only; no new policy ratified.
 
