@@ -6,6 +6,7 @@ Meaningful repository and documentation changes are recorded here.
 
 - Specified how Eldgrim reads the guild-chat archive: compare keywords, record internal standing, clear the messages only after a successful save while the game is closed, and use a roster snapshot to see who is still in the guild.
 - Specified Eldgrim's guild roster: Forge and addon entries on the founder's computer, sentences reduced to keywords, and no announcement until that roster exists.
+- Recorded the approved public closing in character/VOICE.md and added final-agent drafting requirements that include separately held private canon without exposing it in this public repository. Documentation only.
 
 ## 2026-11-10 — Documentation readability
 
@@ -97,7 +98,3 @@ Meaningful repository and documentation changes are recorded here.
 - No in-game tests, public tags, GitHub Releases, or CurseForge publication were performed.
 
 This changelog describes repository changes, not in-world events.
-
-## 2026-11-11 — Character instruction sources
-
-- Recorded the approved public closing in character/VOICE.md and added final-agent drafting requirements that include separately held private canon without exposing it in this public repository. Documentation only.

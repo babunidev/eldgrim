@@ -8,6 +8,12 @@ The guild chat archive on this computer is the record Eldgrim should read. It is
 
 **Result:** Specified in agent/ROSTER.md. The file was not emptied, and no database was built.
 
+## 2026-11-11 — Connect character decisions to the final agent draft
+
+The creative approved a recognizable text-roleplay closing and asked that the character decisions reach whoever prepares the final agent instructions. AI updated the voice guide and drafting references, with concealed material kept in a separate private supplement.
+
+**Result:** Documentation only; no runtime prompt loading or deployment was performed.
+
 ## 2026-11-11 — The roster before Eldgrim acts
 
 Before Eldgrim writes to the guild or acts on its own, I want the way it knows the guild written down. It lives on my computer. Anyone who comes through the Forge or the addon gets an entry. When sentences come back about that person, Eldgrim turns them into keywords and keeps the keywords, not the sentences. That roster is the overview it uses to be itself. A little lore can still be added. The announcement waits until the roster is real.
@@ -207,9 +213,3 @@ The latest ten decisions specify an emergency stop I can use, or delegate to an 
 I accepted the last three answers, completing all 193 governance questions. The final decisions require us to compare the answers with the sixteen chapters and the separate guild charter, preserve corrections instead of resurrecting old proposals, and track which rules are only written versus actually built and tested. The result is a working baseline, not a ratified guild charter or permission to switch on autonomous administration. AI recorded the final answers, created a consistency audit and implementation matrix, and updated the chapter index, documentation guide and contributor instructions.
 
 **Result:** Interview complete and documentation committed. The audit is an initial documentation comparison, not a full cross-repository charter or runtime audit. No new feature was implemented, tested, deployed or ratified.
-
-## 2026-11-11 — Connect character decisions to the final agent draft
-
-The creative approved a recognizable text-roleplay closing and asked that the character decisions reach whoever prepares the final agent instructions. AI updated the voice guide and drafting references, with concealed material kept in a separate private supplement.
-
-**Result:** Documentation only; no runtime prompt loading or deployment was performed.
