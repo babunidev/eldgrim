@@ -17,7 +17,7 @@ These are the most important weaknesses in the current rule set.
 | High     | Creative reward freedom versus valuable bank assets                | What restrictions apply to scarce resources?                                      |
 | High     | Private scores versus accountable decisions                        | How can a member challenge an error without exposing others' private information? |
 | High     | Several characters per player                                      | Is standing calculated per player, per character, or both?                        |
-| High     | Local SQLite versus server-hosted member database                  | Which system is authoritative for each kind of information?                       |
+| High     | Local interpreted memory versus live bot operational records       | **Partly resolved by Q138:** Eldgrim's narrative memory stays on the founder's PC; live Forge/role state remains on the server. Secure temporary transfer, deletion and consistency still require implementation. |
 | Medium   | Sunday attendance and addon observations                           | How is voluntary attendance distinguished from measurable participation?          |
 | Medium   | One decision per category per day                                  | What constitutes a category, and which exceptions are permitted?                  |
 | Medium   | Older ROARguild documentation                                      | Replace retired Oracle terminology and outdated guild-status statements.          |
@@ -39,6 +39,8 @@ The older [ROARguild charter](https://github.com/babunidev/ROARguild/blob/main/g
 
 **Partially resolved:** Evidence-based standing changes, proportional demotion and explanation requirements now exist, but formal appeals, scoring corrections, evidence verification and retention are still open.
 
-**Not resolved:** The existing bot's approval workflow vs future AI automation; tool-level constraints; privacy scope/retention; exact daily limits; guild-bank safeguards; ROARguild charter reconciliation. No autonomous administration is claimed as implemented.
+**Subsequently resolved in working governance (Q63–140):** Appeals and fair moderation, one daily AI session with unlimited temporary mentions (Q100), voluntary quests and Sunday gatherings, bank custody and reserves, shared-source collection/privacy limits and retention. **Q138 supersedes the proposed persistent server-side narrative-memory database:** interpreted memories are kept only on the founder's PC; server-side Forge/role/administrative data remains separate. These are policy decisions, not deployed features.
+
+**Still open:** The existing bot's approval workflow vs future AI automation, tool-level limits, secure transfer and deletion, actual privacy request implementation, remaining governance questions and ROARguild charter reconciliation. No autonomous administration is claimed as implemented.
 
 See [confirmed questions 1–62](QUESTION-DECISIONS.md).
