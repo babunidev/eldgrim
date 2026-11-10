@@ -91,3 +91,10 @@ AI added a repeatable mocked test harness. Lua syntax validation and the mock be
 To protect the question-by-question rule review from conversation limits, the creative asked AI to document every approved answer through question 62 in GitHub. AI updated the affected governance chapters and introduced a numbered decision register, including the correction allowing Eldgrim to manage Discord channels independently. Private character details were deliberately kept out of the public repository.
 
 **Result:** Governance documentation committed. No bot, agent or game addon source changed or tested.
+
+
+## 2026-11-10 — Clarify Q64 internal standing confidentiality
+
+The creative clarified that Eldgrim's standing and member-personalization context are internal, not a high score, ranking or member-facing profile. AI recorded the confirmed revision in the question register and relevant governance chapters, distinguishing confidential creative context from appeals of consequential decisions and applicable data rights.
+
+**Result:** Documentation only. No bot, agent or addon implementation or tests.

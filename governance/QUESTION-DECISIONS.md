@@ -1,6 +1,6 @@
 # Confirmed governance questions 1–62
 
-**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Current review:** Q64 requires revision; Q63 and Q65 confirmed. Next new question: Q66.
+**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Confirmed:** Q1–65. **Next question:** 66 of 193.
 
 This register preserves decisions made in a sequential governance interview, including corrections to earlier proposals. It is **not** the separate, ratified ROARguild charter and makes no claims that AI governance is implemented. The linked governance chapters provide operational detail. Private character canon, secret identity, motives and magical mechanics are intentionally omitted because this repository is public; preserve them only in appropriately restricted storage.
 
@@ -30,7 +30,7 @@ This register preserves decisions made in a sequential governance interview, inc
 ## Additional confirmed answers — 10 November 2026
 
 - **Q63 — Confirmed:** Standing may inform recognition, promotions and rewards. A numerical score alone never justifies disciplinary action; sanctions require an independently established violation of existing rules.
-- **Q64 — Revision requested; OPEN:** The proposal for member-initiated private score review, Eldgrim's evidence review, corrections and founder escalation was **not accepted**. No replacement procedure has been approved.
+- **Q64 — Confirmed, revised:** Standing is Eldgrim's private, internal assessment, not a high score, leaderboard, competition or member-facing statistic. Members do not receive their standing score, rankings, inferred profile or the internal signals Eldgrim uses to personalize content. There is no ordinary score-inspection or score-dispute feature. This does not cancel the separately approved right to explanations and appeals for consequential administrative actions, or applicable legal data rights.
 - **Q65 — Confirmed:** Minor misconduct includes isolated discourtesy/disruption; moderate includes repeated disrespect or continued disruption after warning; serious includes targeted harassment, discrimination, threats, scams or abuse of entrusted responsibility; critical includes credible immediate safety threats, doxxing or severe targeted abuse. Severity depends on intent, context, evidence and actual harm.
 
 ## Superseded or clarified decisions
@@ -42,4 +42,4 @@ This register preserves decisions made in a sequential governance interview, inc
 
 ## Unresolved matters
 
-**Q63 and Q65 are confirmed; Q64 is open for revision.** Questions **66–193** are not yet confirmed. Evidence thresholds, score corrections/appeals, privacy/retention, bank controls, technical tool restrictions, daily quotas, implementation and ROARguild-charter reconciliation remain open.
+**Q63–65 are confirmed.** Questions **66–193** are not yet confirmed. Formal disciplinary appeals, privacy/retention, bank controls, technical tool restrictions, daily quotas, implementation and ROARguild-charter reconciliation remain open. Evidence thresholds, score corrections/appeals, privacy/retention, bank controls, technical tool restrictions, daily quotas, implementation and ROARguild-charter reconciliation remain open.
