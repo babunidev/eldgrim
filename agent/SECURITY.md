@@ -97,7 +97,7 @@ Prompt wording is supplementary. The permission checks in Python are the actual 
 - Document backup and deletion procedures before production use.
 - Do not sync the database to a public repository or unapproved cloud service.
 
-The retention period and user-facing deletion process remain open decisions. They must be resolved before treating the agent as production-ready.
+**Approved policy (Q131–137, Q139–140):** A clear privacy notice precedes onboarding; optional personalization may be declined. Importing game observations requires disclosed purposes and a valid processing basis. Raw imported chat is deleted after authorized analysis. Eligible personal memories are deleted/anonymized within **30 days of departure** absent specific justified retention; ordinary administrative audits last **up to 180 days**, with documented exceptions; routine backups last **no more than 30 days**, and restored copies reapply deletion records. Provide private authorized-human personal-data requests and a documented incident response. **Q138 (who may access private records) is pending revision**; do not assume the proposed human-custodian access scheme is approved. Procedures and technical controls must be implemented and tested before production; no deployed compliance claim is made.
 
 ## 9. Proactive actions
 
