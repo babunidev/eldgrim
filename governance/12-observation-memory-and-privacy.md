@@ -1,6 +1,6 @@
 # Chapter 12 — Observation, memory, and privacy
 
-> **Status:** Founder-confirmed collection, retention and privacy boundaries (Q64, Q82–87, Q124–137, Q139–140); Q138 access authority and technical implementation open  
+> **Status:** Founder-confirmed collection, retention, local-memory and privacy boundaries (Q64, Q82–87, Q124–140); technical implementation open  
 > **Source:** Consolidated guild governance framework, 10 November 2026, v0.1. Working material, not a ratified constitution.
 
 Technical boundaries partly specified · Member policy incomplete
@@ -15,13 +15,13 @@ Three different information sources are being developed.
 
 The existing addon code is a passive guild-chat recorder. It stores verbatim guild messages locally in SavedVariables. Its mock tests passed, but in-game behavior is not yet verified.
 
-The agent's initial design only processes eligible @Eldgrim mentions and keeps its private SQLite memory locally. The broader original vision also calls for a server-hosted database combining Discord and in-game observations.
+The agent's initial design processes eligible @Eldgrim mentions and keeps its SQLite memory **on the founder's PC**. Under the founder's revised Q138, designated shared Discord-channel and in-game guild-chat observations may also supply temporary context for character memory. An earlier proposal to keep a **combined, persistent Eldgrim narrative-memory database on the server is superseded**. The deployed bot still keeps the minimal operational registration/role/administrative state necessary for its existing functions; this is a separate system.
 
 Those systems are intended to be connected later, but the full integration does not yet exist. The member notice covers possible in-game chat, emotes, and event presence; that notice does not prove these observations are implemented by the current addon.
 
 The original privacy principles require that Eldgrim's long-term member profiles contain interpreted information rather than conversation quotations, that internal scores and observations remain private, and that decisions not publicly expose the conversations behind them.
 
-Founder decisions now establish member notices, optional profiling, consent/processing boundaries, retention periods, backup handling, correction, departure and incident response. Detailed procedures, exact data-access authority (Q138) and technical implementation remain open.
+Founder decisions establish member notices, optional profiling, consent/processing boundaries, retention periods, backup handling, correction, departure and incident response. Q138 additionally establishes **guild-visible sources only for narrative memory**, temporary raw staging and founder-only human access to the persistent local memory database. Detailed technical implementation remains open.
 
 See [agent security](https://github.com/babunidev/eldgrim/blob/main/agent/SECURITY.md) and [memory design](https://github.com/babunidev/eldgrim/blob/main/agent/MEMORY.md).
 
@@ -52,9 +52,17 @@ See [agent security](https://github.com/babunidev/eldgrim/blob/main/agent/SECURI
 - **Q139 — Data requests:** Provide a private channel with an authorized human reviewer. Verify the requester proportionately, respond within applicable legal deadlines, and provide access, correction, export or deletion where required. Protect other members' data. Confidential internal scores and inferred profiles do not become a routine member-facing ranking feature (Q64); legal access rights remain intact.
 - **Q140 — Incidents:** Contain unauthorized disclosure or access immediately; revoke compromised access, preserve necessary evidence, assess risks, notify affected people and authorities when required, document remediation, and suspend unsafe collection until safeguards are restored.
 
-## Pending revision — question 138
+## Confirmed revised data-source and access boundary — question 138
 
-The founder marked the proposed rule for **who may access private records** for revision. Do not treat the proposed custodian/processing-component access scheme as confirmed. Existing Q64 confidentiality, Q124–125 scope limits, Q131 notice and Q139 legal request safeguards remain confirmed. Access-authority specifics await the founder's replacement answer.
+**Source versus storage:** Eldgrim's character/community memories are derived from **guild-visible source material**: WoW Forever guild chat and explicitly designated shared guild Discord channels. No whispers, private member conversations or private-channel material are ingested as narrative memories. Mentions addressed to Eldgrim remain part of its temporary question collection (Q100). Broader shared-channel observation needs the disclosed scope, appropriate technical permissions and processing basis (Q124, Q131–133), and is not automatically implemented by the mention-only bot.
+
+**Processing lifecycle:** The bot and addon may temporarily stage raw guild-visible messages; the local AI then reviews the authorized collection and saves only selected, reasonably supported **interpreted observations** in a **local database on the founder's PC**. After processing, discard raw messages and temporary copies, **including those staged on the server**. The addon's local SavedVariables archive requires a separate verified deletion procedure before production integration. Do not retain a server-side long-term transcript or combined narrative-memory database.
+
+**Who can access it:** The founder is the **only human with direct access** to Eldgrim's persistent local memory database. The authorized local AI may read and write it on the founder's computer. No other guild officers or custodians have direct database access. The existing live bot necessarily keeps limited server-side registration, role and administrative state to operate the Character Forge and guild services; these operational records are **separate** from the local narrative-memory database and do not authorize a raw-message archive.
+
+**Not public by default:** Although the underlying guild chat and designated Discord messages are shared with guild members, the local interpreted memories, internal standing and inferred profiles remain confidential (Q64). Publicly shared text may still be **personal data**. Privacy notices, opt-outs, retention, correction/deletion rights and legally required access still apply (Q131–137, Q139–140). Private onboarding, safety reports, appeals and data requests are handled only for their stated administrative purposes, not added to narrative memories.
+
+**Superseded:** The initial Q138 proposal allowing designated human custodians to inspect Eldgrim's memory and the earlier server-hosted combined narrative-memory database proposal are **retired**. The secure transfer, purge and local access mechanisms are not yet implemented or tested.
 
 **Implementation boundary:** These are approved working-governance decisions, not evidence that privacy notices, opt-outs, retention jobs, backup deletion, member request workflows or incident procedures are deployed or legally verified.
 
@@ -65,8 +73,10 @@ The founder marked the proposed rule for **who may access private records** for 
 - [ ] Implement and verify actual notice, opt-out, consent/basis, per-source deletion and backup restoration safeguards.
 - [x] Establish private correction and departure/deletion rights (Q129–130).
 - [x] Establish private data request rights and incident response duties (Q139–140).
-- [ ] Resolve Q138 access authority; specify operational request channel, reviewers and legally required exceptions.
-- [ ] Which database is authoritative, and how are the addon archives transferred?
+- [x] Resolve Q138: guild-visible narrative sources, temporary raw data, local interpreted memory and founder-only direct human database access.
+- [ ] Specify operational privacy request channel, reviewers and legally required exceptions without granting custodians direct local database access.
+- [x] Establish the founder's PC as authoritative for Eldgrim's persistent interpreted narrative memories (Q138).
+- [ ] Define secure transfer and purge of shared Discord/addon raw data, and separation from the live server bot's operational registration database.
 
 ---
 
