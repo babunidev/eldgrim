@@ -33,6 +33,14 @@ The separate **ROARguild charter**, once binding, takes precedence over conflict
 
 **Status:** Founder-confirmed **working governance**, not a charter ratification. No specific charter version has been approved here, no effective date set and no guild-wide notice issued by these documentation changes.
 
+## Completed interview and remaining adoption gate — questions 191–193
+
+The founder has explicitly accepted all **193 of 193** interview answers. Q191 requires a consistency audit across the confirmed answers, sixteen chapters and the separate ROARguild charter, preserving the latest explicit decisions and logging unresolved conflicts rather than inventing resolutions. The initial [consistency audit](CONSISTENCY-AUDIT.md) records visible gaps; full cross-repository reconciliation remains open.
+
+Q192 requires [implementation traceability](IMPLEMENTATION-MATRIX.md) from rule to component, behavior, tests, dependencies and evidence. A documented requirement is not an implemented, tested or deployed system.
+
+Under Q193, interview completion establishes a **consolidated founder-confirmed working baseline**, **not** an automatically ratified charter, new binding member obligations or authorization to activate autonomous administration. The separate Q161 charter-ratification process and Q170 verified deployment gate remain controlling.
+
 ## Refinement queue
 
 - [x] Assign guild charter, Eldgrim constitution and operational procedures to distinct responsibilities (Q162).
