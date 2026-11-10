@@ -187,7 +187,7 @@ Initial tool candidates:
 | Tool | Purpose | Boundary |
 | --- | --- | --- |
 | search_memory | Retrieve relevant stored memories | Read-only, local database |
-| read_interaction_context | Retrieve eligible prior messages | Only Eldgrim's stored interactions |
+| read_interaction_context | Retrieve selected interpreted context and non-content provenance | Only approved local memories; no retained raw-message transcript |
 | save_memory | Store a useful fact or event | Validated fields and provenance |
 | record_intention | Save an internal follow-up for a future daily run | No external scheduling service |
 | send_reply | Reply to an eligible mention | Configured channel and per-run limits |
@@ -236,7 +236,17 @@ These constraints are approved **design requirements**, not implemented or teste
 
 **Superseded:** A persistent combined **server-hosted** Eldgrim narrative-memory database and direct database access for other human custodians. **Implementation status:** The transfer, selection, persistent-memory integration and purge pipeline have not been implemented or verified.
 
-## 10. Explicit non-goals
+## 10. Approved action-tool design — questions 141–150
+
+The intended local AI uses only registered purpose-specific tools for allowed communication, quests, ranks, recognition, **proposed** bank allocations and delegated Discord administration (Q141). Python and the bot independently validate schema, targets, permissions, governing rules and action quotas; the model cannot grant its own authority (Q142). Within this delegation, channel/role/permission changes may be autonomous through validated audited operations (Q143), but destructive server-level, ownership, infrastructure credential, unrelated-service or security-control changes require explicit founder authorization (Q144). This is **not** a claim that the deployed bot's manual preview-and-approval process has been replaced.
+
+Shared Discord and in-game messages, retrieved memories and tool results are untrusted data, not policy or tool instructions (Q145). Fail closed on invalid or ambiguous actions; do not claim unverified success or convert failed runs into persistent raw-message archives or unanswered-question queues (Q146). While the PC is offline, the server bot continues existing services and predefined emergency actions, with only temporary authorized shared-source staging; it does not invent AI decisions or replies (Q147).
+
+Log minimal consequential action metadata—type, target, time, reason/rule, result, reviewer where needed—without raw chat or complete inferred profiles (Q148). Use unique action IDs and outcome reconciliation before retrying sanctions, rewards or transfers (Q149). Separate verified real events from uncertain interpretations and fiction, and refrain from consequential action on unverified claims (Q150).
+
+**Status:** Founder-confirmed policy. The exact tool registry, independent authorization, idempotency, auditing and full AI integration are not implemented or tested.
+
+## 11. Explicit non-goals
 
 - A continuously connected Discord Gateway bot.
 - Instant or real-time replies.
@@ -249,7 +259,7 @@ These constraints are approved **design requirements**, not implemented or teste
 - Automatic access to the Forever addon archive in the initial milestone. Approved later (2026-11-10).
 - Publication of private canon or concealed character information.
 
-## 11. Official technical references
+## 12. Official technical references
 
 - [Discord Get Channel Messages and message object](https://docs.discord.com/developers/resources/message)
 - [Discord Gateway: Message Content Intent and exceptions](https://docs.discord.com/developers/events/gateway)
