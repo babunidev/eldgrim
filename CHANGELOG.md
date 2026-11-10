@@ -4,6 +4,8 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-10
 
+- Confirmed Q69–71: impartial assessment of conflicting testimony, definitions of warnings/demotions/timeouts/kicks/bans, and proportionate warning-before-escalation rules. Documentation only.
+
 - Confirmed Q66–68: graduated disciplinary measures, 1-hour/24-hour/7-day timeouts, and fair hearings with emergency protection and subsequent review; updated governance register and moderation chapter. Documentation only.
 
 - Named World of Warcraft Forever on the identity page and in the daily proclamation, so Eldgrim reads its setting.
