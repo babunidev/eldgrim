@@ -18,11 +18,11 @@ It is designed to wake once per day, complete one bounded session, and exit. It 
 2. The service validates its local configuration and reads saved channel cursors.
 3. It polls only explicitly configured Discord channels through the HTTP API.
 4. It identifies messages that explicitly mention Eldgrim. The initial design does not request Discord's privileged Message Content Intent.
-5. Eligible messages and the required private cursor state are saved to SQLite.
+5. Gather eligible mentions into a **temporary collection** (captured by the server bot or retrieved from it during the run; implementation choice open). Operational cursors may be stored privately; raw collected mentions are not a permanent message archive.
 6. If there is eligible work or a due internal intention, the application loads relevant memories and starts local Ollama inference.
 7. The model reasons and may request allowlisted tools. Python validates and executes each request.
-8. Eldgrim replies, saves relevant memories, or chooses to do nothing.
-9. The application records the outcome, unloads the model, closes the database, and exits.
+8. Eldgrim may select one question per member at random or for narrative suitability, reply or choose silence, and record separately authorized concise memories.
+9. After processing, discard the temporary mention collection, start a fresh collection period, record the outcome, unload the model, close resources, and exit. Unselected questions are not queued.
 
 If there is no eligible work and no due task, the service can finish without loading the model. A daily run does not have to produce a Discord message.
 
@@ -41,11 +41,11 @@ The first implementation milestone is intended to support:
 
 - Daily polling of a configured channel allowlist.
 - Direct messages in those channels that explicitly mention Eldgrim.
-- Context retrieval from Eldgrim's own stored interaction history.
+- Context retrieval from separately authorized memories; temporary mention collections are not durable conversation archives.
 - Local model reasoning through Ollama's chat and tool-calling API.
 - A small allowlist of memory and reply tools.
 - Autonomous replies to eligible mentions, within application-enforced limits.
-- Persistent memory and an auditable record of actions.
+- Separately governed persistent memory and an auditable record of actions, distinct from the purged mention collection.
 - A one-shot systemd service that exits after the daily session.
 
 Proactive messages that are not replies to a mention are disabled by default. Enabling them requires an explicit scope decision and configuration.
