@@ -31,4 +31,9 @@ AI inspected the existing bot and the installed addon. The addon's saved archive
 
 Eldgrim will speak only once a day, and only to those who call on him with @Eldgrim. AI then copied the existing bot's source into its own local git repository, backed up its configuration, state, and service file, and confirmed that the 51 existing unit tests pass on the copy.
 
-**Result:** Direction documented and bot source under version control. The running bot, server, and Discord configuration were not changed.
+**Result:** Direction documented and bot source under version control.
+
+## 2026-11-10 — Moving the bot to the server
+To keep the bot online at all times, I approved moving it to my existing server under its own account. AI wrote the setup script, staged the code and configuration, stopped the desktop service, and transferred the bot's database; I ran the script with my server password. Two problems surfaced and AI fixed both: the service account could not read the Python environment, and the bot's token check rejected the file permissions systemd uses for system services.
+
+**Result:** The bot runs on the server and its Discord connection was confirmed. Behavior is unchanged; it is not yet renamed.

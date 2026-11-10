@@ -35,7 +35,7 @@ A concise record of meaningful creative and structural decisions.
 ## 2026-11-10 — Amberhearth ranks everywhere
 **Decision:** Use Amberhearth's ranks (Ember, Wayfarer, Kindler, Hearthkeeper, Hearthwarden) everywhere, including the Discord server, replacing the Discord ranks Wanderer, Adventurer, Pathfinder, Trailblazer, and Firekeeper.
 **Boundary:** This fixes the rank names only; duties, privileges, and progression remain undefined here.
-**Status:** Decided; Discord roles not yet changed.
+**Status:** Decided. The Discord rank roles already use these names; remaining bot texts still need updating.
 
 ## 2026-11-10 — Addon development moves elsewhere
 **Decision:** Further addon development happens in a separate development environment, not in this workspace.

@@ -19,5 +19,6 @@ Meaningful repository and documentation changes are recorded here.
 - Added bot/README.md with the approved direction, proposed data flow, open decisions, and planned order. No bot code was changed.
 - Recorded that Eldgrim replies once a day and only to @Eldgrim mentions, and that the bot gets a new name and profile image.
 - Recorded that Amberhearth's ranks are used everywhere, including Discord, and that addon development continues in a separate environment.
+- Recorded that the bot now runs on the server under its own account.
 
 This changelog describes repository changes, not in-world events.

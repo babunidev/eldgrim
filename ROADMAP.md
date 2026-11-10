@@ -43,9 +43,9 @@ This roadmap records areas of development, not promises or fixed deadlines.
 ## Eldgrim Discord bot — direction approved
 - [x] Approve Eldgrim's Discord presence based on the existing Babuni Gaming bot.
 - [x] Put the existing bot under version control and back it up.
-- [ ] Move the bot to the creative's server.
+- [x] Move the bot to the creative's server.
 - [ ] Rename the bot to Eldgrim and give it a new profile image.
-- [ ] Replace the Discord ranks with Amberhearth's ranks.
+- [ ] Replace the former rank names remaining in bot texts with Amberhearth's ranks.
 - [ ] Specify, build, and test multi-character onboarding.
 - [ ] Specify, build, and test once-a-day replies to @Eldgrim mentions.
 - [ ] Transfer addon data to the server and build Eldgrim's database.
