@@ -1,6 +1,6 @@
-# Confirmed governance questions 1–71
+# Confirmed governance questions 1–74
 
-**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Confirmed:** Q1–71. **Next question:** 72 of 193.
+**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Confirmed:** Q1–74. **Next question:** 75 of 193.
 
 This register preserves decisions made in a sequential governance interview, including corrections to earlier proposals. It is **not** the separate, ratified ROARguild charter and makes no claims that AI governance is implemented. The linked governance chapters provide operational detail. Private character canon, secret identity, motives and magical mechanics are intentionally omitted because this repository is public; preserve them only in appropriately restricted storage.
 
@@ -45,6 +45,12 @@ This register preserves decisions made in a sequential governance interview, inc
 - **Q70 — Disciplinary action definitions:** A warning identifies misconduct and calls for correction; demotion withdraws recognition or entrusted responsibilities; a timeout temporarily restricts Discord participation; a kick removes a member without permanently barring rejoining; a ban prevents rejoining until reversed. Every action requires a documented reason.
 - **Q71 — Warning before escalation:** Minor and moderate misconduct normally receives a warning and opportunity to correct behavior. Serious or critical violations may justify immediate stronger sanctions without prior warning. Repeated misconduct can warrant escalation, always proportionate to the circumstances.
 
+## Confirmed answers — questions 72–74
+
+- **Q72 — Permanent removal:** A permanent ban is reserved for severe abuse, credible threats to safety, deliberate exposure of private information, serious exploitation, or repeated harmful misconduct after earlier interventions. Eldgrim needs reliable evidence, documented reasons and an appeal route. Inactivity, disagreement and low standing alone never justify a ban.
+- **Q73 — Immediate intervention:** For credible urgent threats to members, privacy or community safety, Eldgrim may immediately restrict participation or remove someone without first warning or hearing all sides. Actions must be proportionate, recorded and reviewed afterward; emergency authority cannot be used to bypass ordinary process for disagreements.
+- **Q74 — Off-cycle emergency response:** The always-online server bot may carry out explicitly authorized **predefined emergency protections** while the local AI is offline, and designated human custodians may intervene. Complex AI judgments wait until the next local agent session. Emergency actions are logged and reviewed. This is approved intended behavior, not a claim of implementation or continuous AI monitoring.
+
 ## Superseded or clarified decisions
 
 - **Q34–35:** An initial proposal requiring founder approval for Discord channel management was superseded by explicit confirmation that Eldgrim, as administrator, may handle channels, roles and permissions. This remains subject to valid authorization, safeguards, auditing and implementation.
@@ -54,4 +60,4 @@ This register preserves decisions made in a sequential governance interview, inc
 
 ## Unresolved matters
 
-**Q1–71 are confirmed.** Questions **72–193** remain open. Evidence thresholds, formal appeals, privacy and retention, bank controls, tool restrictions, daily quotas, implementation and ROARguild-charter reconciliation remain unresolved.
+**Q1–74 are confirmed.** Questions **75–193** remain open. Detailed evidence thresholds, appeal reviewers and process, privacy and retention, bank controls, tool restrictions, daily quotas, implementation and ROARguild-charter reconciliation remain unresolved.
