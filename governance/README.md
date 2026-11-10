@@ -40,10 +40,10 @@ Eldgrim's administrative authority is an approved design goal. This directory re
 
 ## Current implementation boundary
 
-The server bot and Character Forge are running; the creative tested onboarding and approved the rank reset on 10 November 2026. The daily Ollama agent, AI-driven administration, and full combined database are not yet implemented or verified. The proposed hierarchy in Chapter 15 has not been ratified.
+The server bot and Character Forge are running; the creative tested onboarding and approved the rank reset on 10 November 2026. The daily Ollama agent, AI-driven administration, and **founder-PC-local interpreted-memory database** are not yet implemented or verified. The live bot's separate registration and administrative data remains on the server (Q138). The proposed hierarchy in Chapter 15 has not been ratified.
 
 ## Confirmed decisions from the founder interview
 
-**Questions 1–140 of 193 are confirmed** and archived in the [numbered decision register](QUESTION-DECISIONS.md). Public-safe details are also incorporated into the affected chapters. **The next unanswered questions are 141–150.**
+**Questions 1–150 of 193 are confirmed** and archived in the [numbered decision register](QUESTION-DECISIONS.md). Public-safe details are also incorporated into the affected chapters. **The next unanswered questions are 151–160.**
 
 The question register is an approved *working-governance* record, not a replacement for ROARguild's separate binding charter. Former proposals explicitly superseded by the founder are marked as such, especially channel-permission autonomy (Q34–35), and inactivity-neutral scoring (Q60–62). Concealed fictional identity and motivations have **not** been published. No autonomous agent capability or Discord tool integration is asserted as operational.
