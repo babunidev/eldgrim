@@ -6,7 +6,7 @@
 
 Memory gives Eldgrim continuity between daily sessions. It should help Eldgrim recognize returning people, recall earlier conversations, remember shared events, and avoid treating every interaction as if it were the first.
 
-Memory is not a complete transcript of the Discord server. It is a small, private record of interactions that involve Eldgrim and information that is useful to its future interactions.
+Memory is **not** a transcript of the Discord server or WoW guild chat. It is a **local, founder-accessible collection of selected interpreted observations** about characters, members and shared guild experiences drawn from authorized guild-visible source messages (Q138). No private member-to-member conversations or whispers are narrative-memory inputs.
 
 ## 2. Storage choice
 
@@ -33,7 +33,7 @@ The temporary collection of all eligible @Eldgrim mentions is **not** a permanen
 
 ### People
 
-A local profile for a Discord user Eldgrim has interacted with. Use the Discord user ID as the stable local key because display names can change or collide. Store it as a string and keep it only in the private database.
+A local profile for a Discord user or registered character Eldgrim has observed in shared guild contexts. Use the Discord user ID as a stable local key where needed because display names can change or collide. Store it as a string and keep it only in the **founder's PC-local database**; no other human custodian has direct access.
 
 Possible fields:
 
@@ -62,10 +62,10 @@ The following is a design sketch, not an implemented schema.
 | Table | Purpose |
 | --- | --- |
 | channel_cursors | Configured channel IDs and last safely processed message IDs |
-| interactions | **Proposed only:** separately authorized selected-interaction records, not the raw per-run mention collection |
+| interactions | **Proposed only:** concise derived interaction observations or non-content source references, never retained verbatim source messages |
 | people | Local profiles keyed by Discord user ID |
 | memories | Concise facts, events, relationships, and observations |
-| memory_sources | Links from a memory to the interactions that support it |
+| memory_sources | Minimal non-content provenance references to shared guild sources; do not persist raw quotations or reconstruct a transcript |
 | intentions | Internal follow-up tasks for a future daily run |
 | runs | Start time, finish time, outcome, and bounded diagnostics |
 | actions | Tool/action audit records and delivery state |
@@ -77,7 +77,7 @@ Discord snowflake IDs must be stored as strings, never floating-point numbers. T
 Every saved memory should:
 
 - Have a clear type and concise content.
-- Preserve its source interaction or source references.
+- Preserve minimal provenance references and confidence without retaining verbatim source messages.
 - Distinguish an explicit statement from a model inference.
 - Include creation and update timestamps.
 - Avoid claiming certainty beyond its source.
@@ -86,7 +86,7 @@ Every saved memory should:
 
 Do not silently overwrite contradictory information. Preserve the source and mark an earlier memory as superseded or uncertain.
 
-A model-generated summary is not automatically a fact. The application should retain source references so the model can retrieve the original eligible interaction when needed.
+A model-generated summary is not automatically a fact. The application should preserve enough **non-content provenance** for review without keeping or silently re-fetching a deleted raw-message archive; if verification requires original material, obtain it through an independently authorized source when available.
 
 ## 6. Retrieval
 
@@ -127,7 +127,7 @@ Before production use, define:
 - How backups reflect deletions.
 - Whether and how database backups are encrypted.
 
-**Founder-confirmed Q131–137 and Q139–140:** Provide a pre-onboarding privacy notice, allow optional narrative profiling to be declined, and establish a lawful disclosed basis before importing in-game chat. Imported raw chat is deleted after authorized analysis (Q134), with a separate local SavedVariables retention/deletion procedure required before integration. Relevant interpreted personal memories are reviewed while membership is active and eligible memories deleted or anonymized within **30 days of departure** absent a specific legitimate retention obligation (Q135). Ordinary administrative audits are retained **up to 180 days**, with justified documented extensions (Q136). Routine backups are kept **no longer than 30 days**, protected appropriately, and any restored backup must reapply recorded deletions before service resumes (Q137). Provide private authorized-human data requests with legally required access/correction/export/deletion (Q139), and containment/notification/remediation for unauthorized disclosure (Q140). **Q138 access-authority details are pending founder revision.** The operational procedures, backup encryption decisions and exact data categories still need design and testing; indefinite retention is not approved.
+**Founder-confirmed Q131–137 and Q139–140:** Provide a pre-onboarding privacy notice, allow optional narrative profiling to be declined, and establish a lawful disclosed basis before importing in-game chat. Imported raw chat is deleted after authorized analysis (Q134), with a separate local SavedVariables retention/deletion procedure required before integration. Relevant interpreted personal memories are reviewed while membership is active and eligible memories deleted or anonymized within **30 days of departure** absent a specific legitimate retention obligation (Q135). Ordinary administrative audits are retained **up to 180 days**, with justified documented extensions (Q136). Routine backups are kept **no longer than 30 days**, protected appropriately, and any restored backup must reapply recorded deletions before service resumes (Q137). Provide private authorized-human data requests with legally required access/correction/export/deletion (Q139), and containment/notification/remediation for unauthorized disclosure (Q140). **Q138 confirmed:** Narrative memory is derived only from shared guild-visible sources and stored persistently **on the founder's PC**, accessible directly to **the founder alone** among humans and to the authorized local AI. Raw bot/addon message collections are temporary and purged after processing; the server's necessary Forge/role/administration data is a distinct operational store. **Publicly visible source content can still be personal data; the interpreted database is not public.** The operational procedures, backup encryption decisions and exact data categories still need design and testing; indefinite retention is not approved.
 
 ## 9. Confirmed data boundaries — questions 124–130
 
@@ -138,7 +138,7 @@ Before production use, define:
 - **Q128:** Retain only relevant, supported interpretations of character interests, participation, helpfulness, conduct and shared experiences. Do not infer sensitive real-world traits or unsupported psychology. Private standing and impressions remain confidential under Q64, subject to applicable legal rights.
 - **Q129–130:** Provide a private correction process and an authorized human reviewer for unresolved consequential disputes. On departure deactivate membership/character records, cease routine collection, and allow requests for deletion of eligible data, subject to confirmed Q135–137 retention boundaries and justified exceptions; exact implementation remains open.
 
-**Implementation status:** No retention, deletion, access-request or data transfer mechanism has been implemented or verified in the local agent.
+**Implementation status:** No raw-data transfer, retention/deletion, access-request or persistent local AI memory mechanism has been implemented or verified. The live bot's separate operational registration store does not establish the narrative memory system.
 
 ## 10. Future options
 
