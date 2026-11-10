@@ -182,3 +182,10 @@ The next ten decisions give members a private way to challenge sanctions, even a
 The latest ten decisions specify an emergency stop I can use, or delegate to an explicitly authorized technical custodian, without exposing the local memory database. It must halt new automated actions and stay off until authorized recovery. Server credentials remain separate from my PC-local memories, and tool permissions must be enforced by code rather than model instructions. Every administrative tool needs negative tests and failure/retry checks before a reversible rollout. Backup recovery must respect the approved retention and deletion rules. When my PC or AI is offline, the server bot continues only its verified functions; compromise triggers containment and review. Periodic technical and governance checks cannot change the charter by themselves. AI synchronized the question register, technical governance chapter, conflict inventory, agent security/memory guidance, bot documentation and development records.
 
 **Result:** Q181–190 documented as founder-confirmed working requirements. No emergency stop, tool executor, autonomous administration, verified restore, custodian appointment, security test or deployment approval was performed.
+
+
+## 2026-11-10 — Finish the rulebook interview (Q191–193)
+
+I accepted the last three answers, completing all 193 governance questions. The final decisions require us to compare the answers with the sixteen chapters and the separate guild charter, preserve corrections instead of resurrecting old proposals, and track which rules are only written versus actually built and tested. The result is a working baseline, not a ratified guild charter or permission to switch on autonomous administration. AI recorded the final answers, created a consistency audit and implementation matrix, and updated the chapter index, documentation guide and contributor instructions.
+
+**Result:** Interview complete and documentation committed. The audit is an initial documentation comparison, not a full cross-repository charter or runtime audit. No new feature was implemented, tested, deployed or ratified.
