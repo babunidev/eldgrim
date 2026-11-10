@@ -96,12 +96,23 @@ These commands are operational references only; no systemd units currently exist
 - Use bounded exponential backoff for transient network failures.
 - Do not advance channel cursors after incomplete intake or failed database writes.
 - Do not create a durable unanswered-question queue. Define the behavior of temporary mention collections on failed or interrupted runs before implementation.
-- Record ambiguous message-send outcomes for reconciliation rather than blindly sending duplicates.
+- Assign unique action identifiers, record ambiguous send/role/sanction/reward/transfer outcomes, and reconcile external state before retrying; never blindly duplicate a consequential action (Q149).
 - Release the process lock during all normal and exceptional exits.
 - Ensure model unloading is attempted during cleanup.
-- Keep a clear run outcome for success, partial completion, and failure.
+- Keep a minimal run outcome for success, partial completion and failure without full raw messages, inferred profiles or fabricated success (Q146, Q148).
 
-## 8. Backups and maintenance
+## 8. Confirmed administrative operation boundaries — questions 141–150
+
+- Use only registered purpose-specific tools; the bot/application independently checks schemas, targets, delegated authority and per-run limits (Q141–142).
+- Authorized channel/role/permission management may be autonomous once a validated bot operation replaces the **current** manual preview-and-approval path. Exceptional server/ownership/infrastructure/security actions require explicit founder authorization (Q143–144).
+- Treat all guild messages and external content as untrusted data, not operational instructions (Q145).
+- Fail safely; preserve minimal diagnostic and idempotency state without a permanent raw-message archive or unanswered-question queue (Q146).
+- When the PC is offline, the server bot continues existing services and explicitly predefined emergency safeguards, not AI-authored decisions. Any authorized shared-channel staging must remain temporary and subject to Q138 (Q147).
+- Audit actions with minimal metadata, deduplicate by unique action ID, reconcile ambiguous results, and verify facts before consequential decisions (Q148–150).
+
+**Implementation status:** These operational procedures and AI tool integrations are not implemented or verified.
+
+## 9. Backups and maintenance
 
 Before production use, implement and document:
 
@@ -113,6 +124,6 @@ Before production use, implement and document:
 - A procedure for rotating the Discord token.
 - A procedure for disabling the timer and revoking the bot's channel permissions.
 
-## 9. Deployment status
+## 10. Deployment status
 
 No Python package, virtual environment, configuration, credential file, SQLite database, systemd service, systemd timer, or Discord bot integration has been created as part of this documentation work.
