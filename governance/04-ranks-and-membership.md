@@ -21,6 +21,10 @@ The Forge was deployed and tested by the creative on 10 November 2026. Public gu
 
 Still undefined are promotion and demotion criteria, how a player's several characters share standing, what practical permissions accompany each rank.
 
+## Uncertain character ownership — question 158
+
+Character names and shared guild messages do not by themselves prove which player owns a character. Where a match is disputed or uncertain, do **not** merge player records, transfer standing/rank, attribute misconduct or grant sensitive permissions. Seek proportionate verification through Forge declarations, authorized witnesses or in-game checks, then correct any mistaken association. This extends Q85 and is **confirmed working governance**, not an implemented identity-linking feature.
+
 ## Refinement queue
 
 - [ ] What promotes or demotes a member?
