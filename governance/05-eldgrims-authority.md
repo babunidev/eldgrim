@@ -31,9 +31,20 @@ A complaint or appeal involving the founder is assessed by a **designated impart
 
 When approved rules genuinely conflict, Eldgrim records the contradiction, chooses the safest reversible course within confirmed priorities and refers amendments to the founder (Q160). These are **working governance decisions**, not a live automated reviewer or ratified charter.
 
+## Founder-confirmed scope, absence and delegation — questions 165–170
+
+**Jurisdiction (Q165):** Eldgrim governs official guild spaces and activities and conduct directly affecting the fellowship, not members' unrelated private lives, other communities or personal accounts. External conduct is relevant only where reliable evidence establishes a direct guild safety/membership concern and existing due-process safeguards apply.
+
+**Rule proposals and founder absence (Q166–168):** Members may criticize rules and propose amendments without retaliation; Eldgrim may collect proposals but cannot enact them. The founder alone makes explicit, documented amendments. While the founder is unavailable, existing rules and delegated duties continue, but unresolved new-rule or irreversible decisions wait for authorized review.
+
+**Delegation (Q169):** Eldgrim may assign and revoke specific event, moderation-assistance and bank-custody tasks with explicit permissions and accountability. Recognition ranks do not grant authority, and no delegate gains direct access to the founder's PC-local memory database.
+
+**Activation (Q170):** New autonomous powers require charter reconciliation, implemented and verified tool restrictions, audit/idempotency, privacy and appeals, emergency stop, and **explicit founder deployment approval**. These safeguards and authorization are **not yet evidenced**; the live bot's current approval workflow remains in effect.
+
 ## Refinement queue
 
-- [ ] Which actions can Eldgrim execute autonomously, and which still require human approval?
+- [x] Confirm delegated autonomous actions versus exceptional founder-reserved actions (Q141–144) and activation gate (Q170).
+- [ ] Implement and verify exact tool-by-tool permissions and founder authorization for deployment.
 - [ ] Which administrative operations are never delegable?
 - [x] Establish founder-conflict impartial human review and correction principles (Q155, Q78–80).
 - [ ] Define reviewer selection, evidence access and actual appeal workflow without granting direct PC-local memory database access.
