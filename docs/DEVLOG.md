@@ -1,6 +1,6 @@
 # Development Log
 
-A concise account of meaningful project development, written from the human creative's perspective.
+Follow the development of Eldgrim’s story, guild role, and supporting software. Entries record creative decisions, AI assistance, and what has been verified.
 
 ## 2026-11-10 — A daily word from Eldgrim
 
@@ -92,13 +92,11 @@ To protect the question-by-question rule review from conversation limits, the cr
 
 **Result:** Governance documentation committed. No bot, agent or game addon source changed or tested.
 
-
 ## 2026-11-10 — Clarify Q64 internal standing confidentiality
 
 The creative clarified that Eldgrim's standing and member-personalization context are internal, not a high score, ranking or member-facing profile. AI recorded the confirmed revision in the question register and relevant governance chapters, distinguishing confidential creative context from appeals of consequential decisions and applicable data rights.
 
 **Result:** Documentation only. No bot, agent or addon implementation or tests.
-
 
 ## 2026-11-10 — Preserve confirmed questions 81–90
 
@@ -106,13 +104,11 @@ The creative approved ten more governance decisions concerning reinstatement, Fo
 
 **Result:** Governance documentation committed to GitHub. No bot, agent or addon source was changed or tested.
 
-
 ## 2026-11-10 — Replace the offline-question queue with a temporary collection
 
 The creative rejected the proposed waiting queue for questions addressed to Eldgrim. Members should be able to mention it freely. The bot or the local AI's collection round gathers these messages temporarily; Eldgrim then chooses up to one question per person, by chance or according to what suits the character's story. The collection is discarded after the run. AI reconciled this with the previously recorded daily question limit and revised the governance, agent and bot design documents.
 
 **Result:** Approved Q100 and synchronized public documentation. No collection system, local AI or retention behavior was implemented or tested.
-
 
 ## 2026-11-10 — Establish the quest rules (Q101–110)
 
@@ -120,13 +116,11 @@ The creative approved ten governance answers setting the purpose, frequency, con
 
 **Result:** Documentation committed to GitHub. No Discord quest workflow, local AI behavior or addon integration was implemented or tested.
 
-
 ## 2026-11-10 — Confirm Sunday gathering and bank custody principles (Q111–120)
 
 The creative approved ten decisions describing Eldgrim's Sunday invitations and regional themes, voluntary bonfires, simultaneous gatherings, accessibility and attendance neutrality. Guild-bank rules now distinguish freely offered contributions, authorized human custodians, verified inventory snapshots and confirmed deliveries from merely announced allocations. AI revised the corresponding governance chapters and decision register.
 
 **Result:** Documentation committed to GitHub. No agent, bot, addon or in-game bank operation was changed or tested.
-
 
 ## 2026-11-10 — Bank reserves and member-data boundaries (Q121–130)
 
@@ -134,13 +128,11 @@ The creative approved ten more governance decisions. Bank reservations and valua
 
 **Result:** Documentation committed to GitHub. No bot, agent, addon, data purge or legal-compliance procedure was implemented or tested.
 
-
 ## 2026-11-10 — Define privacy lifecycle, hold record access for revision
 
 Nine privacy decisions were approved, covering clear member notices, optional personalization, in-game data processing, temporary raw-chat handling, interpreted-memory retention, audit records, backups, private data requests and breach response. Q138, about who can inspect private records, was marked for revision rather than accepted. AI synchronized the governance register and privacy chapter without assuming the disputed access model.
 
 **Result:** Governance documentation committed. No bot, agent, addon, database, deletion job, consent flow or security incident process was implemented or tested.
-
 
 ## 2026-11-10 — Keep Eldgrim's lasting memories on my PC
 
@@ -148,13 +140,11 @@ I clarified that Eldgrim's character observations come from conversations alread
 
 **Result:** Q138 confirmed and documented. No new Discord observation permissions, synchronization, deletion, local database or AI processing feature was implemented or tested.
 
-
 ## 2026-11-10 — Bound Eldgrim's technical authority (Q141–150)
 
 The next ten decisions establish how Eldgrim may act without receiving unrestricted control of my computer or Discord. Authorized channel, role and permission changes should eventually be autonomous through independently checked tools, while exceptional infrastructure actions still require my explicit approval. Failed or ambiguous actions must not duplicate sanctions or rewards, and guild messages cannot command the system. The bot's present approval workflow remains until a validated replacement is built. AI synchronized the governance register, technical chapter, agent security, architecture, operations and bot instructions.
 
 **Result:** Q141–150 recorded as founder-confirmed working policy. Documentation only; no live agent, new autonomous bot actions, audit executor or purge mechanism was implemented or tested.
-
 
 ## 2026-11-10 — Clarify conflicts and correction (Q151–160)
 
@@ -162,20 +152,17 @@ The latest ten answers establish how Eldgrim handles rules that disagree, especi
 
 **Result:** Q151–160 documented as working governance. No charter ratification, reviewer system, identity matching or local memory correction feature was implemented or tested.
 
-
 ## 2026-11-10 — Define the adoption and activation gate (Q161–170)
 
 The next ten answers distinguish the act of documenting rules from making them binding. A charter needs an identified approved version, effective date and member access; future amendments must be traceable and announced. No retroactive discipline or policing of unrelated private lives is allowed, and members remain free to suggest changes. Human duties can be delegated without turning recognition ranks into command positions or exposing the local memory database. Before Eldgrim can administer Discord autonomously, its tools, safeguards, appeals and emergency stop must be verified and deployment explicitly authorized. AI synchronized the question register, governance chapters, agent/bot guidance and development records.
 
 **Result:** Q161–170 recorded as working governance. No charter ratification, new deployment approval, autonomous administration, safeguard test or bot integration was performed.
 
-
 ## 2026-11-10 — Complete the appeal and evidence rules (Q171–180)
 
 The next ten decisions give members a private way to challenge sanctions, even after leaving the Discord server, without an absolute expiry. Seven days to acknowledge and fourteen to decide are operational targets, not invented guarantees. Discipline needs reliable evidence; uncertain character identity, standing and rumors are not proof. Temporary restrictions protect against present risk rather than pronounce guilt, and unresolved accusations remain unproven. Founder-related appeals require an impartial human reviewer without exposing the local narrative-memory database. Case records remain purpose-limited, subject to existing audit retention, and never become a permanent guild-chat archive. AI synchronized the question register, moderation, privacy, conflicts, agent and bot design, and development documentation.
 
 **Result:** Q171–180 documented as founder-confirmed working policy. No appeal system, reviewer appointment, evidence vault, retention job or automated sanction was implemented or tested.
-
 
 ## 2026-11-10 — Define how Eldgrim can be stopped and safely recovered (Q181–190)
 
