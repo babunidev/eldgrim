@@ -1,6 +1,6 @@
-# Confirmed governance questions 1–99 (Q100 revision pending)
+# Confirmed governance questions 1–100
 
-**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Confirmed:** Q1–99. **Q100:** Needs revision; no answer approved. **Next:** Resolve Q100, then proceed with Q101–110 of 193. **Interview batch size:** 10 questions.
+**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Confirmed:** Q1–100. **Next:** Q101–110 of 193. **Interview batch size:** 10 questions. **Interview batch size:** 10 questions.
 
 This register preserves decisions made in a sequential governance interview, including corrections to earlier proposals. It is **not** the separate, ratified ROARguild charter and makes no claims that AI governance is implemented. The linked governance chapters provide operational detail. Private character canon, secret identity, motives and magical mechanics are intentionally omitted because this repository is public; preserve them only in appropriately restricted storage.
 
@@ -79,18 +79,18 @@ This register preserves decisions made in a sequential governance interview, inc
 ## Confirmed answers — questions 91–99
 
 - **Q91 — Multiple member replies:** One daily AI session may reply to several eligible members, subject to their individual allowances. Once-daily refers to processing, not a one-message limit.
-- **Q92 — Per-member question allowance:** One eligible question per Discord member per **UTC calendar day**, resetting at **00:00 UTC**. Editing or repeating does not create more allowances. A question never processed does not consume the allowance.
-- **Q93 — Response discretion:** Eldgrim need not answer every eligible question. It may decline or postpone for safety, insufficient information, capacity or narrative reasons; unanswered questions do not penalize members.
+- **Q92 — Per-member question allowance (clarified by Q100):** The initial one-submission-per-UTC-day interpretation and 00:00 UTC reset were **superseded** by Q100. Members may submit unlimited mentions; Eldgrim considers at most **one selected question per member per daily AI session**.
+- **Q93 — Response discretion:** Eldgrim need not answer every eligible question. It may decline or remain silent for safety, insufficient information, capacity or narrative reasons; unanswered questions do not penalize members. A decline does not create an automatic backlog (Q100).
 - **Q94 — Explanation of refusals:** Eldgrim may remain silent or mysterious for ordinary fictional/personal questions, but must explain actual administrative decisions, restrictions and privacy requests appropriately.
-- **Q95 — Eligible question definition:** A direct question or clear request explicitly addressed to **@Eldgrim** counts as one submission even with several related subquestions. Ordinary chat, onboarding, safety reports and disciplinary appeals do not consume the allowance.
+- **Q95 — Eligible question definition (clarified by Q100):** A direct question or clear request explicitly addressed to **@Eldgrim**, including several related subquestions, is an eligible candidate in the daily collection. There is **no submission limit**. Ordinary chat, onboarding, safety reports and disciplinary appeals are separate from the discretionary question selection.
 - **Q96 — Unprompted private conversation:** Eldgrim does not initiate casual private conversations. Necessary onboarding, administrative notices, safety communications and appeal responses are exceptions. Its daily public proclamation is separate.
 - **Q97 — Proclamation expectation:** One guild-wide proclamation is expected per successful daily AI session; it may contain a story, observation, invitation, quest or recognition. Skip if unsafe, technically impossible or misleading. Do not invent real guild activity.
 - **Q98 — Proclamation independence:** One guild-wide proclamation per successful session is separate from individual question allowances; administrative and safety notices count against neither.
 - **Q99 — Routine decisions:** Normally one decision per category per AI session: rank changes, quest assignments, recognition/rewards, guild-bank allocations and guild-wide proclamations. Log decisions; urgent safety intervention is exempt.
 
-## Pending revision — question 100
+## Confirmed answer — question 100 (founder revision)
 
-- **Q100 — Questions while the local AI is offline:** The founder **rejected the initial proposal for revision**. No replacement rule has been approved. The initial proposal (not accepted) would have allowed the server bot to queue eligible mentions for the next AI session, skip stale or superseded questions, and continue predefined emergency protections. Await the founder's correction before recording an approved answer.
+- **Q100 — Temporary mention collection, not a queue:** Members may mention Eldgrim **as often as they wish**. All eligible mentions since the previous daily AI run are collected temporarily, either by the server bot as they arrive or by the local AI querying the bot during its daily collection round; the capture mechanism is **not yet chosen**. For each member, Eldgrim may choose **one** question from that collection to consider answering, **at random or according to what best fits the member's character story**. It is free not to answer (Q93). After the processing run, **discard the temporary collected messages and begin a fresh collection**. Unselected questions are **not queued, rolled over, or automatically answered later**. This supersedes Q92's one-submission-per-UTC-day/00:00-reset interpretation and clarifies Q95's submission wording. Temporary collection is distinct from any separately authorized long-term memory; precise implementation, data safeguards and failure handling remain open. This is a confirmed design, **not an implemented collection system**.
 
 ## Superseded or clarified decisions
 
@@ -98,7 +98,8 @@ This register preserves decisions made in a sequential governance interview, inc
 - **Q32 and Q34–35:** Founder-reserved infrastructure and constitutional changes do not forbid the ordinary Discord administration specifically delegated to Eldgrim.
 - **Q54–55:** The 50/100 baseline is for new members. Previously established standing is retained only if a score actually exists; the live Forge rank reset is not proof of deployed standing scores.
 - **Q60–62:** Any interpretation of zero standing as mere inactivity or disengagement is retired. Absence and nonparticipation carry no standing penalty.
+- **Q92, Q93 and Q95, clarified by Q100:** The one-eligible-submission-per-UTC-day and 00:00 UTC reset language is retired. Unlimited mentions feed a temporary collection; one question per member may be chosen per daily run, and no unselected question enters a waiting queue.
 
 ## Unresolved matters
 
-**Q1–99 are confirmed.** **Q100 requires revision** and **Q101–193** remain unanswered. Detailed evidence thresholds, practical appeal channels and timing, privacy and retention, bank controls, tool restrictions, implementation and ROARguild-charter reconciliation remain unresolved.
+**Q1–100 are confirmed.** **Q101–193** remain unanswered. Detailed evidence thresholds, practical appeal channels and timing, privacy and retention, bank controls, tool restrictions, implementation and ROARguild-charter reconciliation remain unresolved.
