@@ -37,7 +37,7 @@ Everyone passes through the new Forge, including existing members; only the serv
 
 **Rank reset.** Approved by the creative on 2026-11-10: every member except the server owner restarts at Ember. When the switch that holds back ranks is turned on, members who have not completed the Forge lose all five ranks, including Administrator held through Hearthwarden; members who already completed keep only Ember. Completing the Forge then grants Ember, and Eldgrim decides any promotion afterwards. Once a member has completed, a later change to their character roles never removes a rank. The bot records each member's former ranks before removing them.
 
-**Implementation status (2026-11-10):** deployed with 64 passing tests, and the Forge panel shows the approved texts. The creative tests the Forge first; holding back ranks and hiding the public channels are separate switches that stay off until then. A preview of the rank switch showed 73 of 74 members must complete the Forge and would lose their rank meanwhile: 21 Ember, 18 Wayfarer, 8 Kindler, 6 Hearthkeeper, and 3 Hearthwarden, the last including Administrator.
+**Implementation status (2026-11-10):** live. The creative completed the Forge first. The five public channels are now visible to the ranks only, and the rank switch is on: 73 members lost their ranks until they finish the Forge, including 3 Hearthwardens who held Administrator. The server owner is exempt. A dice bot kept its ranks, because a bot cannot complete the Forge. Finishing the Forge grants Ember.
 
 **Server ownership.** As far as known, Discord does not allow transferring server ownership to a bot. The creative remains owner; Eldgrim holds Administrator.
 

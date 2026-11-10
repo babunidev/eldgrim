@@ -10,7 +10,9 @@ AI made the corrections and built the reset into the switch that holds back rank
 
 Testing the Forge myself, I found it rejected a full character name: WoW Forever gives every character a first name and a surname, and AI had built the check for a single name. AI verified the naming rules from Blizzard's announcement and a rules guide, then split the question into first name and surname with the same limits the game uses.
 
-**Result:** Deployed with 65 passing tests and the new panel texts. The rank switch was previewed (73 of 74 members must complete the Forge) and stays off until I have tested the Forge.
+After testing the Forge, I approved both switches. AI hid the five public channels behind the ranks, then removed every rank except mine. A dice bot kept its ranks, since a bot cannot complete the Forge.
+
+**Result:** Deployed with 65 passing tests and the new panel texts. The switches are on: 73 members see only the Forge until they finish it, and finishing grants Ember. The rank switch was previewed (73 of 74 members must complete the Forge) and stays off until I have tested the Forge.
 
 ## 2026-11-10 — Building the multi-character Forge
 

@@ -118,7 +118,7 @@ A concise record of meaningful creative and structural decisions.
 
 **Rollout:** Step by step. The Forge is deployed first and tested by the creative; holding back ranks and hiding the public channels follow as separate, previewed switches.
 
-**Status:** Decided; the Forge texts are approved and deployed. The rank reset is built and previewed but not applied.
+**Status:** Applied on 2026-11-10 after the creative tested the Forge. The public channels are visible to the ranks only, and every member except the server owner restarts at Ember.
 
 ## Open decisions
 

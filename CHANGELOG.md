@@ -5,7 +5,8 @@ Meaningful repository and documentation changes are recorded here.
 ## 2026-11-10
 
 - Fixed the Forge to ask for each character's first name and surname, following WoW Forever's naming rules.
-- Deployed the multi-character Forge with the approved texts; the rank and channel switches stay off until the creative has tested it.
+- Turned on the Forge switches after the creative tested it: the five public channels are visible to the ranks only, and every member except the server owner restarts at Ember.
+- Deployed the multi-character Forge with the approved texts.
 - Recorded that every member except the server owner restarts at Ember through the Forge, and that the hearth rules name guild activity recorded in the game (chat, emotes, presence at events).
 - Recorded that Eldgrim is an entity referred to as "it", and corrected the documents accordingly.
 - Recorded that Eldgrim governs the guild's Discord by defined goals rather than member requests, and that the creative follows its recommendations.
