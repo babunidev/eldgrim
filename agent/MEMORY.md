@@ -140,7 +140,15 @@ Before production use, define:
 
 **Implementation status:** No raw-data transfer, retention/deletion, access-request or persistent local AI memory mechanism has been implemented or verified. The live bot's separate operational registration store does not establish the narrative memory system.
 
-## 10. Future options
+## 10. Confirmed identity and evidence corrections — questions 158–159
+
+**Q158:** An uncertain character name or player match cannot authorize merging profiles, transferring rank/standing, attributing misconduct or granting sensitive permissions. Verify proportionately through declared registration details, authorized witnesses or an appropriate in-game check, then correct erroneous links. Character identity and person-level standing remain separate (Q51, Q85).
+
+**Q159:** Newly verified information takes precedence over stale interpreted memories. Correct or retire unsupported observations, keeping only minimal non-content provenance rather than raw source chat. Disputed impressions cannot establish misconduct or justify consequential action. Only the founder has direct human access to the **PC-local memory database** (Q138); member rights and authorized review processes remain protected.
+
+**Status:** Founder-confirmed memory-quality rules, not implemented identity matching, memory editing or review tooling.
+
+## 11. Future options
 
 Possible later additions include semantic embeddings, relationship graphs, richer event timelines, and a more sophisticated memory consolidation process. None is required for the first implementation.
 
