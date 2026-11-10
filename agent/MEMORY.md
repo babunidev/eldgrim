@@ -29,7 +29,7 @@ SQLite is sufficient for the first version. Start with indexed relational querie
 
 ### Interaction history
 
-Eligible inbound messages that explicitly mention Eldgrim, together with Eldgrim's relevant replies. These records provide conversational continuity and provenance.
+The temporary collection of all eligible @Eldgrim mentions is **not** a permanent interaction history. Under confirmed Q100 it is discarded after the daily processing run, including unselected questions. Any future persistent record of selected interactions or concise memories requires a separately authorized retention policy and must remain distinct from this transient collection.
 
 ### People
 
@@ -62,7 +62,7 @@ The following is a design sketch, not an implemented schema.
 | Table | Purpose |
 | --- | --- |
 | channel_cursors | Configured channel IDs and last safely processed message IDs |
-| interactions | Eligible inbound mentions and relevant Eldgrim replies |
+| interactions | **Proposed only:** separately authorized selected-interaction records, not the raw per-run mention collection |
 | people | Local profiles keyed by Discord user ID |
 | memories | Concise facts, events, relationships, and observations |
 | memory_sources | Links from a memory to the interactions that support it |
@@ -102,11 +102,11 @@ Do not load the entire database into the model prompt. Do not send unrelated use
 
 ## 7. Intake and transaction safety
 
-- Store eligible inbound messages before asking Ollama to process them.
+- Safely collect eligible inbound messages into a **temporary per-run collection** before selecting questions; do not treat this as a permanent interaction archive.
 - Use message IDs to prevent duplicate intake.
 - Commit cursor progress only after the corresponding records are durable.
 - Use transactions for related message, memory, and cursor updates.
-- Keep pending work recoverable if Ollama or Discord fails.
+- Define failed-run collection cleanup and recovery before implementation; do not silently create a waiting queue for unselected questions.
 - Use database migrations when the schema changes.
 - Back up the database before destructive migrations.
 
@@ -114,7 +114,7 @@ The exact cursor commit strategy must be tested against Discord's pagination beh
 
 ## 8. Privacy and retention
 
-Only explicitly eligible interactions are stored. Unrelated channel messages are not archived.
+The temporary collection may contain all explicitly eligible mentions, but **must be discarded after the processing run** under Q100. Unselected questions are not queued or archived as pending replies. Unrelated channel messages are not archived. Persistent memory and audit data, if authorized, must be governed separately.
 
 Do not intentionally store sensitive personal information, private account details, credentials, or sensitive inferences. Do not store private character canon in the shared database unless a separate private local design explicitly requires it.
 
