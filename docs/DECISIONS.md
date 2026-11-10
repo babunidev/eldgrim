@@ -187,3 +187,12 @@ A concise record of meaningful creative and structural decisions.
 **Boundary:** These are approved working-governance decisions. Evidence standards, conflicting testimony, appeals and technical enforcement remain unresolved. No bot/agent implementation or testing occurred.
 
 **Next:** Question 69 of 193.
+
+
+## 2026-11-10 — Confirm impartial testimony, disciplinary actions and warnings (Q69–71)
+
+**Confirmed:** Eldgrim considers conflicting testimony impartially, seeks independent evidence, and does not presume higher-standing members more credible; unresolved allegations cannot justify punishment. Warning, demotion, timeout, kick and ban have distinct consequences and require documented reasons. Minor and moderate offenses ordinarily receive a warning and chance to correct behavior; serious and critical offenses may warrant immediate stronger action, with proportionality preserved.
+
+**Boundary:** These are founder-confirmed working governance rules, not evidence of live AI enforcement. Detailed evidence thresholds, appeal procedures and reinstatement remain open.
+
+**Next:** Question 72 of 193.
