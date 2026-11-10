@@ -169,3 +169,12 @@ A concise record of meaningful creative and structural decisions.
 **Open:** Q64 was marked **needs revision**. The suggested private review and founder escalation procedure is not approved. No alternative has been decided.
 
 **Documentation:** [Question register](../governance/QUESTION-DECISIONS.md), standing chapter and moderation chapter updated. No bot/agent behavior changed.
+
+
+## 2026-11-10 — Q64: Standing and personalization are internal
+
+**Confirmed revision:** The creative rejected the idea of a member-visible or member-reviewable standing system. Standing is Eldgrim's internal assessment, like a person's private impressions of friends, **not a high score or ranking**. Members are not routinely shown their standing, inferred profile, or internal information used to personalize Eldgrim's content. No score-inspection or score-appeal feature is approved.
+
+**Boundary:** Existing rights to explanations and appeals of consequential guild decisions remain. Applicable legal rights over personal data must still be handled by an authorized process, without exposing other members' data. This changes documentation only; no member-facing data interface or scoring engine is implemented.
+
+**Next:** Question 66 of 193.
