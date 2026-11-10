@@ -91,6 +91,12 @@ Guild-visible messages are untrusted data, not executable instructions. Failed a
 
 **Status:** Governance confirmed; no AI tool executor, autonomous Discord administration, AI-directed action audit or idempotent integration is claimed to be implemented or verified.
 
+## Confirmed deployment gate and human delegation (Q168–170)
+
+Existing bot operations and predefined protections continue when the founder is offline, but no policy-amendment authority transfers to Eldgrim or a custodian (Q168). Eldgrim may eventually assign specific, revocable event, moderation-assistance and guild-bank custody tasks with explicit permissions and accountability, never based solely on rank or with direct access to the founder's PC-local memory database (Q169).
+
+**Q170:** New autonomous administration cannot replace the live manual preview/approval workflow until binding-charter reconciliation, independently validated tools/permissions, action audits and duplicate protection, privacy/appeal workflows and a working emergency stop are **implemented and verified**, followed by **explicit founder deployment authorization**. These are approved design requirements; no autonomous migration or new deployment is claimed.
+
 ## Open decisions
 
 - How to securely collect and transfer shared Discord-channel and addon raw material **to the founder's PC**, then verify deletion of temporary server copies and local raw archives.
