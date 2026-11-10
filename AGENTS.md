@@ -14,7 +14,7 @@ Keep these areas separate:
 - addon/ describes the out-of-character game addon. Its approved first milestone remains a passive local recorder.
 - agent/ describes a separate out-of-character communication system. Its behavior does not establish character canon.
 - bot/ describes Eldgrim's always-online Discord bot on the creative's server. Its behavior does not establish character canon either.
-- Amberhearth governance and guild operations belong in the ROARguild repository.
+- Eldgrim's **working** governance rulebook belongs in governance/ here. The binding Amberhearth guild charter and guild operations belong in ROARguild; drafts here do not silently override them.
 
 The human creative owns the concept, canon, tone, scope, priorities, and final decisions. AI may assist with research, organization, drafting, review, implementation, testing, and documentation when requested.
 
@@ -85,7 +85,7 @@ Read bot/README.md before changing the bot. The server bot is Eldgrim's always-o
 
 ## Repository workflow
 
-- Read relevant documentation before changing it.
+- Read relevant documentation before changing it, including governance/README.md for Eldgrim rule changes.
 - Update relevant documents when an approved decision or substantial change occurs.
 - Do not claim an asset, addon, bot, integration, or feature exists unless verified.
 - Keep proposals separate from implemented and tested work.

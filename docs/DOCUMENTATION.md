@@ -30,9 +30,13 @@ An API entry proves that the service documents an API surface; it does not prove
 - **Character and narrative:** public character identity, lore, relationships, and stories.
 - **Addon:** the separate Forever-only passive recorder described under addon/.
 - **Agent:** the proposed local Discord agent described under agent/.
-- **Amberhearth operations:** guild governance and administration belong in the ROARguild repository.
+- **Eldgrim governance:** the public, non-ratified chapter-by-chapter framework and refinement questions belong in governance/. The binding Amberhearth charter and guild operations remain in ROARguild.
 
 The addon and agent must not silently expand one another's scope. Neither technical implementation nor model output establishes character canon.
+
+## Governance rulebook
+
+The [governance index](../governance/README.md) links all 16 chapters of the working framework. Each chapter records a source baseline, its decision status, and a refinement queue. A proposal does not become binding merely by appearing in a chapter; approved guild-wide rules must also be reconciled with ROARguild. Never place private character canon in the public rulebook.
 
 ## Canon layers
 

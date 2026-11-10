@@ -120,6 +120,16 @@ A concise record of meaningful creative and structural decisions.
 
 **Status:** Applied on 2026-11-10 after the creative tested the Forge. The public channels are visible to the ranks only, and every member except the server owner restarts at Ember.
 
+## 2026-11-10 — Establish an Eldgrim governance rulebook by chapter
+
+**Decision:** Split the consolidated 10 November 2026 v0.1 working framework into 16 independently editable files under governance/ with an index and explicit refinement queues.
+
+**Boundary:** These files distinguish established direction from developing, proposed, and open policy. They do not ratify a constitution, replace the ROARguild charter, or implement AI administration. Private character canon stays outside this public repository.
+
+**Update:** Reconciled the Forge and rank reset status with the confirmed live rollout on 10 November 2026.
+
+**Status:** Documentation structure established; substantive policy gaps remain open.
+
 ## Open decisions
 
 - Further details of Eldgrim's public identity and history.

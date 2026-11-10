@@ -32,7 +32,7 @@ The addon, agent, and bot are out-of-character technical projects. None defines 
 The repository remains separate from:
 
 - **ROAR**, the wider creative and development project around World of Warcraft Forever.
-- **Amberhearth**, the in-game fellowship initiated by Eldgrim. Guild governance and operations belong in the ROARguild repository.
+- **Amberhearth**, the in-game fellowship initiated by Eldgrim. The binding guild charter and practical operations belong in ROARguild. Eldgrim's chapter-by-chapter **working governance framework** is maintained in governance/ here and is not yet ratified.
 
 ## Documentation map
 
@@ -43,6 +43,7 @@ The repository remains separate from:
 | ROADMAP.md | Staged development, with proposed work distinguished from completed work |
 | CHANGELOG.md | Meaningful repository changes |
 | docs/ | Documentation standards, decisions, history, and canon policy |
+| governance/ | Eldgrim's public, chapter-by-chapter draft governance framework and refinement queues |
 | character/ | Eldgrim's public identity, personality, and voice |
 | lore/ | Amberhearth, fires, and the shared mythic setting |
 | narrative/ | Story development, quests, and narrative material |
@@ -62,6 +63,8 @@ This is a public repository. Documents here must not disclose concealed characte
 The agent's runtime database, actual conversations, credentials, and private runtime instructions must also remain outside Git. The agent documentation describes public architecture and implementation requirements, not private character secrets or live user data.
 
 Unconfirmed ideas must be labelled as developing, proposed, or open rather than presented as established lore or implemented behavior.
+
+Read the [governance rulebook](governance/README.md) for the 16 separate chapters and outstanding questions.
 
 ## Current status
 
