@@ -36,9 +36,9 @@ The intended one-shot service should:
 2. Load non-secret configuration and private credentials from outside Git.
 3. Acquire a process lock.
 4. Validate the database and local dependencies.
-5. Gather all eligible @Eldgrim mentions since the previous collection, either from a bot-side temporary buffer or through a bot-mediated collection round (mechanism open).
+5. Gather eligible @Eldgrim mentions for question selection, and any separately authorized **shared guild-channel and WoW guild-chat** observations for memory interpretation. Collection may use temporary server staging and/or a bot-mediated collection round (mechanism open). Do not collect private conversations or whispers as narrative inputs.
 6. During the daily session, use Ollama as needed to select at most one question per member, randomly or for narrative suitability, and optionally answer.
-7. Persist allowed outcomes and separately authorized memories; discard the temporary mention collection after processing and start a new collection. Never roll over unselected questions.
+7. Persist allowed outcomes and **selected interpreted memories only in the founder's PC-local database**; discard temporary mention and raw guild-message collections after processing, including server-side raw staging. Start a fresh collection period; never roll over unselected questions.
 8. Unload the model and close resources.
 9. Release the lock and exit with an accurate status code.
 
