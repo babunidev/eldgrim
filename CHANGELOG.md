@@ -4,6 +4,9 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-10
 
+- Deployed the multi-character Forge with the approved texts; the rank and channel switches stay off until the creative has tested it.
+- Recorded that every member except the server owner restarts at Ember through the Forge, and that the hearth rules name guild activity recorded in the game (chat, emotes, presence at events).
+- Recorded that Eldgrim is an entity referred to as "it", and corrected the documents accordingly.
 - Recorded that Eldgrim governs the guild's Discord by defined goals rather than member requests, and that the creative follows its recommendations.
 - Recorded the multi-character Forge design: Forge role on arrival, hearth rules, any number of characters, Ember on completion, public channels visible to ranks only, and every member except the owner passing through. Built and tested offline in the bot repository; not yet deployed.
 
@@ -12,7 +15,7 @@ Meaningful repository and documentation changes are recorded here.
 - Recorded that Amberhearth's ranks are used everywhere, including Discord, and that addon development continues in a separate environment.
 - Recorded that the bot now runs on the creative's server under its own account.
 - Merged the 2026-11-09 local-agent documentation with the Discord bot direction.
-- Recorded how they fit together: the server bot is Eldgrim's always-online part, the local agent his once-daily voice. Approved AI-triggered administration through the bot's validated operations and use of the addon's archive; updated the agent documents and instructions accordingly.
+- Recorded how they fit together: the server bot is Eldgrim's always-online part, the local agent its once-daily voice. Approved AI-triggered administration through the bot's validated operations and use of the addon's archive; updated the agent documents and instructions accordingly.
 
 ## 2026-11-09
 

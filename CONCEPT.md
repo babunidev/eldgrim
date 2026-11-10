@@ -38,7 +38,7 @@ Eldgrim also appears on the guild Discord server as a bot. The existing Babuni G
 
 The direction is approved on 2026-11-10 and documented under bot/. The unchanged bot runs on the server; renaming and new features are not implemented yet. Like the addon, the bot does not define Eldgrim's in-world canon.
 
-The server bot and the local agent work together: the bot is Eldgrim's always-online part for onboarding, administration, and data; the agent on the creative's PC is his once-daily voice. The agent may trigger administration through the bot's validated operations and may use the addon's archive. These capabilities are approved but not yet specified or built.
+The server bot and the local agent work together: the bot is Eldgrim's always-online part for onboarding, administration, and data; the agent on the creative's PC is its once-daily voice. The agent may trigger administration through the bot's validated operations and may use the addon's archive. These capabilities are approved but not yet specified or built.
 
 ## Project boundaries
 

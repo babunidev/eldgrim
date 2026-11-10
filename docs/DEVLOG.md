@@ -2,6 +2,14 @@
 
 A concise account of meaningful project development, written from the human creative's perspective.
 
+## 2026-11-10 — Approving the Forge and the rank reset
+
+Reviewing AI's drafts, I corrected three things: Eldgrim is an entity and must never be called "he"; the notice covers all guild activity recorded in the game, including emotes and presence at events; and the Forge must make clear that race and class are being asked. I also decided that everyone except me restarts at Ember, with Eldgrim deciding promotions afterwards.
+
+AI made the corrections and built the reset into the switch that holds back ranks. It removes ranks only from members who never completed the Forge, so a later promotion cannot be undone by accident, and records former ranks first. Deploying, AI found that its own copy step had left the files unreadable for the service account; the bot was offline for about seven minutes until AI fixed the permissions and wrote a safer update script.
+
+**Result:** Deployed with 64 passing tests and the new panel texts. The rank switch was previewed (73 of 74 members must complete the Forge) and stays off until I have tested the Forge.
+
 ## 2026-11-10 — Building the multi-character Forge
 
 With the bot renamed to Eldgrim and given its new image, I asked AI to build the multi-character onboarding. Every newcomer should see only the Forge, accept the hearth rules, name every character they bring, and become an Ember on completion. Existing members pass through it too; only I as server owner am exempt.
@@ -20,7 +28,7 @@ When publishing these notes, AI found the local-agent documentation from 2026-11
 
 ## 2026-11-10 — Bringing Eldgrim to Discord
 
-Eldgrim should be present where the guild gathers outside the game. Rather than starting a new bot, I decided to rename and expand the existing guild Discord bot, which already runs the Character Forge, and to move it to a server so it is always online. Its first new task is to ask newcomers which characters they play in the guild before opening the server to them. Eldgrim will speak only once a day, and only to those who call on him with @Eldgrim.
+Eldgrim should be present where the guild gathers outside the game. Rather than starting a new bot, I decided to rename and expand the existing guild Discord bot, which already runs the Character Forge, and to move it to a server so it is always online. Its first new task is to ask newcomers which characters they play in the guild before opening the server to them. Eldgrim will speak only once a day, and only to those who call on it with @Eldgrim.
 
 AI inspected the existing bot and the installed addon. The addon's saved archive held 79 guild messages from 8 characters but no character details, so profile enrichment does not yet work in-game. AI recorded the direction, data flow, and open questions under bot/, copied the existing bot's source into its own local git repository, backed up its configuration, state, and service file, and confirmed that the 51 existing unit tests pass on the copy.
 

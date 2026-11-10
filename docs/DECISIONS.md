@@ -68,7 +68,7 @@ A concise record of meaningful creative and structural decisions.
 
 ## 2026-11-10 — Server bot and local agent work together
 
-**Decision:** The server bot is Eldgrim's always-online part: onboarding, welcomes, administration, and data. The local agent on the creative's PC is his once-daily voice: it writes replies to @Eldgrim mentions with Ollama and posts them through the same Eldgrim Discord application.
+**Decision:** The server bot is Eldgrim's always-online part: onboarding, welcomes, administration, and data. The local agent on the creative's PC is its once-daily voice: it writes replies to @Eldgrim mentions with Ollama and posts them through the same Eldgrim Discord application.
 
 **Administration by the AI:** Approved. The model may trigger administration only through registered tools that call the server bot's validated operations, never with the token or direct Discord API access. The exact allowed operations and limits are still to be specified.
 
@@ -96,13 +96,29 @@ A concise record of meaningful creative and structural decisions.
 
 **Boundary:** This fixes the rank names only; duties, privileges, and progression remain undefined here.
 
-**Status:** Decided. The Discord rank roles already use these names; remaining bot texts still need updating.
+**Status:** Decided. The Discord rank roles and the bot's texts use these names.
 
 ## 2026-11-10 — Addon development moves elsewhere
 
 **Decision:** Further addon development happens in a separate development environment, not in this workspace.
 
 **Status:** Established.
+
+## 2026-11-10 — Eldgrim is an entity
+
+**Decision:** Eldgrim is an entity, not a man. Refer to Eldgrim as "it", never "he", in documents and in everything Eldgrim says on Discord.
+
+**Status:** Established.
+
+## 2026-11-10 — Everyone restarts at Ember through the Forge
+
+**Decision:** Every member except the server owner passes through the multi-character Forge and restarts at Ember on completion. Former ranks, including the Hearthwardens' Administrator permission, are removed until then; Eldgrim decides promotions afterwards.
+
+**Member notice:** The hearth rules tell members that Eldgrim remembers their registered characters, their conversations with Eldgrim, and guild activity recorded in the game, such as guild chat, emotes, and presence at events. This notice describes intended use; what the addon records is defined in addon/ and in the separate addon environment.
+
+**Rollout:** Step by step. The Forge is deployed first and tested by the creative; holding back ranks and hiding the public channels follow as separate, previewed switches.
+
+**Status:** Decided; the Forge texts are approved and deployed. The rank reset is built and previewed but not applied.
 
 ## Open decisions
 

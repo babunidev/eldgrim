@@ -4,9 +4,9 @@
 
 ## 1. Purpose
 
-Memory gives Eldgrim continuity between daily sessions. It should help him recognize returning people, recall earlier conversations, remember shared events, and avoid treating every interaction as if it were the first.
+Memory gives Eldgrim continuity between daily sessions. It should help Eldgrim recognize returning people, recall earlier conversations, remember shared events, and avoid treating every interaction as if it were the first.
 
-Memory is not a complete transcript of the Discord server. It is a small, private record of interactions that involve Eldgrim and information that is useful to his future interactions.
+Memory is not a complete transcript of the Discord server. It is a small, private record of interactions that involve Eldgrim and information that is useful to its future interactions.
 
 ## 2. Storage choice
 

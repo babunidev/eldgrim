@@ -1,6 +1,8 @@
 # Eldgrim Discord Bot
 
-**Status:** Direction approved by the creative on 2026-11-10. Specification developing. No Eldgrim-specific bot code, server deployment, or Discord change exists yet.
+**Status:** Direction approved by the creative on 2026-11-10. The bot runs on the server as Eldgrim, and the multi-character Forge is deployed with its switches off. Conversation and the database are not built.
+
+Eldgrim is an entity, not a man: refer to it as "it", never "he".
 
 A separate technical workstream for Eldgrim's presence on the guild Discord server. Like the addon, the bot is out-of-character software: what it does on Discord does not establish Eldgrim's in-world powers, history, or canon.
 
@@ -20,24 +22,26 @@ The existing Babuni Gaming Discord bot is the foundation. Verified on 2026-11-10
 
 **Administration.** Eldgrim keeps the existing capabilities, including rank management and channel creation.
 
-**Ranks.** Amberhearth's ranks are used everywhere, including Discord: Ember, Wayfarer, Kindler, Hearthkeeper, Hearthwarden. The Discord rank roles already carry these names (verified 2026-11-10). Some bot texts and notes still use the former names Wanderer, Adventurer, Pathfinder, Trailblazer, and Firekeeper.
+**Ranks.** Amberhearth's ranks are used everywhere, including Discord: Ember, Wayfarer, Kindler, Hearthkeeper, Hearthwarden. The Discord rank roles already carry these names (verified 2026-11-10), and the bot's code and texts use them since the multi-character Forge.
 
 **Server.** An Ubuntu 26.04 server with Python 3.14, which also hosts other services. Discord and the Python package index were reachable from it on 2026-11-10.
 
 **Character onboarding.** An extension of the Character Forge, using the same pattern of a gate channel and a gate role:
 1. Newcomers receive the Forge role on arrival and see only the Forge channel.
-2. They accept the hearth rules, which include Discord's Terms of Service and Community Guidelines and say what Eldgrim remembers.
+2. They accept the hearth rules, which include Discord's Terms of Service and Community Guidelines and say what Eldgrim remembers: registered characters, conversations with Eldgrim, and guild activity recorded in the game, such as guild chat, emotes, and presence at events.
 3. Eldgrim asks how many characters they bring. There is no fixed limit; the software accepts up to 50 to catch typing mistakes.
-4. For each character: name, faction, race, and class. Faction is asked because Skyborne exist on both sides.
+4. For each character: name, then faction, race, and class, each named plainly in the question. Faction is asked because Skyborne exist on both sides.
 5. On completion they receive the roles of all their characters and the rank **Ember**, and the Forge disappears.
 
 Everyone passes through the new Forge, including existing members; only the server owner is exempt. Ember is given on completion rather than on arrival, because Discord cannot hide channels that a role grants explicitly. The channels currently visible to everyone (all-chat, looking-for-group, wow-addons, morkahja, azeroth-moments) will be visible to the ranks only, so the Forge is all a newcomer sees.
 
-**Implementation status (2026-11-10):** built and tested offline (61 tests) in the bot repository, not yet deployed. Holding back Ember until completion and hiding the public channels are separate switches that stay off until approved. The member-facing texts in Eldgrim's voice await the creative's approval.
+**Rank reset.** Approved by the creative on 2026-11-10: every member except the server owner restarts at Ember. When the switch that holds back ranks is turned on, members who have not completed the Forge lose all five ranks, including Administrator held through Hearthwarden; members who already completed keep only Ember. Completing the Forge then grants Ember, and Eldgrim decides any promotion afterwards. Once a member has completed, a later change to their character roles never removes a rank. The bot records each member's former ranks before removing them.
+
+**Implementation status (2026-11-10):** deployed with 64 passing tests, and the Forge panel shows the approved texts. The creative tests the Forge first; holding back ranks and hiding the public channels are separate switches that stay off until then. A preview of the rank switch showed 73 of 74 members must complete the Forge and would lose their rank meanwhile: 21 Ember, 18 Wayfarer, 8 Kindler, 6 Hearthkeeper, and 3 Hearthwarden, the last including Administrator.
 
 **Server ownership.** As far as known, Discord does not allow transferring server ownership to a bot. The creative remains owner; Eldgrim holds Administrator.
 
-**Conversation.** Eldgrim speaks only once a day and reacts only to messages that mention @Eldgrim. He does not answer other messages or unaddressed questions. Onboarding, welcomes, administration, and data storage keep running at all times; the once-a-day rule applies to Eldgrim's replies.
+**Conversation.** Eldgrim speaks only once a day and reacts only to messages that mention @Eldgrim. It does not answer other messages or unaddressed questions. Onboarding, welcomes, administration, and data storage keep running at all times; the once-a-day rule applies to Eldgrim's replies.
 
 Messages that mention the bot are readable without Discord's privileged Message Content intent, so this design does not need that permission.
 
@@ -56,7 +60,7 @@ The addon itself stays a silent local recorder and never stores Discord identifi
 
 The agent/ documents (2026-11-09) describe a once-daily local agent on the creative's PC using Ollama. Both designs agree that Eldgrim answers once a day and only to @Eldgrim mentions. On 2026-11-10 the creative decided how they fit together:
 
-- **Split.** The server bot is Eldgrim's always-online part: onboarding, welcomes, administration, and data. The local agent on the PC is his once-daily voice: it writes replies with Ollama and posts them through the same Eldgrim Discord application. The server (2 CPU cores, 3.7 GB memory) is too small for local inference.
+- **Split.** The server bot is Eldgrim's always-online part: onboarding, welcomes, administration, and data. The local agent on the PC is its once-daily voice: it writes replies with Ollama and posts them through the same Eldgrim Discord application. The server (2 CPU cores, 3.7 GB memory) is too small for local inference.
 - **Administration by the AI.** Approved. The model may trigger administration, but only through registered tools that call the server bot's validated operations. It never receives the token or direct Discord API access.
 - **Addon data.** Approved. Eldgrim's database combines onboarding data with the addon's archive, and the AI may use it.
 
@@ -64,20 +68,19 @@ The agent/ documents (2026-11-09) describe a once-daily local agent on the creat
 
 ## Open decisions
 
-- Server details (operating system, access, Python version), and how the sync step transfers the addon file to it.
-- When Eldgrim's daily moment happens, and whether he answers all mentions gathered since the previous day or only some.
+- How the sync step transfers the addon file to the server.
+- When Eldgrim's daily moment happens, and whether it answers all mentions gathered since the previous day or only some.
 - The new profile image, with its source and usage rights recorded in assets/.
 - How the PC agent reaches the server bot's operations and the combined database (for example over SSH), and how replies follow character/VOICE.md and interaction/PRINCIPLES.md.
 - Eldgrim's goal and rule set, and which parts of it are public.
-- Whether existing members who hold a higher rank keep it after completing the Forge, or restart at Ember.
-- How newcomers currently receive Ember on arrival (invite or another mechanism), so it can be replaced by the Forge role.
-- Where the bot source code lives: in this repository, or in its own repository linked from here.
-- What members are told about the data Eldgrim stores, and how a member can change or remove it.
+- How newcomers currently receive Ember on arrival (Discord onboarding default roles or another bot). The rank switch removes it from incomplete members either way; turning off the source avoids the bot working against it.
+- How a member can see or remove the data Eldgrim stores about them.
+
 ## Planned order
 
 1. Put the existing bot under version control and back up its configuration and state. **Done 2026-11-10;** the 51 existing unit tests passed on the new copy.
 2. Deploy the bot on the server and stop the desktop service. **Done 2026-11-10;** connection to Discord confirmed through the bot's control socket.
-3. Rename the bot to Eldgrim and give it the new profile image. The application name and image are changed by the creative in the Discord Developer Portal.
-4. Specify and build multi-character onboarding.
+3. Rename the bot to Eldgrim and give it the new profile image. **Done 2026-11-10** by the creative in the Discord Developer Portal.
+4. Specify and build multi-character onboarding. **Deployed 2026-11-10;** the creative tests it before the rank and channel switches are turned on.
 5. Specify and build message reading and replies.
 6. Build the addon sync and Eldgrim's database.

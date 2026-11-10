@@ -51,7 +51,7 @@ The agent is a separate, developing software workstream. Read agent/README.md an
 
 ## Discord bot rules
 
-Read bot/README.md before changing the bot. The server bot is Eldgrim's always-online part (onboarding, administration, data); the local agent is his once-daily voice. Both use the same Discord application.
+Read bot/README.md before changing the bot. The server bot is Eldgrim's always-online part (onboarding, administration, data); the local agent is its once-daily voice. Eldgrim is an entity: refer to it as "it", never "he". Both use the same Discord application.
 
 - Only one bot instance may run with the bot token at a time. The desktop service stays disabled while the server service runs.
 - Keep the bot's source, Discord IDs, server address, credentials, and runtime data out of this public repository.
