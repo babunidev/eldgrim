@@ -43,7 +43,7 @@ Everyone passes through the new Forge, including existing members; only the serv
 
 **Server ownership.** As far as known, Discord does not allow transferring server ownership to a bot. The creative remains owner; Eldgrim holds Administrator.
 
-**Conversation.** Eldgrim speaks only once a day and reacts only to messages that mention @Eldgrim. It does not answer other messages or unaddressed questions. Onboarding, welcomes, administration, and data storage keep running at all times; the once-a-day rule applies to Eldgrim's replies.
+**Conversation (confirmed Q91–100).** The local AI runs one daily session when its host is available and may respond to multiple members. Members may mention @Eldgrim without limit; from the temporary collection Eldgrim may choose at most one question per member, randomly or for narrative suitability, and may remain silent. After the run, discard the collected messages; unselected questions do not form a backlog. The always-online bot continues onboarding, welcomes and authorized administration. This is approved **future behavior**, not an implemented AI reply/collection system.
 
 Messages that mention the bot are readable without Discord's privileged Message Content intent, so this design does not need that permission.
 
@@ -71,7 +71,7 @@ The agent/ documents (2026-11-09) describe a once-daily local agent on the creat
 ## Open decisions
 
 - How the sync step transfers the addon file to the server.
-- When Eldgrim's daily moment happens, and whether it answers all mentions gathered since the previous day or only some.
+- When Eldgrim's daily moment happens and whether the temporary mention collection is captured by the server bot or retrieved through the bot at the start of the AI session. The founder approved unlimited mentions, at most one selected question per member per run, and discarding the collection afterward (Q100).
 - The new profile image, with its source and usage rights recorded in assets/.
 - How the PC agent reaches the server bot's operations and the combined database (for example over SSH), and how replies follow character/VOICE.md and interaction/PRINCIPLES.md.
 - Eldgrim's goal and rule set, and which parts of it are public.
