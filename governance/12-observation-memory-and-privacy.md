@@ -1,6 +1,6 @@
 # Chapter 12 — Observation, memory, and privacy
 
-> **Status:** Founder-confirmed collection and confidentiality boundaries (Q64, Q82–87, Q124–130); exact retention and technical controls open  
+> **Status:** Founder-confirmed collection, retention and privacy boundaries (Q64, Q82–87, Q124–137, Q139–140); Q138 access authority and technical implementation open  
 > **Source:** Consolidated guild governance framework, 10 November 2026, v0.1. Working material, not a ratified constitution.
 
 Technical boundaries partly specified · Member policy incomplete
@@ -21,7 +21,7 @@ Those systems are intended to be connected later, but the full integration does 
 
 The original privacy principles require that Eldgrim's long-term member profiles contain interpreted information rather than conversation quotations, that internal scores and observations remain private, and that decisions not publicly expose the conversations behind them.
 
-Before broader collection or autonomous governance, the rules still need to define member notice, consent, channel scope, private-message exclusions, raw-log retention, access, deletion, correction, and handling of inaccurate AI inferences.
+Founder decisions now establish member notices, optional profiling, consent/processing boundaries, retention periods, backup handling, correction, departure and incident response. Detailed procedures, exact data-access authority (Q138) and technical implementation remain open.
 
 See [agent security](https://github.com/babunidev/eldgrim/blob/main/agent/SECURITY.md) and [memory design](https://github.com/babunidev/eldgrim/blob/main/agent/MEMORY.md).
 
@@ -37,12 +37,35 @@ See [agent security](https://github.com/babunidev/eldgrim/blob/main/agent/SECURI
 
 **Implementation boundary:** These are confirmed governance decisions, not proof of an implemented purge, consent, deletion, or integrated data system. No new access to unrelated Discord channels or private conversations is authorized.
 
+## Confirmed notice, consent and retention — questions 131–137
+
+- **Q131 — Notice:** Before onboarding, explain collected information, sources, purposes, storage, who may access it, retention and privacy rights. Disclose material changes before broader collection. The actual notice and its delivery/acknowledgement mechanism must be implemented and verified.
+- **Q132 — Optional profiling:** Members may opt out of optional narrative personalization/profiling without losing membership, rank or ordinary activities. Necessary registration, security and administrative data may still be processed for disclosed lawful purposes.
+- **Q133 — In-game collection:** Disclose observation scope and purposes to affected members and establish any legally required consent or other valid basis before importing guild-chat or activity data. Do not silently expand to whispers, private channels, unrelated players or other activity categories.
+- **Q134 — Raw chat:** Imported raw in-game messages exist only during an authorized analysis session, then are deleted once permitted interpreted information has been extracted. The local SavedVariables archive needs its **own** defined retention/deletion process before production integration. Do not build a permanent server-side raw transcript archive.
+- **Q135 — Interpreted memories:** Keep relevant, supported memories while membership remains active; review and correct or discard stale/unsupported impressions. Delete or anonymize eligible personal memories **within 30 days of departure**, unless a specific legitimate retention obligation applies.
+- **Q136 — Administrative audits:** Ordinary disciplinary and administrative audit records are retained **up to 180 days** and then deleted or anonymized. Longer retention for unresolved appeals, credible safety issues or legal obligations must document purpose and review date.
+- **Q137 — Backups:** Restrict access, encrypt where appropriate, keep routine backups **no more than 30 days**, and reapply recorded deletions to any restored backup before resuming service. Never retain backups indefinitely to preserve deleted data.
+
+## Confirmed rights and incident handling — questions 139–140
+
+- **Q139 — Data requests:** Provide a private channel with an authorized human reviewer. Verify the requester proportionately, respond within applicable legal deadlines, and provide access, correction, export or deletion where required. Protect other members' data. Confidential internal scores and inferred profiles do not become a routine member-facing ranking feature (Q64); legal access rights remain intact.
+- **Q140 — Incidents:** Contain unauthorized disclosure or access immediately; revoke compromised access, preserve necessary evidence, assess risks, notify affected people and authorities when required, document remediation, and suspend unsafe collection until safeguards are restored.
+
+## Pending revision — question 138
+
+The founder marked the proposed rule for **who may access private records** for revision. Do not treat the proposed custodian/processing-component access scheme as confirmed. Existing Q64 confidentiality, Q124–125 scope limits, Q131 notice and Q139 legal request safeguards remain confirmed. Access-authority specifics await the founder's replacement answer.
+
+**Implementation boundary:** These are approved working-governance decisions, not evidence that privacy notices, opt-outs, retention jobs, backup deletion, member request workflows or incident procedures are deployed or legally verified.
+
 ## Refinement queue
 
 - [x] Establish allowed Discord channel/DM scope and temporary mention collection (Q124–125, Q127).
-- [ ] Set exact retention periods, consent notice and processing scope for each data source.
+- [x] Establish notice, optional profiling, in-game processing scope and baseline retention periods (Q131–137).
+- [ ] Implement and verify actual notice, opt-out, consent/basis, per-source deletion and backup restoration safeguards.
 - [x] Establish private correction and departure/deletion rights (Q129–130).
-- [ ] Specify consent, data access/export, request workflow, reviewer roles and legal retention exceptions.
+- [x] Establish private data request rights and incident response duties (Q139–140).
+- [ ] Resolve Q138 access authority; specify operational request channel, reviewers and legally required exceptions.
 - [ ] Which database is authoritative, and how are the addon archives transferred?
 
 ---
