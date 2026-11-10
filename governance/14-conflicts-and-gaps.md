@@ -43,6 +43,12 @@ The founder has approved the **procedure** for ratifying a charter (Q161): expli
 
 **Remaining work:** Identify and ratify a specific charter version; reconcile repositories; build/test safeguards and permissions; implement reviewer, privacy and data-handling workflows; verify emergency stop and obtain deployment authorization.
 
+## Confirmed appeal and investigation safeguards — questions 171–180
+
+The founder confirmed confidential appeal access even after removal (Q171), **no absolute appeal expiry** despite ordinary audit-retention limits (Q172), **7-day acknowledgement / 14-day substantive decision targets** where operationally possible (Q173), reasonably reliable evidence proportionate to sanction severity (Q174), case-purpose minimization without narrative-memory ingestion or permanent chat archives (Q175), least-restrictive temporary protective measures without presuming guilt (Q176), impartial founder-conflict review with no direct access to the founder's local memory database (Q177), restoration/correction on successful appeal (Q178), protection for good-faith reporting and separate proof for fabrication/retaliation (Q179), and no punishment for unresolved guilt (Q180).
+
+**Resolved as working policy, not as infrastructure:** appeal rights, evidence standards, timing targets and review principles. **Still unresolved operationally:** the actual confidential intake route and post-ban fallback, reviewer appointment, case evidence handling, deadline tracking, record deletion and audit extension mechanisms. Q136's ordinary audit-retention limit is not overridden by the absence of an appeal deadline. No autonomous moderation or appeals workflow is claimed as live.
+
 ## Refinement queue
 
 - [ ] Which critical conflicts must be resolved before enabling autonomous moderation?
@@ -62,4 +68,4 @@ The founder has approved the **procedure** for ratifying a charter (Q161): expli
 
 **Further clarified by Q141–160:** Eldgrim's authorized Discord administration is intended to be autonomous through independently validated tools, while exceptional infrastructure actions require founder authorization. Untrusted messages cannot grant permissions; failures fail safely; actions require minimal audits, idempotency and verification. **Still open:** The existing bot's manual approval workflow versus future autonomy, exact tool schemas and protected boundaries, secure transfer and deletion, actual privacy request implementation, remaining governance questions and ROARguild charter reconciliation. Q151–160 also establish binding-charter and mandatory-law/platform precedence, founder-only documented amendments, impartial founder-conflict review, fair treatment of independent events, identity/memory corrections and referral of incompatible rules. No autonomous administration is claimed as implemented.
 
-See the [confirmed question register](QUESTION-DECISIONS.md) for Q1–170.
+See the [confirmed question register](QUESTION-DECISIONS.md) for Q1–180.
