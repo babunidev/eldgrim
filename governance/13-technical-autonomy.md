@@ -22,3 +22,8 @@ The existing server bot is running. The Forge onboarding is deployed and was tes
 ---
 
 [← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)
+
+
+## Confirmed off-cycle boundary — question 74
+
+The local AI agent is not continuously active. When it is offline, the server bot may apply **explicitly authorized, predefined emergency safeguards**, and designated human custodians may intervene. Complex, context-sensitive AI moderation decisions wait until the next local-agent session. Emergency actions require audit records and subsequent review. This is a **governance design decision**; it does not assert that these protections have been implemented or tested.
