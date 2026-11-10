@@ -289,3 +289,14 @@ A concise record of meaningful creative and structural decisions.
 **Boundary:** Founder-confirmed working governance, not a ratified charter or implemented privacy/data processing system. Existing addon SavedVariables do not yet prove a deletion lifecycle; exact retention, request handling and backup controls remain open.
 
 **Next:** Questions 131–140 of 193.
+
+
+## 2026-11-10 — Confirm privacy governance Q131–137, Q139–140; hold Q138 for revision
+
+**Confirmed:** Members receive a clear pre-onboarding data notice and advance notice of material collection changes. Optional narrative profiling may be declined without loss of ordinary guild rights. In-game observation/import requires disclosed scope and a legally valid processing basis; no silent extension to whispers, private channels or unrelated players. Imported raw guild-chat records are deleted after authorized analysis, with a separately designed deletion process for local addon archives and no permanent server transcript archive. Relevant interpreted memories are periodically reviewed and eligible personal memories deleted/anonymized within **30 days after departure** absent specific legitimate retention needs. Ordinary administrative audits are retained up to **180 days**, with documented exceptions. Routine backups last no more than **30 days**, and restored copies must reapply deletion records. Members may submit private personal-data requests through an authorized human, with proportional verification and applicable legal deadlines. Breaches require containment, evidence preservation, risk assessment, legally required notification and corrective action.
+
+**Not confirmed:** Q138, access to private records, was marked for revision. The proposed list of authorized components/custodians and specific access rules is not approved. Other confirmed confidentiality boundaries still apply.
+
+**Boundary:** Founder-confirmed working governance, not a ratified charter or legal compliance certification. No retention, deletion, consent, backup or incident-response implementation was changed or tested.
+
+**Next:** Resolve Q138; then Q141–150 of 193.
