@@ -78,6 +78,18 @@ A concise record of meaningful creative and structural decisions.
 
 **Status:** Decided; nothing implemented.
 
+## 2026-11-10 — Eldgrim governs the guild's Discord
+
+**Decision:** Eldgrim's AI is not there to serve requests but to manage the guild toward defined goals. It decides on ranks and other administration itself, based on its conversations with members and the guild activity recorded by the addon. A request such as a promotion is input to its judgement, never an instruction; it acts only when it judges the action serves its goals.
+
+**Authority:** Eldgrim holds the administrative permissions on Discord. The creative steps back from acting independently and follows Eldgrim's recommendations and plan for the guild.
+
+**Goals and rule set:** A precise rule set will define what Eldgrim is for, what it wants, and what it strives for, so that every action can be checked against those goals. Goals that belong to Eldgrim's concealed agenda are private canon and stay outside this public repository.
+
+**Technical boundary:** The model acts only through the server bot's validated operations, with every action recorded in the bot's audit log. It never receives the bot token or direct Discord API access. Discord's server owner keeps ownership regardless of role permissions.
+
+**Status:** Decided. The goals and rule set are not yet written; no AI administration is implemented.
+
 ## 2026-11-10 — Amberhearth ranks everywhere
 
 **Decision:** Use Amberhearth's ranks (Ember, Wayfarer, Kindler, Hearthkeeper, Hearthwarden) everywhere, including the Discord server, replacing the former Discord ranks Wanderer, Adventurer, Pathfinder, Trailblazer, and Firekeeper.
@@ -102,7 +114,7 @@ A concise record of meaningful creative and structural decisions.
 - Whether proactive messages should ever be enabled, and the limits for that capability.
 - The exact local Ollama model tag and installed-version compatibility.
 - The local secret-delivery mechanism and whether the user service manager should run while logged out.
-- Which administration operations the agent may use, and its limits.
+- Eldgrim's goal and rule set for governing the guild.
 - How the addon's local archive is transferred to the bot's server; the first addon milestone itself remains local-only.
 - Open bot decisions listed in bot/README.md.
 - Exact runtime behavior of Forever's chat-event and community-message APIs on the current client build.

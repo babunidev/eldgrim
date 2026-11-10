@@ -4,6 +4,8 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-10
 
+- Recorded that Eldgrim governs the guild's Discord by defined goals rather than member requests, and that the creative follows its recommendations.
+
 - Recorded the approved direction for Eldgrim's Discord presence: rename and expand the existing guild bot, move it to an always-online server, and add multi-character onboarding, once-daily replies to @Eldgrim mentions, and a member and character database.
 - Added bot/README.md with the approved direction, status, proposed data flow, open decisions, and planned order.
 - Recorded that Amberhearth's ranks are used everywhere, including Discord, and that addon development continues in a separate environment.

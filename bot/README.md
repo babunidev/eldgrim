@@ -53,7 +53,7 @@ The agent/ documents (2026-11-09) describe a once-daily local agent on the creat
 - **Administration by the AI.** Approved. The model may trigger administration, but only through registered tools that call the server bot's validated operations. It never receives the token or direct Discord API access.
 - **Addon data.** Approved. Eldgrim's database combines onboarding data with the addon's archive, and the AI may use it.
 
-**Proposed safeguards for AI administration (not yet decided):** an allowlist of operations the AI may use, with kicks, bans, and permission changes excluded at first; per-day limits; every action recorded in the bot's audit log; and Discord messages treated as untrusted input, since anyone can mention @Eldgrim.
+**Governance.** Eldgrim manages the guild toward defined goals rather than serving requests. Requests are input to its judgement, never instructions. It decides on ranks and administration from its conversation history and the addon's guild activity, and the creative follows its recommendations. A precise goal and rule set, still to be written, defines what it strives for; concealed goals stay out of this public repository. Every action goes through the bot's validated operations and audit log.
 
 ## Open decisions
 
@@ -61,7 +61,7 @@ The agent/ documents (2026-11-09) describe a once-daily local agent on the creat
 - When Eldgrim's daily moment happens, and whether he answers all mentions gathered since the previous day or only some.
 - The new profile image, with its source and usage rights recorded in assets/.
 - How the PC agent reaches the server bot's operations and the combined database (for example over SSH), and how replies follow character/VOICE.md and interaction/PRINCIPLES.md.
-- Which safeguards apply to AI administration.
+- Eldgrim's goal and rule set, and which parts of it are public.
 - Whether onboarding replaces or extends the current faction, race, and class roles, and which roles each declared character grants.
 - Where the bot source code lives: in this repository, or in its own repository linked from here.
 - What members are told about the data Eldgrim stores, and how a member can change or remove it.
