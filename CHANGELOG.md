@@ -4,6 +4,8 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-10
 
+- Confirmed Q171–180: confidential and post-ban appeal routes, no absolute appeal expiry, 7/14-day response targets, reliable evidence thresholds, purpose-limited incident audits, proportionate temporary protection, impartial founder-conflict review, remedies, good-faith reporting and unresolved-case safeguards. Updated governance and agent/bot documentation; no implementation or deployment.
+
 - Confirmed Q161–170: explicit charter ratification/versioning and member notice; distinct governing documents; no retroactive discipline; guild-limited jurisdiction; member proposals; founder-only amendments during absences; scoped human delegation; verified safeguards and founder authorization required before new autonomous administration. Documentation only.
 
 - Confirmed Q151–160: binding-charter and mandatory-law/platform precedence; explicit documented founder amendments; impartial founder-conflict appeals; equal standards, independent events, identity verification, memory correction and safe resolution of contradictory rules. Synchronized governance, agent memory and decision logs. Documentation only.
