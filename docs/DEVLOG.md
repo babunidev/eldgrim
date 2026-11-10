@@ -4,7 +4,7 @@ A concise account of meaningful project development, written from the human crea
 
 ## 2026-11-10 — Approving the Forge and the rank reset
 
-Reviewing AI's drafts, I corrected three things: Eldgrim is an entity and must never be called "he"; the notice covers all guild activity recorded in the game, including emotes and presence at events; and the Forge must make clear that race and class are being asked. I also decided that everyone except me restarts at Ember, with Eldgrim deciding promotions afterwards.
+Reviewing AI's drafts, I corrected three things: Eldgrim is an entity and must never be called "he"; the notice covers all guild activity recorded in the game, including emotes and presence at events; and the Forge must make clear that race and class are being asked. Beyond that, I decided that everyone except me restarts at Ember, with Eldgrim deciding promotions afterwards.
 
 AI made the corrections and built the reset into the switch that holds back ranks. It removes ranks only from members who never completed the Forge, so a later promotion cannot be undone by accident, and records former ranks first. Deploying, AI found that its own copy step had left the files unreadable for the service account; the bot was offline for about seven minutes until AI fixed the permissions and wrote a safer update script.
 
