@@ -161,3 +161,10 @@ The next ten decisions establish how Eldgrim may act without receiving unrestric
 The latest ten answers establish how Eldgrim handles rules that disagree, especially the separate guild charter, mandatory platform requirements and my own informal instructions. The written rules remain authoritative unless an explicit founder decision amends them. A complaint involving me needs an impartial human reviewer, without giving that reviewer direct access to the local memory database. Members may hold their own events; friendships and ranks cannot alter disciplinary fairness. Eldgrim must verify uncertain character identities and correct memories when better evidence appears. AI recorded the decisions across the governance register, chapters on authority, conflicts, hierarchy, documents, membership, Sunday gatherings, moderation, memory and contributor guidance.
 
 **Result:** Q151–160 documented as working governance. No charter ratification, reviewer system, identity matching or local memory correction feature was implemented or tested.
+
+
+## 2026-11-10 — Define the adoption and activation gate (Q161–170)
+
+The next ten answers distinguish the act of documenting rules from making them binding. A charter needs an identified approved version, effective date and member access; future amendments must be traceable and announced. No retroactive discipline or policing of unrelated private lives is allowed, and members remain free to suggest changes. Human duties can be delegated without turning recognition ranks into command positions or exposing the local memory database. Before Eldgrim can administer Discord autonomously, its tools, safeguards, appeals and emergency stop must be verified and deployment explicitly authorized. AI synchronized the question register, governance chapters, agent/bot guidance and development records.
+
+**Result:** Q161–170 recorded as working governance. No charter ratification, new deployment approval, autonomous administration, safeguard test or bot integration was performed.
