@@ -98,3 +98,10 @@ To protect the question-by-question rule review from conversation limits, the cr
 The creative clarified that Eldgrim's standing and member-personalization context are internal, not a high score, ranking or member-facing profile. AI recorded the confirmed revision in the question register and relevant governance chapters, distinguishing confidential creative context from appeals of consequential decisions and applicable data rights.
 
 **Result:** Documentation only. No bot, agent or addon implementation or tests.
+
+
+## 2026-11-10 — Preserve confirmed questions 81–90
+
+The creative approved ten more governance decisions concerning reinstatement, Forge requirements, member-owned character records, the initial rank migration and the once-daily local AI session. AI updated the numbered question register, relevant governance chapters and decision history, preserving the distinction between existing Forge features and intended future workflows.
+
+**Result:** Governance documentation committed to GitHub. No bot, agent or addon source was changed or tested.
