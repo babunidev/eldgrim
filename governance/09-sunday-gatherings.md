@@ -17,6 +17,10 @@ The weekly Sunday bonfires are a shared tradition of Amberhearth's Alliance role
 
 The proposed in-game addon may eventually help trusted witnesses record activity at separate fires. This remains a technical workstream, not a participation requirement or proof that recording is operational.
 
+## Member-organized activities — question 157
+
+Eldgrim's Sunday hearth tradition does **not** reserve the guild calendar. Members may organize or attend other gatherings, including overlapping events. Eldgrim may help avoid conflicts but cannot punish, reduce standing or withhold recognition solely because someone chose a different event or did not attend Sunday. This is **founder-confirmed working governance**, not a claim that scheduling integration is implemented.
+
 ## Refinement queue
 
 - [x] Define who chooses regions, announces gatherings and lights fires (Q111–113).
