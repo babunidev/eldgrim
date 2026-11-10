@@ -236,3 +236,14 @@ A concise record of meaningful creative and structural decisions.
 **Boundary:** Confirmed governance, not a claim that character-edit workflows, ownership verification, AI-directed rank changes or daily local AI have been implemented. Privacy retention and technical details remain open.
 
 **Next:** Question 91 of 193; ten questions per batch.
+
+
+## 2026-11-10 — Confirm daily interaction rules (Q91–99); hold Q100 for revision
+
+**Confirmed:** One daily local-AI session may answer multiple members. Each member has one eligible @Eldgrim question per UTC day (00:00 UTC reset); unprocessed questions do not consume the allowance. Eldgrim may decline or postpone responses without penalizing members, but must explain real administrative restrictions and privacy decisions. Related subquestions count as one submission; ordinary chat, onboarding, safety reports and appeals do not. Unprompted casual private conversation is disallowed, with necessary operational exceptions. One public proclamation is expected per successful session and does not consume individual allowances. Routine governance permits one logged decision per category per session, with urgent safety exceptions.
+
+**Not confirmed:** The founder marked **Q100 (offline mentions/questions)** for revision. Do not treat the original proposed queue-and-skip behavior as approved.
+
+**Boundary:** Governance documentation only; no runtime quota or AI functionality was implemented or tested.
+
+**Next:** Clarify Q100; then proceed with Q101–110.
