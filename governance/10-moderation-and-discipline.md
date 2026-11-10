@@ -49,3 +49,12 @@ Randomness can serve roleplay or harmless tie-breaking. It should not determine 
 - **Q63 — Established:** Standing alone cannot justify sanctions; a specific existing rule violation must be established independently.
 - **Q65 — Established severity classes:** **Minor**: isolated discourtesy or disruption. **Moderate**: repeated disrespect or continued disruption after a warning. **Serious**: targeted harassment, discrimination, threats, scams or abuse of entrusted duties. **Critical**: credible immediate safety threats, doxxing or severe targeted abuse. Classification considers intent, context, reliable evidence and actual harm. These classes do not yet set automatic penalties.
 - **Q64 — Confirmed:** Internal standing and personalization data are not disclosed through member-facing features, and there is no standing-score appeal process. **Consequential administrative actions remain explainable and appealable** under Q20, Q42 and Q49, without exposing private scores or personal profiles. Lawful privacy rights remain applicable.
+
+
+## Confirmed disciplinary procedures — questions 66–68
+
+- **Q66 — Graduated response:** Minor: reminder or warning. Moderate: formal warning or short timeout. Serious: longer timeout, demotion or removal when justified. Critical: immediate protective suspension, with permanent removal possible. Context and proportionality matter; severity does not automatically dictate a fixed sanction.
+- **Q67 — Timeout durations:** **Short: 1 hour. Medium: 24 hours. Long: 7 days.** Permanent exclusion is a **ban**, not an indefinite timeout. A lesser response may be chosen when appropriate.
+- **Q68 — Fair hearing:** Eldgrim seeks accounts from those involved and examines evidence before consequential decisions whenever reasonably possible, preferably privately. For a credible immediate safety threat, it may impose a temporary protective measure first, then review the case. Random chance never determines guilt or punishment.
+
+**Still open:** exact evidence thresholds, conflicting testimony, unverified allegations, warning prerequisites, appeals reviewer, reinstatement rules and urgent-review timing. These decisions describe approved governance, not a live automated enforcement implementation.
