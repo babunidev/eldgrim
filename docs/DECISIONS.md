@@ -130,6 +130,14 @@ A concise record of meaningful creative and structural decisions.
 
 **Status:** Documentation structure established; substantive policy gaps remain open.
 
+## 2026-11-10 — One daily proclamation comes before replies
+
+**Decision:** Eldgrim speaks to the guild once a day before it answers mentions. The proclamation may be a story, a recognition, a quest, an invitation, an observation, or one step in a longer tale. People may write to Eldgrim so it can learn from them; reading those messages is a later step, not part of the first proclamation.
+
+**How it reads:** The words are written on the creative's computer. Each run reads the current character voice, the established public identity, and the proclamation rules. Unfinished governance chapters are not rules. The server bot only posts the finished text. A day when the computer is off is skipped.
+
+**Status:** Specified in agent/ANNOUNCEMENT.md. Not implemented. The channel and the hour are not chosen.
+
 ## Open decisions
 
 - Further details of Eldgrim's public identity and history.

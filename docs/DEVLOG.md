@@ -2,6 +2,12 @@
 
 A concise account of meaningful project development, written from the human creative's perspective.
 
+## 2026-11-10 — A daily word from Eldgrim
+
+Replies to mentions can wait. What I want first is Eldgrim speaking to the guild once a day, a story or a small announcement, in its own voice. The governance chapters are still being written, so the first version reads only the pages that are already solid, and it reads them again each day so a later edit is picked up. The writing happens on my computer, because that is where the model runs. The bot on the server only posts the finished words.
+
+**Result:** Specified, not scheduled, and not posting. The announcements channel is already visible to the ranks and hidden from members who have not finished the Forge.
+
 ## 2026-11-10 — Preparing Eldgrim's governance chapters
 
 To work through Eldgrim's constitution chapter by chapter, I asked AI to put the consolidated guild rules and governance framework into the Eldgrim repository as separate Markdown documents. AI organized the sixteen chapters into governance/, added individual refinement queues, linked the rulebook from project documentation, and kept private character canon out of the public files. It also aligned the Forge status with the confirmed live deployment instead of preserving the earlier offline-only description.

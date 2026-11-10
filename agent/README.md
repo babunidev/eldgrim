@@ -33,6 +33,7 @@ If there is no eligible work and no due task, the service can finish without loa
 - [SECURITY.md](SECURITY.md) — credentials, Discord permissions, tool boundaries, and prompt-injection handling.
 - [MEMORY.md](MEMORY.md) — private SQLite data model, retrieval, provenance, and retention questions.
 - [OPERATIONS.md](OPERATIONS.md) — intended Nobara/Linux scheduling, model lifecycle, logs, and deployment considerations.
+- [ANNOUNCEMENT.md](ANNOUNCEMENT.md) — the first daily proclamation: what it reads, what it may say, and what it does not do yet.
 
 ## Initial scope
 
@@ -56,7 +57,7 @@ Proactive messages that are not replies to a mention are disabled by default. En
 - Private runtime data, actual Discord messages, database files, credentials, and private prompts do not belong in this public repository.
 - The model cannot execute arbitrary shell commands, arbitrary Python, or unrestricted file operations. Discord administration is approved for a later milestone (2026-11-10), only through the server bot's validated operations.
 
-**Role since 2026-11-10:** The agent is Eldgrim's once-daily voice. It runs on the creative's PC, writes the replies to @Eldgrim mentions, and posts them through the same Eldgrim Discord application as the always-online server bot. See bot/README.md.
+**Role since 2026-11-10:** The agent is Eldgrim's once-daily voice. It runs on the creative's PC and posts through the same Eldgrim Discord application as the always-online server bot. The first use, chosen on 2026-11-10, is one daily proclamation to the guild, specified in [ANNOUNCEMENT.md](ANNOUNCEMENT.md). Replies to @Eldgrim mentions come after that. See bot/README.md.
 - The initial design does not maintain a Discord Gateway connection or request Message Content Intent.
 
 ## Current reality
