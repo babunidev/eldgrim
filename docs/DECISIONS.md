@@ -214,3 +214,14 @@ A concise record of meaningful creative and structural decisions.
 **Boundary:** These are working governance decisions, not implemented AI moderation. Formal appeal procedures and evidentiary thresholds remain open.
 
 **Next:** Question 78 of 193.
+
+
+## 2026-11-10 — Confirm disciplinary appeals and correction (Q78–80)
+
+**Confirmed:** Members may privately appeal consequential disciplinary decisions, even after leaving the server, with the rule-based reason, an opportunity to present evidence and protection from retaliation. Eldgrim may reconsider first; members may escalate to the founder, or a designated impartial human reviewer when the founder is involved. Incorrect sanctions must be reversed or reduced, lost privileges restored when possible, records corrected and the member informed, without exposing internal standing scores or private profiles.
+
+**Boundary:** The appeal channel, deadlines and technical procedures are not yet defined. These are approved working governance rules, not live AI enforcement.
+
+**Interview procedure:** Subsequent questions are presented **10 at a time**, as requested by the founder.
+
+**Next:** Question 81 of 193.
