@@ -1,6 +1,6 @@
-# Confirmed governance questions 1–100
+# Confirmed governance questions 1–110
 
-**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Confirmed:** Q1–100. **Next:** Q101–110 of 193. **Interview batch size:** 10 questions. **Interview batch size:** 10 questions.
+**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Confirmed:** Q1–110. **Next:** Q111–120 of 193. **Interview batch size:** 10 questions.
 
 This register preserves decisions made in a sequential governance interview, including corrections to earlier proposals. It is **not** the separate, ratified ROARguild charter and makes no claims that AI governance is implemented. The linked governance chapters provide operational detail. Private character canon, secret identity, motives and magical mechanics are intentionally omitted because this repository is public; preserve them only in appropriately restricted storage.
 
@@ -92,6 +92,19 @@ This register preserves decisions made in a sequential governance interview, inc
 
 - **Q100 — Temporary mention collection, not a queue:** Members may mention Eldgrim **as often as they wish**. All eligible mentions since the previous daily AI run are collected temporarily, either by the server bot as they arrive or by the local AI querying the bot during its daily collection round; the capture mechanism is **not yet chosen**. For each member, Eldgrim may choose **one** question from that collection to consider answering, **at random or according to what best fits the member's character story**. It is free not to answer (Q93). After the processing run, **discard the temporary collected messages and begin a fresh collection**. Unselected questions are **not queued, rolled over, or automatically answered later**. This supersedes Q92's one-submission-per-UTC-day/00:00-reset interpretation and clarifies Q95's submission wording. Temporary collection is distinct from any separately authorized long-term memory; precise implementation, data safeguards and failure handling remain open. This is a confirmed design, **not an implemented collection system**.
 
+## Confirmed answers — questions 101–110
+
+- **Q101 — Quest purpose:** Eldgrim's quests encourage exploration, discovery, companionship, creativity and character stories, especially roads, hearths, torches and fires. They never impose farming, wealth or progression obligations.
+- **Q102 — Assignment cadence:** Normally one quest-assignment decision per daily AI session, possibly for one member, several members or the fellowship; existing quests may continue across days.
+- **Q103 — Quest consent:** Members explicitly accept quests and may decline or abandon them without disciplinary consequences, standing losses or pressure to justify themselves.
+- **Q104 — Character suitability:** Tailor quests to known interests, story, capability, location and level when relevant. No unsafe journeys, inaccessible areas, unwanted roleplay or unreasonable demands; creative alternatives where appropriate.
+- **Q105 — Completion evidence:** Normally require a screenshot of the objective plus confirmation from a named witness. Eldgrim reviews evidence; screenshots are not automatically sufficient.
+- **Q106 — Witness eligibility:** A different registered member who actually observed the action or a specifically authorized verifier may confirm. Rank alone confers no verification authority; self-witnessing alone is insufficient.
+- **Q107 — Confirmation:** A named witness confirms using a designated Discord reaction or verification command associated with the evidence; the bot is intended to record it for Eldgrim's later evaluation. Witnesses must not falsely attest to observation.
+- **Q108 — Unclear or missing proof:** Leave the quest unverified pending clarification or an equivalent authorized verification method. Missing witnesses and unclear screenshots are not misconduct; dishonest evidence is evaluated under conduct rules.
+- **Q109 — Quest deadlines:** Narrative deadlines and closure are permitted; unfinished quests never reduce standing, rank or ordinary privileges. No penalty for abandonment.
+- **Q110 — Reward freedom with safeguards:** Eldgrim may combine titles, recognition, stories, opportunities, rank consideration and available guild-bank items. No guaranteed rewards. Valuable resources and administrative permissions remain subject to separate authorization and stewardship rules.
+
 ## Superseded or clarified decisions
 
 - **Q34–35:** An initial proposal requiring founder approval for Discord channel management was superseded by explicit confirmation that Eldgrim, as administrator, may handle channels, roles and permissions. This remains subject to valid authorization, safeguards, auditing and implementation.
@@ -102,4 +115,4 @@ This register preserves decisions made in a sequential governance interview, inc
 
 ## Unresolved matters
 
-**Q1–100 are confirmed.** **Q101–193** remain unanswered. Detailed evidence thresholds, practical appeal channels and timing, privacy and retention, bank controls, tool restrictions, implementation and ROARguild-charter reconciliation remain unresolved.
+**Q1–110 are confirmed.** **Q111–193** remain unanswered. Detailed evidence thresholds, practical appeal channels and timing, privacy and retention, bank controls, tool restrictions, implementation and ROARguild-charter reconciliation remain unresolved.
