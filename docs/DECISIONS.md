@@ -278,3 +278,14 @@ A concise record of meaningful creative and structural decisions.
 **Boundary:** Founder-confirmed working governance, not the ratified ROARguild charter. No AI event scheduling, addon bank snapshot, automated confirmation or allocation workflow was implemented or tested.
 
 **Next:** Questions 121–130 of 193.
+
+
+## 2026-11-10 — Confirm bank reservations and privacy boundaries (Q121–130)
+
+**Bank:** Eldgrim may designate documented reserves visible to custodians and must not double-allocate items. Unusually valuable, scarce or restricted items require an authorized human custodian to verify availability and legitimacy before transfer; that is not an unlimited veto on routine creativity. Members may dispute allocations without standing penalties; explain criteria without exposing private profiles, allow human review, and correct proven errors.
+
+**Observation:** Eldgrim's Discord observation is confined to designated guild channels, intentionally addressed messages and necessary administrative/onboarding interactions. The bot's predefined moderation scope does not create unrestricted personal memory access. Private member conversations outside the bot's legitimate participation are off limits; DMs to the bot are purpose-limited. Raw addon guild chat may inform authorized analysis but long-term memories favor interpreted information; a deletion procedure is required before production integration. Temporary @Eldgrim mentions are purged after the processing run, including unselected questions, with only non-content audit metadata where justified. Personal impressions must be relevant, reasonably supported, non-sensitive and confidential. Members can request correction and, upon leaving, eligible deletion through private channels; justified retention requires a policy still to be written.
+
+**Boundary:** Founder-confirmed working governance, not a ratified charter or implemented privacy/data processing system. Existing addon SavedVariables do not yet prove a deletion lifecycle; exact retention, request handling and backup controls remain open.
+
+**Next:** Questions 131–140 of 193.
