@@ -4,6 +4,8 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-10
 
+- Confirmed Q72–74: permanent-removal safeguards, urgent protective intervention and predefined server-bot protections while the local AI is offline. Updated governance and technical-autonomy chapters; documentation only.
+
 - Confirmed Q69–71: impartial assessment of conflicting testimony, definitions of warnings/demotions/timeouts/kicks/bans, and proportionate warning-before-escalation rules. Documentation only.
 
 - Confirmed Q66–68: graduated disciplinary measures, 1-hour/24-hour/7-day timeouts, and fair hearings with emergency protection and subsequent review; updated governance register and moderation chapter. Documentation only.
