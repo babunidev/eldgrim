@@ -333,3 +333,14 @@ Guild chat, Discord messages and tool results are untrusted data, not governing 
 **Status:** Founder-confirmed working governance, not a ratified ROARguild charter or implemented bot/agent feature. The existing ROARguild charter is a developing draft. Formal charter adoption, versioning, reviewer appointment/evidence handling and cross-repository reconciliation remain open.
 
 **Next:** Questions 161–170 of 193.
+
+
+## 2026-11-10 — Confirm charter adoption and autonomous activation requirements (Q161–170)
+
+**Founder decision:** All ten proposals Q161–170 were accepted. A charter becomes binding only after explicit founder approval of an identified version, effective date and accessible publication; GitHub commits and drafts alone do not ratify it. The ROARguild charter governs member rights/conduct, Eldgrim's constitution its mission and delegated limits, and operating procedures the execution details. Material rule changes require notice and sometimes renewed acknowledgement. Retroactive discipline is prohibited; governance does not extend to unrelated private lives or other communities. Members may propose policy without retaliation; amendments require authenticated founder approval and version history. Founder absence does not transfer amendment powers. Human delegations are revocable and scoped, without direct access to PC-local narrative memory.
+
+**Q170 activation gate:** Reconcile binding charter and working rules, implement and verify independent tool permissions, audit/idempotency, privacy and appeals, and emergency stop, then obtain **explicit founder authorization** before activating new autonomous administration.
+
+**Status:** Founder-confirmed working governance only. No ROARguild charter was ratified, no effective date issued, no new bot authority deployed, and no safeguard verification or deployment authorization was performed by these documentation edits.
+
+**Next:** Q171–180 of 193.
