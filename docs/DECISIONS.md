@@ -225,3 +225,14 @@ A concise record of meaningful creative and structural decisions.
 **Interview procedure:** Subsequent questions are presented **10 at a time**, as requested by the founder.
 
 **Next:** Question 81 of 193.
+
+
+## 2026-11-10 — Confirm return, Forge membership and daily AI cadence (Q81–90)
+
+**Confirmed:** A banned member may return only after a successful appeal or documented founder/impartial-reviewer decision establishing that the original risk is addressed. Newcomers must be 18+, accept conduct and Discord rules, and acknowledge disclosed data practices. The Forge requires a Discord account and at least one character's name, faction, race and class, not real-world identity or biography. Character count has no guild limit; the 50-entry Forge guard is technical. Ownership is self-declared unless verification is needed; no account credentials may be demanded. Members may edit/retire characters; a character's departure does not end the player's membership or shared standing. The initial Ember reset stands, but later registration must not erase earned rank. Refusing Forge incurs no penalty.
+
+**Daily cadence:** The local AI agent is designed for one scheduled session per day when its host is online, while the server bot continues onboarding, authorized predefined administration and emergency safeguards.
+
+**Boundary:** Confirmed governance, not a claim that character-edit workflows, ownership verification, AI-directed rank changes or daily local AI have been implemented. Privacy retention and technical details remain open.
+
+**Next:** Question 91 of 193; ten questions per batch.
