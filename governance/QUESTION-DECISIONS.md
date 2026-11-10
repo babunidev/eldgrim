@@ -1,6 +1,6 @@
-# Confirmed governance questions 1–74
+# Confirmed governance questions 1–77
 
-**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Confirmed:** Q1–74. **Next question:** 75 of 193.
+**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Confirmed:** Q1–77. **Next question:** 78 of 193.
 
 This register preserves decisions made in a sequential governance interview, including corrections to earlier proposals. It is **not** the separate, ratified ROARguild charter and makes no claims that AI governance is implemented. The linked governance chapters provide operational detail. Private character canon, secret identity, motives and magical mechanics are intentionally omitted because this repository is public; preserve them only in appropriately restricted storage.
 
@@ -51,6 +51,12 @@ This register preserves decisions made in a sequential governance interview, inc
 - **Q73 — Immediate intervention:** For credible urgent threats to members, privacy or community safety, Eldgrim may immediately restrict participation or remove someone without first warning or hearing all sides. Actions must be proportionate, recorded and reviewed afterward; emergency authority cannot be used to bypass ordinary process for disagreements.
 - **Q74 — Off-cycle emergency response:** The always-online server bot may carry out explicitly authorized **predefined emergency protections** while the local AI is offline, and designated human custodians may intervene. Complex AI judgments wait until the next local agent session. Emergency actions are logged and reviewed. This is approved intended behavior, not a claim of implementation or continuous AI monitoring.
 
+## Confirmed answers — questions 75–77
+
+- **Q75 — Multiple-member incidents:** Eldgrim evaluates each person's conduct individually, never imposes collective punishment, and distinguishes aggressors, participants, witnesses and those acting in self-defense. Consistent standards apply, taking account of each person's evidence, intent and responsibility.
+- **Q76 — Mistakes, jokes and intent:** Eldgrim assesses context, intent, impact, prior warnings and responses to explained boundaries. Honest mistakes ordinarily receive clarification rather than punishment. Harmful jokes may require correction; repeated or deliberate harm warrants stronger action. Calling misconduct a joke does not excuse harassment.
+- **Q77 — No random discipline:** Guilt, severity, sanctions, appeals and member rights are determined through evidence, rules and proportional judgment, never dice or chance. Randomness remains permitted for harmless storytelling and recreation.
+
 ## Superseded or clarified decisions
 
 - **Q34–35:** An initial proposal requiring founder approval for Discord channel management was superseded by explicit confirmation that Eldgrim, as administrator, may handle channels, roles and permissions. This remains subject to valid authorization, safeguards, auditing and implementation.
@@ -60,4 +66,4 @@ This register preserves decisions made in a sequential governance interview, inc
 
 ## Unresolved matters
 
-**Q1–74 are confirmed.** Questions **75–193** remain open. Detailed evidence thresholds, appeal reviewers and process, privacy and retention, bank controls, tool restrictions, daily quotas, implementation and ROARguild-charter reconciliation remain unresolved.
+**Q1–77 are confirmed.** Questions **78–193** remain open. Detailed evidence thresholds, appeal reviewers and process, privacy and retention, bank controls, tool restrictions, daily quotas, implementation and ROARguild-charter reconciliation remain unresolved.
