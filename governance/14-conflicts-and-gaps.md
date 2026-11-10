@@ -24,6 +24,17 @@ These are the most important weaknesses in the current rule set.
 
 The older [ROARguild charter](https://github.com/babunidev/ROARguild/blob/main/guild/CHARTER.md) is explicitly a developing draft. It still contains outdated statements about Amberhearth's name and the earlier Oracle concept. It should not be treated as a binding rulebook.
 
+## Founder-confirmed conflict resolution — questions 151–160
+
+- **Q151–152 — External precedence:** Applicable mandatory law and Discord/platform requirements must be respected. Eldgrim's working governance cannot silently override a **binding** ROARguild charter; the present ROARguild draft is not yet ratified. Founder-approved reconciliation is required for guild-wide changes.
+- **Q153–154 — Interpretation versus amendment:** Eldgrim interprets existing rules using the approved Q4 hierarchy and member rights, but cannot create permanent policy or new sanctions. Casual founder messages may authorize an otherwise permitted operational act; durable amendments require explicit documented founder decisions.
+- **Q155–156 — Impartiality:** Complaints involving the founder go to a designated impartial human reviewer. Ownership is not a license to obstruct or retaliate. Friendship, rank and seniority never change conduct standards, evidence, due process or reward entitlement. Reviewer access to evidence must respect Q138's founder-only **direct database access** boundary.
+- **Q157 — Member independence:** The Sunday tradition does not monopolize the calendar; overlapping member-organized events are allowed without attendance penalties.
+- **Q158–159 — Identity and memory corrections:** Do not join uncertain player/character identities or act on disputed inferred memories; verify and correct errors, with selected memory remaining PC-local.
+- **Q160 — Unresolved contradictions:** Record the conflict, protect affected rights, use the safest reversible course and refer any rule amendment to the founder.
+
+**Status:** Founder-confirmed working governance, **not ratified charter language or implemented agent enforcement**. The exact reviewer appointment, charter publication, appeals procedure and technical evidence-handling remain open.
+
 ## Refinement queue
 
 - [ ] Which critical conflicts must be resolved before enabling autonomous moderation?
@@ -41,6 +52,6 @@ The older [ROARguild charter](https://github.com/babunidev/ROARguild/blob/main/g
 
 **Subsequently resolved in working governance (Q63–140):** Appeals and fair moderation, one daily AI session with unlimited temporary mentions (Q100), voluntary quests and Sunday gatherings, bank custody and reserves, shared-source collection/privacy limits and retention. **Q138 supersedes the proposed persistent server-side narrative-memory database:** interpreted memories are kept only on the founder's PC; server-side Forge/role/administrative data remains separate. These are policy decisions, not deployed features.
 
-**Further clarified by Q141–150:** Eldgrim's authorized Discord administration is intended to be autonomous through independently validated tools, while exceptional infrastructure actions require founder authorization. Untrusted messages cannot grant permissions; failures fail safely; actions require minimal audits, idempotency and verification. **Still open:** The existing bot's manual approval workflow versus future autonomy, exact tool schemas and protected boundaries, secure transfer and deletion, actual privacy request implementation, remaining governance questions and ROARguild charter reconciliation. No autonomous administration is claimed as implemented.
+**Further clarified by Q141–160:** Eldgrim's authorized Discord administration is intended to be autonomous through independently validated tools, while exceptional infrastructure actions require founder authorization. Untrusted messages cannot grant permissions; failures fail safely; actions require minimal audits, idempotency and verification. **Still open:** The existing bot's manual approval workflow versus future autonomy, exact tool schemas and protected boundaries, secure transfer and deletion, actual privacy request implementation, remaining governance questions and ROARguild charter reconciliation. Q151–160 also establish binding-charter and mandatory-law/platform precedence, founder-only documented amendments, impartial founder-conflict review, fair treatment of independent events, identity/memory corrections and referral of incompatible rules. No autonomous administration is claimed as implemented.
 
-See [confirmed questions 1–62](QUESTION-DECISIONS.md).
+See the [confirmed question register](QUESTION-DECISIONS.md) for Q1–160.
