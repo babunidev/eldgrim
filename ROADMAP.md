@@ -55,6 +55,7 @@ This roadmap records areas of development, not promises or fixed deadlines.
 - [x] Specify and build multi-character onboarding, and deploy it.
 - [x] Approve the Forge texts.
 - [x] Hide the public channels behind the ranks and restart every member except the server owner at Ember.
+- [x] Accept one character name or two, and call unregistered members in the Forge and by direct message.
 - [ ] Specify, build, and test once-a-day replies to @Eldgrim mentions.
 - [ ] Transfer addon data to the server and build Eldgrim's database.
 
