@@ -258,3 +258,12 @@ A concise record of meaningful creative and structural decisions.
 **Boundary:** Approved design only; no message collector, storage lifecycle, AI selection or privacy handling was implemented or tested.
 
 **Next:** Questions 101–110 of 193.
+
+
+## 2026-11-10 — Confirm quest design, verification and rewards (Q101–110)
+
+**Confirmed:** Eldgrim's voluntary quests encourage exploration, companionship, discovery and storytelling, especially around roads and fires; they must not become farming or progression demands. Normally one assignment decision per AI session may involve multiple members. Quests require consent, character-appropriate challenges and no penalties for declining or abandoning them. Completion normally requires a screenshot and an eligible witness, confirmed by a designated Discord interaction and reviewed by Eldgrim; rank alone does not make someone a verifier. Missing or disputed evidence remains unverified pending clarification or an authorized alternative, without treating an honest mistake as misconduct. Narrative deadlines are optional and nonpunitive. Eldgrim may combine creative rewards, but valuable resources and administrative permissions require separate safeguards.
+
+**Boundary:** Founder-confirmed working governance only; no quest-verification workflow or AI agent was implemented or tested. The rulebook is not the ratified ROARguild charter.
+
+**Next:** Questions 111–120 of 193.
