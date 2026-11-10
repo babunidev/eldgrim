@@ -205,3 +205,12 @@ A concise record of meaningful creative and structural decisions.
 **Boundary:** These are approved governance decisions only. They do not demonstrate that bot emergency protections or AI moderation are implemented. Exact appeals and operational safeguards remain open.
 
 **Next:** Question 75 of 193.
+
+
+## 2026-11-10 — Confirm individual responsibility, intent and no random discipline (Q75–77)
+
+**Confirmed:** The founder approved individual evaluation in multi-member incidents, with no collective punishment and clear distinctions between aggressors, participants, witnesses and defenders. Eldgrim must distinguish honest mistakes, jokes and deliberate harm using context, intent, impact and responses to correction; a joke label does not excuse harassment. Chance must never determine guilt, sanctions, appeals or member rights, though it may be used for harmless storytelling.
+
+**Boundary:** These are working governance decisions, not implemented AI moderation. Formal appeal procedures and evidentiary thresholds remain open.
+
+**Next:** Question 78 of 193.
