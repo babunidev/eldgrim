@@ -85,3 +85,12 @@ Randomness can serve roleplay or harmless tie-breaking. It should not determine 
 - **Q77 — Randomness prohibited in discipline:** Chance may be used in storytelling and harmless recreation but never to determine guilt, severity, punishment, appeals or member rights. Decisions must follow evidence, established rules and proportionality.
 
 **Still open:** precise evidence thresholds, appeal reviewer and process, reinstatement and retention. These are approved rules, not evidence of live AI moderation.
+
+
+## Confirmed appeals and corrections — questions 78–80
+
+- **Q78 — Appeals:** Members may privately challenge any consequential disciplinary action, including warnings, demotions, timeouts, kicks and bans, even after leaving the server. They receive the rule-based reason and can provide evidence without retaliation. Do not disclose Eldgrim's internal standing or inferred personalization profile.
+- **Q79 — Reviewer:** Eldgrim may reconsider its decision first. Members may seek review by the founder, whose appeal decision Eldgrim cannot override. If the founder was personally involved in the underlying dispute, a designated impartial human reviewer handles the appeal.
+- **Q80 — Remedy:** Promptly reverse or reduce incorrect sanctions, restore roles/privileges where technically feasible, correct records, and explain the correction to the affected member. Retain a private audit trail of the mistake; do not publish sensitive case details.
+
+**Open operational details:** appeal submission channel, review deadlines, reviewer designation, evidence thresholds and retention. No AI moderation implementation is claimed.
