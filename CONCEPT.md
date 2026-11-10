@@ -30,7 +30,7 @@ The design avoids a permanently connected Discord Gateway session and does not r
 
 This is an out-of-character software design, not an established in-world power or proof of autonomous behavior. No agent implementation, Discord integration, runtime database, scheduled service, or deployment exists yet. The agent must not expose private character information or concealed motives to players.
 
-The agent and addon are independent. The agent does not read the addon's SavedVariables or change the addon's approved passive-recorder scope.
+The agent never changes the addon's approved passive-recorder scope. Reading the addon's archive is approved for a later milestone (2026-11-10).
 
 ## Technical companion: Discord bot
 
@@ -38,7 +38,7 @@ Eldgrim also appears on the guild Discord server as a bot. The existing Babuni G
 
 The direction is approved on 2026-11-10 and documented under bot/. The unchanged bot runs on the server; renaming and new features are not implemented yet. Like the addon, the bot does not define Eldgrim's in-world canon.
 
-Parts of this direction differ from the earlier local-agent design: where the bot runs, whether Eldgrim performs administration, and whether addon data is used. These points are open decisions listed in bot/README.md.
+The server bot and the local agent work together: the bot is Eldgrim's always-online part for onboarding, administration, and data; the agent on the creative's PC is his once-daily voice. The agent may trigger administration through the bot's validated operations and may use the addon's archive. These capabilities are approved but not yet specified or built.
 
 ## Project boundaries
 

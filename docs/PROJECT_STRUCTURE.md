@@ -68,4 +68,4 @@
 
 ## Boundaries
 
-Amberhearth governance and guild operations belong in the ROARguild repository. Private canon does not belong in this public repository. The addon is a separate technical workstream and does not redefine character canon. The agent is also separate from character canon and from the addon; it does not automatically gain access to addon data. Runtime memory, actual conversations, credentials, private prompts, and logs remain outside Git. Other software features require their own approved scope.
+Amberhearth governance and guild operations belong in the ROARguild repository. Private canon does not belong in this public repository. The addon is a separate technical workstream and does not redefine character canon. The agent and bot are also separate from character canon. Their use of addon data is approved but must be specified before it is built. Runtime memory, actual conversations, credentials, private prompts, and logs remain outside Git. Other software features require their own approved scope.

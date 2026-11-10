@@ -66,6 +66,18 @@ A concise record of meaningful creative and structural decisions.
 
 **Status:** Direction approved. The unchanged bot runs on the server; renaming and new features not implemented.
 
+## 2026-11-10 — Server bot and local agent work together
+
+**Decision:** The server bot is Eldgrim's always-online part: onboarding, welcomes, administration, and data. The local agent on the creative's PC is his once-daily voice: it writes replies to @Eldgrim mentions with Ollama and posts them through the same Eldgrim Discord application.
+
+**Administration by the AI:** Approved. The model may trigger administration only through registered tools that call the server bot's validated operations, never with the token or direct Discord API access. The exact allowed operations and limits are still to be specified.
+
+**Addon data:** Approved. Eldgrim's database combines onboarding data with the addon's archive, and the agent may use it. The addon itself remains a silent recorder.
+
+**Supersedes:** The 2026-11-09 agent boundaries that excluded administration and addon integration. Those remain excluded from the agent's initial milestone.
+
+**Status:** Decided; nothing implemented.
+
 ## 2026-11-10 — Amberhearth ranks everywhere
 
 **Decision:** Use Amberhearth's ranks (Ember, Wayfarer, Kindler, Hearthkeeper, Hearthwarden) everywhere, including the Discord server, replacing the former Discord ranks Wanderer, Adventurer, Pathfinder, Trailblazer, and Firekeeper.
@@ -90,7 +102,7 @@ A concise record of meaningful creative and structural decisions.
 - Whether proactive messages should ever be enabled, and the limits for that capability.
 - The exact local Ollama model tag and installed-version compatibility.
 - The local secret-delivery mechanism and whether the user service manager should run while logged out.
-- How the 2026-11-10 Discord bot direction and the 2026-11-09 local-agent design fit together; see bot/README.md.
+- Which administration operations the agent may use, and its limits.
 - How the addon's local archive is transferred to the bot's server; the first addon milestone itself remains local-only.
 - Open bot decisions listed in bot/README.md.
 - Exact runtime behavior of Forever's chat-event and community-message APIs on the current client build.

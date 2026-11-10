@@ -18,6 +18,8 @@ The initial bot should receive only the permissions needed for its configured ch
 
 Do not grant Administrator, Manage Messages, Manage Roles, Manage Channels, or other moderation and administrative permissions.
 
+**Updated 2026-11-10:** The agent shares the Eldgrim Discord application with the server bot, which already holds Administrator. The agent's own code must still use only the permissions above. Administration approved for the agent must go through the server bot's validated operations, never through direct Discord API calls chosen by the model.
+
 Do not enable Guild Members, Guild Presences, or Message Content privileged intents for the initial design. The mention-only message-content exception is sufficient for the intended initial interaction model, subject to integration testing.
 
 ## 3. Message-content boundary

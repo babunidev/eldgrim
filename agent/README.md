@@ -51,10 +51,12 @@ Proactive messages that are not replies to a mention are disabled by default. En
 
 ## Important boundaries
 
-- The agent is separate from the World of Warcraft Forever addon. It does not read or modify the addon's SavedVariables.
+- The agent is separate from the World of Warcraft Forever addon and never modifies its SavedVariables. Reading the addon's archive is approved for a later milestone (2026-11-10).
 - The agent's behavior does not establish Eldgrim's character canon or reveal concealed character information.
 - Private runtime data, actual Discord messages, database files, credentials, and private prompts do not belong in this public repository.
-- The model cannot execute arbitrary shell commands, arbitrary Python, unrestricted file operations, or Discord moderation/administration actions.
+- The model cannot execute arbitrary shell commands, arbitrary Python, or unrestricted file operations. Discord administration is approved for a later milestone (2026-11-10), only through the server bot's validated operations.
+
+**Role since 2026-11-10:** The agent is Eldgrim's once-daily voice. It runs on the creative's PC, writes the replies to @Eldgrim mentions, and posts them through the same Eldgrim Discord application as the always-online server bot. See bot/README.md.
 - The initial design does not maintain a Discord Gateway connection or request Message Content Intent.
 
 ## Current reality

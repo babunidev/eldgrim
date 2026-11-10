@@ -6,7 +6,7 @@ A concise account of meaningful project development, written from the human crea
 
 To keep the bot online at all times, I approved moving it to my existing server under its own account. AI wrote the setup script, staged the code and configuration, stopped the desktop service, and transferred the bot's database; I ran the script with my server password. Two problems surfaced and AI fixed both: the service account could not read the Python environment, and the bot's token check rejected the file permissions systemd uses for system services.
 
-When publishing these notes, AI found the local-agent documentation from 2026-11-09 on GitHub and merged it. Both designs agree that Eldgrim answers once a day and only to @Eldgrim; where they differ is now listed as open decisions.
+When publishing these notes, AI found the local-agent documentation from 2026-11-09 on GitHub and merged it. Both designs agree that Eldgrim answers once a day and only to @Eldgrim. I then decided how they fit together: the server bot stays always online for onboarding, administration, and data, while the agent on my PC becomes Eldgrim's daily voice. The agent may also trigger administration through the bot and use the addon's archive.
 
 **Result:** The bot runs on the server and its Discord connection was confirmed. Behavior is unchanged; it is not yet renamed.
 

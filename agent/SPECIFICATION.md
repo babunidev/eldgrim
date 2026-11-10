@@ -110,7 +110,9 @@ This capability is not part of the initial milestone.
 | Record internal intention | Add a bounded future task |
 | Send reply | Send to the channel and interaction that triggered the response |
 
-No arbitrary command execution, unrestricted file access, arbitrary URL fetching, moderation, or server administration is allowed.
+No arbitrary command execution, unrestricted file access, or arbitrary URL fetching is allowed.
+
+**Updated 2026-11-10:** The creative approved that Eldgrim's agent may perform Discord administration and use the addon's archive. Administration tools are added only through the server bot's validated operations, as specified in bot/README.md; they are not part of this initial allowlist until specified.
 
 ## 6. Technology direction
 
@@ -133,10 +135,10 @@ No agent framework, vector database, cloud inference, or multi-agent architectur
 - Persistent Discord Gateway connection.
 - Reading and archiving all channel conversations.
 - Message Content Intent in the initial mention-only milestone.
-- Discord moderation, administration, role changes, or permission management.
+- Discord moderation, administration, role changes, or permission management in the initial milestone. Approved for a later milestone on 2026-11-10; see bot/README.md.
 - Unrestricted filesystem, shell, Python, or network access.
 - Cloud-hosted model inference.
-- Integration with the World of Warcraft Forever addon.
+- Integration with the World of Warcraft Forever addon in the initial milestone. Approved for a later milestone on 2026-11-10.
 - Automatic publication of private canon or hidden character information.
 
 ## 8. Acceptance criteria

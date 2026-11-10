@@ -27,7 +27,7 @@ This repository contains four distinct workstreams:
 - **Local agent:** a developing design for a once-daily Python process that uses local Ollama inference, Discord's HTTP API, and a private SQLite database. Its architecture and boundaries are documented under agent/. No agent implementation or deployment exists yet.
 - **Discord bot:** Eldgrim's always-online presence on the guild Discord server, documented under bot/. The existing bot runs on the creative's server; renaming and new features are in progress.
 
-The addon and agent are out-of-character technical projects. Neither defines Eldgrim's in-world powers, motives, or canon. The addon remains a passive recorder and is not integrated with the agent. The agent is a separate proposed communication system; it must not be described as operational until implemented and verified.
+The addon, agent, and bot are out-of-character technical projects. None defines Eldgrim's in-world powers, motives, or canon. The addon remains a passive recorder; using its archive in Eldgrim's database is approved but not built. The server bot is Eldgrim's always-online part and the agent his once-daily voice; the agent must not be described as operational until implemented and verified.
 
 The repository remains separate from:
 

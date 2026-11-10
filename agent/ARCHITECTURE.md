@@ -226,8 +226,8 @@ A failed daily run must not create an infinite retry loop or keep the model load
 - A multi-agent swarm or separate planner/executor agents.
 - Guild-wide message archiving or member scraping.
 - Arbitrary shell, Python, filesystem, or network tools.
-- Discord moderation, permission changes, or administration.
-- Automatic access to the Forever addon archive.
+- Discord moderation, permission changes, or administration in the initial milestone. Approved later through the server bot (2026-11-10).
+- Automatic access to the Forever addon archive in the initial milestone. Approved later (2026-11-10).
 - Publication of private canon or concealed character information.
 
 ## 9. Official technical references

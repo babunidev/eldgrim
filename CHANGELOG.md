@@ -8,7 +8,8 @@ Meaningful repository and documentation changes are recorded here.
 - Added bot/README.md with the approved direction, status, proposed data flow, open decisions, and planned order.
 - Recorded that Amberhearth's ranks are used everywhere, including Discord, and that addon development continues in a separate environment.
 - Recorded that the bot now runs on the creative's server under its own account.
-- Merged the 2026-11-09 local-agent documentation and listed where it differs from the Discord bot direction as open decisions.
+- Merged the 2026-11-09 local-agent documentation with the Discord bot direction.
+- Recorded how they fit together: the server bot is Eldgrim's always-online part, the local agent his once-daily voice. Approved AI-triggered administration through the bot's validated operations and use of the addon's archive; updated the agent documents and instructions accordingly.
 
 ## 2026-11-09
 

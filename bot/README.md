@@ -47,23 +47,24 @@ The addon itself stays a silent local recorder and never stores Discord identifi
 
 ## Relation to the local-agent design
 
-The agent/ documents (2026-11-09) describe a once-daily local agent on the creative's PC using Ollama. Both designs agree that Eldgrim answers once a day and only to @Eldgrim mentions, without Discord's Message Content intent for that purpose. They differ in three points, which remain open until the creative decides:
+The agent/ documents (2026-11-09) describe a once-daily local agent on the creative's PC using Ollama. Both designs agree that Eldgrim answers once a day and only to @Eldgrim mentions. On 2026-11-10 the creative decided how they fit together:
 
-- **Where Eldgrim's replies run.** The agent design runs on the PC with a systemd user timer; this direction moves the bot to the server. The server (2 CPU cores, 3.7 GB memory) is too small for local Ollama inference. One possible split: the server bot handles onboarding, administration, and data; the PC agent writes the daily replies.
-- **Administration.** The agent design forbids Discord administration and moderation tools for the model. This direction keeps administration in the bot. Both hold if administration stays with the bot and its preview-and-approval process and is never exposed to the model.
-- **Addon data.** The agent design does not use the addon's archive; this direction combines it with the onboarding data.
+- **Split.** The server bot is Eldgrim's always-online part: onboarding, welcomes, administration, and data. The local agent on the PC is his once-daily voice: it writes replies with Ollama and posts them through the same Eldgrim Discord application. The server (2 CPU cores, 3.7 GB memory) is too small for local inference.
+- **Administration by the AI.** Approved. The model may trigger administration, but only through registered tools that call the server bot's validated operations. It never receives the token or direct Discord API access.
+- **Addon data.** Approved. Eldgrim's database combines onboarding data with the addon's archive, and the AI may use it.
+
+**Proposed safeguards for AI administration (not yet decided):** an allowlist of operations the AI may use, with kicks, bans, and permission changes excluded at first; per-day limits; every action recorded in the bot's audit log; and Discord messages treated as untrusted input, since anyone can mention @Eldgrim.
 
 ## Open decisions
 
 - Server details (operating system, access, Python version), and how the sync step transfers the addon file to it.
 - When Eldgrim's daily moment happens, and whether he answers all mentions gathered since the previous day or only some.
 - The new profile image, with its source and usage rights recorded in assets/.
-- How replies are written: fixed texts, an AI model, or both. If AI is used, which model and where it runs, and how replies follow character/VOICE.md and interaction/PRINCIPLES.md.
+- How the PC agent reaches the server bot's operations and the combined database (for example over SSH), and how replies follow character/VOICE.md and interaction/PRINCIPLES.md.
+- Which safeguards apply to AI administration.
 - Whether onboarding replaces or extends the current faction, race, and class roles, and which roles each declared character grants.
 - Where the bot source code lives: in this repository, or in its own repository linked from here.
 - What members are told about the data Eldgrim stores, and how a member can change or remove it.
-- Whether administration actions stay behind the existing preview-and-approval process when performed by Eldgrim.
-
 ## Planned order
 
 1. Put the existing bot under version control and back up its configuration and state. **Done 2026-11-10;** the 51 existing unit tests passed on the new copy.
