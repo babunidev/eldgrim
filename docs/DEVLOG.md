@@ -119,3 +119,10 @@ The creative rejected the proposed waiting queue for questions addressed to Eldg
 The creative approved ten governance answers setting the purpose, frequency, consent, suitability, evidence, witness eligibility, completion handling, deadlines and reward boundaries for Eldgrim's quests. AI integrated them into the governance register and rewrote the quest chapter to remove the outdated assumption that higher rank alone authorizes verification.
 
 **Result:** Documentation committed to GitHub. No Discord quest workflow, local AI behavior or addon integration was implemented or tested.
+
+
+## 2026-11-10 — Confirm Sunday gathering and bank custody principles (Q111–120)
+
+The creative approved ten decisions describing Eldgrim's Sunday invitations and regional themes, voluntary bonfires, simultaneous gatherings, accessibility and attendance neutrality. Guild-bank rules now distinguish freely offered contributions, authorized human custodians, verified inventory snapshots and confirmed deliveries from merely announced allocations. AI revised the corresponding governance chapters and decision register.
+
+**Result:** Documentation committed to GitHub. No agent, bot, addon or in-game bank operation was changed or tested.
