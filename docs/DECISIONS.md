@@ -267,3 +267,14 @@ A concise record of meaningful creative and structural decisions.
 **Boundary:** Founder-confirmed working governance only; no quest-verification workflow or AI agent was implemented or tested. The rulebook is not the ratified ROARguild charter.
 
 **Next:** Questions 111–120 of 193.
+
+
+## 2026-11-10 — Confirm Sunday gathering and bank stewardship rules (Q111–120)
+
+**Confirmed:** Eldgrim selects an Alliance region and optional Sunday theme, publishes an invitation specifying region, date, start time with timezone and useful meeting details. Members voluntarily select and light fire sites, including multiple simultaneous fires; witnesses may document verified moments, but attendees never owe attendance evidence. Alternative participation or absence carries no penalty, and Eldgrim must consider accessibility.
+
+**Bank:** Donations are voluntary and unrelated to rank, standing or membership. Only explicitly authorized custodians with real in-game permissions may withdraw/distribute resources, independent of social rank. Eldgrim consults verified inventory snapshots without assuming live availability. Completed transfers are confirmed by custodians with item, quantity, recipient and date; a bot-side record is intended. Failed allocations are paused/cancelled, records corrected and recipients informed, with no automatic blame.
+
+**Boundary:** Founder-confirmed working governance, not the ratified ROARguild charter. No AI event scheduling, addon bank snapshot, automated confirmation or allocation workflow was implemented or tested.
+
+**Next:** Questions 121–130 of 193.
