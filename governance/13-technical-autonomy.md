@@ -29,12 +29,22 @@ Eldgrim's character/community observations come from **guild-visible WoW Forever
 
 **Implementation status:** Founder-confirmed **working policy only**. No validated AI tool registry, autonomous administration, local AI agent, deduplicated action executor or audit integration is claimed to be implemented or tested.
 
+## Founder-confirmed activation requirements — questions 168–170
+
+**Founder unavailable (Q168):** The bot and Eldgrim may continue **existing** delegated operations and predefined safety measures; no automatic policy amendments or irreversible new-rule decisions may be made merely because the founder is absent.
+
+**Human responsibilities (Q169):** Eldgrim may delegate revocable event, moderation-assistance and guild-bank custody tasks with explicitly scoped permissions and accountability. No social rank grants these privileges by itself; no delegate receives direct access to the founder's PC-local interpreted-memory database (Q138).
+
+**Deployment gate (Q170):** The founder must explicitly authorize the transition to new autonomous administration **only after** reconciling binding charter and working rules, implementing and verifying independently enforced tools and permission boundaries, auditable/idempotent action execution, privacy/appeal procedures and a working emergency stop. The existing bot's manual preview/approval process remains the current implementation until this gate is met. A governance decision is not a deployed feature or test result.
+
 ## Refinement queue
 
 - [ ] Specify the exact registered tool names, argument schemas and per-action authorization rules (Q141–142 establish principles, not the complete tool list).
 - [x] Distinguish autonomous delegated Discord administration from exceptional founder-authorized infrastructure actions (Q143–144).
 - [ ] Reconcile the deployed bot's manual preview-and-approval workflow with future validated autonomous administration; define the protected-system boundary.
 - [ ] Implement and test independent permission checks, idempotency, action audits, failure cleanup and uncertain-result reconciliation (Q145–150).
+- [x] Confirm founder-authorized deployment gate and required safeguards (Q170).
+- [ ] Demonstrate each Q170 safeguard in live integration, verify emergency stop and obtain explicit founder deployment authorization.
 
 ---
 
