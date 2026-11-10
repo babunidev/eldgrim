@@ -51,3 +51,4 @@ The human creative owns the concept, canon, tone, scope, priorities, and final d
 - Do not claim an asset, addon, bot, integration, or feature exists unless verified.
 - Keep proposals separate from implemented and tested work.
 - Prefer small, reviewable changes with clear commit messages.
+- Push each completed step to GitHub so the public record stays current.
