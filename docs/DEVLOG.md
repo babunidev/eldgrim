@@ -2,6 +2,12 @@
 
 A concise account of meaningful project development, written from the human creative's perspective.
 
+## 2026-11-11 — The guild chat file, then a clean slate
+
+The guild chat archive on this computer is the record Eldgrim should read. It is already grouped by the character who spoke. Eldgrim turns those messages into keywords, checks them against what it already keeps, and notices whether the person is the same or whether something new was actually said. A plus or a minus has to follow the standing rules already written down, and it stays private. Afterwards the messages are cleared, so the addon can fill the file again the next time the game is played. The clear waits until the game is closed, because the client would otherwise write the old lines back. The same save can also carry a roster snapshot. That snapshot, not the chat, is how Eldgrim tells who is still in the guild.
+
+**Result:** Specified in agent/ROSTER.md. The file was not emptied, and no database was built.
+
 ## 2026-11-11 — The roster before Eldgrim acts
 
 Before Eldgrim writes to the guild or acts on its own, I want the way it knows the guild written down. It lives on my computer. Anyone who comes through the Forge or the addon gets an entry. When sentences come back about that person, Eldgrim turns them into keywords and keeps the keywords, not the sentences. That roster is the overview it uses to be itself. A little lore can still be added. The announcement waits until the roster is real.

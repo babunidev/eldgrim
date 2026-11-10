@@ -25,7 +25,7 @@ The exact paths may be changed during implementation, but runtime data must rema
 
 SQLite is sufficient for the first version. Start with indexed relational queries and ordinary text search. FTS5 may be added after verifying that the installed SQLite build supports it. Do not introduce a vector database or embeddings until a demonstrated retrieval problem justifies the added complexity.
 
-The guild roster and the keyword records are specified in [ROSTER.md](ROSTER.md). A sentence is temporary. What remains on a person or character is keywords.
+The guild roster and the keyword records are specified in [ROSTER.md](ROSTER.md). A sentence in the addon archive is temporary. The run compares new keywords with the ones already stored, may record an internal standing adjustment under the confirmed rules, and then clears the message lists. What remains on a person or character is keywords, plus that private standing when the person is known.
 
 ## 3. Memory layers
 

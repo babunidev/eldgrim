@@ -59,11 +59,12 @@ This roadmap records areas of development, not promises or fixed deadlines.
 - [x] Ask Roar or Amberhearth before characters, and retire the automatic Roar role for every rank.
 - [x] Specify the first daily proclamation. It is not scheduled or posting.
 - [x] Specify the guild roster: one entry from Discord or the addon, sentences reduced to keywords, stored only on the founder's computer.
-- [ ] Build that roster and show a daily run updating it without keeping raw sentences.
+- [x] Specify how the guild-chat file is read, compared, valued, and then emptied, and how a roster snapshot shows who is still in the guild.
+- [ ] Build that roster and show a daily run updating it from the guild-chat file without keeping raw sentences.
 - [ ] Add the remaining lore Eldgrim reads, then choose the channel and the hour and post one daily announcement.
 - [ ] Let members write to Eldgrim, and keep what Eldgrim learns, before it answers them.
 - [ ] Specify, build, and test replies to @Eldgrim mentions. The founder confirmed the limits; the creative asked to build the daily proclamation first.
-- [ ] Transfer shared guild activity to the founder's PC, keep interpreted memory there, and delete the raw archive.
+- [ ] Transfer shared guild activity to the founder's PC, keep interpreted memory there, and delete the raw archive. The addon half of that cleanup is specified in agent/ROSTER.md and is not built.
 
 The addon remains a recorder only until the creative approves a broader scope. A documented task is not an implemented feature, and API documentation is not an in-game test.
 

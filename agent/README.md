@@ -53,7 +53,7 @@ Proactive messages that are not replies to a mention are disabled by default. En
 
 ## Important boundaries
 
-- The agent is separate from the World of Warcraft Forever addon and never modifies its SavedVariables. Reading the addon's archive is approved for a later milestone (2026-11-10).
+- The agent reads the Forever addon's SavedVariables on the founder's computer, as specified in [ROSTER.md](ROSTER.md). After a successful reduction, and only while the game client is closed, it may clear the guild-chat message lists in that one file. It does not edit the addon source, and it does not clear the file when the save failed (2026-11-11).
 - The agent's behavior does not establish Eldgrim's character canon or reveal concealed character information.
 - Private runtime data, actual Discord messages, database files, credentials, and private prompts do not belong in this public repository.
 - The model cannot execute arbitrary shell commands, arbitrary Python, or unrestricted file operations. Discord administration is approved for a later milestone (2026-11-10), only through the server bot's validated operations.

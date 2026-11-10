@@ -4,6 +4,7 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-11
 
+- Specified how Eldgrim reads the guild-chat archive: compare keywords, record internal standing, clear the messages only after a successful save while the game is closed, and use a roster snapshot to see who is still in the guild.
 - Specified Eldgrim's guild roster: Forge and addon entries on the founder's computer, sentences reduced to keywords, and no announcement until that roster exists.
 
 ## 2026-11-10 — Documentation readability

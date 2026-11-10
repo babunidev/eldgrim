@@ -12,6 +12,8 @@ A concise record of meaningful creative and structural decisions.
 
 **Separation:** The agent is not integrated with the Forever addon and does not use its SavedVariables archive. Neither workstream establishes character canon or exposes private character information.
 
+**Update:** Reading that archive, and clearing its message lists after a successful reduction, was specified on 2026-11-11. See "The guild chat file is read, valued, then emptied." Canon and private character information remain outside this repository.
+
 **Status:** Developing architecture documented; no agent code, Discord integration, database, systemd service, or deployment implemented or tested.
 
 ## 2026-11-08 — Eldgrim is the current name
@@ -129,6 +131,14 @@ A concise record of meaningful creative and structural decisions.
 **Update:** Reconciled the Forge and rank reset status with the confirmed live rollout on 10 November 2026.
 
 **Status:** Documentation structure established; substantive policy gaps remain open.
+
+## 2026-11-11 — The guild chat file is read, valued, then emptied
+
+**Decision:** Eldgrim's daily run on the founder's computer may read the Forever addon's SavedVariables guild-chat archive. The file is already grouped by character. Each character's messages are reduced to keywords and compared with the keywords already stored. What is already true stays. What is new is added. Eldgrim may then record an internal standing adjustment under the confirmed chapter 07 rules. Standing stays private, inactivity does not lower it, and the number does not by itself discipline anyone. After that database commit, and only while the Forever client is closed, the run clears the message lists and leaves the profile fields. A roster table in the same file, when newer than the last one applied, is the list of who is still in the game guild. Chat silence is not departure. Leaving the game guild does not by itself remove a Discord member.
+
+**Boundary:** Specified in agent/ROSTER.md. The account path stays off this repository. The model gets no general file-write tool. No database, no file cleanup and no standing score have been built. The addon milestone in this repository still does not write the roster table; a client already being played may.
+
+**Status:** Specified. Not implemented.
 
 ## 2026-11-11 — Eldgrim's roster comes before it acts
 
