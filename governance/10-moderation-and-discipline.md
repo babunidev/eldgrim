@@ -94,3 +94,8 @@ Randomness can serve roleplay or harmless tie-breaking. It should not determine 
 - **Q80 — Remedy:** Promptly reverse or reduce incorrect sanctions, restore roles/privileges where technically feasible, correct records, and explain the correction to the affected member. Retain a private audit trail of the mistake; do not publish sensitive case details.
 
 **Open operational details:** appeal submission channel, review deadlines, reviewer designation, evidence thresholds and retention. No AI moderation implementation is claimed.
+
+
+## Confirmed reinstatement — question 81
+
+A permanently banned member may return only through a successful appeal or a documented founder/impartial-reviewer decision after the original risk has been addressed. Rejoining is not automatic. The mechanism to apply reinstatement is not yet specified or implemented as AI governance.
