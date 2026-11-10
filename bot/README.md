@@ -20,6 +20,10 @@ The existing Babuni Gaming Discord bot is the foundation. Verified on 2026-11-10
 
 **Administration.** Eldgrim keeps the existing capabilities, including rank management and channel creation.
 
+**Ranks.** Amberhearth's ranks are used everywhere, including Discord: Ember, Wayfarer, Kindler, Hearthkeeper, Hearthwarden. They replace the bot's current Discord ranks (Wanderer, Adventurer, Pathfinder, Trailblazer, Firekeeper).
+
+**Server.** An Ubuntu 26.04 server with Python 3.14, which also hosts other services. Discord and the Python package index were reachable from it on 2026-11-10.
+
 **Character onboarding.** An extension of the Character Forge, using the same pattern of a gate channel and a gate role:
 1. Newcomers receive the gate role automatically and see only the onboarding channel.
 2. Eldgrim asks how many characters they have in the guild.
@@ -48,7 +52,7 @@ The addon itself stays a silent local recorder and never stores Discord identifi
 - The new profile image, with its source and usage rights recorded in assets/.
 - How replies are written: fixed texts, an AI model, or both. If AI is used, which model and where it runs, and how replies follow character/VOICE.md and interaction/PRINCIPLES.md.
 - Whether onboarding replaces or extends the current faction, race, and class roles, and which roles each declared character grants.
-- How the bot's current guild ranks (Wanderer, Adventurer, Pathfinder, Trailblazer, Firekeeper) relate to Amberhearth's ranks (Ember, Wayfarer, Kindler, Hearthkeeper, Hearthwarden).
+- Which current Discord rank becomes which Amberhearth rank.
 - Where the bot source code lives: in this repository, or in its own repository linked from here.
 - What members are told about the data Eldgrim stores, and how a member can change or remove it.
 - Whether administration actions stay behind the existing preview-and-approval process when performed by Eldgrim.

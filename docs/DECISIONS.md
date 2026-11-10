@@ -32,6 +32,15 @@ A concise record of meaningful creative and structural decisions.
 **Boundary:** The addon remains a silent local recorder. The bot does not define character canon. Details are tracked in bot/README.md.
 **Status:** Direction approved; specification developing; nothing implemented.
 
+## 2026-11-10 — Amberhearth ranks everywhere
+**Decision:** Use Amberhearth's ranks (Ember, Wayfarer, Kindler, Hearthkeeper, Hearthwarden) everywhere, including the Discord server, replacing the Discord ranks Wanderer, Adventurer, Pathfinder, Trailblazer, and Firekeeper.
+**Boundary:** This fixes the rank names only; duties, privileges, and progression remain undefined here.
+**Status:** Decided; Discord roles not yet changed.
+
+## 2026-11-10 — Addon development moves elsewhere
+**Decision:** Further addon development happens in a separate development environment, not in this workspace.
+**Status:** Established.
+
 ## Open decisions
 - Further details of Eldgrim's public identity and history.
 - The precise scope of recurring in-world interactions.

@@ -18,5 +18,6 @@ Meaningful repository and documentation changes are recorded here.
 - Recorded the approved direction for Eldgrim's Discord presence: rename and expand the existing guild bot, move it to an always-online server, and add multi-character onboarding, message replies, and a member and character database.
 - Added bot/README.md with the approved direction, proposed data flow, open decisions, and planned order. No bot code was changed.
 - Recorded that Eldgrim replies once a day and only to @Eldgrim mentions, and that the bot gets a new name and profile image.
+- Recorded that Amberhearth's ranks are used everywhere, including Discord, and that addon development continues in a separate environment.
 
 This changelog describes repository changes, not in-world events.
