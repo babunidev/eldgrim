@@ -313,3 +313,14 @@ A concise record of meaningful creative and structural decisions.
 **Implementation boundary:** This is a founder-confirmed design decision. Raw shared-channel collection may require additional Discord permissions and lawful notices; secure transport, raw-data deletion, addon archive cleanup, local AI/database integration and access controls remain unimplemented or unverified.
 
 **Next:** Questions 141–150 of 193.
+
+
+## 2026-11-10 — Confirm technical authority, failure and evidence rules (Q141–150)
+
+**Founder decision:** All ten proposals for Q141–150 were accepted without revision. Eldgrim may request only registered purpose-specific tools, with independent application/bot validation. Its delegated Discord channel, role and permission administration is intended to be **autonomous**, without routine founder approval, while server destruction, ownership transfer, unrelated services, infrastructure credentials and security bypass require **explicit founder authorization**. The current deployed bot's manual preview-and-approval flow is **not yet replaced**.
+
+Guild chat, Discord messages and tool results are untrusted data, not governing instructions. Failed actions must stop safely, avoid false success claims and never create permanent raw archives or question backlogs. When the local PC is offline, the server bot retains existing onboarding/role functions and only predefined emergency actions; authorized shared-message staging remains temporary under Q138. Consequential actions require minimal audits, unique identifiers, outcome reconciliation before retry and verification of real events before taking action. Internal memory remains PC-local and founder-accessible under Q138.
+
+**Status:** Confirmed working governance, not a ratified guild charter. No AI action executor, autonomous administration, idempotency/audit integration or failed-run purge system was implemented or tested. The exact tool allowlist, approval-path migration and technical verification remain open.
+
+**Next:** Questions 151–160 of 193.
