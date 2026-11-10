@@ -217,7 +217,15 @@ Ollama's chat and generate APIs document the keep_alive parameter, including zer
 
 A failed daily run must not create an infinite retry loop or keep the model loaded indefinitely.
 
-## 8. Explicit non-goals
+## 8. Approved collection limits — questions 124–130
+
+The agent may observe only configured guild channels, content intentionally addressed to Eldgrim and necessary onboarding/administrative interactions. The always-online bot's predefined moderation processing does not authorize wholesale memory ingestion (Q124). Member-to-member private messages outside the bot's legitimate participation are inaccessible and out of scope; DMs to the bot remain purpose-limited (Q125).
+
+Guild-chat archives from the Forever addon may become **temporary authorized analysis input** after a deletion procedure is designed; do not silently turn raw messages into persistent member memories (Q126). The per-run @Eldgrim mention collection is purged after processing, including unselected questions; operational audit metadata must not reconstruct content (Q127). Long-term impressions remain relevant, supported, non-sensitive and confidential (Q128). Member correction, departure and deletion requests require private procedures and an approved retention policy before integration (Q129–130).
+
+These constraints are approved **design requirements**, not implemented or tested agent features.
+
+## 9. Explicit non-goals
 
 - A continuously connected Discord Gateway bot.
 - Instant or real-time replies.
@@ -230,7 +238,7 @@ A failed daily run must not create an infinite retry loop or keep the model load
 - Automatic access to the Forever addon archive in the initial milestone. Approved later (2026-11-10).
 - Publication of private canon or concealed character information.
 
-## 9. Official technical references
+## 10. Official technical references
 
 - [Discord Get Channel Messages and message object](https://docs.discord.com/developers/resources/message)
 - [Discord Gateway: Message Content Intent and exceptions](https://docs.discord.com/developers/events/gateway)
