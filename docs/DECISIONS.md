@@ -247,3 +247,14 @@ A concise record of meaningful creative and structural decisions.
 **Boundary:** Governance documentation only; no runtime quota or AI functionality was implemented or tested.
 
 **Next:** Clarify Q100; then proceed with Q101–110.
+
+
+## 2026-11-10 — Resolve Q100: unlimited mentions, temporary collection, no queue
+
+**Founder revision accepted:** Members may mention @Eldgrim without a submission limit. Mentions are gathered temporarily either by the always-online server bot or by the local agent querying the bot during its daily collection round; the mechanism remains to be selected. Eldgrim chooses up to one question per member from the collection, at random or for narrative suitability, and may remain silent. After the run, discard the collected messages and begin a fresh collection; unselected messages are not queued or rolled forward.
+
+**Supersedes:** Q92's one-submission-per-UTC-day interpretation and midnight UTC reset; Q95's suggestion that submitting one question consumes an allowance. The operative constraint is at most one selected question per member **per daily AI run**. Q93's ability to decline does not imply a waiting queue. Distinguish the transient mention collection from separately approved persistent memories.
+
+**Boundary:** Approved design only; no message collector, storage lifecycle, AI selection or privacy handling was implemented or tested.
+
+**Next:** Questions 101–110 of 193.
