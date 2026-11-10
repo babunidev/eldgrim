@@ -4,6 +4,8 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-10
 
+- Confirmed revised Q100: unlimited @Eldgrim mentions, temporary per-run collection, discretionary random/narrative selection of at most one question per member, and discard after processing without a waiting queue. Clarified/superseded conflicting Q92/Q95 quota language. Documentation only.
+
 - Confirmed Q91–99: daily question limits, response discretion, mention scope, proclamations, and routine decision quotas. Marked Q100 as needing revision without approving its proposed offline-message policy. Documentation only.
 
 - Confirmed Q81–90: reinstatement after bans, adult-only Forge onboarding, required character data, unlimited membership character policy, ownership checks, character updates and departures, preservation of earned ranks, voluntary onboarding, and daily local-AI/server-bot separation. Documentation only.
