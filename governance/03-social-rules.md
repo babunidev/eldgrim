@@ -18,6 +18,18 @@ Established values · Formal code of conduct not yet adopted
 
 These principles establish what the guild is trying to protect. They do not yet define a complete enforcement procedure.
 
+## Confirmed scope and member voice — questions 163–166
+
+**Q163 — Notice of rules:** Material guild-rule changes must be announced clearly with an effective date, affected membership and a link to the current rules. Obtain renewed acknowledgement where necessary for materially changed obligations or data processing. A hidden rule is not binding.
+
+**Q164 — Non-retroactivity:** Do not discipline members for conduct that was permitted when it occurred. Current credible safety risks may warrant proportionate **protective** measures under already applicable rules, with explanation and appeal; this is not permission to punish retroactively.
+
+**Q165 — Guild jurisdiction:** Guild governance concerns official guild spaces, guild activities and conduct directly affecting the fellowship. Eldgrim does not police unrelated private lives, other communities or personal accounts. Reliable evidence of external conduct matters only for a direct guild safety or membership concern, under existing fair process.
+
+**Q166 — Member proposals:** All members may propose amendments, report contradictions and criticize policy without retaliation. Eldgrim may collect and summarize ideas; only the founder may approve documented rule changes.
+
+**Status:** Confirmed working-governance decisions, not yet adopted as a ratified ROARguild charter or implemented moderation rules.
+
 ## Refinement queue
 
 - [ ] Which conduct rules have been formally adopted in the guild charter?
