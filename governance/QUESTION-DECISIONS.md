@@ -1,6 +1,6 @@
-# Confirmed governance questions 1–190
+# Confirmed governance questions 1–193
 
-**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Confirmed:** Q1–190 (190 questions). **Next:** Q191–193 of 193. **Interview batch size:** 10 questions (final batch: 3). **Interview batch size:** 10 questions.
+**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Confirmed:** Q1–193 (all 193 questions). **Interview:** Complete. **Batch size:** 10 questions, with 3 in the final batch.
 
 This register preserves decisions made in a sequential governance interview, including corrections to earlier proposals. It is **not** the separate, ratified ROARguild charter and makes no claims that AI governance is implemented. The linked governance chapters provide operational detail. Private character canon, secret identity, motives and magical mechanics are intentionally omitted because this repository is public; preserve them only in appropriately restricted storage.
 
@@ -216,6 +216,14 @@ This register preserves decisions made in a sequential governance interview, inc
 
 **Status:** Founder-confirmed **working design requirements**, not a ratified guild charter, implemented kill switch, verified backups, completed security testing, emergency credential rotation, autonomous rollout or deployment approval. Q170's safeguard verification and founder sign-off remain prerequisites to new autonomy.
 
+## Confirmed final answers — questions 191–193
+
+- **Q191 — Consistency audit:** Before formal adoption, review all 193 confirmed answers against one another, all governance chapters and the ROARguild charter. Identify contradictions, duplicated provisions, outdated proposals and missing operational procedures. Preserve the founder's **latest explicit decision**, log unresolved conflicts and never invent a resolution. Keep concealed character canon out of public governance. Audit findings are tracked in [CONSISTENCY-AUDIT.md](CONSISTENCY-AUDIT.md).
+- **Q192 — Implementation traceability:** Maintain an implementation and verification checklist mapping relevant rules to components, required behavior, tests, dependencies and recorded completion evidence. Distinguish **documented, implemented, tested and deployed** status; prioritize privacy, safety, appeals and autonomy prerequisites. A written policy is not an operational feature. See [IMPLEMENTATION-MATRIX.md](IMPLEMENTATION-MATRIX.md).
+- **Q193 — Interview completion boundary:** The interview ends once the founder has explicitly accepted or revised all **193** questions and the answers are preserved here. Produce a consolidated, internally consistent **working-governance baseline** and outstanding-work register. Interview completion does **not** ratify the ROARguild charter, impose new binding membership obligations or authorize autonomous deployment. Those remain separate explicit founder decisions under **Q161** and **Q170**.
+
+**Interview result:** All **193 of 193** questions are founder-confirmed. This completes the interview, **not** charter adoption, code implementation, testing, or autonomous deployment.
+
 ## Superseded or clarified decisions
 
 - **Q34–35:** An initial proposal requiring founder approval for Discord channel management was superseded by explicit confirmation that Eldgrim, as administrator, may handle channels, roles and permissions. This remains subject to valid authorization, safeguards, auditing and implementation.
@@ -227,4 +235,4 @@ This register preserves decisions made in a sequential governance interview, inc
 
 ## Unresolved matters
 
-**Q1–190 are confirmed.** **Q191–193 remain unanswered.** Charter ratification/publication and deployment requirements are approved but not executed. Appeals and evidence handling are specified as working policy; intake/reviewer procedures and retention automation are not implemented. The emergency stop, technical custody, credential separation, action validation, test suite, safe rollout, backup recovery, offline behavior, incident response and periodic review are **confirmed design requirements**, not verified operational controls. Technical transfer/deletion, exact tool allowlists, manual-approval migration, bank limits, cross-repository reconciliation and founder-authorized autonomous deployment remain open in implementation.
+**Q1–193 are confirmed; no interview questions remain unanswered.** Charter ratification/publication and deployment requirements are approved but not executed. Appeals and evidence handling are working policy; intake/reviewer procedures and retention automation are not implemented. Emergency stop, technical custody, credential separation, action validation, tests, rollout, backup recovery, offline behavior, incident response and periodic review are design requirements, not verified operational controls. Technical transfer/deletion, exact tool allowlists, manual-approval migration, bank limits, cross-repository reconciliation and founder-authorized autonomous deployment remain open. See [consistency audit](CONSISTENCY-AUDIT.md) and [implementation matrix](IMPLEMENTATION-MATRIX.md).
