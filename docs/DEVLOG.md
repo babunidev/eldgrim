@@ -140,3 +140,10 @@ The creative approved ten more governance decisions. Bank reservations and valua
 Nine privacy decisions were approved, covering clear member notices, optional personalization, in-game data processing, temporary raw-chat handling, interpreted-memory retention, audit records, backups, private data requests and breach response. Q138, about who can inspect private records, was marked for revision rather than accepted. AI synchronized the governance register and privacy chapter without assuming the disputed access model.
 
 **Result:** Governance documentation committed. No bot, agent, addon, database, deletion job, consent flow or security incident process was implemented or tested.
+
+
+## 2026-11-10 — Keep Eldgrim's lasting memories on my PC
+
+I clarified that Eldgrim's character observations come from conversations already shared in guild chat or designated Discord guild channels, not private exchanges. The server bot and the game addon may collect raw material temporarily, but after my local AI selects what is worth remembering, the raw messages are discarded. The selected interpretations belong in a database on my PC, accessible directly only to me and the local AI, not other guild custodians. The server bot's existing registration and administrative state is a separate operational necessity, not Eldgrim's narrative-memory archive. AI updated the governance and architecture documents to retire the old combined server-memory proposal.
+
+**Result:** Q138 confirmed and documented. No new Discord observation permissions, synchronization, deletion, local database or AI processing feature was implemented or tested.
