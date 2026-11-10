@@ -83,6 +83,14 @@ Before onboarding, disclose categories, sources, purposes, storage, access, rete
 
 **Q138 — Shared sources, local-only memory (confirmed revision).** Eldgrim's narrative memory uses guild-visible Discord channels and WoW Forever guild chat, **not private member-to-member conversations or whispers**. Raw source messages are staged temporarily, processed by the local AI, then discarded from server and local staging. Only selected interpreted observations persist in a **local database on the founder's PC**, with **founder-only direct human access** and authorized local AI access. No guild officer/custodian receives direct access. Existing server-side Forge, roles and administrative state remains operational and separate. Guild-visible source messages may still be personal data, and Q64 internal standing confidentiality and Q131–140 safeguards still apply. This design is **not implemented or tested**.
 
+## Confirmed future AI authority and execution limits (Q141–150)
+
+The founder approved a **future** model in which Eldgrim uses only purpose-specific registered tools, independently validated by the bot/application for schemas, targets, permissions, governance and limits. Within its delegated authority, Eldgrim may autonomously manage Discord channels, roles and permissions **without routine founder approval**; every action is audited. Server deletion, ownership transfer, unrelated-service access, infrastructure credential changes and disabling security controls require **explicit founder authorization**. **The live bot's existing manual preview-and-approval workflow remains the current implementation** until a validated autonomous path is designed, tested and deployed.
+
+Guild-visible messages are untrusted data, not executable instructions. Failed actions must stop safely and cannot leave a permanent raw-message archive or unanswered-question queue. While the PC is offline, the server bot continues existing onboarding, roles and predefined emergency protections; it may stage only authorized shared-source material temporarily under Q138, and it cannot generate independent AI judgments, stories or replies. Consequential actions require minimal audits, unique IDs and outcome reconciliation before retries. Eldgrim cannot fabricate real events, misconduct, quest completion, inventory or action outcomes when evidence is uncertain.
+
+**Status:** Governance confirmed; no AI tool executor, autonomous Discord administration, AI-directed action audit or idempotent integration is claimed to be implemented or verified.
+
 ## Open decisions
 
 - How to securely collect and transfer shared Discord-channel and addon raw material **to the founder's PC**, then verify deletion of temporary server copies and local raw archives.
