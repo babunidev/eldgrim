@@ -1,6 +1,6 @@
 # Confirmed governance questions 1–62
 
-**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Next question:** 63 of 193.
+**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Current review:** Q64 requires revision; Q63 and Q65 confirmed. Next new question: Q66.
 
 This register preserves decisions made in a sequential governance interview, including corrections to earlier proposals. It is **not** the separate, ratified ROARguild charter and makes no claims that AI governance is implemented. The linked governance chapters provide operational detail. Private character canon, secret identity, motives and magical mechanics are intentionally omitted because this repository is public; preserve them only in appropriately restricted storage.
 
@@ -27,6 +27,12 @@ This register preserves decisions made in a sequential governance interview, inc
 | **57–59** | Verified misconduct may lower standing. Minor actions 1–3, significant 4–10, exceptional up to 20; score remains 0–100. Profile categories A/D context, B/C social and participation evidence; misconduct assessed separately. |
 | **60–62** | Inactivity is neutral indefinitely, including silence or declining quests. Negative scoring requires reliable evidence, not rumor, ambiguous jokes or unsupported AI interpretations; positive acknowledgment requires reasonable observation. |
 
+## Additional confirmed answers — 10 November 2026
+
+- **Q63 — Confirmed:** Standing may inform recognition, promotions and rewards. A numerical score alone never justifies disciplinary action; sanctions require an independently established violation of existing rules.
+- **Q64 — Revision requested; OPEN:** The proposal for member-initiated private score review, Eldgrim's evidence review, corrections and founder escalation was **not accepted**. No replacement procedure has been approved.
+- **Q65 — Confirmed:** Minor misconduct includes isolated discourtesy/disruption; moderate includes repeated disrespect or continued disruption after warning; serious includes targeted harassment, discrimination, threats, scams or abuse of entrusted responsibility; critical includes credible immediate safety threats, doxxing or severe targeted abuse. Severity depends on intent, context, evidence and actual harm.
+
 ## Superseded or clarified decisions
 
 - **Q34–35:** An initial proposal requiring founder approval for Discord channel management was superseded by explicit confirmation that Eldgrim, as administrator, may handle channels, roles and permissions. This remains subject to valid authorization, safeguards, auditing and implementation.
@@ -36,4 +42,4 @@ This register preserves decisions made in a sequential governance interview, inc
 
 ## Unresolved matters
 
-Questions **63–193** are not yet confirmed. Evidence thresholds, score corrections/appeals, privacy/retention, bank controls, technical tool restrictions, daily quotas, implementation and ROARguild-charter reconciliation remain open.
+**Q63 and Q65 are confirmed; Q64 is open for revision.** Questions **66–193** are not yet confirmed. Evidence thresholds, score corrections/appeals, privacy/retention, bank controls, technical tool restrictions, daily quotas, implementation and ROARguild-charter reconciliation remain open.
