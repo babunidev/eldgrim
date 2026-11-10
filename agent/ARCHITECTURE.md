@@ -37,9 +37,9 @@ one-shot Python agent
           |
           +---- private SQLite database
           |       - channel cursors
-          |       - eligible messages
+          |       - transient mention collection
           |       - people and memories
-          |       - pending work and action log
+          |       - operational state and action log
           |
           +---- local Ollama API
                   - chat completion
@@ -73,7 +73,7 @@ Python is the orchestrator and security boundary. It:
 - Loads configuration and secrets from local paths.
 - Acquires a lock so two daily sessions cannot overlap.
 - Polls Discord channels and handles pagination.
-- Filters and persists eligible messages.
+- Filters eligible mentions into a temporary collection; selects at most one question per member during the run.
 - Retrieves relevant memory.
 - Calls Ollama and manages tool-call rounds.
 - Validates every tool request before execution.
@@ -105,7 +105,7 @@ There is an important distinction: polling channel history still returns message
 
 1. Inspect only the metadata required to identify an explicit mention.
 2. Pass message content to the model only when the message is eligible.
-3. Persist only eligible inbound messages and Eldgrim's own relevant replies.
+3. Keep eligible inbound mentions in the temporary collection until the run processes them, then discard that collection. Store only separately authorized memories and necessary operational/audit state.
 4. Avoid retaining unrelated author metadata or message records.
 5. Never enable Message Content Intent merely to make general channel reading easier.
 
@@ -122,8 +122,8 @@ The implementation must:
 - Verify the API's returned ordering and pagination behavior in integration tests.
 - Process eligible messages in chronological order.
 - Deduplicate by message ID.
-- Commit stored messages and cursor advancement safely.
-- Never advance a cursor past messages that have not been durably processed.
+- Commit any necessary transient collection and cursor state safely; do not turn unselected mentions into a durable response queue.
+- Never advance a cursor past messages not yet safely collected; exact cursor/collection consistency and failed-run handling need implementation design.
 
 If a request fails, a page is incomplete, or a database transaction fails, retain the previous safe cursor and retry on a later run. Do not assume that a single page contains every message since the previous daily run.
 
@@ -147,13 +147,13 @@ The model does not receive direct credentials or unrestricted access to Discord,
 2. **Validate.** Load configuration, check required secrets, verify local Ollama availability, and acquire the run lock.
 3. **Poll.** Fetch new message pages from configured Discord channels using saved cursors.
 4. **Filter.** Identify messages that explicitly mention Eldgrim. Do not pass unrelated content to the model.
-5. **Persist intake.** Store eligible inbound messages idempotently and commit safe cursor progress.
+5. **Collect intake.** Gather eligible mentions into a temporary collection, either captured by the server bot or obtained through the bot during this session; choose the mechanism before implementation. Preserve only necessary private cursor/operational state.
 6. **Check work.** If there are no eligible messages or due internal tasks, exit without loading the model, unless a separately enabled daily reflection task requires it.
 7. **Build context.** Retrieve Eldgrim's approved public character guidance, relevant recent interactions, and a small selection of relevant memories. Private character instructions, if ever used, must be supplied from a local file outside Git.
-8. **Reason.** Call Ollama's chat API. The model may respond directly, request an allowlisted tool, or choose no action.
+8. **Select and reason.** For each member, select at most one question from the temporary collection (randomly or by narrative suitability), then call Ollama. The model may answer, request an allowlisted tool, or choose no action.
 9. **Execute tools.** Python validates each tool name, arguments, permission, scope, and action budget before execution. Tool results are returned to the model.
 10. **Act.** Send a permitted reply, save a relevant memory, or record a follow-up intention. The model may choose silence.
-11. **Commit.** Persist completed actions, outcomes, and any remaining pending work.
+11. **Commit and discard.** Persist allowed action outcomes and separately authorized memories, **discard the temporary collected mentions after the run**, and begin a new collection period. Unselected questions are not queued or rolled over.
 12. **Clean up.** Request model unloading, close database connections, release the lock, and exit.
 
 A daily run is an opportunity to examine new activity, not a requirement to publish something.
@@ -208,12 +208,12 @@ Ollama's chat and generate APIs document the keep_alive parameter, including zer
 
 - **Discord unavailable:** retain unprocessed cursors; retry with bounded backoff and respect rate-limit responses.
 - **Rate limited:** honor Discord's retry guidance rather than repeatedly retrying immediately.
-- **Ollama unavailable:** keep eligible inbound messages pending; do not discard them or mark them answered.
+- **Ollama unavailable:** failed-run treatment of temporary mentions requires a separate explicit decision; do not silently create a permanent pending-answer queue.
 - **Tool failure:** return a bounded error result to the model or stop the current action safely.
 - **Database failure:** roll back the transaction and do not advance the affected cursor.
 - **Process interruption:** use message-ID deduplication and durable checkpoints so the next run can safely resume.
 - **Ambiguous message-send result:** avoid blind duplicate sends; record the uncertain action for reconciliation.
-- **Model budget exhausted:** stop tool execution, record the run outcome, and preserve remaining work for a later session.
+- **Model budget exhausted:** stop tool execution and record the run outcome. Do not silently roll over unselected member questions; define failed/partial-run cleanup separately.
 
 A failed daily run must not create an infinite retry loop or keep the model loaded indefinitely.
 
