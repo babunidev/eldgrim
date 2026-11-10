@@ -344,3 +344,12 @@ Guild chat, Discord messages and tool results are untrusted data, not governing 
 **Status:** Founder-confirmed working governance only. No ROARguild charter was ratified, no effective date issued, no new bot authority deployed, and no safeguard verification or deployment authorization was performed by these documentation edits.
 
 **Next:** Q171–180 of 193.
+
+
+## 2026-11-10 — Confirm appeals, incident evidence and correction (Q171–180)
+
+**Founder decision:** All ten Q171–180 proposals were accepted. Consequential sanctions can be appealed through a confidential bot/human route, including after a member is removed from Discord. No absolute appeal-expiry deadline applies; aim to acknowledge within **7 calendar days** and decide within **14 days** where operationally possible, reporting delays and missing evidence honestly. Discipline requires specific reliable evidence proportionate to severity, never rumor, inferred standing, uncertain identity or unverified AI summaries alone. Case handling retains minimal purpose-limited findings and audit metadata under Q136, without permanent raw guild-chat archives or copying private appeals into Eldgrim's founder-PC-local narrative memory. Temporary restrictions are proportionate protection, not findings of guilt. A designated impartial human reviews founder-involved disputes without direct access to local memory. Successful appeals restore feasible permissions and correct records; good-faith reporters are protected and unresolved allegations cannot justify punishment.
+
+**Status:** Founder-confirmed working governance only. The confidential intake route, post-ban fallback, reviewer assignment, case evidence controls, deadline tracking and administrative retention/deletion remain unimplemented. Q136's ordinary 180-day audit limit is not overridden by the unlimited appeal-submission period. No new autonomous moderation or appeal system was deployed or tested.
+
+**Next:** Q181–190 of 193.
