@@ -118,7 +118,16 @@ These are **approved design requirements**, not proof of implemented AI administ
 
 **Status:** These are founder-confirmed **deployment requirements**, not implemented controls, successful tests or deployment authorization.
 
-## 11. Proactive actions
+## 11. Founder-confirmed moderation evidence and appeals (Q171–180)
+
+- **Q171–173:** Provide a confidential appeal route, including a post-ban fallback. No absolute appeal expiry; target 7-day acknowledgement and 14-day substantive response where operationally possible, with transparent delay notices. Do not invent appeal completion.
+- **Q174–176:** Require specific reliable evidence, stronger for more serious sanctions; rumor, standing, uncertain character identity and unverified model summaries cannot independently establish guilt. Limit case evidence and audits under Q136; no permanent raw chat or narrative-memory ingestion. Temporary restrictions must be justified by credible current risk, proportionate, reviewed and not treated as guilt.
+- **Q177–178:** A designated impartial human reviews founder-involved disputes with only necessary controlled evidence and **without direct access** to the founder-PC-local memory database. Correct overturned sanctions and records, restoring roles/permissions where feasible.
+- **Q179–180:** Protect good-faith reporting. Deliberate fabrication or retaliation requires its own reliable proof and fair process. Where guilt remains unproven, avoid punishment and periodically review any separate protective measure.
+
+**Status:** Approved design, not deployed appeal, evidence-review, deletion, sanction or deadline-management software.
+
+## 12. Proactive actions
 
 Proactive messages are disabled in the initial milestone. If enabled later:
 
@@ -128,7 +137,7 @@ Proactive messages are disabled in the initial milestone. If enabled later:
 - The agent must not repeat the same action after an ambiguous network failure.
 - The operator must be able to disable proactive posting without changing the model prompt.
 
-## 12. Operational controls
+## 13. Operational controls
 
 - Use a one-shot systemd service.
 - Prevent concurrent runs with a process lock.
