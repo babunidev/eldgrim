@@ -37,7 +37,7 @@ Everyone passes through the new Forge, including existing members; only the serv
 
 **Rank reset.** Approved by the creative on 2026-11-10: every member except the server owner restarts at Ember. When the switch that holds back ranks is turned on, members who have not completed the Forge lose all five ranks, including Administrator held through Hearthwarden; members who already completed keep only Ember. Completing the Forge then grants Ember, and Eldgrim decides any promotion afterwards. Once a member has completed, a later change to their character roles never removes a rank. The bot records each member's former ranks before removing them.
 
-**Notice.** On 2026-11-10 Eldgrim posted once in the Forge and mentioned everyone who still holds the Forge role. The message stays in that channel, so members who are offline see it when they next open Discord. Mentioning only people who are online would leave out the members whose absence is the point.
+**Notice.** On 2026-11-10 Eldgrim posted once in the Forge and mentioned everyone who still holds the Forge role. It also sent one direct message, in Eldgrim's voice, to each of the 73 members who had not registered. A direct message waits in the inbox whether the member is online or not. A closed inbox would be recorded and skipped; none were closed.
 
 **Implementation status (2026-11-10):** live. The creative completed the Forge first. The five public channels are now visible to the ranks only, and the rank switch is on: 73 members lost their ranks until they finish the Forge, including 3 Hearthwardens who held Administrator. The server owner is exempt. A dice bot kept its ranks, because a bot cannot complete the Forge. Finishing the Forge grants Ember.
 

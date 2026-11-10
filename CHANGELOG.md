@@ -4,6 +4,7 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-10
 
+- Sent one direct message, in Eldgrim's voice, to each member who has not registered.
 - Accepted one character name or two, and posted one Forge notice for members who have not registered. Offline members see it when they next open Discord.
 - Fixed the Forge to ask for each character's first name and surname, following WoW Forever's naming rules.
 - Turned on the Forge switches after the creative tested it: the five public channels are visible to the ranks only, and every member except the server owner restarts at Ember.
