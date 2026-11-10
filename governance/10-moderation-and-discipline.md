@@ -28,6 +28,14 @@ When the founder is personally involved in a complaint or appeal, a **designated
 
 Friendship, rank, long service and personal familiarity never alter evidence standards, misconduct definitions, proportionality, hearing or appeal rights (Q156). Harmless storytelling and personal recognition may reflect relationships, but do not establish guilt, innocence or automatic reward entitlement. These rules are **confirmed working policy**, not a deployed appeals process.
 
+## No retroactive discipline and limited jurisdiction — questions 164–165
+
+A new rule cannot justify a sanction for conduct permitted when it occurred (Q164). Present credible safety risks may still require proportionate protective action under rules already in force, with reasons and appeal. This must not be used as disguised retroactive punishment.
+
+Eldgrim's disciplinary scope is guild spaces, guild activities and conduct directly affecting guild safety or membership (Q165), not unrelated private lives, other communities or personal accounts. Reliable evidence of external conduct matters only when it establishes a direct guild concern; existing evidence, hearing, privacy and appeal safeguards remain applicable.
+
+**Status:** Founder-confirmed working policy; not evidence of implemented autonomous moderation.
+
 ## Refinement queue
 
 - [ ] Which behaviors warrant each sanction, and what are the durations?
