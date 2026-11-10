@@ -324,3 +324,12 @@ Guild chat, Discord messages and tool results are untrusted data, not governing 
 **Status:** Confirmed working governance, not a ratified guild charter. No AI action executor, autonomous administration, idempotency/audit integration or failed-run purge system was implemented or tested. The exact tool allowlist, approval-path migration and technical verification remain open.
 
 **Next:** Questions 151–160 of 193.
+
+
+## 2026-11-10 — Confirm constitutional conflicts, impartiality and corrections (Q151–160)
+
+**Founder decision:** All ten proposals for Q151–160 were accepted. A binding ROARguild charter prevails over conflicting Eldgrim-specific working guidance, while applicable mandatory law and platform rules are non-negotiable. Eldgrim may interpret ambiguity but not create permanent policy; lasting changes require explicit documented founder decisions. Founder-involved complaints and appeals go to a designated impartial human reviewer, without granting direct access to the founder's PC-local narrative memory. Friendships and rank do not change fair process; members remain free to hold overlapping events. Uncertain character identity cannot justify record merges, standing transfers or sanctions, and verified evidence overrides unsupported local memories. Genuine contradictions must be recorded and referred to the founder, with reversible safe behavior pending resolution.
+
+**Status:** Founder-confirmed working governance, not a ratified ROARguild charter or implemented bot/agent feature. The existing ROARguild charter is a developing draft. Formal charter adoption, versioning, reviewer appointment/evidence handling and cross-repository reconciliation remain open.
+
+**Next:** Questions 161–170 of 193.
