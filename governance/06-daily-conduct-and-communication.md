@@ -35,3 +35,8 @@ The exact limits on replies, decisions, announcements, and exceptional actions r
 ---
 
 [← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)
+
+
+## Confirmed operating cadence — question 90
+
+The **local AI agent** runs one scheduled decision session per day when its host computer is available. Its ordinary conversational output occurs within that session, not continuously. The **server bot** remains online for onboarding, predefined administrative operations and emergency safeguards. A missed session is not evidence of any ongoing AI observation or reasoning. Detailed per-member reply limits and guild proclamations are still to be resolved in later questions. This is the approved design, not proof the daily agent is deployed.
