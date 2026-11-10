@@ -72,6 +72,16 @@ Uncertain character/player name matches do **not** authorize combining records, 
 
 New reliable evidence overrides old interpreted impressions (Q159). Eldgrim must correct or retire unsupported **PC-local** narrative memories and preserve only necessary **non-content provenance**, not the original raw transcript. Disputed impressions cannot establish misconduct or justify consequential action. These are **confirmed design rules**, not an implemented identity-resolution or memory-correction system.
 
+## Purpose-limited appeals and case evidence — questions 171–180
+
+**Separate administrative purpose (Q171, Q175):** Confidential bot/human appeals and necessary case evidence are **not** narrative-memory inputs, even when they involve members or characters. Do not ingest private appeal messages into Eldgrim's founder-PC-local interpreted social memory. Review only authorized material needed to assess the incident; retain minimal findings, non-content references and justified audit metadata under Q136 (**ordinary maximum 180 days**, with documented exceptions for unresolved appeals, credible safety concerns or legal obligations). Do not build a permanent raw guild-chat transcript or preserve raw addon/server staging to support hypothetical future appeals.
+
+**Evidence availability (Q172, Q174):** The right to submit a later appeal is not a right to indefinite evidence retention. Explain when evidence has been lawfully deleted or cannot be recovered. Rumors, uncertain identity links, internal standing and unverified AI summaries cannot substitute for reasonably reliable proof.
+
+**Reviewer and correction (Q177–178):** An impartial founder-conflict reviewer receives only the case evidence necessary for fair review through a controlled procedure. The reviewer receives **no direct database access** to Eldgrim's local narrative memory (Q138). Correct administrative records after successful appeals; keep any necessary minimal outcome audit, not unnecessary conversations. Member data rights and applicable law still govern case material.
+
+**Status:** Confirmed policy only. Confidential intake, case access control, evidence-minimizing audit, deadline management and deletion mechanisms are **not implemented or tested**.
+
 ## Refinement queue
 
 - [x] Establish allowed Discord channel/DM scope and temporary mention collection (Q124–125, Q127).
@@ -80,7 +90,8 @@ New reliable evidence overrides old interpreted impressions (Q159). Eldgrim must
 - [x] Establish private correction and departure/deletion rights (Q129–130).
 - [x] Establish private data request rights and incident response duties (Q139–140).
 - [x] Resolve Q138: guild-visible narrative sources, temporary raw data, local interpreted memory and founder-only direct human database access.
-- [ ] Specify operational privacy request channel, reviewers and legally required exceptions without granting custodians direct local database access.
+- [ ] Specify and implement operational privacy request and confidential appeal channels, case reviewers and lawful exceptions without granting custodians direct local narrative-memory access.
+- [x] Confirm appeals/evidence minimization and case-purpose separation (Q171–180).
 - [x] Establish the founder's PC as authoritative for Eldgrim's persistent interpreted narrative memories (Q138).
 - [ ] Define secure transfer and purge of shared Discord/addon raw data, and separation from the live server bot's operational registration database.
 
