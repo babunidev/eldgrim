@@ -40,3 +40,18 @@ The exact limits on replies, decisions, announcements, and exceptional actions r
 ## Confirmed operating cadence — question 90
 
 The **local AI agent** runs one scheduled decision session per day when its host computer is available. Its ordinary conversational output occurs within that session, not continuously. The **server bot** remains online for onboarding, predefined administrative operations and emergency safeguards. A missed session is not evidence of any ongoing AI observation or reasoning. Detailed per-member reply limits and guild proclamations are still to be resolved in later questions. This is the approved design, not proof the daily agent is deployed.
+
+
+## Confirmed communication and decision quotas — questions 91–99
+
+- **Q91:** One daily AI session may reply to multiple eligible members; processing cadence is not a one-message restriction.
+- **Q92:** Each member has one eligible question per UTC calendar day, resetting at 00:00 UTC. Editing/repeating a question does not multiply allowances. Unprocessed questions do not consume the allowance.
+- **Q93:** Eldgrim may decline or postpone eligible answers for safety, information, capacity or narrative reasons without penalizing the member.
+- **Q94:** Fictional/personal refusals may be mysterious or silent; real administrative restrictions and privacy requests require an appropriate explanation.
+- **Q95:** One direct question/request explicitly addressed to @Eldgrim is a submission even if it includes related subquestions. Ordinary chat, onboarding, safety reports and appeals do not use the question allowance.
+- **Q96:** No unprompted casual private conversation. Onboarding, administrative, safety and appeal messages are exceptions, as is the separate public proclamation.
+- **Q97:** Expect one proclamation per successful AI session; story, observation, invitation, quest or recognition are allowed. Skip when unsafe, technically impossible or misleading; do not fabricate actual guild activity.
+- **Q98:** The proclamation is independent of member replies; administrative and safety notices are independent of both.
+- **Q99:** Normally one routine decision per category per session: ranks, quests, recognition/rewards, guild-bank allocation, proclamation. Log decisions; urgent safety actions are exempt.
+
+**Q100 remains unapproved.** The proposal concerning offline mention queuing and handling was marked for revision; no offline-question policy has been adopted from that question. These are approved governance constraints, not evidence that the local AI or message quotas are implemented.
