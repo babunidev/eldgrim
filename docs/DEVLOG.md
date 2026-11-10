@@ -105,3 +105,10 @@ The creative clarified that Eldgrim's standing and member-personalization contex
 The creative approved ten more governance decisions concerning reinstatement, Forge requirements, member-owned character records, the initial rank migration and the once-daily local AI session. AI updated the numbered question register, relevant governance chapters and decision history, preserving the distinction between existing Forge features and intended future workflows.
 
 **Result:** Governance documentation committed to GitHub. No bot, agent or addon source was changed or tested.
+
+
+## 2026-11-10 — Replace the offline-question queue with a temporary collection
+
+The creative rejected the proposed waiting queue for questions addressed to Eldgrim. Members should be able to mention it freely. The bot or the local AI's collection round gathers these messages temporarily; Eldgrim then chooses up to one question per person, by chance or according to what suits the character's story. The collection is discarded after the run. AI reconciled this with the previously recorded daily question limit and revised the governance, agent and bot design documents.
+
+**Result:** Approved Q100 and synchronized public documentation. No collection system, local AI or retention behavior was implemented or tested.
