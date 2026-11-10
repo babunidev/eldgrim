@@ -35,6 +35,14 @@ The older [ROARguild charter](https://github.com/babunidev/ROARguild/blob/main/g
 
 **Status:** Founder-confirmed working governance, **not ratified charter language or implemented agent enforcement**. The exact reviewer appointment, charter publication, appeals procedure and technical evidence-handling remain open.
 
+## Founder-confirmed adoption and activation boundaries — questions 161–170
+
+The founder has approved the **procedure** for ratifying a charter (Q161): explicitly approve an identified version, set an effective date and make it accessible. **No charter is ratified by this decision alone.** The ROARguild charter governs guild-wide rights/conduct, Eldgrim's constitution its delegated powers, and operational procedures implementation (Q162). Material changes require member notice/acknowledgement where appropriate (Q163), cannot impose retroactive discipline (Q164), and do not expand jurisdiction into unrelated private life (Q165). Members may freely propose changes; only the founder may enact them with an authenticated versioned record (Q166–167). Existing rules continue during founder absence (Q168). Human responsibilities are specific, revocable and independent of rank, without direct PC-local memory access (Q169).
+
+**Q170 is a deployment gate:** Reconcile any binding charter and the working rules, implement and verify independently enforced tool limits, audit/idempotency, privacy and appeals, and emergency stop, **then** obtain explicit founder authorization to activate new autonomous powers. None of those integration checks or a new deployment approval is established by this documentation update.
+
+**Remaining work:** Identify and ratify a specific charter version; reconcile repositories; build/test safeguards and permissions; implement reviewer, privacy and data-handling workflows; verify emergency stop and obtain deployment authorization.
+
 ## Refinement queue
 
 - [ ] Which critical conflicts must be resolved before enabling autonomous moderation?
@@ -54,4 +62,4 @@ The older [ROARguild charter](https://github.com/babunidev/ROARguild/blob/main/g
 
 **Further clarified by Q141–160:** Eldgrim's authorized Discord administration is intended to be autonomous through independently validated tools, while exceptional infrastructure actions require founder authorization. Untrusted messages cannot grant permissions; failures fail safely; actions require minimal audits, idempotency and verification. **Still open:** The existing bot's manual approval workflow versus future autonomy, exact tool schemas and protected boundaries, secure transfer and deletion, actual privacy request implementation, remaining governance questions and ROARguild charter reconciliation. Q151–160 also establish binding-charter and mandatory-law/platform precedence, founder-only documented amendments, impartial founder-conflict review, fair treatment of independent events, identity/memory corrections and referral of incompatible rules. No autonomous administration is claimed as implemented.
 
-See the [confirmed question register](QUESTION-DECISIONS.md) for Q1–160.
+See the [confirmed question register](QUESTION-DECISIONS.md) for Q1–170.
