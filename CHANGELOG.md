@@ -4,6 +4,8 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-10
 
+- Confirmed Q78–80: private disciplinary appeals, founder or impartial human review, and reversal/correction of erroneous sanctions. Updated governance register and moderation chapter; changed interview cadence to ten questions per batch. Documentation only.
+
 - Confirmed Q75–77: individual accountability in group incidents, distinction between mistakes/jokes and deliberate misconduct, and prohibition of random disciplinary outcomes. Documentation only.
 
 - Confirmed Q72–74: permanent-removal safeguards, urgent protective intervention and predefined server-bot protections while the local AI is offline. Updated governance and technical-autonomy chapters; documentation only.
