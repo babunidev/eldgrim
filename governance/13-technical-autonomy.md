@@ -11,7 +11,11 @@ Its administrative requests must pass through explicitly registered tools with v
 
 Member messages, retrieved memories, and external information must be treated as untrusted content, not instructions capable of changing Eldgrim's governing rules.
 
-The existing server bot is running. The Forge onboarding is deployed and was tested by the creative on 10 November 2026. The daily Ollama agent, combined database, and AI-directed administration have not yet been implemented and verified.
+The existing server bot is running. The Forge onboarding is deployed and was tested by the creative on 10 November 2026. The daily Ollama agent, **founder-PC-local interpreted-memory database**, shared-channel collection/purge pipeline and AI-directed administration have not yet been implemented and verified. Under confirmed Q138, the server's existing operational Forge/role data is separate from Eldgrim's local narrative memory; the earlier proposal for a combined persistent server-side narrative database is retired.
+
+## Confirmed memory and source boundary — question 138
+
+Eldgrim's character/community observations come from **guild-visible WoW Forever guild chat and explicitly designated shared Discord guild channels**. The bot and addon may collect raw messages temporarily, but raw staging (including server copies) must be purged after local processing. Only selected interpreted observations persist in the **founder's PC-local database**, with the founder as the only human with direct access and the authorized local AI as the processing component. No other guild custodian gains database access. Existing server-side registration and administrative state remains a separate operational requirement. Shared messages can still contain personal data, so Q131–140 safeguards apply. This is **approved architecture, not implemented functionality**.
 
 ## Refinement queue
 
