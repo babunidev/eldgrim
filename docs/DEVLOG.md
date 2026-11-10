@@ -126,3 +126,10 @@ The creative approved ten governance answers setting the purpose, frequency, con
 The creative approved ten decisions describing Eldgrim's Sunday invitations and regional themes, voluntary bonfires, simultaneous gatherings, accessibility and attendance neutrality. Guild-bank rules now distinguish freely offered contributions, authorized human custodians, verified inventory snapshots and confirmed deliveries from merely announced allocations. AI revised the corresponding governance chapters and decision register.
 
 **Result:** Documentation committed to GitHub. No agent, bot, addon or in-game bank operation was changed or tested.
+
+
+## 2026-11-10 — Bank reserves and member-data boundaries (Q121–130)
+
+The creative approved ten more governance decisions. Bank reservations and valuable transfers now require documented limits and human verification; disputed allocations have a review path. Eldgrim's observation scope excludes unrelated private conversations and restricts memory to relevant, supported impressions. Raw chat and temporary mention collections must not become hidden permanent archives, and members have private correction and departure-related deletion processes to be developed. AI synchronized the relevant governance chapters and decision register.
+
+**Result:** Documentation committed to GitHub. No bot, agent, addon, data purge or legal-compliance procedure was implemented or tested.
