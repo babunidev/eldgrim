@@ -45,6 +45,14 @@ Messages that mention the bot are readable without Discord's privileged Message 
 
 The addon itself stays a silent local recorder and never stores Discord identifiers. The bot necessarily stores Discord member IDs on the server to manage roles; these must stay private to the server and never be published.
 
+## Relation to the local-agent design
+
+The agent/ documents (2026-11-09) describe a once-daily local agent on the creative's PC using Ollama. Both designs agree that Eldgrim answers once a day and only to @Eldgrim mentions, without Discord's Message Content intent for that purpose. They differ in three points, which remain open until the creative decides:
+
+- **Where Eldgrim's replies run.** The agent design runs on the PC with a systemd user timer; this direction moves the bot to the server. The server (2 CPU cores, 3.7 GB memory) is too small for local Ollama inference. One possible split: the server bot handles onboarding, administration, and data; the PC agent writes the daily replies.
+- **Administration.** The agent design forbids Discord administration and moderation tools for the model. This direction keeps administration in the bot. Both hold if administration stays with the bot and its preview-and-approval process and is never exposed to the model.
+- **Addon data.** The agent design does not use the addon's archive; this direction combines it with the onboarding data.
+
 ## Open decisions
 
 - Server details (operating system, access, Python version), and how the sync step transfers the addon file to it.
