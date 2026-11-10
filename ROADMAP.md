@@ -52,9 +52,9 @@ This roadmap records areas of development, not promises or fixed deadlines.
 - [x] Move the bot to the creative's server.
 - [x] Rename the bot to Eldgrim and give it a new profile image.
 - [x] Replace the former rank names remaining in bot texts with Amberhearth's ranks.
-- [x] Specify and build multi-character onboarding; offline tests pass.
-- [ ] Approve the Forge texts and deploy the onboarding.
-- [ ] Hide the public channels behind the ranks and hold back Ember until completion.
+- [x] Specify and build multi-character onboarding, and deploy it.
+- [x] Approve the Forge texts.
+- [x] Hide the public channels behind the ranks and restart every member except the server owner at Ember.
 - [ ] Specify, build, and test once-a-day replies to @Eldgrim mentions.
 - [ ] Transfer addon data to the server and build Eldgrim's database.
 

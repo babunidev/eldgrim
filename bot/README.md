@@ -81,6 +81,6 @@ The agent/ documents (2026-11-09) describe a once-daily local agent on the creat
 1. Put the existing bot under version control and back up its configuration and state. **Done 2026-11-10;** the 51 existing unit tests passed on the new copy.
 2. Deploy the bot on the server and stop the desktop service. **Done 2026-11-10;** connection to Discord confirmed through the bot's control socket.
 3. Rename the bot to Eldgrim and give it the new profile image. **Done 2026-11-10** by the creative in the Discord Developer Portal.
-4. Specify and build multi-character onboarding. **Deployed 2026-11-10;** the creative tests it before the rank and channel switches are turned on.
+4. Specify and build multi-character onboarding. **Done 2026-11-10.** The Forge is live, the public channels are visible to the ranks only, and every member except the server owner restarts at Ember.
 5. Specify and build message reading and replies.
 6. Build the addon sync and Eldgrim's database.
