@@ -29,9 +29,12 @@ The existing Babuni Gaming Discord bot is the foundation. Verified on 2026-11-10
 **Character onboarding.** An extension of the Character Forge, using the same pattern of a gate channel and a gate role:
 1. Newcomers receive the Forge role on arrival and see only the Forge channel.
 2. They accept the hearth rules, which include Discord's Terms of Service and Community Guidelines and say what Eldgrim remembers: registered characters, conversations with Eldgrim, and guild activity recorded in the game, such as guild chat, emotes, and presence at events.
-3. Eldgrim asks how many characters they bring. There is no fixed limit; the software accepts up to 50 to catch typing mistakes.
-4. For each character: one name, or a first name and a surname, then faction, race, and class. WoW Forever uses both names. One name is accepted too, because a member may bring a character from another version of World of Warcraft. Each part is 2–12 letters, accents allowed, with no spaces, hyphens, apostrophes, or numbers, and no letter three times in a row. The Forge capitalises like the game. A surname left empty stays a one-name character. Faction is asked because Skyborne exist on both sides.
-5. On completion they receive the roles of all their characters and the rank **Ember**, and the Forge disappears.
+3. They choose Roar or Amberhearth. Roar also receives the existing Roar role. Amberhearth receives the Amberhearth role. Both still receive Ember.
+4. Eldgrim asks how many characters they bring. There is no fixed limit; the software accepts up to 50 to catch typing mistakes.
+5. For each character: one name, or a first name and a surname, then faction, race, and class. WoW Forever uses both names. One name is accepted too, because a member may bring a character from another version of World of Warcraft. Each part is 2–12 letters, accents allowed, with no spaces, hyphens, apostrophes, or numbers, and no letter three times in a row. The Forge capitalises like the game. A surname left empty stays a one-name character. Faction is asked because Skyborne exist on both sides.
+6. On completion they receive the roles of all their characters, their fellowship role, and the rank **Ember**, and the Forge disappears.
+
+The Roar role used to be given to every member who held a guild rank. That automatic assignment is retired, because it would have put Amberhearth members into Roar as soon as they became Ember.
 
 Everyone passes through the new Forge, including existing members; only the server owner is exempt. Ember is given on completion rather than on arrival, because Discord cannot hide channels that a role grants explicitly. The channels currently visible to everyone (all-chat, looking-for-group, wow-addons, morkahja, azeroth-moments) will be visible to the ranks only, so the Forge is all a newcomer sees.
 

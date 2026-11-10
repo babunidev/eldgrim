@@ -130,6 +130,14 @@ A concise record of meaningful creative and structural decisions.
 
 **Status:** Documentation structure established; substantive policy gaps remain open.
 
+## 2026-11-10 — Roar and Amberhearth are separate fellowships in the Forge
+
+**Decision:** After the hearth rules, and before any character, a member chooses Roar or Amberhearth. Roar receives the existing Roar role in addition to Ember. Amberhearth receives a new Amberhearth role in addition to Ember.
+
+**Boundary:** The earlier automatic use of the Roar role, which marked every holder of a guild rank, is retired. Otherwise Amberhearth members would have received Roar on becoming Ember.
+
+**Status:** Live on 2026-11-10.
+
 ## 2026-11-10 — One daily proclamation comes before replies
 
 **Decision:** Eldgrim speaks to the guild once a day before it answers mentions. The proclamation may be a story, a recognition, a quest, an invitation, an observation, or one step in a longer tale. People may write to Eldgrim so it can learn from them; reading those messages is a later step, not part of the first proclamation.

@@ -2,6 +2,12 @@
 
 A concise account of meaningful project development, written from the human creative's perspective.
 
+## 2026-11-10 — Roar and Amberhearth in the Forge
+
+Some people on the Discord belong to Roar, and some belong to Amberhearth. I asked for that choice in the Forge, after the rules and before the characters. Roar members keep the Roar role as well as Ember. Amberhearth members receive a new Amberhearth role and Ember. AI found that the Roar role had been given automatically to anyone with a guild rank, which would have erased the difference, and retired that automatic assignment.
+
+**Result:** The choice is live. The Amberhearth role exists. Members who already finished are unchanged until they run the Forge again.
+
 ## 2026-11-10 — A daily word from Eldgrim
 
 Replies to mentions can wait. What I want first is Eldgrim speaking to the guild once a day, a story or a small announcement, in its own voice. The governance chapters are still being written, so the first version reads only the pages that are already solid, and it reads them again each day so a later edit is picked up. The writing happens on my computer, because that is where the model runs. The bot on the server only posts the finished words.
