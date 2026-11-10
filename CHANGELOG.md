@@ -4,6 +4,8 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-10
 
+- Confirmed Q181–190: founder/technical-custodian emergency stop, safe cancellation and restart prevention, secret isolation, independent Discord permissions, non-production tool testing, reversible autonomy rollout, protected/tested backups with deletion replay, bounded offline behavior, compromise response and periodic review. Updated governance and agent/bot documentation; no runtime implementation or deployment.
+
 - Confirmed Q171–180: confidential and post-ban appeal routes, no absolute appeal expiry, 7/14-day response targets, reliable evidence thresholds, purpose-limited incident audits, proportionate temporary protection, impartial founder-conflict review, remedies, good-faith reporting and unresolved-case safeguards. Updated governance and agent/bot documentation; no implementation or deployment.
 
 - Confirmed Q161–170: explicit charter ratification/versioning and member notice; distinct governing documents; no retroactive discipline; guild-limited jurisdiction; member proposals; founder-only amendments during absences; scoped human delegation; verified safeguards and founder authorization required before new autonomous administration. Documentation only.
