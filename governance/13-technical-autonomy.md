@@ -37,6 +37,18 @@ Eldgrim's character/community observations come from **guild-visible WoW Forever
 
 **Deployment gate (Q170):** The founder must explicitly authorize the transition to new autonomous administration **only after** reconciling binding charter and working rules, implementing and verifying independently enforced tools and permission boundaries, auditable/idempotent action execution, privacy/appeal procedures and a working emergency stop. The existing bot's manual preview/approval process remains the current implementation until this gate is met. A governance decision is not a deployed feature or test result.
 
+## Founder-confirmed emergency controls, testing and recovery — questions 181–190
+
+**Shutdown authority and effects (Q181–182).** The founder and **explicitly designated technical custodians** may immediately suspend automation for credible security, safety or serious operational concerns without Eldgrim's permission. This grants no policy-amendment authority or direct access to the founder's PC-local memory (Q138). A shutdown must stop new AI-generated messages, sanctions, rank changes, bank proposals and administrative tool calls; safely cancel pending operations, prevent silent scheduled restart and log the event. Only independently safe essential bot functions may continue. Restart requires authorized recovery.
+
+**Secrets, permissions and tests (Q183–185).** Keep tokens and secrets outside Git and model prompts, restrict access to authorized operators, separate server credentials from local memory, revoke former operators and rotate compromised secrets. The application/bot must independently validate target, protected roles, permissions and limits for every Discord action; Eldgrim cannot self-escalate, change ownership or bypass founder-reserved security boundaries. Before exposing a tool, test allowed/denied operations, malformed arguments, unauthorized targets, retries, partial failure and recovery with synthetic/non-production data. Document test results and unresolved defects; model promises are not enforcement.
+
+**Controlled rollout and recovery (Q186–189).** Move from manual approval to autonomy only for expressly approved, verified operations through a scoped reversible rollout and **Q170 founder authorization**. Failures suspend affected automation. Backups must be protected and tested within Q137's routine **30-day maximum**, with integrity checks and deletion replay before restoration. While the local PC/AI/network is offline, the server bot continues existing verified onboarding, roles and predefined protections only; it creates no independent AI replies or unanswered-question backlog. Temporary guild-visible staging remains subject to Q138 purge requirements. Suspected compromise requires isolation, credential revocation, necessary incident evidence, Q140 notifications/remediation and verified recovery before resuming unsafe collection or autonomous actions.
+
+**Periodic review (Q190).** Reassess permissions, audits, retention/deletion, backups, emergency controls, appeals and governing-document conflicts; record findings and fixes. Technical maintenance does not authorize policy amendments or additional powers.
+
+**Implementation boundary:** These are **founder-confirmed requirements**. A functioning emergency stop, technical custodian appointment, completed tool tests, verified backups, automated restart prevention, autonomy rollout and incident response are **not established** by this documentation update.
+
 ## Refinement queue
 
 - [ ] Specify the exact registered tool names, argument schemas and per-action authorization rules (Q141–142 establish principles, not the complete tool list).
@@ -44,7 +56,8 @@ Eldgrim's character/community observations come from **guild-visible WoW Forever
 - [ ] Reconcile the deployed bot's manual preview-and-approval workflow with future validated autonomous administration; define the protected-system boundary.
 - [ ] Implement and test independent permission checks, idempotency, action audits, failure cleanup and uncertain-result reconciliation (Q145–150).
 - [x] Confirm founder-authorized deployment gate and required safeguards (Q170).
-- [ ] Demonstrate each Q170 safeguard in live integration, verify emergency stop and obtain explicit founder deployment authorization.
+- [x] Specify emergency stop, secret handling, independent permission checks, test cases, staged rollout, backup/offline recovery, compromise response and periodic review (Q181–190).
+- [ ] Demonstrate each Q170 safeguard in live integration, appoint authorized technical custodians as appropriate, verify emergency stop/recovery and obtain explicit founder deployment authorization.
 
 ---
 
