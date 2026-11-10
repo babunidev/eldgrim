@@ -196,3 +196,12 @@ A concise record of meaningful creative and structural decisions.
 **Boundary:** These are founder-confirmed working governance rules, not evidence of live AI enforcement. Detailed evidence thresholds, appeal procedures and reinstatement remain open.
 
 **Next:** Question 72 of 193.
+
+
+## 2026-11-10 — Confirm permanent removal, urgent intervention and offline safeguards (Q72–74)
+
+**Confirmed:** The founder accepted all three proposed answers. Permanent bans require severe or repeated harmful misconduct, reliable evidence, documented reasons and appeal; inactivity, disagreement or low standing never suffice. Credible urgent threats allow proportionate immediate intervention with subsequent review. While Eldgrim's local AI is offline, the always-online bot may perform predefined authorized emergency protections and designated custodians may intervene; complex judgments await the next agent session.
+
+**Boundary:** These are approved governance decisions only. They do not demonstrate that bot emergency protections or AI moderation are implemented. Exact appeals and operational safeguards remain open.
+
+**Next:** Question 75 of 193.
