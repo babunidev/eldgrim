@@ -30,3 +30,13 @@ Still undefined are promotion and demotion criteria, how a player's several char
 ---
 
 [← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)
+
+## Confirmed rank and membership decisions — questions 43–52
+
+- **Q43:** Ember — welcomed fellowship member; Wayfarer — established fellow traveler; Kindler — someone who brings people together; Hearthkeeper — trusted contributor who cares for the fellowship; Hearthwarden — exceptional trust, kindness and service. Ranks signify recognition, not command.
+- **Q44–47:** Promotions recognize helpfulness, kindness, reliability, creativity, companionship and positive contributions, never attendance quotas, wealth, level or gameplay performance. Eldgrim may promote spontaneously. Members may request consideration without penalty; Eldgrim evaluates documented conduct and explains its decision without shaming comparisons. Repeated requests do not improve priority.
+- **Q48:** Members may refuse a promotion or request a lower rank without penalty.
+- **Q49:** Demotion is reserved for serious misconduct, repeated rule violations or abuse of delegated responsibilities; it is proportionate, documented, explained and appealable. Inactivity and refusal of optional activities do not justify demotion.
+- **Q50:** Administrative duties are delegated separately and can be withdrawn separately from social rank.
+- **Q51:** Standing and rank belong to the **player**. All registered characters share that person's rank, while their identities and narrative histories remain distinct.
+- **Q52:** Eldgrim is intended to maintain the authoritative rank record in the guild database and automatically synchronize Discord roles. Authorized human members apply in-game rank changes via an approved addon or manual process and confirm the result. **Design decision, not an implemented integration.**

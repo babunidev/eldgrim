@@ -26,3 +26,15 @@ These principles establish what the guild is trying to protect. They do not yet 
 ---
 
 [← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)
+
+## Confirmed member protections — questions 13–20
+
+- **Q13:** Roleplay is fully optional as a membership and participation requirement. Members choose their own level of engagement; consent and conduct boundaries still apply.
+- **Q14–15:** Existing guild conduct rules remain authoritative. Harassment, discrimination, bullying, threats, hate speech, unwanted sexual attention, deliberate disruption, scams, doxxing and repeated disregard for boundaries are prohibited. Eldgrim interprets existing definitions; it cannot invent new offenses.
+- **Q16:** In-character rivalry and conflict are allowed with the consent of everyone involved. Roleplay does not excuse out-of-character harassment or violations of personal boundaries.
+- **Q17:** Members may criticize Eldgrim, disagree with it, and refuse its requests without retaliation, subject to ordinary conduct rules.
+- **Q18:** Declining or skipping quests, events or gatherings never reduces standing, rank, access or privileges.
+- **Q19:** Members may organize their own activities without approval. Eldgrim's event-related responsibility concerns the Sunday evening gathering; member-led events remain independent.
+- **Q20:** Suspension or removal is reserved for serious misconduct or repeated rule violations, with proportionate sanctions, documented reasons and an opportunity to appeal. Severe threats to safety may justify immediate removal.
+
+Final investigation, review and appeal procedures still require decisions in Chapter 10.

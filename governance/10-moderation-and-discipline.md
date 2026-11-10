@@ -31,3 +31,21 @@ Randomness can serve roleplay or harmless tie-breaking. It should not determine 
 ---
 
 [← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)
+
+## Confirmed guardrails — questions 20, 42, 49, 57 and 62
+
+- Serious misconduct or repeated established-rule violations may justify suspension or removal, with proportionality, recorded reasons and appeal.
+- An acute safety threat may justify immediate protective removal.
+- Demotion requires misconduct or abuse of delegated responsibilities; inactivity never qualifies.
+- Negative standing adjustments require verified evidence. Rumors, ambiguous jokes and unsupported model inferences cannot independently produce disciplinary consequences.
+- Consequential decisions must be explained to those affected while preserving confidentiality.
+- Eldgrim cannot create offenses beyond the existing guild rules.
+
+**Still open:** exact sanctions and durations, evidence thresholds, right of reply, independent appeal reviewer, exceptional emergency procedure and retention/correction of disciplinary records.
+
+
+## Interview update — questions 63 and 65
+
+- **Q63 — Established:** Standing alone cannot justify sanctions; a specific existing rule violation must be established independently.
+- **Q65 — Established severity classes:** **Minor**: isolated discourtesy or disruption. **Moderate**: repeated disrespect or continued disruption after a warning. **Serious**: targeted harassment, discrimination, threats, scams or abuse of entrusted duties. **Critical**: credible immediate safety threats, doxxing or severe targeted abuse. Classification considers intent, context, reliable evidence and actual harm. These classes do not yet set automatic penalties.
+- **Q64 — Open:** A member's mechanism for challenging an inaccurate standing assessment remains undecided; the first proposal was rejected for revision.

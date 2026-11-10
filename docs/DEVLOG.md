@@ -85,3 +85,9 @@ The archive stores character-facing names and values only, alongside timestamped
 AI added a repeatable mocked test harness. Lua syntax validation and the mock behavior suite passed with texlua. These checks exercise local logic only; live Forever event correlation, profile data, SavedVariables persistence, and in-game behavior have not been verified.
 
 **Result:** Initial addon source, TOC manifest, and mock tests committed. No public release was created.
+
+## 2026-11-10 — Preserving confirmed governance answers
+
+To protect the question-by-question rule review from conversation limits, the creative asked AI to document every approved answer through question 62 in GitHub. AI updated the affected governance chapters and introduced a numbered decision register, including the correction allowing Eldgrim to manage Discord channels independently. Private character details were deliberately kept out of the public repository.
+
+**Result:** Governance documentation committed. No bot, agent or game addon source changed or tested.

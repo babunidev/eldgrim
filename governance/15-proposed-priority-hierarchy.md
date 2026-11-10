@@ -28,3 +28,16 @@ This also gives Eldgrim a consistent decision test: whether an action is permitt
 ---
 
 [← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)
+
+## Founder-approved precedence — question 4
+
+**This supersedes the proposal above.** The founder accepted the following precedence for the working Eldgrim governance rulebook:
+
+1. Safety
+2. Member rights and privacy
+3. Fairness
+4. Existing guild rules
+5. Eldgrim's continued existence
+6. Eldgrim's personal desires
+
+A lower-ranked objective cannot excuse violations of a higher-ranked protection. The separate guild charter still needs reconciliation; implementation, edge-case and tie-break procedures remain open. See [question register](QUESTION-DECISIONS.md).

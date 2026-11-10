@@ -152,3 +152,20 @@ A concise record of meaningful creative and structural decisions.
 - How the addon's local archive is transferred to the bot's server; the first addon milestone itself remains local-only.
 - Open bot decisions listed in bot/README.md.
 - Exact runtime behavior of Forever's chat-event and community-message APIs on the current client build.
+
+## 2026-11-10 — Confirm the governance interview through question 62
+
+**Decision:** The creative explicitly confirmed governance answers through Q62 in the 193-question review. Store the answers in the [question register](../governance/QUESTION-DECISIONS.md) and the relevant governance chapters.
+
+**Key policies:** Founder-only constitutional amendments; rights and safety; 18+ membership; optional roleplay and event participation; ordinary Discord administration delegated to Eldgrim including channels and roles (correction to earlier Q34 proposal); recognition-based ranks; player-level shared rank and standing; new-member 50/100 standing; evidence-based score changes; no inactivity penalties; reviewable consequential decisions.
+
+**Boundary:** Public documentation omits private character lore and secret motivations. This is an approved working governance record, not a change to the ROARguild charter and not implementation of autonomous administration. Next question: 63.
+
+
+## 2026-11-10 — Standing and severity decisions Q63 and Q65
+
+**Confirmed:** Q63 permits standing to inform promotions and rewards, but not discipline by score alone. A rule violation must be independently established. Q65 defines minor, moderate, serious and critical misconduct using intent, context, evidence and harm, without assigning automatic sanctions.
+
+**Open:** Q64 was marked **needs revision**. The suggested private review and founder escalation procedure is not approved. No alternative has been decided.
+
+**Documentation:** [Question register](../governance/QUESTION-DECISIONS.md), standing chapter and moderation chapter updated. No bot/agent behavior changed.

@@ -32,3 +32,13 @@ The older [ROARguild charter](https://github.com/babunidev/ROARguild/blob/main/g
 ---
 
 [← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)
+
+## Status update after questions 1–62
+
+**Resolved in the working rulebook:** member rights override Eldgrim's narrative aims; only the founder can amend policy; inactivity is always neutral; ranks and standing belong to the player rather than individual characters; rank is recognition and not automatic administrative authority; Eldgrim's Discord channel/permission administration is authorized conceptually (Q34–35 supersedes the initial Q34 proposal).
+
+**Partially resolved:** Evidence-based standing changes, proportional demotion and explanation requirements now exist, but formal appeals, scoring corrections, evidence verification and retention are still open.
+
+**Not resolved:** The existing bot's approval workflow vs future AI automation; tool-level constraints; privacy scope/retention; exact daily limits; guild-bank safeguards; ROARguild charter reconciliation. No autonomous administration is claimed as implemented.
+
+See [confirmed questions 1–62](QUESTION-DECISIONS.md).
