@@ -45,7 +45,7 @@ texlua addon/tests/test_recorder.lua addon/Eldgrim/Eldgrim.lua
 
 ## Future integration privacy boundary (Q126)
 
-The existing first milestone stores raw guild-chat records locally in SavedVariables. Under confirmed governance Q126, those raw records may be used as **temporary source material** only for an authorized future Eldgrim analysis integration. Long-term member/character memories should retain relevant supported interpretations rather than verbatim quotations. Define and verify a raw-record deletion procedure **before production integration**. This decision does not claim that the current passive addon implements automatic deletion, transmission, AI analysis or a retention schedule; those features are outside its current scope.
+The existing first milestone stores raw guild-chat records locally in SavedVariables. Under confirmed governance Q126, those raw records may be used as **temporary source material** only for an authorized future Eldgrim analysis integration. Long-term member/character memories should retain relevant supported interpretations rather than verbatim quotations. Define and verify a raw-record deletion procedure **before production integration**. Under founder-confirmed Q138, this archive is only temporary input for **selected interpreted memories persisted on the founder's PC**; the addon data is not sent to a persistent server-side Eldgrim memory database. The addon itself currently still writes local SavedVariables, and automatic deletion is **not implemented**. This decision does not claim that the current passive addon implements automatic deletion, transmission, AI analysis or a retention schedule; those features are outside its current scope.
 
 ## Compatibility
 
