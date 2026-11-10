@@ -168,3 +168,10 @@ The latest ten answers establish how Eldgrim handles rules that disagree, especi
 The next ten answers distinguish the act of documenting rules from making them binding. A charter needs an identified approved version, effective date and member access; future amendments must be traceable and announced. No retroactive discipline or policing of unrelated private lives is allowed, and members remain free to suggest changes. Human duties can be delegated without turning recognition ranks into command positions or exposing the local memory database. Before Eldgrim can administer Discord autonomously, its tools, safeguards, appeals and emergency stop must be verified and deployment explicitly authorized. AI synchronized the question register, governance chapters, agent/bot guidance and development records.
 
 **Result:** Q161–170 recorded as working governance. No charter ratification, new deployment approval, autonomous administration, safeguard test or bot integration was performed.
+
+
+## 2026-11-10 — Complete the appeal and evidence rules (Q171–180)
+
+The next ten decisions give members a private way to challenge sanctions, even after leaving the Discord server, without an absolute expiry. Seven days to acknowledge and fourteen to decide are operational targets, not invented guarantees. Discipline needs reliable evidence; uncertain character identity, standing and rumors are not proof. Temporary restrictions protect against present risk rather than pronounce guilt, and unresolved accusations remain unproven. Founder-related appeals require an impartial human reviewer without exposing the local narrative-memory database. Case records remain purpose-limited, subject to existing audit retention, and never become a permanent guild-chat archive. AI synchronized the question register, moderation, privacy, conflicts, agent and bot design, and development documentation.
+
+**Result:** Q171–180 documented as founder-confirmed working policy. No appeal system, reviewer appointment, evidence vault, retention job or automated sanction was implemented or tested.
