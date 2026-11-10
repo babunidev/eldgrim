@@ -22,11 +22,23 @@ The separate **ROARguild charter**, once binding, takes precedence over conflict
 
 **Still open:** How the charter is formally adopted, versioned, announced and reconciled across repositories; exact effective-date and reviewer procedures. This chapter is a **working documentation plan**, not a ratified constitution.
 
+## Founder-confirmed adoption and document lifecycle — questions 161–163 and 166–168
+
+- **Q161 — Ratification:** A guild charter becomes binding only after the founder **explicitly approves a specific version**, sets its effective date and makes it accessible to members. A GitHub commit, draft or AI-generated document is not ratification. The current ROARguild charter remains a developing draft.
+- **Q162 — Document responsibilities:** ROARguild charter = guild-wide rights, conduct and member obligations; Eldgrim constitution = Eldgrim's mission, authority and restrictions; governance procedures = operational execution. Cross-reference rather than duplicate conflicting provisions. Concealed character canon remains outside public governance.
+- **Q163 — Notice:** Publish material changes, their effective date and a link to the current rules; require renewed acknowledgement where materially changed obligations or data practices warrant it. No hidden enforceable rules.
+- **Q166 — Member proposals:** Members may propose, question and criticize policy without retaliation. Eldgrim may summarize proposals but has no amendment authority.
+- **Q167 — Amendment record:** Record authenticated founder approval, changed sections, reason, effective date and prior version. Synchronize affected authoritative documents and public change history without exposing private case information.
+- **Q168 — Founder absent:** Existing rules remain in force. Delegated operations and predefined protections continue; no one silently inherits the founder's power to amend policy. Defer unresolved new-rule and irreversible decisions.
+
+**Status:** Founder-confirmed **working governance**, not a charter ratification. No specific charter version has been approved here, no effective date set and no guild-wide notice issued by these documentation changes.
+
 ## Refinement queue
 
-- [ ] Which document owns each enforceable rule?
+- [x] Assign guild charter, Eldgrim constitution and operational procedures to distinct responsibilities (Q162).
 - [x] Establish founder-only explicit documented amendment and charter precedence principles (Q151–154).
-- [ ] Define the formal charter approval, versioning, effective date and cross-repository synchronization workflow.
+- [x] Confirm required founder ratification, effective date, notice, amendment history and founder-absence boundaries (Q161–163, Q166–168).
+- [ ] Apply the approved process to an identified ROARguild charter version; publish it and verify acknowledgement/synchronization where required.
 
 ---
 
