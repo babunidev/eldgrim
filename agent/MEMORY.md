@@ -29,7 +29,7 @@ SQLite is sufficient for the first version. Start with indexed relational querie
 
 ### Interaction history
 
-The temporary collection of all eligible @Eldgrim mentions is **not** a permanent interaction history. Under confirmed Q100 it is discarded after the daily processing run, including unselected questions. Any future persistent record of selected interactions or concise memories requires a separately authorized retention policy and must remain distinct from this transient collection.
+The temporary collection of all eligible @Eldgrim mentions is **not** a permanent interaction history. Under confirmed Q100 it is discarded after the daily processing run, including unselected questions. Any future persistent record of selected interactions or concise memories must follow the confirmed Q135–137 retention boundaries and remain distinct from this transient collection; the specific data model and deletion procedures are not implemented.
 
 ### People
 
@@ -127,7 +127,7 @@ Before production use, define:
 - How backups reflect deletions.
 - Whether and how database backups are encrypted.
 
-These policies remain open; indefinite retention must not be assumed to be approved.
+**Founder-confirmed Q131–137 and Q139–140:** Provide a pre-onboarding privacy notice, allow optional narrative profiling to be declined, and establish a lawful disclosed basis before importing in-game chat. Imported raw chat is deleted after authorized analysis (Q134), with a separate local SavedVariables retention/deletion procedure required before integration. Relevant interpreted personal memories are reviewed while membership is active and eligible memories deleted or anonymized within **30 days of departure** absent a specific legitimate retention obligation (Q135). Ordinary administrative audits are retained **up to 180 days**, with justified documented extensions (Q136). Routine backups are kept **no longer than 30 days**, protected appropriately, and any restored backup must reapply recorded deletions before service resumes (Q137). Provide private authorized-human data requests with legally required access/correction/export/deletion (Q139), and containment/notification/remediation for unauthorized disclosure (Q140). **Q138 access-authority details are pending founder revision.** The operational procedures, backup encryption decisions and exact data categories still need design and testing; indefinite retention is not approved.
 
 ## 9. Confirmed data boundaries — questions 124–130
 
@@ -136,7 +136,7 @@ These policies remain open; indefinite retention must not be assumed to be appro
 - **Q126:** Future authorized analysis of the WoW addon's raw guild-chat archive is temporary. Long-term memories favor supported interpretations, topics and character-relevant observations, **not verbatim conversation quotations**. Define a raw-archive deletion procedure before integrating it into production.
 - **Q127:** Purge the temporary mention collection, including all unselected message content, after processing. Non-content audit metadata may persist where necessary, but may not recreate a hidden archive. This reinforces Q100; failure/partial-run semantics remain open.
 - **Q128:** Retain only relevant, supported interpretations of character interests, participation, helpfulness, conduct and shared experiences. Do not infer sensitive real-world traits or unsupported psychology. Private standing and impressions remain confidential under Q64, subject to applicable legal rights.
-- **Q129–130:** Provide a private correction process and an authorized human reviewer for unresolved consequential disputes. On departure deactivate membership/character records, cease routine collection, and allow requests for deletion of eligible data, subject to justified retention rules yet to be defined.
+- **Q129–130:** Provide a private correction process and an authorized human reviewer for unresolved consequential disputes. On departure deactivate membership/character records, cease routine collection, and allow requests for deletion of eligible data, subject to confirmed Q135–137 retention boundaries and justified exceptions; exact implementation remains open.
 
 **Implementation status:** No retention, deletion, access-request or data transfer mechanism has been implemented or verified in the local agent.
 
