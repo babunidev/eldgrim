@@ -1,6 +1,6 @@
 # Eldgrim Discord Bot
 
-**Status:** Direction approved by the creative on 2026-11-10. The bot runs on the server as Eldgrim, and the multi-character Forge is deployed with its switches off. Conversation and the database are not built.
+**Status:** Direction approved by the creative on 2026-11-10. The bot runs on the server as Eldgrim, and the multi-character Forge is deployed with its rank switch on. The local AI conversation system and **PC-local interpreted-memory database** are not built; the bot already has separate operational registration/role data.
 
 Eldgrim is an entity, not a man: refer to it as "it", never "he".
 
