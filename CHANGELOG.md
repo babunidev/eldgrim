@@ -2,6 +2,10 @@
 
 Meaningful repository and documentation changes are recorded here.
 
+## 2026-11-10 — Documentation readability
+
+- Rewrote the public entry point to separate Eldgrim's in-world identity from the Discord bot, planned local agent, WoW addon and unratified governance framework. No software or governance behavior was changed.
+
 ## 2026-11-10
 
 - Confirmed Q181–190: founder/technical-custodian emergency stop, safe cancellation and restart prevention, secret isolation, independent Discord permissions, non-production tool testing, reversible autonomy rollout, protected/tested backups with deletion replay, bounded offline behavior, compromise response and periodic review. Updated governance and agent/bot documentation; no runtime implementation or deployment.
