@@ -76,6 +76,12 @@ All @Eldgrim mentions in a collection period may be gathered temporarily, but **
 
 **Status:** These are approved policy boundaries, not proof of deployed collection, deletion, AI memory or privacy request workflows.
 
+## Confirmed privacy lifecycle (Q131–137, Q139–140)
+
+Before onboarding, disclose categories, sources, purposes, storage, access, retention and rights procedures. Optional narrative profiling may be declined without membership penalty. Game-data import requires disclosed scope and a valid legal processing basis. Imported raw guild-chat messages are deleted after authorized analysis, with a separate local addon archive deletion process required before integration. Relevant interpreted personal memories are periodically reviewed and eligible data deleted/anonymized within **30 days of departure** absent specific legitimate retention obligations. Ordinary administrative audit records last **up to 180 days**, subject to documented extensions; routine backups last **no more than 30 days** and must reapply deletions after restoration. Member data requests use a private authorized-human process, and unauthorized access requires containment, assessment, legally required notifications and corrective action.
+
+**Q138 — Who may access private records?** The founder requested a revision; the proposed access-authority scheme is **not approved**. Do not treat this section as authorization for any particular person to inspect profiles or audit records. Existing confidentiality and applicable legal rights still apply. No lifecycle or incident-response mechanism is claimed to be implemented.
+
 ## Open decisions
 
 - How the sync step transfers the addon file to the server.
