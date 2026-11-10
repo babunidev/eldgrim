@@ -4,6 +4,8 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-10
 
+- Confirmed Q111–120 and revised Chapters 09 and 11: voluntary Sunday bonfires with Eldgrim-chosen regions, accessible participation, and bank stewardship through authorized custodians, verified snapshots, confirmed transfers and nonpunitive failure handling. Documentation only.
+
 - Confirmed Q101–110 and revised Chapter 08: voluntary character-suitable quests, one assignment decision per daily AI run, screenshot and authorized witness verification, nonpunitive deadlines, and discretionary rewards subject to stewardship controls. Documentation only.
 
 - Confirmed revised Q100: unlimited @Eldgrim mentions, temporary per-run collection, discretionary random/narrative selection of at most one question per member, and discard after processing without a waiting queue. Clarified/superseded conflicting Q92/Q95 quota language. Documentation only.
