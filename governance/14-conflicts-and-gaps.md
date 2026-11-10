@@ -49,6 +49,12 @@ The founder confirmed confidential appeal access even after removal (Q171), **no
 
 **Resolved as working policy, not as infrastructure:** appeal rights, evidence standards, timing targets and review principles. **Still unresolved operationally:** the actual confidential intake route and post-ban fallback, reviewer appointment, case evidence handling, deadline tracking, record deletion and audit extension mechanisms. Q136's ordinary audit-retention limit is not overridden by the absence of an appeal deadline. No autonomous moderation or appeals workflow is claimed as live.
 
+## Confirmed operational safeguards and remaining implementation gaps — questions 181–190
+
+The founder confirmed technical-custodian emergency stop authority **without memory-database access** (Q181), a stop that halts new AI/admin actions and prevents silent restart (Q182), separate protected credentials (Q183), independent Discord permission enforcement and protected infrastructure boundaries (Q184), synthetic/non-production testing of tool authorization and failures (Q185), a verified, reversible founder-authorized rollout (Q186), tested backups and deletion replay under Q137 (Q187), bounded offline operation without fabricated replies or durable unanswered-question queues (Q188), containment and verified recovery after compromise under Q140 (Q189), and periodic governance/security review without silent policy changes (Q190).
+
+**Still unresolved operationally:** appointing technical custodians; implementing and testing shutdown/restart prevention, tool allowlists, backup/restore, credential separation and compromise response; reconciling the existing manual-approval bot with future autonomy; and obtaining explicit founder go-live authorization. These are approved requirements, not completed safeguards.
+
 ## Refinement queue
 
 - [ ] Which critical conflicts must be resolved before enabling autonomous moderation?
@@ -68,4 +74,4 @@ The founder confirmed confidential appeal access even after removal (Q171), **no
 
 **Further clarified by Q141–160:** Eldgrim's authorized Discord administration is intended to be autonomous through independently validated tools, while exceptional infrastructure actions require founder authorization. Untrusted messages cannot grant permissions; failures fail safely; actions require minimal audits, idempotency and verification. **Still open:** The existing bot's manual approval workflow versus future autonomy, exact tool schemas and protected boundaries, secure transfer and deletion, actual privacy request implementation, remaining governance questions and ROARguild charter reconciliation. Q151–160 also establish binding-charter and mandatory-law/platform precedence, founder-only documented amendments, impartial founder-conflict review, fair treatment of independent events, identity/memory corrections and referral of incompatible rules. No autonomous administration is claimed as implemented.
 
-See the [confirmed question register](QUESTION-DECISIONS.md) for Q1–180.
+See the [confirmed question register](QUESTION-DECISIONS.md) for Q1–190.
