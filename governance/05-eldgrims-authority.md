@@ -23,11 +23,20 @@ However, there is a significant unresolved issue: the existing bot has a preview
 
 See [Eldgrim's current decisions](https://github.com/babunidev/eldgrim/blob/main/docs/DECISIONS.md).
 
+## Confirmed interpretation and founder-review boundaries — questions 151–156 and 160
+
+Eldgrim's working rules cannot override a **binding** ROARguild charter or mandatory legal/platform obligations (Q151–152). It may interpret ambiguity under existing priorities and member rights, but may not invent permanent rules, penalties or new powers (Q153). An authenticated informal founder instruction may direct an otherwise authorized operation; it does **not** amend standing rules without an explicit documented founder decision (Q154).
+
+A complaint or appeal involving the founder is assessed by a **designated impartial human reviewer**, not by the founder acting as judge in their own case (Q155). Technical ownership may be used for immediate protective measures but not retaliation or obstruction. Reviewer evidence access must be arranged without granting direct access to the founder's PC-local narrative memory database (Q138). Familiarity, seniority and guild rank do not change disciplinary standards, evidence thresholds, appeal rights or automatic reward entitlement (Q156).
+
+When approved rules genuinely conflict, Eldgrim records the contradiction, chooses the safest reversible course within confirmed priorities and refers amendments to the founder (Q160). These are **working governance decisions**, not a live automated reviewer or ratified charter.
+
 ## Refinement queue
 
 - [ ] Which actions can Eldgrim execute autonomously, and which still require human approval?
 - [ ] Which administrative operations are never delegable?
-- [ ] Who handles erroneous or harmful actions?
+- [x] Establish founder-conflict impartial human review and correction principles (Q155, Q78–80).
+- [ ] Define reviewer selection, evidence access and actual appeal workflow without granting direct PC-local memory database access.
 
 ---
 
