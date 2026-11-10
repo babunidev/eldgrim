@@ -156,7 +156,17 @@ The lack of an absolute appeal deadline (Q172) **does not** authorize indefinite
 
 **Status:** Confirmed working policy, not an implemented case store, evidence-access procedure or memory-filtering feature.
 
-## 12. Future options
+## 12. Confirmed backup, offline and compromise safeguards — questions 181–190
+
+Technical custodians may stop unsafe automation but **never** gain direct access to the founder's PC-local interpreted-memory database merely by holding shutdown responsibility (Q181). Keep server credentials separate from local memory and restrict local database access to the founder and authorized local AI (Q138, Q183). Emergency shutdown must not silently reactivate collection or actions (Q182).
+
+Routine backups must be appropriately protected, **tested**, retained for **no more than 30 days**, and restored only with integrity verification and replay of recorded deletions (Q137, Q187). Restoration cannot resurrect expired raw chat, declined optional personalization or obsolete disciplinary records. If the local PC/AI/network is unavailable, no narrative-memory judgments or durable unanswered-question backlog are created; any authorized temporary server staging remains subject to Q138 purge limits (Q188).
+
+Suspected compromise requires isolation, credential revocation, limited incident evidence and Q140 response before resuming unsafe processing (Q189). Periodically review access, retention, deletion and backup behavior, recording findings (Q190).
+
+**Status:** Founder-confirmed requirements; no implemented/tested local database, backup restore, deletion replay or emergency stop is claimed.
+
+## 13. Future options
 
 Possible later additions include semantic embeddings, relationship graphs, richer event timelines, and a more sophisticated memory consolidation process. None is required for the first implementation.
 
