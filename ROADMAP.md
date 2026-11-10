@@ -56,18 +56,20 @@ This roadmap records areas of development, not promises or fixed deadlines.
 - [x] Approve the Forge texts.
 - [x] Hide the public channels behind the ranks and restart every member except the server owner at Ember.
 - [x] Accept one character name or two, and call unregistered members in the Forge and by direct message.
+- [x] Ask Roar or Amberhearth before characters, and retire the automatic Roar role for every rank.
 - [x] Specify the first daily proclamation. It is not scheduled or posting.
 - [ ] Choose the channel and the hour, then build and test one daily announcement.
-- [ ] Specify, build, and test once-a-day replies to @Eldgrim mentions.
-- [ ] Transfer addon data to the server and build Eldgrim's database.
+- [ ] Let members write to Eldgrim, and keep what Eldgrim learns, before it answers them.
+- [ ] Specify, build, and test replies to @Eldgrim mentions. The founder confirmed the limits; the creative asked to build the daily proclamation first.
+- [ ] Transfer shared guild activity to the founder's PC, keep interpreted memory there, and delete the raw archive.
 
 The addon remains a recorder only until the creative approves a broader scope. A documented task is not an implemented feature, and API documentation is not an in-game test.
 
 ## Eldgrim governance — working framework, not ratified
 
 - [x] Record the 10 November 2026 working framework as 16 editable chapters under governance/.
-- [ ] Resolve the conflicts and gaps collected in governance/14-conflicts-and-gaps.md.
-- [ ] Ratify the priority hierarchy and the final rule set. Until then, the chapters are not a constitution and do not turn on AI administration.
+- [x] Record the founder's answers to all 193 interview questions. This is a working record, not a ratified charter.
+- [ ] Close the remaining conflicts in governance/14-conflicts-and-gaps.md and ratify the rule set. Until then it does not turn on AI administration.
 
 ## Eldgrim local agent — architecture documented; implementation not started
 
@@ -102,4 +104,4 @@ The addon remains a recorder only until the creative approves a broader scope. A
 - [ ] Evaluate semantic retrieval only if SQLite text search proves insufficient.
 - [ ] Consider any addon-data integration only through a separate approved specification.
 
-The agent remains a documentation-only design until implementation and integration tests are completed. The daily schedule time, channel allowlist, data-retention policy, and proactive-posting scope remain open decisions.
+The agent remains a documentation-only design until implementation and integration tests are completed. The first build is the daily proclamation. Its channel and hour are not chosen. Replies to mentions wait.
