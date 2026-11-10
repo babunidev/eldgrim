@@ -110,7 +110,15 @@ Prompt wording is supplementary. The permission checks in Python are the actual 
 
 These are **approved design requirements**, not proof of implemented AI administration, tool authorization, idempotency or live auditing.
 
-## 10. Proactive actions
+## 10. Founder-confirmed activation gate — questions 168–170
+
+- **Q168:** Founder absence does not grant the AI or custodians amendment powers; continue only existing delegated operations and predefined safety safeguards, deferring unresolved new-rule or irreversible decisions.
+- **Q169:** Human delegates receive only explicitly scoped, revocable duties and necessary technical permissions. Rank alone grants no authority; no delegate gains direct access to the founder's PC-local memory database.
+- **Q170:** Do **not** activate new autonomous administration until a binding charter and working rules are reconciled, validated tool/permission checks, audit and idempotency, privacy and appeals, and an emergency stop have been **implemented and verified**, followed by **explicit founder deployment authorization**. The bot's present manual approval path remains in force until then.
+
+**Status:** These are founder-confirmed **deployment requirements**, not implemented controls, successful tests or deployment authorization.
+
+## 11. Proactive actions
 
 Proactive messages are disabled in the initial milestone. If enabled later:
 
@@ -120,7 +128,7 @@ Proactive messages are disabled in the initial milestone. If enabled later:
 - The agent must not repeat the same action after an ambiguous network failure.
 - The operator must be able to disable proactive posting without changing the model prompt.
 
-## 11. Operational controls
+## 12. Operational controls
 
 - Use a one-shot systemd service.
 - Prevent concurrent runs with a process lock.
