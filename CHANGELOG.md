@@ -4,6 +4,8 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-10
 
+- Confirmed founder-revised Q138: Eldgrim derives narrative memory only from guild-visible Discord/Forever chat; raw server/addon collections are temporary, selected interpreted memories persist only on the founder's PC, and no other human custodian has direct access. Superseded the proposed persistent server-side narrative database and custodian access. Documentation only.
+
 - Confirmed Q131–137 and Q139–140: privacy notices, optional profiling, in-game processing boundaries, raw chat deletion, 30-day post-departure memories, 180-day ordinary audit retention, 30-day backups, private data requests and breach response. Q138 record-access authority remains pending revision. Documentation only.
 
 - Confirmed Q121–130: documented bank reserves, human verification for scarce/valuable items, review of allocation disputes, scoped Discord and in-game observation, temporary mention purge, confidential impressions, private corrections and departure-related data handling. Updated Chapters 11–12; documentation only.
