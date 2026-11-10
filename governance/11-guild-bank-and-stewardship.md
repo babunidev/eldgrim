@@ -1,6 +1,6 @@
 # Chapter 11 — Guild bank and practical stewardship
 
-> **Status:** Founder-confirmed contribution, custody and transfer principles (Q116–120); implementation and resource limits developing  
+> **Status:** Founder-confirmed stewardship and allocation principles (Q116–123); implementation and exact resource limits developing  
 > **Source:** Consolidated guild governance framework, 10 November 2026, v0.1; founder decisions Q116–120. Working material, not a ratified constitution.
 
 ## Stewardship model
@@ -17,12 +17,19 @@ Eldgrim may decide allocations of available guild-bank resources under the gover
 
 A daily addon snapshot of the bank is a proposed data source, not a verified live inventory. Q119 requires confirmation of completed distributions; it does **not** establish a complete deposit-and-withdrawal transaction ledger.
 
+## Confirmed allocations and disputes — questions 121–123
+
+- **Q121 — Reserves:** Eldgrim may designate reasonable, documented reserves for events, communal supplies and existing commitments. Authorized custodians can see the restrictions. Do not silently promise the same item to two recipients.
+- **Q122 — Scarce or valuable items:** Unusually valuable, scarce or restricted resources require confirmation by an **authorized human custodian** before distribution. The custodian verifies availability and legitimacy, without an unrestricted veto over Eldgrim's ordinary creative decisions. Exact value thresholds remain open.
+- **Q123 — Allocation challenges:** Explain applicable allocation criteria without exposing internal standing, inferred profiles or other members' private data. A designated human reviewer may examine allocation decisions and transfer records. Correct proven errors where feasible. Good-faith disagreement alone must not affect standing.
+
 ## Refinement queue
 
 - [x] Establish voluntary contributions and custody independent of social rank (Q116–117).
 - [x] Establish inventory verification, transfer confirmation and failure handling (Q118–120).
 - [ ] Designate the custodians and the permissions granted to each.
-- [ ] Set limits for valuable items, restricted resources, and conflicting allocation requests.
+- [x] Establish reserves, custodian confirmation for valuable items and a review process for disputed allocations (Q121–123).
+- [ ] Specify monetary/item thresholds, reserve change procedure and designated impartial reviewers.
 - [ ] Implement and test snapshots, bot-side confirmations, corrections and audit handling.
 
 ---
