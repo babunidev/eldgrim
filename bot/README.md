@@ -105,6 +105,16 @@ Consequential sanctions require reasonably reliable evidence, not rumor, interna
 
 **Status:** Working-governance requirements only. No appeal intake/fallback, deadline management, impartial reviewer workflow, automated sanction or evidence-retention mechanism is claimed implemented or verified.
 
+## Confirmed emergency stop, safe autonomy and recovery (Q181–190)
+
+**Stop and custody (Q181–182).** The founder and explicitly designated technical custodians may immediately suspend unsafe automation without Eldgrim's approval. This does not confer constitutional authority or direct access to founder-PC-local memory. The emergency stop must block new AI posts, sanctions, rank changes, bank proposals and administrative tool execution, safely cancel pending actions, prevent silent restarts, log the stop and require authorized recovery. Independently safe essential bot functions may continue; otherwise stop affected services.
+
+**Access and verification (Q183–186).** Keep credentials outside Git and model context, separate server access from PC-local memory, restrict operators, rotate compromised secrets and revoke obsolete access. Every action must pass independent permission, target, protected-role and governance checks. Test accepted/rejected operations, malformed inputs, retries, partial failures and recovery on non-production/synthetic data. Only approved, verified operations may be introduced in a reversible rollout after Q170 founder authorization; unverified actions remain behind existing manual approval.
+
+**Resilience and oversight (Q187–190).** Protect and test backups within Q137's routine **30-day** retention, reapplying deletions after restoration. While the local PC/AI/network is offline, the server bot continues only existing verified onboarding, roles and predefined protections, with no invented AI replies or durable question backlog. Q138's temporary staging/purge boundary still applies. Suspected compromise requires isolation, access revocation, necessary evidence, Q140 notifications and verified recovery. Review permissions, audits, deletion, backup, stop controls, appeals and conflicting rules periodically.
+
+**Status:** Approved **future requirements**. No new kill switch, tested backup restoration, autonomous tool executor, credential rotation, operational incident response or founder-approved deployment is claimed implemented.
+
 ## Open decisions
 
 - How to securely collect and transfer shared Discord-channel and addon raw material **to the founder's PC**, then verify deletion of temporary server copies and local raw archives.
