@@ -1,6 +1,6 @@
-# Confirmed governance questions 1–62
+# Confirmed governance questions 1–68
 
-**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Confirmed:** Q1–65. **Next question:** 66 of 193.
+**Status:** Founder-confirmed working-governance decisions, 10 November 2026. **Confirmed:** Q1–68. **Next question:** 69 of 193.
 
 This register preserves decisions made in a sequential governance interview, including corrections to earlier proposals. It is **not** the separate, ratified ROARguild charter and makes no claims that AI governance is implemented. The linked governance chapters provide operational detail. Private character canon, secret identity, motives and magical mechanics are intentionally omitted because this repository is public; preserve them only in appropriately restricted storage.
 
@@ -33,6 +33,12 @@ This register preserves decisions made in a sequential governance interview, inc
 - **Q64 — Confirmed, revised:** Standing is Eldgrim's private, internal assessment, not a high score, leaderboard, competition or member-facing statistic. Members do not receive their standing score, rankings, inferred profile or the internal signals Eldgrim uses to personalize content. There is no ordinary score-inspection or score-dispute feature. This does not cancel the separately approved right to explanations and appeals for consequential administrative actions, or applicable legal data rights.
 - **Q65 — Confirmed:** Minor misconduct includes isolated discourtesy/disruption; moderate includes repeated disrespect or continued disruption after warning; serious includes targeted harassment, discrimination, threats, scams or abuse of entrusted responsibility; critical includes credible immediate safety threats, doxxing or severe targeted abuse. Severity depends on intent, context, evidence and actual harm.
 
+## Confirmed answers — questions 66–68
+
+- **Q66 — Disciplinary responses:** Minor misconduct normally receives a reminder or warning; moderate misconduct a formal warning or short timeout; serious misconduct may justify longer timeout, demotion or removal according to context; critical misconduct permits immediate protective suspension and potentially permanent removal. Sanctions are proportionate and **not automatic**.
+- **Q67 — Timeout durations:** Short **1 hour**, medium **24 hours**, long **7 days**. Permanent exclusion is a distinct ban, not an indefinite timeout. Eldgrim may impose a lesser sanction when justified.
+- **Q68 — Hearing affected people:** Whenever reasonably possible, Eldgrim hears involved members privately and examines available evidence before deciding. Credible immediate threats allow temporary protective action before the hearing, followed by review. Randomness must never determine guilt or punishment.
+
 ## Superseded or clarified decisions
 
 - **Q34–35:** An initial proposal requiring founder approval for Discord channel management was superseded by explicit confirmation that Eldgrim, as administrator, may handle channels, roles and permissions. This remains subject to valid authorization, safeguards, auditing and implementation.
@@ -42,4 +48,4 @@ This register preserves decisions made in a sequential governance interview, inc
 
 ## Unresolved matters
 
-**Q63–65 are confirmed.** Questions **66–193** are not yet confirmed. Formal disciplinary appeals, privacy/retention, bank controls, technical tool restrictions, daily quotas, implementation and ROARguild-charter reconciliation remain open. Evidence thresholds, score corrections/appeals, privacy/retention, bank controls, technical tool restrictions, daily quotas, implementation and ROARguild-charter reconciliation remain open.
+**Q1–68 are confirmed.** Questions **69–193** remain open. Evidence thresholds, handling conflicting accounts, formal appeals, privacy and retention, bank controls, tool restrictions, daily quotas, implementation and ROARguild-charter reconciliation remain unresolved.
