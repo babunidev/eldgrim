@@ -4,6 +4,8 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-10
 
+- Confirmed Q121–130: documented bank reserves, human verification for scarce/valuable items, review of allocation disputes, scoped Discord and in-game observation, temporary mention purge, confidential impressions, private corrections and departure-related data handling. Updated Chapters 11–12; documentation only.
+
 - Confirmed Q111–120 and revised Chapters 09 and 11: voluntary Sunday bonfires with Eldgrim-chosen regions, accessible participation, and bank stewardship through authorized custodians, verified snapshots, confirmed transfers and nonpunitive failure handling. Documentation only.
 
 - Confirmed Q101–110 and revised Chapter 08: voluntary character-suitable quests, one assignment decision per daily AI run, screenshot and authorized witness verification, nonpunitive deadlines, and discretionary rewards subject to stewardship controls. Documentation only.
