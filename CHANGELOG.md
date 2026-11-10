@@ -4,6 +4,8 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-10
 
+- Confirmed Q161–170: explicit charter ratification/versioning and member notice; distinct governing documents; no retroactive discipline; guild-limited jurisdiction; member proposals; founder-only amendments during absences; scoped human delegation; verified safeguards and founder authorization required before new autonomous administration. Documentation only.
+
 - Confirmed Q151–160: binding-charter and mandatory-law/platform precedence; explicit documented founder amendments; impartial founder-conflict appeals; equal standards, independent events, identity verification, memory correction and safe resolution of contradictory rules. Synchronized governance, agent memory and decision logs. Documentation only.
 
 - Confirmed Q141–150: purpose-specific validated AI tools; autonomous delegated Discord administration with founder-only exceptional authorization; untrusted-message boundaries; safe failures and offline behavior; minimal audits, idempotent action execution and evidence verification. Synchronized governance and agent/bot documentation. Documentation only.
