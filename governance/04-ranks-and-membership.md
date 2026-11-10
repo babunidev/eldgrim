@@ -40,3 +40,17 @@ Still undefined are promotion and demotion criteria, how a player's several char
 - **Q50:** Administrative duties are delegated separately and can be withdrawn separately from social rank.
 - **Q51:** Standing and rank belong to the **player**. All registered characters share that person's rank, while their identities and narrative histories remain distinct.
 - **Q52:** Eldgrim is intended to maintain the authoritative rank record in the guild database and automatically synchronize Discord roles. Authorized human members apply in-game rank changes via an approved addon or manual process and confirm the result. **Design decision, not an implemented integration.**
+
+
+## Confirmed membership and Character Forge rules — questions 82–89
+
+- **Q82:** Newcomers must affirm they are at least **18**, accept guild conduct rules and Discord requirements, and acknowledge disclosed data practices. Roleplay and activities remain voluntary.
+- **Q83:** Forge requires a Discord account, rules acceptance, and at least one declared character with name, faction, race and class. No real-world identity, level, profession, biography or backstory is mandatory.
+- **Q84:** No guild membership limit on characters. The current 50-entry software safeguard prevents mistaken submissions; a supported process may add more entries. This does **not** claim unlimited registration is implemented in the current interface.
+- **Q85:** Character registration is a declaration. Where ownership is disputed or needed for permissions, confirm reasonably in-game with an authorized witness or addon-supported method. Never ask for game credentials.
+- **Q86:** Members may add, correct, replace or remove registered characters through a supported Forge or administrator workflow. Shared rank and standing attach to the person, not a character.
+- **Q87:** A retired/transferred character is marked inactive or unaffiliated without automatically ending the person's membership or altering other characters. Historical records follow retention rules.
+- **Q88:** Preserve the confirmed initial Forge rollout: all members except the Discord server owner restarted at Ember. Eldgrim is intended to decide future promotions. Later character registration must **not** reset earned rank.
+- **Q89:** Declining or abandoning Forge leaves the person outside registered-member channels, with no disciplinary or standing penalty. They may complete onboarding later.
+
+**Implementation boundary:** The Forge and initial rank reset are deployed; character edits, ownership verification, archival/retention and later rank synchronization must be separately implemented and tested where absent.
