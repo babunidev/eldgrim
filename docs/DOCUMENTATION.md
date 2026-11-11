@@ -29,10 +29,11 @@ An API entry proves that the service documents an API surface; it does not prove
 
 - **Character and narrative:** public character identity, lore, relationships, and stories.
 - **Addon:** the separate Forever-only passive recorder described under addon/.
-- **Agent:** the proposed local Discord agent described under agent/.
+- **Agent:** the local, once-daily Discord agent described under agent/.
+- **Bot:** the always-online Eldgrim Discord bot described under bot/. Its source lives in a separate private repository.
 - **Eldgrim governance:** the public, non-ratified chapter-by-chapter framework and refinement questions belong in governance/. The binding Amberhearth charter and guild operations remain in ROARguild.
 
-The addon and agent must not silently expand one another's scope. Neither technical implementation nor model output establishes character canon.
+The addon, agent and bot must not silently expand one another's scope. Neither technical implementation nor model output establishes character canon.
 
 ## Governance rulebook
 
@@ -81,4 +82,4 @@ For agent work, record the Python and Ollama versions, exact model tag, Discord 
 
 ## Final agent character draft
 
-The final character instructions must combine the public character and voice guides with the creative's separately held private canon supplement dated 11 November 2026. The supplement is deliberately excluded from this public repository. See agent/README.md for the drafting requirement; never copy the private material into repository files or public outputs.
+The final character instructions must combine the public character and voice guides with the private origin held on the founder's computer. A separate private supplement dated 11 November 2026 was named but is not on disk; if it is written, it is read too. Both are deliberately excluded from this public repository. See agent/README.md for the drafting requirement; never copy the private material into repository files or public outputs, and do not hint at it through code, tests or examples.

@@ -49,6 +49,7 @@ This roadmap records areas of development, not promises or fixed deadlines.
 - [ ] Verify that the addon has no visible or audible output and records no unrelated channels.
 
 ## Eldgrim Discord bot — direction approved
+
 - [x] Approve Eldgrim's Discord presence based on the existing Babuni Gaming bot.
 - [x] Put the existing bot under version control and back it up.
 - [x] Move the bot to the creative's server.
@@ -77,7 +78,7 @@ The addon remains a recorder only until the creative approves a broader scope. A
 - [x] Record the founder's answers to all 193 interview questions. This is a working record, not a ratified charter.
 - [ ] Close the remaining conflicts in governance/14-conflicts-and-gaps.md and ratify the rule set. Until then it does not turn on AI administration.
 
-## Eldgrim local agent — architecture documented; implementation not started
+## Eldgrim local agent — architecture documented; local runner started
 
 ### Documentation foundation — complete
 
@@ -108,6 +109,6 @@ The addon remains a recorder only until the creative approves a broader scope. A
 - [ ] Evaluate scheduled internal intentions and follow-up handling.
 - [ ] Consider proactive messages in explicitly approved channels, with cooldowns and strict daily limits.
 - [ ] Evaluate semantic retrieval only if SQLite text search proves insufficient.
-- [ ] Consider any addon-data integration only through a separate approved specification.
+- [x] Specify addon-data integration: agent/ROSTER.md (2026-11-11). Not built.
 
-The agent remains a documentation-only design until implementation and integration tests are completed. The first build is the daily proclamation. Its channel and hour are not chosen. Replies to mentions wait.
+The local runner writes a test announcement and chooses the next wake time; it posts nothing. Everything else in the agent is still design until it is implemented and integration-tested. The roster comes before a posted proclamation, and its channel is not chosen. Replies to mentions wait.

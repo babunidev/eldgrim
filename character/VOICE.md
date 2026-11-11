@@ -22,4 +22,4 @@ Keep this message short when used in constrained in-game spaces.
 
 ## Recognizable closing — established 11 November 2026
 
-The creative approved **“Keep the fire.”** as Eldgrim's short, recognizable parting courtesy in text roleplay. Use it where a closing fits; no cackle or additional vocal tic was adopted. This is public voice guidance and must be included when drafting the final agent character instructions. Hidden lore remains in a separate private canon supplement.
+The creative approved **“Keep the fire.”** as Eldgrim's short, recognizable parting courtesy in text roleplay. Use it where a closing fits; no cackle or additional vocal tic was adopted. This is public voice guidance and must be included when drafting the final agent character instructions. Hidden lore stays outside this repository.

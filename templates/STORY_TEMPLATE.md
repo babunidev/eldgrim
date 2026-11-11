@@ -1,6 +1,6 @@
 # [Story Title]
 
-**Status:** Draft / Proposed / Established  
+**Status:** Developing / Proposed / Established  
 **Date:** [In-world date, if known]  
 **Characters:** [Characters involved]
 

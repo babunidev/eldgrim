@@ -6,6 +6,8 @@ Amberhearth is a fellowship initiated by Eldgrim and conceived as a home for tra
 
 Eldgrim stands outside the fellowship's conventional rank structure.
 
+The fellowship was founded by Jasmine Amberbrew, who gathered signatures in Kharanos after hearing a voice at the campfires.
+
 ## Rank names
 The current recorded rank names are:
 1. Ember
