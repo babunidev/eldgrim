@@ -32,6 +32,10 @@ These are the instructions for the first version. They are read with the pages a
 
 The server already has a channel named announcements. It is hidden from everyone and visible to the ranks, including Ember. Members who have not finished the Forge cannot see it. The creative still chooses the channel and the hour before a timer is turned on.
 
+## Roots before any further story
+
+The first local runs read the private origin at `~/.local/share/eldgrim/private/ORIGIN.md` and must be able to state those roots back. They do not post the origin. A further story, and any look, sound, or presence, is a later draft by Eldgrim from those roots. The creative accepts it before it counts. The daily announcement stays on the public pages listed above.
+
 ## What this version does not do
 
 - It does not read or answer @Eldgrim mentions.

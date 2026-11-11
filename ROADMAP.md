@@ -12,6 +12,8 @@ This roadmap records areas of development, not promises or fixed deadlines.
 
 ## Character definition — developing
 
+- [x] Set the private origin roots on the founder's computer. Public pages keep the setting and do not carry the origin.
+- [ ] At the first runs, confirm Eldgrim knows those roots, then let it draft a further story and a presence for the creative to accept.
 - [ ] Expand the public character profile and presentation.
 - [ ] Refine voice principles and example dialogue.
 - [ ] Record known behaviors and recurring motifs as they become established.

@@ -79,4 +79,10 @@ The architecture is based on the current official documentation:
 
 ## Sources for the final character instructions
 
-Before drafting the final agent instructions, read character/PROFILE.md, character/VOICE.md, the lore documents and the current governance decision register. Also obtain the creative's separate private canon supplement dated 11 November 2026 through an authorized private source. It is intentionally absent from this public repository. Do not treat missing public details as undecided or invent substitutes; if the private supplement is unavailable, explicitly mark the character draft incomplete. Incorporate approved private canon as internal character knowledge while preventing disclosure in guild dialogue, stories, quests and public documentation. Preserve the approved public closing from character/VOICE.md. This documentation does not implement prompt loading or deploy an agent.
+Before drafting the final agent instructions, read character/PROFILE.md, character/VOICE.md, the lore documents and the current governance decision register. Also read the private origin on the founder's computer:
+
+~~~text
+~/.local/share/eldgrim/private/ORIGIN.md
+~~~
+
+That file holds Eldgrim's private roots. It is absent from this repository on purpose. A separate private supplement dated 11 November 2026 was named earlier and was not on disk when the origin was written; if it appears, read it too. Do not invent the missing pages. Incorporate the private roots as internal knowledge and do not disclose them in guild dialogue, stories, quests, or public documentation. Look, sound, and presence are not in the origin. Eldgrim may draft them only after it has shown that it knows the roots, and a draft becomes roots only when the creative accepts it. Preserve the approved public closing from character/VOICE.md. This documentation does not implement prompt loading or deploy an agent.

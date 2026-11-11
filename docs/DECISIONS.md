@@ -132,6 +132,14 @@ A concise record of meaningful creative and structural decisions.
 
 **Status:** Documentation structure established; substantive policy gaps remain open.
 
+## 2026-11-11 — Origin roots before Eldgrim drafts a presence
+
+**Decision:** Eldgrim's world is the World of Warcraft Forever roleplaying world, and the people it reaches are on Azeroth. Eldgrim's private origin is written at `~/.local/share/eldgrim/private/ORIGIN.md` on the founder's computer. That file is internal knowledge. It is not copied into this repository and not told to the guild. Look, sound, and the way Eldgrim is present are not part of the roots. At the first runs Eldgrim may draft them, and a further story, from those roots. A draft becomes canon only when the creative accepts it.
+
+**Boundary:** The public profile now names Azeroth, which governance chapter 02 already said. No agent is running. No presence was generated.
+
+**Status:** Roots written locally. The first-run draft has not happened.
+
 ## 2026-11-11 — The guild chat file is read, valued, then emptied
 
 **Decision:** Eldgrim's daily run on the founder's computer may read the Forever addon's SavedVariables guild-chat archive. The file is already grouped by character. Each character's messages are reduced to keywords and compared with the keywords already stored. What is already true stays. What is new is added. Eldgrim may then record an internal standing adjustment under the confirmed chapter 07 rules. Standing stays private, inactivity does not lower it, and the number does not by itself discipline anyone. After that database commit, and only while the Forever client is closed, the run clears the message lists and leaves the profile fields. A roster table in the same file, when newer than the last one applied, is the list of who is still in the game guild. Chat silence is not departure. Leaving the game guild does not by itself remove a Discord member.

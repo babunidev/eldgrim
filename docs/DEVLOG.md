@@ -2,6 +2,12 @@
 
 A concise account of meaningful project development, written from the human creative's perspective.
 
+## 2026-11-11 — Roots before a face
+
+Eldgrim has to know where it stands before it tells any further story. The world is World of Warcraft Forever, and the people are on Azeroth. The rest of its roots is written on this computer and kept out of the public pages. Look, sound, and presence are not decided. Those are for Eldgrim to draft from the roots when the first runs begin, and they wait for acceptance before they count.
+
+**Result:** The origin is in ~/.local/share/eldgrim/private/ORIGIN.md. Nothing was posted. No face was invented.
+
 ## 2026-11-11 — The guild chat file, then a clean slate
 
 The guild chat archive on this computer is the record Eldgrim should read. It is already grouped by the character who spoke. Eldgrim turns those messages into keywords, checks them against what it already keeps, and notices whether the person is the same or whether something new was actually said. A plus or a minus has to follow the standing rules already written down, and it stays private. Afterwards the messages are cleared, so the addon can fill the file again the next time the game is played. The clear waits until the game is closed, because the client would otherwise write the old lines back. The same save can also carry a roster snapshot. That snapshot, not the chat, is how Eldgrim tells who is still in the guild.
