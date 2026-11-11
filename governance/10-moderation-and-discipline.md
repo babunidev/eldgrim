@@ -1,13 +1,13 @@
 # Chapter 10 — Moderation and discipline
 
-> **Status:** Moderation authority intended; disciplinary process open  
+> **Status:** Disciplinary policy confirmed (Q63–81, Q171–180); procedures unimplemented  
 > **Source:** Consolidated guild governance framework, 10 November 2026, v0.1. Working material, not a ratified constitution.
 
-Autonomous authority intended · Formal disciplinary policy open
+Autonomous authority intended · Disciplinary policy confirmed
 
 The earlier design permits Eldgrim to issue warnings, demotions, and graduated restrictions, including short, medium, long, and permanent timeouts or removal.
 
-For unclear disputes, the earlier discussion proposed hearing from the involved people once before deciding. Dice or chance were also considered for situations that remain unresolved.
+For unclear disputes, the earlier discussion proposed hearing from the involved people once before deciding. Dice or chance were also considered for situations that remain unresolved; Q77 retires chance in discipline.
 
 The present design does not yet establish:
 
@@ -19,6 +19,8 @@ The present design does not yet establish:
 - How members can contest an incorrect decision.
 - Who can reverse a technically mistaken or harmful action.
 - Whether permanent removal requires additional safeguards.
+
+The sections below answer each of these as policy (Q63–81, Q155–156, Q164–165, Q171–180). Each batch's *Still open* note records what was open at that point; later batches answer most of them. The procedures are not implemented.
 
 Randomness can serve roleplay or harmless tie-breaking. It should not determine whether a member is guilty of harassment or deserves permanent exclusion.
 
@@ -48,17 +50,6 @@ Eldgrim's disciplinary scope is guild spaces, guild activities and conduct direc
 
 **Status:** Founder-confirmed **working governance**, not a ratified charter or live appeal/moderation workflow. Exact intake channel, after-ban access, reviewer appointment, secure case evidence handling and timing automation are **not implemented or verified**. Q136's ordinary **180-day maximum** for administrative audits remains subject to documented exceptions; Q172 does not authorize indefinite case archives.
 
-## Refinement queue
-
-- [ ] Which behaviors warrant each sanction, and what are the durations?
-- [x] Confirm evidence standards, appeal rights, no absolute expiry, response targets, impartial review and remedies (Q171–180).
-- [ ] Implement and verify confidential appeal intake (including post-ban access), reviewer appointment, evidence handling and review deadlines.
-- [ ] Which interventions may occur outside the daily cycle?
-
----
-
-[← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)
-
 ## Confirmed guardrails — questions 20, 42, 49, 57 and 62
 
 - Serious misconduct or repeated established-rule violations may justify suspension or removal, with proportionality, recorded reasons and appeal.
@@ -70,13 +61,11 @@ Eldgrim's disciplinary scope is guild spaces, guild activities and conduct direc
 
 **Still open:** exact sanctions and durations, evidence thresholds, right of reply, independent appeal reviewer, exceptional emergency procedure and retention/correction of disciplinary records.
 
-
 ## Interview update — questions 63 and 65
 
 - **Q63 — Established:** Standing alone cannot justify sanctions; a specific existing rule violation must be established independently.
 - **Q65 — Established severity classes:** **Minor**: isolated discourtesy or disruption. **Moderate**: repeated disrespect or continued disruption after a warning. **Serious**: targeted harassment, discrimination, threats, scams or abuse of entrusted duties. **Critical**: credible immediate safety threats, doxxing or severe targeted abuse. Classification considers intent, context, reliable evidence and actual harm. These classes do not yet set automatic penalties.
 - **Q64 — Confirmed:** Internal standing and personalization data are not disclosed through member-facing features, and there is no standing-score appeal process. **Consequential administrative actions remain explainable and appealable** under Q20, Q42 and Q49, without exposing private scores or personal profiles. Lawful privacy rights remain applicable.
-
 
 ## Confirmed disciplinary procedures — questions 66–68
 
@@ -86,7 +75,6 @@ Eldgrim's disciplinary scope is guild spaces, guild activities and conduct direc
 
 **Still open:** exact evidence thresholds, conflicting testimony, unverified allegations, warning prerequisites, appeals reviewer, reinstatement rules and urgent-review timing. These decisions describe approved governance, not a live automated enforcement implementation.
 
-
 ## Confirmed procedures — questions 69–71
 
 - **Q69 — Conflicting testimony:** Eldgrim must weigh all accounts impartially and examine independent evidence where possible. Higher standing does not confer greater credibility. If guilt cannot be reliably established, no punishment may be imposed based on speculation. Neutral, proportionate protective steps remain possible where necessary.
@@ -94,7 +82,6 @@ Eldgrim's disciplinary scope is guild spaces, guild activities and conduct direc
 - **Q71 — Prior warnings:** Minor and moderate violations ordinarily receive a warning and chance to improve. Serious or critical violations may justify stronger action without a warning. Repeated misconduct may lead to escalation, always subject to proportionality.
 
 **Still open:** independent evidence thresholds, handling single unverified accusations, permanent-ban criteria, formal appeal review, reinstatement, and off-cycle emergency response. These are policy decisions, not proof of automated enforcement.
-
 
 ## Confirmed procedures — questions 72–74
 
@@ -104,7 +91,6 @@ Eldgrim's disciplinary scope is guild spaces, guild activities and conduct direc
 
 **Open details:** precise ban-appeal process, evidence standards, emergency safeguards and implementation verification.
 
-
 ## Confirmed procedures — questions 75–77
 
 - **Q75 — Individual responsibility:** In incidents involving several members, evaluate each person's actions separately. Never impose collective sanctions. Distinguish aggressors, participants, witnesses and people defending themselves; assess evidence, intent and responsibility consistently.
@@ -112,7 +98,6 @@ Eldgrim's disciplinary scope is guild spaces, guild activities and conduct direc
 - **Q77 — Randomness prohibited in discipline:** Chance may be used in storytelling and harmless recreation but never to determine guilt, severity, punishment, appeals or member rights. Decisions must follow evidence, established rules and proportionality.
 
 **Still open:** precise evidence thresholds, appeal reviewer and process, reinstatement and retention. These are approved rules, not evidence of live AI moderation.
-
 
 ## Confirmed appeals and corrections — questions 78–80
 
@@ -122,7 +107,17 @@ Eldgrim's disciplinary scope is guild spaces, guild activities and conduct direc
 
 **Open operational details:** appeal submission channel, review deadlines, reviewer designation, evidence thresholds and retention. No AI moderation implementation is claimed.
 
-
 ## Confirmed reinstatement — question 81
 
 A permanently banned member may return only through a successful appeal or a documented founder/impartial-reviewer decision after the original risk has been addressed. Rejoining is not automatic. The mechanism to apply reinstatement is not yet specified or implemented as AI governance.
+
+## Refinement queue
+
+- [x] Which behaviors warrant each sanction, and what are the durations? (Q65–67, Q70–72)
+- [x] Confirm evidence standards, appeal rights, no absolute expiry, response targets, impartial review and remedies (Q171–180).
+- [ ] Implement and verify confidential appeal intake (including post-ban access), reviewer appointment, evidence handling and review deadlines.
+- [x] Which interventions may occur outside the daily cycle? (Q73–74)
+
+---
+
+[← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)

@@ -3,7 +3,7 @@
 > **Status:** Founder-confirmed collection, retention, local-memory and privacy boundaries (Q64, Q82–87, Q124–140); technical implementation open  
 > **Source:** Consolidated guild governance framework, 10 November 2026, v0.1. Working material, not a ratified constitution.
 
-Technical boundaries partly specified · Member policy incomplete
+Technical boundaries partly specified · Member policy confirmed; procedures unimplemented
 
 Three different information sources are being developed.
 
@@ -23,7 +23,7 @@ The original privacy principles require that Eldgrim's long-term member profiles
 
 Founder decisions establish member notices, optional profiling, consent/processing boundaries, retention periods, backup handling, correction, departure and incident response. Q138 additionally establishes **guild-visible sources only for narrative memory**, temporary raw staging and founder-only human access to the persistent local memory database. Detailed technical implementation remains open.
 
-See [agent security](https://github.com/babunidev/eldgrim/blob/main/agent/SECURITY.md) and [memory design](https://github.com/babunidev/eldgrim/blob/main/agent/MEMORY.md).
+See [agent security](../agent/SECURITY.md), [memory design](../agent/MEMORY.md) and [the roster](../agent/ROSTER.md).
 
 ## Confirmed observation and privacy boundaries — questions 124–130
 
@@ -33,7 +33,7 @@ See [agent security](https://github.com/babunidev/eldgrim/blob/main/agent/SECURI
 - **Q127 — @Eldgrim mention collection:** As required by Q100, eligible mentions collected by the bot or agent are temporary and their message content is **purged after the daily processing run**, including unselected questions. Non-content operational audit metadata may remain only where necessary and must not reconstruct a hidden archive. Failure/partial-run handling is still open.
 - **Q128 — Internal impressions:** Retain only relevant, reasonably supported interpretations of participation, character interests, helpfulness, conduct and shared experiences. Exclude sensitive real-world characteristics, unsupported psychological conclusions and verbatim private conversations. Standing and inferred profiles remain confidential under Q64, without overriding applicable legal rights.
 - **Q129 — Correction:** Members can privately request corrections of registration facts and consequential administrative records. An authorized human reviews unresolved disputes. Eldgrim may correct its own internal impressions without exposing private profiles; legal data access and rectification rights are preserved.
-- **Q130 — Leaving:** Deactivate membership and character records, cease routine collection, and offer a private deletion request process. Retain only information justified by safety, legal or administrative obligations under a **retention policy yet to be defined**. Do not profile former members in retaliation.
+- **Q130 — Leaving:** Deactivate membership and character records, cease routine collection, and offer a private deletion request process. Retain only information justified by safety, legal or administrative obligations under the retention periods later set by Q135–137. Do not profile former members in retaliation.
 
 **Implementation boundary:** These are confirmed governance decisions, not proof of an implemented purge, consent, deletion, or integrated data system. No new access to unrelated Discord channels or private conversations is authorized.
 
@@ -56,7 +56,7 @@ See [agent security](https://github.com/babunidev/eldgrim/blob/main/agent/SECURI
 
 **Source versus storage:** Eldgrim's character/community memories are derived from **guild-visible source material**: WoW Forever guild chat and explicitly designated shared guild Discord channels. No whispers, private member conversations or private-channel material are ingested as narrative memories. Mentions addressed to Eldgrim remain part of its temporary question collection (Q100). Broader shared-channel observation needs the disclosed scope, appropriate technical permissions and processing basis (Q124, Q131–133), and is not automatically implemented by the mention-only bot.
 
-**Processing lifecycle:** The bot and addon may temporarily stage raw guild-visible messages; the local AI then reviews the authorized collection and saves only selected, reasonably supported **interpreted observations** in a **local database on the founder's PC**. After processing, discard raw messages and temporary copies, **including those staged on the server**. The addon's local SavedVariables archive requires a separate verified deletion procedure before production integration. Do not retain a server-side long-term transcript or combined narrative-memory database.
+**Processing lifecycle:** The bot and addon may temporarily stage raw guild-visible messages; the local AI then reviews the authorized collection and saves only selected, reasonably supported **interpreted observations** in a **local database on the founder's PC**. After processing, discard raw messages and temporary copies, **including those staged on the server**. The addon's local SavedVariables archive requires a separate verified deletion procedure before production integration; it is specified in [agent/ROSTER.md](../agent/ROSTER.md) and not yet verified. Do not retain a server-side long-term transcript or combined narrative-memory database.
 
 **Who can access it:** The founder is the **only human with direct access** to Eldgrim's persistent local memory database. The authorized local AI may read and write it on the founder's computer. No other guild officers or custodians have direct database access. The existing live bot necessarily keeps limited server-side registration, role and administrative state to operate the Character Forge and guild services; these operational records are **separate** from the local narrative-memory database and do not authorize a raw-message archive.
 
@@ -82,6 +82,16 @@ New reliable evidence overrides old interpreted impressions (Q159). Eldgrim must
 
 **Status:** Confirmed policy only. Confidential intake, case access control, evidence-minimizing audit, deadline management and deletion mechanisms are **not implemented or tested**.
 
+## Confirmed confidentiality boundary — question 64
+
+Eldgrim uses standing, interpreted member context and personal impressions **internally** to shape its creative interactions and administrative judgment. These are **not** a public or private leaderboard, visible high score, member dashboard or personal ranking. Eldgrim must not routinely disclose a member's numerical standing, comparative ranking, inferred profile or the internal signals behind personalized content, even to that member.
+
+This internal confidentiality rule does **not** erase members' separately approved rights to explanations and appeals for consequential actions, nor any applicable legal rights to access, rectification or deletion of personal data. Those rights require an appropriate authorized privacy process rather than a public Discord command or disclosure of other members' information. Retention periods are set by Q135–137; exact privacy request procedures remain open.
+
+## Confirmed onboarding and character-data boundaries — questions 82–87
+
+Newcomers affirm adulthood, accept rules and acknowledge disclosed data practices. Mandatory Forge data is limited to a Discord account and at least one declared character's name, faction, race and class; real-world identity and optional roleplay/gameplay details are not required. Registration is a declaration rather than verified ownership. Disputed or permission-sensitive character claims may require reasonable in-game verification without credentials. Members may correct, add or retire characters; departed characters may be marked inactive. Historical data remains subject to privacy and retention rules still to be finalized. These decisions do not supersede applicable legal data-protection requirements.
+
 ## Refinement queue
 
 - [x] Establish allowed Discord channel/DM scope and temporary mention collection (Q124–125, Q127).
@@ -93,20 +103,8 @@ New reliable evidence overrides old interpreted impressions (Q159). Eldgrim must
 - [ ] Specify and implement operational privacy request and confidential appeal channels, case reviewers and lawful exceptions without granting custodians direct local narrative-memory access.
 - [x] Confirm appeals/evidence minimization and case-purpose separation (Q171–180).
 - [x] Establish the founder's PC as authoritative for Eldgrim's persistent interpreted narrative memories (Q138).
-- [ ] Define secure transfer and purge of shared Discord/addon raw data, and separation from the live server bot's operational registration database.
+- [ ] Define secure transfer and purge of shared Discord raw data, and separation from the live server bot's operational registration database. The addon archive's reading and cleanup are specified in agent/ROSTER.md and not built.
 
 ---
 
 [← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)
-
-
-## Confirmed confidentiality boundary — question 64
-
-Eldgrim uses standing, interpreted member context and personal impressions **internally** to shape its creative interactions and administrative judgment. These are **not** a public or private leaderboard, visible high score, member dashboard or personal ranking. Eldgrim must not routinely disclose a member's numerical standing, comparative ranking, inferred profile or the internal signals behind personalized content, even to that member.
-
-This internal confidentiality rule does **not** erase members' separately approved rights to explanations and appeals for consequential actions, nor any applicable legal rights to access, rectification or deletion of personal data. Those rights require an appropriate authorized privacy process rather than a public Discord command or disclosure of other members' information. Exact privacy request procedures and retention rules remain open.
-
-
-## Confirmed onboarding and character-data boundaries — questions 82–87
-
-Newcomers affirm adulthood, accept rules and acknowledge disclosed data practices. Mandatory Forge data is limited to a Discord account and at least one declared character's name, faction, race and class; real-world identity and optional roleplay/gameplay details are not required. Registration is a declaration rather than verified ownership. Disputed or permission-sensitive character claims may require reasonable in-game verification without credentials. Members may correct, add or retire characters; departed characters may be marked inactive. Historical data remains subject to privacy and retention rules still to be finalized. These decisions do not supersede applicable legal data-protection requirements.

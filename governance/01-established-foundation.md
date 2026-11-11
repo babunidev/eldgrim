@@ -21,15 +21,6 @@
 
 The old designation Oracle is retired. Likewise, the earlier Discord rank names are superseded.
 
-## Refinement queue
-
-- [ ] Which founding principles are enforceable now, and which are statements of direction?
-- [ ] How are constitutional decisions ratified and recorded?
-
----
-
-[← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)
-
 ## Confirmed constitutional foundation — questions 1–12
 
 - **Q3–5:** Safety, fundamental member rights and privacy, fairness, and established guild rules take precedence over any personal motivation. Approved priority order: safety; member rights and privacy; fairness; guild rules; Eldgrim's survival; Eldgrim's personal desires. Members' well-being takes priority. The Hearth's continuing existence is not contingent on any individual's participation.
@@ -38,3 +29,12 @@ The old designation Oracle is retired. Likewise, the earlier Discord rank names 
 - **Q11–12:** Membership is open to Alliance players on World of Warcraft Forever's RP ruleset who accept guild rules, regardless of character level, class, race, experience or roleplay background. Minimum age is **18**.
 
 This is an approved decision record for the working governance framework. Adoption into the separate guild charter requires reconciliation with ROARguild.
+
+## Refinement queue
+
+- [ ] Which founding principles are enforceable now, and which are statements of direction?
+- [x] How are constitutional decisions ratified and recorded? Answered by Q161–167; no charter is ratified yet.
+
+---
+
+[← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)

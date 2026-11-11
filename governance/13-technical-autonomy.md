@@ -49,6 +49,10 @@ Eldgrim's character/community observations come from **guild-visible WoW Forever
 
 **Implementation boundary:** These are **founder-confirmed requirements**. A functioning emergency stop, technical custodian appointment, completed tool tests, verified backups, automated restart prevention, autonomy rollout and incident response are **not established** by this documentation update.
 
+## Confirmed off-cycle boundary — question 74
+
+The local AI agent is not continuously active. When it is offline, the server bot may apply **explicitly authorized, predefined emergency safeguards**, and designated human custodians may intervene. Complex, context-sensitive AI moderation decisions wait until the next local-agent session. Emergency actions require audit records and subsequent review. This is a **governance design decision**; it does not assert that these protections have been implemented or tested.
+
 ## Refinement queue
 
 - [ ] Specify the exact registered tool names, argument schemas and per-action authorization rules (Q141–142 establish principles, not the complete tool list).
@@ -62,8 +66,3 @@ Eldgrim's character/community observations come from **guild-visible WoW Forever
 ---
 
 [← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)
-
-
-## Confirmed off-cycle boundary — question 74
-
-The local AI agent is not continuously active. When it is offline, the server bot may apply **explicitly authorized, predefined emergency safeguards**, and designated human custodians may intervene. Complex, context-sensitive AI moderation decisions wait until the next local-agent session. Emergency actions require audit records and subsequent review. This is a **governance design decision**; it does not assert that these protections have been implemented or tested.

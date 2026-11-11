@@ -3,24 +3,24 @@
 > **Status:** Inventory of open and conflicting decisions  
 > **Source:** Consolidated guild governance framework, 10 November 2026, v0.1. Working material, not a ratified constitution.
 
-These are the most important weaknesses in the current rule set.
+These were the most important weaknesses in the baseline rule set. The last column shows where the interview answered each one as policy; implementation is tracked in the [implementation matrix](IMPLEMENTATION-MATRIX.md).
 
-| Priority | Conflict                                                           | Required clarification                                                            |
-| -------- | ------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
-| Critical | Fictional objectives versus members' welfare                   | Which interests take precedence when they conflict?                               |
-| Critical | Autonomous moderation versus fairness                              | What evidence, review, and appeal protections apply?                              |
-| Critical | Voluntary participation versus standing scores                     | Can inactivity ever lower standing or cause demotion?                             |
-| Critical | Extensive observation versus member privacy                        | Exactly what is collected, retained, disclosed, and removable?                    |
-| High     | Eldgrim's full authority versus the bot's approval workflow        | Which actions are autonomous, supervised, or forbidden?                           |
-| High     | No human hierarchy versus privileged guild roles                   | Which permissions are practical responsibilities rather than social authority?    |
-| High     | One daily appearance versus individual questions and proclamations | What exactly counts toward each communication limit?                              |
-| High     | Creative reward freedom versus valuable bank assets                | What restrictions apply to scarce resources?                                      |
-| High     | Private scores versus accountable decisions                        | How can a member challenge an error without exposing others' private information? |
-| High     | Several characters per player                                      | Is standing calculated per player, per character, or both?                        |
-| High     | Local interpreted memory versus live bot operational records       | **Partly resolved by Q138:** Eldgrim's narrative memory stays on the founder's PC; live Forge/role state remains on the server. Secure temporary transfer, deletion and consistency still require implementation. |
-| Medium   | Sunday attendance and addon observations                           | How is voluntary attendance distinguished from measurable participation?          |
-| Medium   | One decision per category per day                                  | What constitutes a category, and which exceptions are permitted?                  |
-| Medium   | Older ROARguild documentation                                      | Replace retired Oracle terminology and outdated guild-status statements.          |
+| Priority | Conflict | Required clarification | Current position |
+| --- | --- | --- | --- |
+| Critical | Fictional objectives versus members' welfare | Which interests take precedence when they conflict? | Resolved: Q3–5, Q30 |
+| Critical | Autonomous moderation versus fairness | What evidence, review, and appeal protections apply? | Resolved: Q65–81, Q171–180 |
+| Critical | Voluntary participation versus standing scores | Can inactivity ever lower standing or cause demotion? | Resolved: no (Q49, Q60–62) |
+| Critical | Extensive observation versus member privacy | Exactly what is collected, retained, disclosed, and removable? | Resolved: Q124–140 |
+| High | Eldgrim's full authority versus the bot's approval workflow | Which actions are autonomous, supervised, or forbidden? | Policy resolved (Q141–144, Q170); tool list and activation open |
+| High | No human hierarchy versus privileged guild roles | Which permissions are practical responsibilities rather than social authority? | Resolved: Q43, Q50, Q169 |
+| High | One daily appearance versus individual questions and proclamations | What exactly counts toward each communication limit? | Resolved: Q91–100 |
+| High | Creative reward freedom versus valuable bank assets | What restrictions apply to scarce resources? | Resolved in principle (Q110, Q121–123); value thresholds open |
+| High | Private scores versus accountable decisions | How can a member challenge an error without exposing others' private information? | Resolved: Q64, Q78–80, Q139 |
+| High | Several characters per player | Is standing calculated per player, per character, or both? | Resolved: per player (Q51) |
+| High | Local interpreted memory versus live bot operational records | Where does each kind of record live? | Resolved by Q138; transfer, deletion and consistency need implementation |
+| Medium | Sunday attendance and addon observations | How is voluntary attendance distinguished from measurable participation? | Resolved: Q18, Q114–115 |
+| Medium | One decision per category per day | What constitutes a category, and which exceptions are permitted? | Resolved: Q99 |
+| Medium | Older ROARguild documentation | Replace retired Oracle terminology and outdated guild-status statements. | Open |
 
 The older [ROARguild charter](https://github.com/babunidev/ROARguild/blob/main/guild/CHARTER.md) is explicitly a developing draft. It still contains outdated statements about Amberhearth's name and the earlier Oracle concept. It should not be treated as a binding rulebook.
 
@@ -61,15 +61,6 @@ The interview is complete: **193/193 founder-confirmed answers**. Q191 requires 
 
 **Open:** Full cross-repository charter comparison, chapter-level cleanup, actual technical implementation, verification evidence, charter adoption and Q170 founder go-live authorization. The initial documentation audit is not a runtime audit or a claim that every conflict is resolved.
 
-## Refinement queue
-
-- [ ] Which critical conflicts must be resolved before enabling autonomous moderation?
-- [ ] Which mismatches between current repositories need reconciliation first?
-
----
-
-[← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)
-
 ## Status update after questions 1–62
 
 **Resolved in the working rulebook:** member rights override Eldgrim's narrative aims; only the founder can amend policy; inactivity is always neutral; ranks and standing belong to the player rather than individual characters; rank is recognition and not automatic administrative authority; Eldgrim's Discord channel/permission administration is authorized conceptually (Q34–35 supersedes the initial Q34 proposal).
@@ -81,3 +72,12 @@ The interview is complete: **193/193 founder-confirmed answers**. Q191 requires 
 **Further clarified by Q141–160:** Eldgrim's authorized Discord administration is intended to be autonomous through independently validated tools, while exceptional infrastructure actions require founder authorization. Untrusted messages cannot grant permissions; failures fail safely; actions require minimal audits, idempotency and verification. **Still open:** The existing bot's manual approval workflow versus future autonomy, exact tool schemas and protected boundaries, secure transfer and deletion, actual privacy request implementation, remaining governance questions and ROARguild charter reconciliation. Q151–160 also establish binding-charter and mandatory-law/platform precedence, founder-only documented amendments, impartial founder-conflict review, fair treatment of independent events, identity/memory corrections and referral of incompatible rules. No autonomous administration is claimed as implemented.
 
 See the [confirmed question register](QUESTION-DECISIONS.md) for all Q1–193.
+
+## Refinement queue
+
+- [x] Which critical conflicts must be resolved before enabling autonomous moderation? The Q170 gate lists them.
+- [ ] Which mismatches between current repositories need reconciliation first?
+
+---
+
+[← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)

@@ -1,7 +1,7 @@
 # Chapter 11 — Guild bank and practical stewardship
 
 > **Status:** Founder-confirmed stewardship and allocation principles (Q116–123); implementation and exact resource limits developing  
-> **Source:** Consolidated guild governance framework, 10 November 2026, v0.1; founder decisions Q116–120. Working material, not a ratified constitution.
+> **Source:** Consolidated guild governance framework, 10 November 2026, v0.1; founder decisions Q116–123. Working material, not a ratified constitution.
 
 ## Stewardship model
 

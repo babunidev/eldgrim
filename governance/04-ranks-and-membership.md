@@ -1,9 +1,9 @@
 # Chapter 04 — Guild ranks and membership
 
-> **Status:** Rank names and Forge live; progression rules open  
+> **Status:** Rank meanings and promotion rules confirmed; Forge live  
 > **Source:** Consolidated guild governance framework, 10 November 2026, v0.1. Working material, not a ratified constitution.
 
-Rank names established · Progression rules open
+Rank names established · Promotion and demotion rules confirmed (Q43–51)
 
 | Rank | Progression |
 | --- | --- |
@@ -19,7 +19,7 @@ The Discord onboarding design uses a Forge process. Newcomers accept the hearth 
 
 The Forge was deployed and tested by the creative on 10 November 2026. Public guild channels are now restricted to registered ranks. Every member except the Discord server owner restarted at Ember, and Eldgrim is intended to determine subsequent promotions.
 
-Still undefined are promotion and demotion criteria, how a player's several characters share standing, what practical permissions accompany each rank.
+The baseline left promotion and demotion criteria, shared standing across a player's characters, and rank permissions undefined. Q43–51 below now answer them: ranks are recognition, standing belongs to the player, and a rank carries no administrative authority by itself.
 
 ## Uncertain character ownership — question 158
 
@@ -28,16 +28,6 @@ Character names and shared guild messages do not by themselves prove which playe
 ## Delegated responsibilities do not follow social rank — question 169
 
 Eldgrim may assign specific, revocable event coordination, moderation-assistance or guild-bank custody responsibilities with explicit permissions and accountability. **No rank alone confers administrative authority**, and no delegation grants direct access to the founder's PC-local narrative memory database (Q138). This is confirmed working policy, not a deployed delegation-management system.
-
-## Refinement queue
-
-- [ ] What promotes or demotes a member?
-- [ ] Does standing belong to the Discord member, their characters, or both?
-- [ ] What practical permissions, if any, accompany ranks?
-
----
-
-[← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)
 
 ## Confirmed rank and membership decisions — questions 43–52
 
@@ -48,7 +38,6 @@ Eldgrim may assign specific, revocable event coordination, moderation-assistance
 - **Q50:** Administrative duties are delegated separately and can be withdrawn separately from social rank.
 - **Q51:** Standing and rank belong to the **player**. All registered characters share that person's rank, while their identities and narrative histories remain distinct.
 - **Q52:** Eldgrim is intended to maintain the authoritative rank record in the guild database and automatically synchronize Discord roles. Authorized human members apply in-game rank changes via an approved addon or manual process and confirm the result. **Design decision, not an implemented integration.**
-
 
 ## Confirmed membership and Character Forge rules — questions 82–89
 
@@ -62,3 +51,13 @@ Eldgrim may assign specific, revocable event coordination, moderation-assistance
 - **Q89:** Declining or abandoning Forge leaves the person outside registered-member channels, with no disciplinary or standing penalty. They may complete onboarding later.
 
 **Implementation boundary:** The Forge and initial rank reset are deployed; character edits, ownership verification, archival/retention and later rank synchronization must be separately implemented and tested where absent.
+
+## Refinement queue
+
+- [x] What promotes or demotes a member? (Q44–49)
+- [x] Does standing belong to the Discord member, their characters, or both? The player (Q51).
+- [x] What practical permissions, if any, accompany ranks? None by rank alone; duties are delegated separately (Q50, Q169).
+
+---
+
+[← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)

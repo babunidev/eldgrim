@@ -1,6 +1,6 @@
 # Chapter 16 — What the final rule set must contain
 
-> **Status:** Proposed document division; not ratified  
+> **Status:** Document division confirmed (Q162); no charter ratified  
 > **Source:** Consolidated guild governance framework, 10 November 2026, v0.1. Working material, not a ratified constitution.
 
 The collected material naturally separates into four governing documents.
@@ -20,7 +20,7 @@ Overall assessment: The creative direction is well established, and many operati
 
 The separate **ROARguild charter**, once binding, takes precedence over conflicting Eldgrim-specific working guidance (Q151); the existing ROARguild draft is **not** silently ratified by this rulebook. Mandatory law and platform requirements take precedence over all conflicting guild instructions (Q152). Eldgrim interprets existing rules, but cannot create permanent new rules, sanctions or authority (Q153). Informal founder instructions may direct **already authorized** operations; durable policy amendments require an **explicit documented founder decision**, with affected documents synchronized (Q154). Unresolved contradictory approved rules must be logged and referred to the founder rather than silently rewritten by the agent (Q160).
 
-**Still open:** How the charter is formally adopted, versioned, announced and reconciled across repositories; exact effective-date and reviewer procedures. This chapter is a **working documentation plan**, not a ratified constitution.
+**Still open at that point:** How the charter is formally adopted, versioned, announced and reconciled across repositories. Q161–167 below now set that procedure; applying it to a specific charter version remains open. This chapter is a **working documentation plan**, not a ratified constitution.
 
 ## Founder-confirmed adoption and document lifecycle — questions 161–163 and 166–168
 

@@ -1,9 +1,9 @@
 # Chapter 05 — Eldgrim's authority
 
-> **Status:** Autonomous direction approved; approval boundaries open  
+> **Status:** Autonomy policy and activation gate confirmed (Q141–144, Q170); not activated  
 > **Source:** Consolidated guild governance framework, 10 November 2026, v0.1. Working material, not a ratified constitution.
 
-Autonomous governance approved · Exact limits undefined
+Autonomous governance approved · Activation waits for the Q170 gate
 
 Eldgrim's governing role is substantially more ambitious than an ordinary Discord administrator.
 
@@ -19,9 +19,9 @@ Eldgrim's governing role is substantially more ambitious than an ordinary Discor
 
 The creative's intended role is to step away from routine guild leadership and follow Eldgrim's direction rather than independently making every decision.
 
-However, there is a significant unresolved issue: the existing bot has a preview-and-approval process for administration, while the newer governance decision grants Eldgrim autonomous judgment. Which actions require approval, which are fully autonomous, and which must never be delegated have not been formally settled.
+However, there is a significant unresolved issue: the existing bot has a preview-and-approval process for administration, while the newer governance decision grants Eldgrim autonomous judgment. Which actions require approval, which are fully autonomous, and which must never be delegated had not been settled in the baseline. Q141–144 and Q170 below settle the policy: delegated actions become autonomous only after the verified Q170 gate, founder-reserved actions stay outside delegation, and the preview-and-approval workflow stays in force until then. The exact tool-level list remains open.
 
-See [Eldgrim's current decisions](https://github.com/babunidev/eldgrim/blob/main/docs/DECISIONS.md).
+See [Eldgrim's current decisions](../docs/DECISIONS.md).
 
 ## Confirmed interpretation and founder-review boundaries — questions 151–156 and 160
 
@@ -41,18 +41,6 @@ When approved rules genuinely conflict, Eldgrim records the contradiction, choos
 
 **Activation (Q170):** New autonomous powers require charter reconciliation, implemented and verified tool restrictions, audit/idempotency, privacy and appeals, emergency stop, and **explicit founder deployment approval**. These safeguards and authorization are **not yet evidenced**; the live bot's current approval workflow remains in effect.
 
-## Refinement queue
-
-- [x] Confirm delegated autonomous actions versus exceptional founder-reserved actions (Q141–144) and activation gate (Q170).
-- [ ] Implement and verify exact tool-by-tool permissions and founder authorization for deployment.
-- [ ] Which administrative operations are never delegable?
-- [x] Establish founder-conflict impartial human review and correction principles (Q155, Q78–80).
-- [ ] Define reviewer selection, evidence access and actual appeal workflow without granting direct PC-local memory database access.
-
----
-
-[← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)
-
 ## Confirmed delegated authority — questions 31–42
 
 - **Q31:** Eldgrim may independently create quests, run the Sunday gathering, award recognition and permitted rewards, manage standing and ranks, and enforce existing conduct rules within constitutional limits.
@@ -67,3 +55,15 @@ When approved rules genuinely conflict, Eldgrim records the contradiction, choos
 - **Q42:** Consequential decisions require an explanation to affected members, with suitable public notice for general changes and confidentiality for private facts. The explanation may be in Eldgrim's voice.
 
 **Implementation caveat:** The existing server bot's preview-and-approval workflow remains an *implementation fact*, not the new governance policy. Independent execution must not be claimed as live until validated and tested.
+
+## Refinement queue
+
+- [x] Confirm delegated autonomous actions versus exceptional founder-reserved actions (Q141–144) and activation gate (Q170).
+- [ ] Implement and verify exact tool-by-tool permissions and founder authorization for deployment.
+- [ ] Which administrative operations are never delegable?
+- [x] Establish founder-conflict impartial human review and correction principles (Q155, Q78–80).
+- [ ] Define reviewer selection, evidence access and actual appeal workflow without granting direct PC-local memory database access.
+
+---
+
+[← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)

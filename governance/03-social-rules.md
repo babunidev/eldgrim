@@ -30,15 +30,6 @@ These principles establish what the guild is trying to protect. They do not yet 
 
 **Status:** Confirmed working-governance decisions, not yet adopted as a ratified ROARguild charter or implemented moderation rules.
 
-## Refinement queue
-
-- [ ] Which conduct rules have been formally adopted in the guild charter?
-- [ ] How are disputes, reporting, and fair enforcement handled?
-
----
-
-[← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)
-
 ## Confirmed member protections — questions 13–20
 
 - **Q13:** Roleplay is fully optional as a membership and participation requirement. Members choose their own level of engagement; consent and conduct boundaries still apply.
@@ -50,3 +41,12 @@ These principles establish what the guild is trying to protect. They do not yet 
 - **Q20:** Suspension or removal is reserved for serious misconduct or repeated rule violations, with proportionate sanctions, documented reasons and an opportunity to appeal. Severe threats to safety may justify immediate removal.
 
 Final investigation, review and appeal procedures still require decisions in Chapter 10.
+
+## Refinement queue
+
+- [ ] Which conduct rules have been formally adopted in the guild charter?
+- [x] How are disputes, reporting, and fair enforcement handled? Policy confirmed in Q65–81 and Q171–180 (Chapter 10); procedures not implemented.
+
+---
+
+[← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)

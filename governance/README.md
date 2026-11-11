@@ -15,19 +15,19 @@ Eldgrim's administrative authority is an approved design goal. This directory re
 | 01 | [Established foundation](01-established-foundation.md) | Established foundation; enforceable details incomplete |
 | 02 | [Eldgrim's identity and governing purpose](02-identity-and-purpose.md) | Public character established; governing goals developing |
 | 03 | [The guild's social rules](03-social-rules.md) | Social values established; formal conduct procedure open |
-| 04 | [Guild ranks and membership](04-ranks-and-membership.md) | Rank names and Forge live; progression rules open |
-| 05 | [Eldgrim's authority](05-eldgrims-authority.md) | Autonomous direction approved; approval boundaries open |
-| 06 | [Daily conduct and communication](06-daily-conduct-and-communication.md) | Daily direction agreed; exact limits open |
-| 07 | [Member evaluation and standing](07-member-evaluation-and-standing.md) | Profile categories and scale agreed; scoring method open |
+| 04 | [Guild ranks and membership](04-ranks-and-membership.md) | Rank meanings and promotion rules confirmed; Forge live |
+| 05 | [Eldgrim's authority](05-eldgrims-authority.md) | Autonomy policy and activation gate confirmed; not activated |
+| 06 | [Daily conduct and communication](06-daily-conduct-and-communication.md) | Daily limits confirmed (Q90–100) |
+| 07 | [Member evaluation and standing](07-member-evaluation-and-standing.md) | Scale, bands and neutral inactivity confirmed; correction workflow open |
 | 08 | [Quests, recognition, and rewards](08-quests-recognition-and-rewards.md) | Quest direction agreed; execution procedures developing |
 | 09 | [Sunday gatherings](09-sunday-gatherings.md) | Core community tradition; individual plans flexible |
-| 10 | [Moderation and discipline](10-moderation-and-discipline.md) | Moderation authority intended; disciplinary process open |
+| 10 | [Moderation and discipline](10-moderation-and-discipline.md) | Disciplinary policy confirmed; procedures unimplemented |
 | 11 | [Guild bank and practical stewardship](11-guild-bank-and-stewardship.md) | Delegated stewardship agreed; practical procedures open |
-| 12 | [Observation, memory, and privacy](12-observation-memory-and-privacy.md) | Partly specified systems; privacy rules incomplete |
+| 12 | [Observation, memory, and privacy](12-observation-memory-and-privacy.md) | Privacy rules confirmed; systems partly specified |
 | 13 | [Technical limits on Eldgrim's autonomy](13-technical-autonomy.md) | Technical architecture approved; agent administration unimplemented |
 | 14 | [Conflicts and gaps that must be resolved](14-conflicts-and-gaps.md) | Inventory of open and conflicting decisions |
 | 15 | [Proposed hierarchy for a watertight Eldgrim constitution](15-proposed-priority-hierarchy.md) | Proposed precedence; not ratified |
-| 16 | [What the final rule set must contain](16-constitutional-documents.md) | Proposed document division; not ratified |
+| 16 | [What the final rule set must contain](16-constitutional-documents.md) | Document division confirmed; no charter ratified |
 
 ## Editing and approval rules
 

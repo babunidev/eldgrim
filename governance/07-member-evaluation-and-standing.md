@@ -1,9 +1,9 @@
 # Chapter 07 — Member evaluation and standing
 
-> **Status:** Profile categories and scale agreed; scoring method open  
+> **Status:** Scale, bands and neutral inactivity confirmed (Q53–64); correction workflow open  
 > **Source:** Consolidated guild governance framework, 10 November 2026, v0.1. Working material, not a ratified constitution.
 
-Four categories and 0–100 scale agreed · Evaluation formula open
+Four categories and 0–100 scale agreed · Bands and evidence rules confirmed
 
 Eldgrim's memory model distinguishes a Discord member from their registered in-game characters.
 
@@ -20,31 +20,13 @@ Persistent character sheets are intended to contain concise interpreted keywords
 
 The earlier design also established an internal standing score:
 
-Internal standing
-
-Conceptual scale
-
-0 — Disengaged
-
-100 — Exemplary
-
-The colors illustrate the conceptual range, not approved scoring thresholds.
+The baseline drew a conceptual scale from 0 (disengaged) to 100 (exemplary), not approved scoring thresholds. Q60–62 retire the reading of 0 as disengagement: inactivity is neutral.
 
 Eldgrim would evaluate members during its daily cycle, recognize the strongest positive contribution, and consider whether problematic behavior warrants a negative consequence.
 
-The scoring system is not yet safe to use for autonomous disciplinary decisions. Its weights, evidence requirements, decay, corrections, and connection to guild ranks are undefined.
+The scoring system is not yet safe to use for autonomous disciplinary decisions. In the baseline its weights, evidence requirements, decay, corrections, and connection to guild ranks were undefined. Q53–64 below now set the measure, starting value, bands, evidence rules and the separation from discipline; formal source-reliability criteria and the correction workflow remain open.
 
 Most importantly, the earlier interpretation of zero as disengagement conflicts with the guild's promise that participation is voluntary. Being absent, quiet, or uninterested in events must be distinguished from misconduct.
-
-## Refinement queue
-
-- [ ] What evidence, weights, and correction process govern 0–100 standing?
-- [ ] How is voluntary nonparticipation prevented from becoming a penalty?
-- [ ] How are private scores related to promotions or discipline?
-
----
-
-[← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)
 
 ## Confirmed standing rules — questions 53–62
 
@@ -59,8 +41,17 @@ Most importantly, the earlier interpretation of zero as disengagement conflicts 
 
 **Not yet settled:** formal source reliability criteria; correction/appeal workflow; handling of the existing-members baseline when no score has been stored; relationship between a score and specific promotions or moderation. A score must not be treated as independently sufficient proof of misconduct. The earlier description of 0 as "disengaged" is superseded: inactivity is neutral, not a negative score state.
 
-
 ## Interview update — questions 63–64
 
 - **Q63 — Established:** Standing may inform promotion and rewards, but it is **never sufficient on its own** to justify discipline. Sanctions require an independently established violation of existing guild rules.
 - **Q64 — Confirmed, revised:** The standing score is Eldgrim's **private internal judgment**, analogous to a person's unspoken impressions of friends, not a competitive high score or ranking. Eldgrim does not disclose scores, rankings, inferred personal profiles or the internal information it uses to personalize creative content to members, including the member concerned, as an ordinary feature. There is no member-facing score lookup or dedicated score challenge process. This does not prevent Eldgrim from internally correcting unreliable data. It also does not negate the established requirement to explain and permit appeals of **consequential administrative decisions**, or applicable legal rights to personal-data access and correction. Do not reveal another member's private information in any explanation.
+
+## Refinement queue
+
+- [ ] What correction process governs 0–100 standing? Evidence and bands are set by Q58 and Q62.
+- [x] How is voluntary nonparticipation prevented from becoming a penalty? Inactivity is neutral (Q60–61).
+- [x] How are private scores related to promotions or discipline? Standing may inform promotion, never discipline alone (Q63).
+
+---
+
+[← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)

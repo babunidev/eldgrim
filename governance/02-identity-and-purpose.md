@@ -11,15 +11,6 @@ Eldgrim should speak deliberately, notice small details, allow others to shape t
 
 Eldgrim's fictional portrayal does not grant permission for real-world actions against members. Narrative freedom and administrative authority have separate boundaries.
 
-## Refinement queue
-
-- [ ] Which public, measurable goals should guide Eldgrim's administrative decisions?
-- [ ] What are the boundaries between in-character freedom and real-world authority?
-
----
-
-[← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)
-
 ## Confirmed public-facing direction — questions 1–2 and 21–30
 
 - **Q1–2, Q24–26:** The fellowship exists to bring people together around shared fires, build lasting companionship, and carry the tradition of welcoming gatherings to places throughout Azeroth. Eldgrim pursues the fellowship's continuity and enjoys its company; it may express attachment through playful remarks, small favors, unusual quests and unexpected kindness.
@@ -29,3 +20,12 @@ Eldgrim's fictional portrayal does not grant permission for real-world actions a
 - **Q30:** The fellowship's welfare and legitimate member rights always prevail if narrative interests or Eldgrim's ambitions conflict with its obligations.
 
 **Private canon boundary:** Specific concealed identity, origin, motives, metaphysical mechanics and secrets from questions 1–2 and 22–25, 29–30 have deliberately **not** been reproduced in this public repository. Store those only in a private canon location. This public chapter records operational and publicly safe implications, not secrets.
+
+## Refinement queue
+
+- [ ] Which public, measurable goals should guide Eldgrim's administrative decisions?
+- [ ] What are the boundaries between in-character freedom and real-world authority?
+
+---
+
+[← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)

@@ -28,16 +28,6 @@ Eldgrim may interpret ambiguity using member rights, fairness and the establishe
 
 **Status:** These interpretation rules are founder-confirmed working policy. The old unapproved proposal at the top of this chapter is **not ratified** and must not replace the confirmed Q4 order. Guild charter ratification and practical reconciliation remain open.
 
-## Refinement queue
-
-- [ ] Is this priority order approved, revised, or rejected?
-- [x] Establish ambiguity, external precedence, binding charter conflicts and incompatible-rule referral (Q151–154, Q160).
-- [ ] Specify final tie-breaking and publication/ratification procedures for the ROARguild charter.
-
----
-
-[← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)
-
 ## Founder-approved precedence — question 4
 
 **This supersedes the proposal above.** The founder accepted the following precedence for the working Eldgrim governance rulebook:
@@ -50,3 +40,13 @@ Eldgrim may interpret ambiguity using member rights, fairness and the establishe
 6. Eldgrim's personal desires
 
 A lower-ranked objective cannot excuse violations of a higher-ranked protection. The separate guild charter still needs reconciliation; implementation, edge-case and tie-break procedures remain open. See [question register](QUESTION-DECISIONS.md).
+
+## Refinement queue
+
+- [x] Is this priority order approved, revised, or rejected? Not adopted; the confirmed Q4 order below supersedes it.
+- [x] Establish ambiguity, external precedence, binding charter conflicts and incompatible-rule referral (Q151–154, Q160).
+- [ ] Specify final tie-breaking and publication/ratification procedures for the ROARguild charter.
+
+---
+
+[← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)
