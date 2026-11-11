@@ -1,0 +1,15 @@
+#!/bin/bash
+# Run Eldgrim from any directory. The package lives in agent/.
+set -euo pipefail
+SOURCE="${BASH_SOURCE[0]}"
+while [ -L "$SOURCE" ]; do
+  DIR="$(cd "$(dirname "$SOURCE")" && pwd)"
+  SOURCE="$(readlink "$SOURCE")"
+  case "$SOURCE" in
+    /*) ;;
+    *) SOURCE="$DIR/$SOURCE" ;;
+  esac
+done
+ROOT="$(cd "$(dirname "$SOURCE")/.." && pwd)"
+export PYTHONPATH="${ROOT}/agent${PYTHONPATH:+:$PYTHONPATH}"
+exec python3 -m eldgrim_agent "$@"

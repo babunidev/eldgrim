@@ -4,6 +4,7 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-11
 
+- Added `eldgrim run`, which finds the agent from any directory. The earlier `PYTHONPATH=agent` command only worked in the repository root.
 - Moved the phrases that guard Eldgrim's private roots out of the public code and tests into a private file beside the origin. The runner reads it at run time and stops if the origin is present without it. Public pages no longer describe what the origin contains.
 - Reviewed the documentation against its own rules. Put DECISIONS and DEVLOG in newest-first order with the journal in the creative's first person; updated the project map, concept, roadmap and agent, bot and addon pages to the proclamation, wake timer and roster decisions; put the roster before the proclamation in the bot plan; moved each governance chapter's confirmed sections above its refinement queue and pointed stale baseline text to the deciding questions. Documentation only.
 - Added the local Eldgrim runner. A run writes an announcement on this computer, then chooses one moment on the next day for a system wake timer. Test runs are on demand and are not posted.

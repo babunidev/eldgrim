@@ -63,7 +63,7 @@ One daily proclamation is approved and is the first thing built (see [ANNOUNCEME
 
 ## Current reality
 
-`eldgrim_agent` can write one local announcement and choose the next day's wake time. Run it with `PYTHONPATH=agent python -m eldgrim_agent run` from the repository root. It does not post to Discord. The system wake timer is rendered on each run and still needs root to be armed. There is no SQLite roster database yet.
+`eldgrim_agent` can write one local announcement and choose the next day's wake time. From any directory, `eldgrim run` does that. It does not post to Discord. The system wake timer is rendered on each run and still needs root to be armed. There is no SQLite roster database yet.
 
 ## Technical references
 

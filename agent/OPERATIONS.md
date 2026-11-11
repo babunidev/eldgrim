@@ -16,7 +16,7 @@ Units:
 - `eldgrim-daily.service` — one-shot. The user unit starts a run on demand. The system unit is what the wake timer starts.
 - `eldgrim-daily.timer` — system timer, one absolute `OnCalendar` stamp, `WakeSystem=true`.
 
-The runner is `python -m eldgrim_agent run` with `PYTHONPATH` set to `agent/`.
+The runner is `eldgrim run`. That command finds the package from its own location, so it does not depend on the current directory.
 
 ## 2. Missed runs and machine availability
 
