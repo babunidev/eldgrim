@@ -1,6 +1,6 @@
 # Eldgrim Addon
 
-A separate technical workstream for the Eldgrim World of Warcraft Forever addon.
+A separate technical workstream for the Eldgrim World of Warcraft Forever addon. Further addon development happens in a separate environment (2026-11-10); the source here is the first-milestone recorder.
 
 ## Current milestone
 
