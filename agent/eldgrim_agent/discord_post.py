@@ -26,6 +26,18 @@ APPROVAL_SCHEDULED = (
 )
 APPROVAL_MANUAL = "The creative started `eldgrim run` by hand; a run includes posting its announcement."
 APPROVAL_POST = "The creative ran `eldgrim post` for {name}."
+APPROVAL_REHEARSAL = (
+    "Wake test started by the creative with `eldgrim wake-test`; the computer slept, "
+    "the timer woke it, and this run posted."
+)
+REHEARSAL_FLAG = Path(os.environ.get("ELDGRIM_REHEARSAL_FLAG", "/run/eldgrim/rehearsal"))
+
+
+def approval_for(scheduled: bool) -> str:
+    """The truthful audit note for a run."""
+    if scheduled and REHEARSAL_FLAG.is_file():
+        return APPROVAL_REHEARSAL
+    return APPROVAL_SCHEDULED if scheduled else APPROVAL_MANUAL
 
 ZERO_WIDTH = "​"
 MENTION = re.compile(r"<(@[!&]?|#)(\d+)>")

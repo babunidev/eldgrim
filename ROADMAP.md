@@ -67,7 +67,8 @@ This roadmap records areas of development, not promises or fixed deadlines.
 - [x] Specify the wake: Eldgrim chooses one moment on the next day, a system timer wakes the computer, and the machine sleeps on its own afterwards.
 - [x] Post a finished announcement through the server bot.
 - [x] Move the wake path to root-owned files that never run repository code as root, and return to sleep after a timer wake.
-- [ ] Install it once with `sudo agent/systemd/install-wake.sh` and watch one timer-woken run post and sleep again.
+- [x] Install it once with `sudo agent/systemd/install-wake.sh`.
+- [ ] Prove one timer-woken run that posts and sleeps again with `eldgrim wake-test`.
 - [ ] Let members write to Eldgrim, and keep what Eldgrim learns, before it answers them.
 - [ ] Specify, build, and test replies to @Eldgrim mentions. The founder confirmed the limits; the creative asked to build the daily proclamation first.
 - [ ] Transfer shared guild activity to the founder's PC, keep interpreted memory there, and delete the raw archive. The addon half of that cleanup is specified in agent/ROSTER.md and is not built.

@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import argparse
+import os
 import sys
+from pathlib import Path
 
 from eldgrim_agent.discord_post import (
     APPROVAL_POST,
@@ -33,12 +35,38 @@ def main(argv: list[str] | None = None) -> int:
         metavar="NAME",
         help="after checking the channel, mark an uncertain announcement as not posted and send it",
     )
+    wake = sub.add_parser("wake-test", help="sleep now, let the timer wake the computer, post, and sleep again")
+    wake.add_argument("--minutes", type=int, default=3, help="minutes until the wake, 2-30 (default 3)")
     args = parser.parse_args(argv)
+    if args.command == "wake-test":
+        return wake_test(args.minutes)
     if args.command == "post":
         return post_latest(args.resend)
     report = execute(scheduled=args.scheduled)
     print(_format_run(report))
     return 1 if report.get("error") else 0
+
+
+HELPER = Path("/usr/local/libexec/eldgrim/eldgrim-wake-helper")
+
+
+def wake_test(minutes: int) -> int:
+    if not 2 <= minutes <= 30:
+        print("Choose between 2 and 30 minutes.")
+        return 2
+    if not HELPER.is_file():
+        print("The wake path is not installed. Run: sudo agent/systemd/install-wake.sh")
+        return 1
+    print(
+        f"Wake test: the computer goes to sleep now and the timer wakes it in about {minutes} minutes.\n"
+        "Eldgrim then writes and posts one announcement, chooses its next moment, and the computer\n"
+        "sleeps again if nothing else holds it awake. Check afterwards with:\n"
+        "  journalctl -u eldgrim-daily.service -b --since -1h\n"
+        "sudo asks for your password next."
+    )
+    sys.stdout.flush()
+    os.execvp("sudo", ["sudo", str(HELPER), "rehearse", str(minutes)])
+    return 1
 
 
 def post_latest(resend: str | None = None) -> int:

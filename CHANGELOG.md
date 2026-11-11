@@ -4,6 +4,7 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-11
 
+- Added `eldgrim wake-test`: the computer sleeps, the timer wakes it a few minutes later, Eldgrim posts with a note naming the wake test, and the computer sleeps again. A wake now counts only after a completed resume.
 - Test runs post. Rebuilt the wake path so root runs only root-owned files and returns the computer to sleep after a timer wake; made mentions in posted text inert; recorded truthful audit notes and an `unknown` state that prevents double posts. Install with `sudo agent/systemd/install-wake.sh`.
 - The runner now asks the server bot to post the announcement it kept. The Discord address stays on this computer.
 - Added `eldgrim run`, which finds the agent from any directory. The earlier `PYTHONPATH=agent` command only worked in the repository root.

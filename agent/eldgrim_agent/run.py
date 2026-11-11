@@ -12,7 +12,7 @@ from datetime import datetime
 from eldgrim_agent.announce import compose
 from eldgrim_agent.choose import choose_next
 from eldgrim_agent.clock import fallback_moment
-from eldgrim_agent.discord_post import APPROVAL_MANUAL, APPROVAL_SCHEDULED, PostError, post_file
+from eldgrim_agent.discord_post import PostError, approval_for, post_file
 from eldgrim_agent.ollama import OllamaError, ensure_server, stop_server, unload
 from eldgrim_agent.paths import LOCK_PATH, LOGS, ensure_runtime
 from eldgrim_agent.schedule import save_choice
@@ -43,7 +43,7 @@ def execute(*, scheduled: bool) -> dict[str, object]:
             server = ensure_server()
             announcement, path = compose(started)
             report["announcement"] = announcement
-            post_file(path, approval=APPROVAL_SCHEDULED if scheduled else APPROVAL_MANUAL)
+            post_file(path, approval=approval_for(scheduled))
             report["posted"] = True
         except (OllamaError, OSError, RuntimeError, PostError) as exc:
             report["error"] = str(exc)

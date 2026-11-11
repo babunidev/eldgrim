@@ -35,7 +35,11 @@ After a scheduled run the helper suspends the computer again only when both are 
 - The computer resumed from sleep within five minutes before the run, so the timer woke it.
 - No other program holds a sleep or idle inhibitor in block mode. Delay-mode agents such as NetworkManager do not count. Plasma's idle hint is not used, because it stays "not idle" for minutes after an RTC wake.
 
-If the computer was already awake, or anything else holds sleep off, it is left awake. Eldgrim never suspends after a run started by hand.
+If the computer was already awake, or anything else holds sleep off, it is left awake. Eldgrim never suspends after a run started by hand. A wake counts only when `systemd-sleep` logged "returned from sleep" within five minutes before the run, so a suspend that failed is never mistaken for one.
+
+### Wake test
+
+`eldgrim wake-test` (default 3 minutes, `--minutes 2` to `30`) proves the whole cycle. After your sudo password, the helper arms the timer a few minutes ahead and puts the computer to sleep. The timer wakes it, Eldgrim writes and posts one announcement through the bot with an audit note that names the wake test, chooses its next moment, and the computer sleeps again if nothing else holds it awake. The timer is then re-armed for Eldgrim's chosen moment. Check the result with `sudo journalctl -u eldgrim-daily.service -b --since -1h` and the newest file in `~/.local/share/eldgrim/logs/`.
 
 ## 4. Missed runs and machine availability
 

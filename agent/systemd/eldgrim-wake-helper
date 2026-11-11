@@ -8,12 +8,15 @@
 #   begin        before a run: note whether the timer just woke the computer, then settle
 #   finish       after a run: re-arm, and suspend again only if the timer woke the
 #                computer and no other program holds sleep off
+#   rehearse N   wake test: arm the timer N minutes ahead (2-30), mark the run as a
+#                wake test, and suspend now; the woken run posts and sleeps again
 set -uo pipefail
 
 NEXT_FILE="${ELDGRIM_NEXT_FILE:-@HOME@/.local/share/eldgrim/next-run.json}"
 TIMER_FILE=/etc/systemd/system/eldgrim-daily.timer
 STATE_DIR=/run/eldgrim
 WOKEN="$STATE_DIR/woken"
+REHEARSAL="$STATE_DIR/rehearsal"
 SETTLE_SECONDS="${ELDGRIM_SETTLE_SECONDS:-30}"
 RESUME_WINDOW=300
 MAX_AHEAD=$((50 * 3600))
@@ -37,8 +40,13 @@ stamp() {
 }
 
 arm() {
-  local when tmp
+  local when
   when=$(stamp "$NEXT_FILE") || return 1
+  write_timer "$when"
+}
+
+write_timer() {
+  local when="$1" tmp
   tmp=$(mktemp "${TIMER_FILE}.XXXXXX") || return 1
   cat >"$tmp" <<EOF
 [Unit]
@@ -62,9 +70,11 @@ EOF
 }
 
 resumed_recently() {
+  # Only a completed resume counts: systemd-sleep logs this line after waking,
+  # never after a suspend that failed.
   local last now
-  last=$(journalctl -b -u systemd-suspend.service -o short-unix -n 1 -q --no-pager 2>/dev/null \
-          | awk '{print int($1)}')
+  last=$(journalctl -b -t systemd-sleep -o short-unix -q --no-pager 2>/dev/null \
+          | grep 'returned from sleep' | tail -n 1 | awk '{print int($1)}')
   [ -n "$last" ] || return 1
   now=$(date +%s)
   [ $((now - last)) -le "$RESUME_WINDOW" ]
@@ -92,6 +102,7 @@ foreign_sleep_blockers() {
 }
 
 finish() {
+  rm -f "$REHEARSAL"
   arm || log "could not re-arm the wake timer"
   if [ ! -f "$WOKEN" ]; then
     log "not woken by the timer; leaving power alone"
@@ -109,10 +120,32 @@ finish() {
   return 0
 }
 
+rehearse() {
+  local minutes="${1:-3}" target when
+  case "$minutes" in ''|*[!0-9]*) log "minutes must be a whole number"; return 2 ;; esac
+  if [ "$minutes" -lt 2 ] || [ "$minutes" -gt 30 ]; then
+    log "choose between 2 and 30 minutes"; return 2
+  fi
+  target=$(( ( $(date +%s) + minutes * 60 + 59 ) / 60 * 60 ))
+  when=$(date -d "@$target" '+%Y-%m-%d %H:%M:00')
+  write_timer "$when" || { log "could not arm the wake test"; return 1; }
+  mkdir -p "$STATE_DIR"
+  echo "$when" >"$REHEARSAL"
+  chmod 0644 "$REHEARSAL"
+  log "wake test: the computer sleeps now and wakes at $when"
+  log "afterwards: journalctl -u eldgrim-daily.service -b --since -1h"
+  sync
+  sleep 3
+  if ! systemctl suspend; then
+    log "suspend was refused; the run will still start at $when with the computer awake"
+  fi
+}
+
 case "${1:-}" in
   stamp) stamp "${2:-$NEXT_FILE}" ;;
   arm) arm ;;
   begin) begin ;;
   finish) finish ;;
-  *) echo "usage: $0 stamp [FILE] | arm | begin | finish" >&2; exit 2 ;;
+  rehearse) rehearse "${2:-3}" ;;
+  *) echo "usage: $0 stamp [FILE] | arm | begin | finish | rehearse [MINUTES]" >&2; exit 2 ;;
 esac

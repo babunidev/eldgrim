@@ -66,6 +66,20 @@ class PostTests(unittest.TestCase):
             {"action": "announce", "channel": 12, "text": "Keep the fire."},
         )
 
+    def test_audit_note_tells_how_the_run_started(self):
+        from eldgrim_agent import discord_post as dp
+
+        saved = dp.REHEARSAL_FLAG
+        try:
+            dp.REHEARSAL_FLAG = self.dir / "rehearsal"
+            self.assertEqual(dp.approval_for(False), dp.APPROVAL_MANUAL)
+            self.assertEqual(dp.approval_for(True), dp.APPROVAL_SCHEDULED)
+            dp.REHEARSAL_FLAG.write_text("2026-11-11 12:00:00\n", encoding="utf-8")
+            self.assertEqual(dp.approval_for(True), dp.APPROVAL_REHEARSAL)
+            self.assertEqual(dp.approval_for(False), dp.APPROVAL_MANUAL)
+        finally:
+            dp.REHEARSAL_FLAG = saved
+
     def test_mentions_are_made_inert(self):
         text = defuse_mentions("Hear me @everyone and @Here, <@123>, <@!45>, <@&678>.")
         self.assertNotIn("@everyone", text)
