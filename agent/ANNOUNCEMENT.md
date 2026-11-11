@@ -1,6 +1,6 @@
 # Daily proclamation
 
-**Status:** A finished announcement is posted by the server bot to the announcements channel. The roster in [ROSTER.md](ROSTER.md) is still not built. Replies to mentions wait.
+**Status:** A finished announcement is posted by the server bot to the announcements channel, on test runs as well as scheduled ones. Posting does not wait for the roster in [ROSTER.md](ROSTER.md), which is still not built. Replies to mentions wait.
 
 The creative set this ahead of replies to @Eldgrim. Eldgrim speaks to the guild once a day. Answers to people who mention it come later. Messages people write to Eldgrim are a later source of information; this first version does not read them.
 

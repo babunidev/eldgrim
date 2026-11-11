@@ -1,0 +1,118 @@
+#!/bin/bash
+# Eldgrim wake helper. Installed root-owned into /usr/local/libexec/eldgrim/ by
+# install-wake.sh. Root never runs Eldgrim's Python code: it only reads the chosen
+# moment as data, writes the wake timer, and decides about returning to sleep.
+#
+#   stamp FILE   print the validated OnCalendar stamp from a next-run.json (no root needed)
+#   arm          write and restart the wake timer from the saved choice
+#   begin        before a run: note whether the timer just woke the computer, then settle
+#   finish       after a run: re-arm, and suspend again only if the timer woke the
+#                computer and no other program holds sleep off
+set -uo pipefail
+
+NEXT_FILE="${ELDGRIM_NEXT_FILE:-@HOME@/.local/share/eldgrim/next-run.json}"
+TIMER_FILE=/etc/systemd/system/eldgrim-daily.timer
+STATE_DIR=/run/eldgrim
+WOKEN="$STATE_DIR/woken"
+SETTLE_SECONDS="${ELDGRIM_SETTLE_SECONDS:-30}"
+RESUME_WINDOW=300
+MAX_AHEAD=$((50 * 3600))
+
+log() { echo "eldgrim-wake: $*"; }
+
+stamp() {
+  local file="$1" at epoch now
+  [ -f "$file" ] || { log "no saved choice at $file"; return 1; }
+  # Read at most 4 KiB and extract only a strict timestamp; nothing else is used.
+  at=$(head -c 4096 -- "$file" | grep -oE '"at"[[:space:]]*:[[:space:]]*"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}([+-][0-9]{2}:[0-9]{2})?"' \
+        | head -n 1 | grep -oE '[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}([+-][0-9]{2}:[0-9]{2})?')
+  [ -n "$at" ] || { log "saved choice has no valid timestamp"; return 1; }
+  epoch=$(date -d "$at" +%s 2>/dev/null) || { log "saved choice is not a real time"; return 1; }
+  now=$(date +%s)
+  if [ "$epoch" -le "$now" ] || [ "$epoch" -gt $((now + MAX_AHEAD)) ]; then
+    log "saved choice $at is not in the coming two days"
+    return 1
+  fi
+  date -d "@$epoch" '+%Y-%m-%d %H:%M:00'
+}
+
+arm() {
+  local when tmp
+  when=$(stamp "$NEXT_FILE") || return 1
+  tmp=$(mktemp "${TIMER_FILE}.XXXXXX") || return 1
+  cat >"$tmp" <<EOF
+[Unit]
+Description=Wake the computer for Eldgrim's next chosen moment
+
+[Timer]
+OnCalendar=$when
+Persistent=false
+WakeSystem=true
+AccuracySec=1min
+RandomizedDelaySec=0
+Unit=eldgrim-daily.service
+
+[Install]
+WantedBy=timers.target
+EOF
+  chmod 0644 "$tmp" && mv -f "$tmp" "$TIMER_FILE" || { rm -f "$tmp"; return 1; }
+  systemctl daemon-reload && systemctl enable --quiet eldgrim-daily.timer \
+    && systemctl restart eldgrim-daily.timer || return 1
+  log "wake timer armed for $when"
+}
+
+resumed_recently() {
+  local last now
+  last=$(journalctl -b -u systemd-suspend.service -o short-unix -n 1 -q --no-pager 2>/dev/null \
+          | awk '{print int($1)}')
+  [ -n "$last" ] || return 1
+  now=$(date +%s)
+  [ $((now - last)) -le "$RESUME_WINDOW" ]
+}
+
+begin() {
+  mkdir -p "$STATE_DIR"
+  if resumed_recently; then
+    : >"$WOKEN"
+    log "the computer just resumed; settling ${SETTLE_SECONDS}s before the run"
+    sleep "$SETTLE_SECONDS"
+  else
+    rm -f "$WOKEN"
+    log "the computer was already awake; it will be left awake"
+  fi
+  return 0
+}
+
+foreign_sleep_blockers() {
+  # Count inhibitors in block mode on sleep or idle, except Eldgrim's own.
+  systemd-inhibit --list --no-legend --no-pager 2>/dev/null \
+    | grep -v 'Eldgrim' \
+    | awk '$NF == "block" && ($0 ~ /sleep/ || $0 ~ /idle/)' \
+    | wc -l
+}
+
+finish() {
+  arm || log "could not re-arm the wake timer"
+  if [ ! -f "$WOKEN" ]; then
+    log "not woken by the timer; leaving power alone"
+    return 0
+  fi
+  rm -f "$WOKEN"
+  local blockers
+  blockers=$(foreign_sleep_blockers)
+  if [ "${blockers:-1}" != "0" ]; then
+    log "another program holds sleep off; leaving the computer awake"
+    return 0
+  fi
+  log "run finished after a timer wake; returning to sleep"
+  systemctl suspend || log "suspend request failed"
+  return 0
+}
+
+case "${1:-}" in
+  stamp) stamp "${2:-$NEXT_FILE}" ;;
+  arm) arm ;;
+  begin) begin ;;
+  finish) finish ;;
+  *) echo "usage: $0 stamp [FILE] | arm | begin | finish" >&2; exit 2 ;;
+esac

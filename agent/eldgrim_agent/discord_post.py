@@ -1,20 +1,42 @@
-"""Ask the server bot to post one finished announcement. The model never sees the token."""
+"""Ask the server bot to post one finished announcement. The model never sees the token.
+
+Each announcement file carries a "Posted:" line that moves through
+    no -> sending -> yes
+and becomes "unknown" when the apply request was sent but its outcome is unclear.
+An unknown announcement is never re-sent automatically; a person checks the channel
+and then uses `eldgrim post --resend NAME` if it really did not appear.
+"""
 
 from __future__ import annotations
 
 import json
 import os
+import re
 import subprocess
 from pathlib import Path
 
 CONFIG_PATH = Path(
     os.environ.get("ELDGRIM_DISCORD", Path.home() / ".config" / "eldgrim" / "discord.toml")
 )
-APPROVAL = "Creative asked Eldgrim to post the announcement it kept."
+
+# Truthful audit notes. The bot records the note with the applied plan.
+APPROVAL_SCHEDULED = (
+    "Scheduled run from the wake timer. Not reviewed by a person before posting; "
+    "standing approval for the daily proclamation is recorded in docs/DECISIONS.md (2026-11-11)."
+)
+APPROVAL_MANUAL = "The creative started `eldgrim run` by hand; a run includes posting its announcement."
+APPROVAL_POST = "The creative ran `eldgrim post` for {name}."
+
+ZERO_WIDTH = "​"
+MENTION = re.compile(r"<(@[!&]?|#)(\d+)>")
 
 
 class PostError(RuntimeError):
     pass
+
+
+class AmbiguousPost(PostError):
+    """The apply request left this computer, but whether it posted is unknown."""
 
 
 def load_config(path: Path | None = None) -> dict[str, object]:
@@ -39,8 +61,14 @@ def load_config(path: Path | None = None) -> dict[str, object]:
         raise PostError("Discord config needs ssh_host, ssh_identity, actor, and channel.") from exc
 
 
+def defuse_mentions(text: str) -> str:
+    """Make @everyone, @here, and user/role/channel mentions inert text."""
+    text = re.sub(r"@(everyone|here)", "@" + ZERO_WIDTH + r"\1", text, flags=re.IGNORECASE)
+    return MENTION.sub(lambda m: "<" + ZERO_WIDTH + m.group(1) + m.group(2) + ">", text)
+
+
 def operation(channel: int, text: str) -> dict[str, object]:
-    body = text.strip()
+    body = defuse_mentions(text.strip())
     if not 1 <= len(body) <= 2000:
         raise PostError("The announcement must be 1–2000 characters.")
     if channel <= 0:
@@ -48,7 +76,7 @@ def operation(channel: int, text: str) -> dict[str, object]:
     return {"action": "announce", "channel": channel, "text": body}
 
 
-def control(config: dict[str, object], request: dict[str, object], runner=None) -> dict:
+def control(config: dict[str, object], request: dict[str, object], runner=None, *, sent_is_ambiguous=False) -> dict:
     payload = (json.dumps(request) + "\n").encode()
     command = [
         "ssh",
@@ -58,44 +86,40 @@ def control(config: dict[str, object], request: dict[str, object], runner=None) 
         "IdentitiesOnly=yes",
         "-o",
         "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=20",
         str(config["host"]),
         "sudo -n -u eldgrim /usr/local/bin/eldgrim-control",
     ]
+    fail = AmbiguousPost if sent_is_ambiguous else PostError
     run = runner or subprocess.run
     try:
-        completed = run(
-            command,
-            input=payload,
-            capture_output=True,
-            timeout=120,
-            check=False,
-        )
+        completed = run(command, input=payload, capture_output=True, timeout=120, check=False)
     except (OSError, subprocess.TimeoutExpired) as exc:
-        raise PostError(f"The bot control call failed: {exc}") from exc
+        raise fail(f"The bot control call failed: {exc}") from exc
     if completed.returncode != 0 and not completed.stdout:
         detail = (completed.stderr or b"").decode(errors="replace")[:300]
-        raise PostError(detail or "The bot control call failed.")
+        raise fail(detail or "The bot control call failed.")
     try:
         reply = json.loads(completed.stdout.decode())
     except json.JSONDecodeError as exc:
-        raise PostError("The bot control reply was not JSON.") from exc
+        raise fail("The bot control reply was not JSON.") from exc
     if not reply.get("ok"):
-        raise PostError(str(reply.get("error") or "The bot refused the request."))
+        raise fail(str(reply.get("error") or "The bot refused the request."))
     return reply
 
 
-def publish(text: str, *, config_path: Path | None = None, runner=None) -> dict[str, object]:
+def publish(text: str, *, approval: str, config_path: Path | None = None, runner=None, before_apply=None) -> dict[str, object]:
+    """Preview, then apply the same plan. `before_apply(plan)` runs just before the apply is sent."""
     config = load_config(config_path)
     preview = control(
         config,
-        {
-            "method": "preview",
-            "actor": config["actor"],
-            "operation": operation(int(config["channel"]), text),
-        },
+        {"method": "preview", "actor": config["actor"], "operation": operation(int(config["channel"]), text)},
         runner,
     )
     plan = str(preview["result"]["plan"])
+    if before_apply is not None:
+        before_apply(plan)
     applied = control(
         config,
         {
@@ -103,39 +127,89 @@ def publish(text: str, *, config_path: Path | None = None, runner=None) -> dict[
             "actor": config["actor"],
             "plan": plan,
             "confirmation": "APPLY-" + plan,
-            "approval_note": APPROVAL,
+            "approval_note": approval,
         },
         runner,
+        sent_is_ambiguous=True,
     )
     status = applied["result"].get("status")
     if status != "applied":
-        raise PostError(f"The bot did not post ({status}).")
-    return {"posted": True}
+        raise AmbiguousPost(f"The bot did not confirm the post ({status}).")
+    return {"posted": True, "plan": plan}
 
 
-def mark_posted(path: Path) -> None:
-    text = path.read_text(encoding="utf-8")
-    path.write_text(text.replace("Posted: no", "Posted: yes", 1), encoding="utf-8")
-    path.chmod(0o600)
+def _set_state(path: Path, state: str, plan: str | None = None) -> None:
+    lines = path.read_text(encoding="utf-8").splitlines()
+    out: list[str] = []
+    for line in lines:
+        if line.startswith("Posted: "):
+            out.append(f"Posted: {state}")
+            if plan:
+                out.append(f"Plan: {plan}")
+        elif line.startswith("Plan: ") and plan:
+            continue
+        else:
+            out.append(line)
+    tmp = path.with_suffix(".tmp")
+    tmp.write_text("\n".join(out) + "\n", encoding="utf-8")
+    tmp.chmod(0o600)
+    os.replace(tmp, path)
+
+
+def state(path: Path) -> str:
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if line.startswith("Posted: "):
+            return line[len("Posted: "):].strip()
+    return ""
+
+
+def post_file(path: Path, *, approval: str, config_path: Path | None = None, runner=None) -> None:
+    """Post one announcement file and keep its Posted: line truthful at every step."""
+    if state(path) != "no":
+        raise PostError(f"{path.name} is marked '{state(path)}', not 'no'; it will not be sent again.")
+    text = announcement_text(path)
+    try:
+        publish(
+            text,
+            approval=approval,
+            config_path=config_path,
+            runner=runner,
+            before_apply=lambda plan: _set_state(path, "sending", plan),
+        )
+    except AmbiguousPost:
+        _set_state(path, "unknown")
+        raise
+    except PostError:
+        if state(path) == "sending":
+            _set_state(path, "unknown")
+        raise
+    _set_state(path, "yes")
 
 
 def latest_unposted(directory: Path) -> Path | None:
-    files = sorted(directory.glob("*.md"))
-    for path in reversed(files):
-        body = path.read_text(encoding="utf-8")
-        if "Posted: no" in body:
+    for path in sorted(directory.glob("*.md"), reverse=True):
+        if state(path) == "no":
             return path
     return None
 
 
+def uncertain(directory: Path) -> list[Path]:
+    return [p for p in sorted(directory.glob("*.md")) if state(p) in {"sending", "unknown"}]
+
+
+def reset_for_resend(path: Path) -> None:
+    if state(path) not in {"sending", "unknown"}:
+        raise PostError(f"{path.name} is marked '{state(path)}'; only uncertain posts can be reset.")
+    _set_state(path, "no")
+
+
 def announcement_text(path: Path) -> str:
     lines = path.read_text(encoding="utf-8").splitlines()
-    try:
-        start = lines.index("Posted: no")
-    except ValueError as exc:
-        raise PostError(f"{path.name} has already been posted or is not an announcement.") from exc
-    rest = lines[start + 1 :]
-    while rest and rest[0] == "":
+    starts = [i for i, line in enumerate(lines) if line.startswith("Posted: ")]
+    if not starts:
+        raise PostError(f"{path.name} is not an announcement.")
+    rest = lines[starts[0] + 1 :]
+    while rest and (rest[0] == "" or rest[0].startswith("Plan: ")):
         rest = rest[1:]
     text = "\n".join(rest).strip()
     if not text:

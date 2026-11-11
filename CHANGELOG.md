@@ -4,6 +4,7 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-11
 
+- Test runs post. Rebuilt the wake path so root runs only root-owned files and returns the computer to sleep after a timer wake; made mentions in posted text inert; recorded truthful audit notes and an `unknown` state that prevents double posts. Install with `sudo agent/systemd/install-wake.sh`.
 - The runner now asks the server bot to post the announcement it kept. The Discord address stays on this computer.
 - Added `eldgrim run`, which finds the agent from any directory. The earlier `PYTHONPATH=agent` command only worked in the repository root.
 - Moved the phrases that guard Eldgrim's private roots out of the public code and tests into a private file beside the origin. The runner reads it at run time and stops if the origin is present without it. Public pages no longer describe what the origin contains.

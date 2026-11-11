@@ -21,8 +21,6 @@ GUARD_PATH = Path(
 NEXT_RUN_PATH = RUNTIME_ROOT / "next-run.json"
 ANNOUNCEMENTS = RUNTIME_ROOT / "announcements"
 LOGS = RUNTIME_ROOT / "logs"
-STAGING = RUNTIME_ROOT / "systemd"
-BIN = RUNTIME_ROOT / "bin"
 LOCK_PATH = RUNTIME_ROOT / "run.lock"
 
 MODEL = os.environ.get("ELDGRIM_MODEL", "qwen3:8b")
@@ -36,7 +34,7 @@ PUBLIC_PAGES = (
 
 
 def ensure_runtime() -> None:
-    for path in (RUNTIME_ROOT, ANNOUNCEMENTS, LOGS, STAGING, BIN):
+    for path in (RUNTIME_ROOT, ANNOUNCEMENTS, LOGS):
         path.mkdir(parents=True, exist_ok=True)
     RUNTIME_ROOT.chmod(0o700)
     (RUNTIME_ROOT / "private").mkdir(parents=True, exist_ok=True)

@@ -14,7 +14,6 @@ import tempfile
 
 from eldgrim_agent.announce import discloses_roots, load_guard, repeats_motto, strip_thinking
 from eldgrim_agent.clock import fallback_moment, parse_choice
-from eldgrim_agent.schedule import render_timer
 
 
 STOCKHOLM = timezone(timedelta(hours=1))
@@ -39,12 +38,32 @@ class ClockTests(unittest.TestCase):
         chosen = fallback_moment(NOW, SystemRandom(7))
         self.assertEqual(chosen.date().isoformat(), "2026-11-12")
 
-    def test_timer_wakes_once_at_the_chosen_minute(self):
-        text = render_timer(datetime(2026, 11, 12, 4, 5, tzinfo=STOCKHOLM))
-        self.assertIn("OnCalendar=2026-11-12 04:05:00", text)
-        self.assertIn("WakeSystem=true", text)
-        self.assertIn("Persistent=false", text)
-        self.assertIn("RandomizedDelaySec=0", text)
+    def test_root_helper_accepts_only_a_near_future_timestamp(self):
+        import json
+        import subprocess
+        from datetime import datetime as dt
+
+        helper = Path(__file__).resolve().parents[1] / "systemd" / "eldgrim-wake-helper"
+        soon = (dt.now().astimezone() + timedelta(hours=20)).replace(second=0, microsecond=0)
+        cases = {
+            "valid": (json.dumps({"at": soon.isoformat(timespec="minutes")}), soon.strftime("%Y-%m-%d %H:%M:00")),
+            "past": (json.dumps({"at": "2020-01-01T03:00+01:00"}), None),
+            "far": (json.dumps({"at": (soon + timedelta(days=5)).isoformat(timespec="minutes")}), None),
+            "junk": ('{"at": "tomorrow; rm -rf /"}', None),
+            "inject": ('{"at": "$(touch /tmp/x)2026-11-12T03:00"}', None),
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            for name, (body, expected) in cases.items():
+                path = Path(tmp) / f"{name}.json"
+                path.write_text(body, encoding="utf-8")
+                done = subprocess.run(
+                    ["bash", str(helper), "stamp", str(path)], capture_output=True, text=True, timeout=10
+                )
+                if expected is None:
+                    self.assertNotEqual(done.returncode, 0, name)
+                else:
+                    self.assertEqual(done.returncode, 0, done.stdout + done.stderr)
+                    self.assertEqual(done.stdout.strip(), expected)
 
     def test_private_roots_are_rejected_and_thinking_is_removed(self):
         # Synthetic phrases only. The real list is private and never appears here.

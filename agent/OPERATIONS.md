@@ -1,33 +1,56 @@
 # Eldgrim Agent — Operations
 
-**Status:** The on-demand runner and the wake-timer units exist. A system wake timer is staged on this computer and is not armed until root installs it. A finished announcement is posted by the server bot.  
+**Status:** `eldgrim run` writes an announcement, posts it through the server bot, and chooses the next moment. The root-owned wake path in `agent/systemd/` is installed once with `sudo agent/systemd/install-wake.sh`.  
 **Target environment:** Nobara Linux, timezone Europe/Stockholm.
 
 ## 1. Scheduling model
 
-Eldgrim does not run at a fixed hour. At the end of a run it chooses one moment on the next local calendar day. The application checks that the moment is on that day, saves it, and writes it into a system timer. The timer uses `WakeSystem=true`, the same wake Anskar Grotzschnapf uses to bring the computer out of sleep. `Persistent=false`, so a missed day is skipped rather than replayed.
+Eldgrim does not run at a fixed hour. At the end of a run it chooses one moment on the next local calendar day, and the application saves it to `~/.local/share/eldgrim/next-run.json`. A system timer with `WakeSystem=true` wakes the computer for that moment, following the pattern used by Anskar Grotzschnapf. `Persistent=false`, so a missed day is skipped rather than replayed.
 
-While the run is in progress, `systemd-inhibit` holds off idle sleep, as Anskar does. When the run exits, Eldgrim does not suspend the computer. The machine returns to sleep through the desktop's own idle suspend.
+A run can be asked for at any time with `eldgrim run`. A test run posts, like a scheduled one, because posting is part of what is being tested. Asking for another run posts another announcement.
 
-A run can be asked for at any time. It writes one announcement, asks the server bot to post that announcement, and then chooses the next day. Asking for another run posts another announcement.
+## 2. The wake path and who runs what
 
-Units:
+Root runs only root-owned files. Eldgrim's Python code always runs as the user.
 
-- `eldgrim-daily.service` — one-shot. The user unit starts a run on demand. The system unit is what the wake timer starts.
-- `eldgrim-daily.timer` — system timer, one absolute `OnCalendar` stamp, `WakeSystem=true`.
+| File (installed root-owned) | Runs as | Job |
+| --- | --- | --- |
+| `/usr/local/libexec/eldgrim/eldgrim-wake-helper` | root | Reads the saved moment as plain data, accepts only a timestamp in the coming two days, writes the timer, and decides about returning to sleep |
+| `eldgrim-arm.path` → `eldgrim-arm.service` | root | Re-arms the timer whenever a run saves a new moment, including a test run |
+| `eldgrim-daily.timer` | — | One absolute `OnCalendar` stamp, `WakeSystem=true`, `Persistent=false` |
+| `eldgrim-daily.service` | root, then the user | `begin` notes whether the timer woke the machine and waits 30 seconds for the network; `systemd-inhibit` holds sleep off around `runuser`, which runs `eldgrim run --scheduled` as the user; `finish` re-arms and returns to sleep |
 
-The runner is `eldgrim run`. That command finds the package from its own location, so it does not depend on the current directory.
+The sources are in `agent/systemd/`. Install or update them with:
 
-## 2. Missed runs and machine availability
+~~~bash
+sudo agent/systemd/install-wake.sh
+~~~
+
+The installer also removes the earlier user-owned wake script and gives back any files in `~/.local/share/eldgrim/` that a root run had left root-owned.
+
+## 3. Returning to sleep
+
+After a scheduled run the helper suspends the computer again only when both are true:
+
+- The computer resumed from sleep within five minutes before the run, so the timer woke it.
+- No other program holds a sleep or idle inhibitor in block mode. Delay-mode agents such as NetworkManager do not count. Plasma's idle hint is not used, because it stays "not idle" for minutes after an RTC wake.
+
+If the computer was already awake, or anything else holds sleep off, it is left awake. Eldgrim never suspends after a run started by hand.
+
+## 4. Missed runs and machine availability
 
 - If the computer is powered off at the chosen moment, that day is skipped. The next choice happens the next time a run finishes.
-- Suspend is different from power-off. The system timer is what wakes the machine from suspend. A user timer does not.
-- The chosen time is saved at `~/.local/share/eldgrim/next-run.json` without root. Copying the timer into `/etc/systemd/system` needs root the first time. After that, the wake script runs as root and arms the next day itself. A manual test run updates the saved time, and the system timer catches up when that root step runs.
-- Lingering is already enabled for this user. The wake service still runs the work as the user, not as root.
+- Suspend is different from power-off. The system timer wakes the machine from suspend; a user timer would not.
+- If the saved moment is missing or invalid, the helper leaves the existing timer alone and logs why.
+- Lingering is enabled for this user, so the user session exists for `runuser`.
 
-## 3. Service lifecycle
+## 5. Posting and audit notes
 
-The intended one-shot service should:
+Posting goes through the server bot's preview-and-apply control. Each announcement file records `Posted: no`, `sending`, `yes`, or `unknown`. If the apply request leaves this computer but its outcome is unclear, the file becomes `unknown` and is never re-sent automatically; check the channel, then use `eldgrim post --resend NAME` only if it is missing. The approval note sent to the bot says truthfully whether the post came from the wake timer, a run started by hand, or `eldgrim post`. Mentions in the text are made inert before sending, and the bot sends announcements with no allowed mentions.
+
+## 6. Service lifecycle
+
+For the full agent, beyond today's announcement runner, the one-shot service should:
 
 1. Start the Python agent in its project virtual environment.
 2. Load non-secret configuration and private credentials from outside Git.
@@ -41,7 +64,7 @@ The intended one-shot service should:
 
 The service should use a bounded execution timeout. A failed session must not leave an agent loop running.
 
-## 4. Local paths
+## 7. Local paths
 
 Intended separation:
 
@@ -60,7 +83,7 @@ These are proposed paths. The implementation may refine them, but no secret or r
 
 Restrict secret-file permissions to the local user. Do not place the bot token in source code, command history, committed examples, or logs.
 
-## 5. Ollama lifecycle
+## 8. Ollama lifecycle
 
 - Connect to the local Ollama API, normally through 127.0.0.1:11434.
 - Confirm that the expected model tag is installed before the run.
@@ -71,23 +94,18 @@ Restrict secret-file permissions to the local user. Do not place the bot token i
 
 The current local Qwen3 8B model is an initial candidate. The exact tag, installed Ollama version, and tool-calling behavior must be recorded during local verification. Do not assume that a model name in documentation matches the installed tag.
 
-## 6. Logs and diagnostics
+## 9. Logs and diagnostics
 
-Prefer the systemd user journal for service output. Application logs should contain operational events and counts, not full private message content.
-
-Useful commands after implementation:
+The wake path logs to the system journal. Each run also writes `~/.local/share/eldgrim/logs/run-*.json` with the outcome, the announcement, any problem, and the next moment. Logs contain no tokens.
 
 ~~~bash
-systemctl --user list-timers eldgrim-daily.timer
-systemctl --user status eldgrim-daily.service
-journalctl --user -u eldgrim-daily.service
+systemctl list-timers eldgrim-daily.timer
+systemctl status eldgrim-daily.service eldgrim-arm.path
+journalctl -u eldgrim-daily.service -u eldgrim-arm.service
 ollama list
-curl http://127.0.0.1:11434/api/tags
 ~~~
 
-These commands are operational references only; no systemd units currently exist.
-
-## 7. Failure handling
+## 10. Failure handling
 
 - Respect Discord rate limits and retry guidance.
 - Use bounded exponential backoff for transient network failures.
@@ -98,7 +116,7 @@ These commands are operational references only; no systemd units currently exist
 - Ensure model unloading is attempted during cleanup.
 - Keep a minimal run outcome for success, partial completion and failure without full raw messages, inferred profiles or fabricated success (Q146, Q148).
 
-## 8. Confirmed administrative operation boundaries — questions 141–150
+## 11. Confirmed administrative operation boundaries — questions 141–150
 
 - Use only registered purpose-specific tools; the bot/application independently checks schemas, targets, delegated authority and per-run limits (Q141–142).
 - Authorized channel/role/permission management may be autonomous once a validated bot operation replaces the **current** manual preview-and-approval path. Exceptional server/ownership/infrastructure/security actions require explicit founder authorization (Q143–144).
@@ -109,7 +127,7 @@ These commands are operational references only; no systemd units currently exist
 
 **Implementation status:** These operational procedures and AI tool integrations are not implemented or verified.
 
-## 9. Backups and maintenance
+## 12. Backups and maintenance
 
 Before production use, implement and document:
 
@@ -121,6 +139,6 @@ Before production use, implement and document:
 - A procedure for rotating the Discord token.
 - A procedure for disabling the timer and revoking the bot's channel permissions.
 
-## 10. Deployment status
+## 13. Deployment status
 
-No Python package, virtual environment, configuration, credential file, SQLite database, systemd service, systemd timer, or Discord bot integration has been created as part of this documentation work.
+The announcement runner, Discord posting through the server bot, and the wake path sources exist. The wake path runs only after `install-wake.sh` has been run with sudo. There is no SQLite roster database, mention intake, or credential file in this repository.

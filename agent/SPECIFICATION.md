@@ -87,7 +87,7 @@ These actions do not require per-message human approval once the operator has co
 
 ### Proactive communication
 
-One daily proclamation is approved (2026-11-10) and specified in [ANNOUNCEMENT.md](ANNOUNCEMENT.md). It is the first thing built and waits for the roster in [ROSTER.md](ROSTER.md) and a chosen channel. Any other message without a new mention needs the creative to enable it explicitly and configure its destination and limits.
+One daily proclamation is approved (2026-11-10) and specified in [ANNOUNCEMENT.md](ANNOUNCEMENT.md). It is the first thing built and posts, on test runs too, without waiting for the roster in [ROSTER.md](ROSTER.md). Any other message without a new mention needs the creative to enable it explicitly and configure its destination and limits.
 
 Potential safeguards include:
 
@@ -124,7 +124,7 @@ No arbitrary command execution, unrestricted file access, or arbitrary URL fetch
 | Model interface | Ollama chat API and tool calling |
 | Discord | HTTP REST API |
 | Memory | SQLite through Python sqlite3 |
-| Scheduling | systemd user timer and one-shot service |
+| Scheduling | Root-owned system wake timer and one-shot service; Eldgrim's code runs as the user |
 | Logs | systemd journal plus minimal local application logs |
 
 No agent framework, vector database, cloud inference, or multi-agent architecture is required for the first implementation.
@@ -138,7 +138,7 @@ No agent framework, vector database, cloud inference, or multi-agent architectur
 - Discord moderation, administration, role changes, or permission management in the initial milestone. Approved for a later milestone on 2026-11-10; see bot/README.md.
 - Unrestricted filesystem, shell, Python, or network access.
 - Cloud-hosted model inference.
-- Any addon access beyond the archive reading and message-list clearing specified in [ROSTER.md](ROSTER.md) (2026-11-11). The roster comes before any posted proclamation or reply.
+- Any addon access beyond the archive reading and message-list clearing specified in [ROSTER.md](ROSTER.md) (2026-11-11). The roster comes before replies and administration.
 - Automatic publication of private canon or hidden character information.
 
 ## 8. Acceptance criteria

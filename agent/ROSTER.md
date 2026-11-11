@@ -1,13 +1,13 @@
 # Eldgrim's guild roster
 
 **Status:** Specified on 2026-11-11. Not implemented and not tested.  
-**Comes before:** Any announcement, reply, or other action Eldgrim takes by itself.
+**Comes before:** Any reply or administrative action Eldgrim takes by itself. The daily announcement already posts without it (2026-11-11).
 
 Eldgrim acts once a day on the founder's computer. The server bot stays the always-online hands for onboarding and roles. The computer is where Eldgrim reads, reduces what it read to keywords, and keeps the guild roster. A little more lore can still be added to the pages it reads. Lore is not a substitute for the roster.
 
 ## Where it acts
 
-A systemd user timer starts one Python process. The process reads its sources, updates the local database, unloads the local model, and exits. It does not stay connected to Discord. If the computer is off, that day is skipped.
+A system wake timer starts one Python process, which runs as the user. The process reads its sources, updates the local database, unloads the local model, and exits. It does not stay connected to Discord. If the computer is off, that day is skipped.
 
 The database lives only on this computer, outside the repository:
 
@@ -86,4 +86,4 @@ Missing fields stay empty. The agent does not invent a race, a fellowship, or a 
 
 Before Eldgrim speaks or decides, the run loads the roster entry it is dealing with and the keywords on that entry. It does not load the whole database, and it does not load raw chat. The roster is Eldgrim's overview of the guild: who has come through Discord, who has been seen in the game, and the keywords gathered about each of them.
 
-This overview is how Eldgrim knows the guild well enough to be itself. Writing an announcement, answering a mention, and any later action wait until this roster exists and a run has been shown to update it without keeping the raw sentences.
+This overview is how Eldgrim knows the guild well enough to be itself. Answering a mention and any later action wait until this roster exists and a run has been shown to update it without keeping the raw sentences. The daily announcement is the exception and already posts.

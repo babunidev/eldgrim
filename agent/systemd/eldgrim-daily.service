@@ -1,0 +1,14 @@
+[Unit]
+Description=Eldgrim's daily run at the moment it chose (system wake)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+# Root-owned unit. Root holds sleep off and runs only the root-owned helper.
+# Eldgrim's own code always runs as @USER@, never as root.
+ExecStartPre=/usr/local/libexec/eldgrim/eldgrim-wake-helper begin
+ExecStart=/usr/bin/systemd-inhibit --what=idle:sleep:handle-lid-switch --who=Eldgrim --why="Eldgrim daily run" --mode=block /usr/bin/runuser -u @USER@ -- env HOME=@HOME@ USER=@USER@ LOGNAME=@USER@ PYTHONPATH=@AGENT@ XDG_RUNTIME_DIR=/run/user/@UID@ DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/@UID@/bus /usr/bin/python3 -m eldgrim_agent run --scheduled
+ExecStopPost=/usr/local/libexec/eldgrim/eldgrim-wake-helper finish
+TimeoutStartSec=45min
+Nice=10

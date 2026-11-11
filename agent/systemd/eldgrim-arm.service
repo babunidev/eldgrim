@@ -1,0 +1,6 @@
+[Unit]
+Description=Write Eldgrim's wake timer from the moment it chose
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/libexec/eldgrim/eldgrim-wake-helper arm

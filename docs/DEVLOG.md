@@ -2,6 +2,12 @@
 
 A concise account of meaningful project development, written from the human creative's perspective.
 
+## 2026-11-11 — Testing for real, and sleeping again
+
+Test runs have to post; otherwise there is nothing to test. A review then found weak spots around posting and waking. The model's text could have pinged everyone, the wake script that root ran was a file my own account could change, and the audit note claimed my approval even for runs I never saw. AI made mentions inert on both sides, gave each post an honest note, and recorded when a post's outcome is unclear so it is never sent twice. It also rebuilt the wake path on what worked for Anskar: root holds sleep off and starts the run as me, a small root-owned helper sets the next timer, and after a timer wake the computer goes back to sleep unless something else is keeping it up.
+
+**Result:** 13 agent tests and 68 bot tests pass. The wake path waits for one sudo install, and the bot change waits for a deploy.
+
 ## 2026-11-11 — The announcement reaches the guild
 
 The line Eldgrim kept deserved to be said in the guild, not only saved on this computer. The bot places the finished words in the announcements channel. The writing still happens here.

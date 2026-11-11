@@ -57,7 +57,7 @@ The Ollama server may remain installed or available as a local service. The mode
 
 ## 3. Components and responsibilities
 
-### systemd user timer
+### System wake timer
 
 - Starts the service once, at the moment the previous run chose on the next local calendar day.
 - Is a system timer with `WakeSystem=true`, so it can wake the computer from suspend, and `Persistent=false`, so a missed day is skipped rather than replayed.
@@ -224,7 +224,7 @@ Guild-chat archives from the Forever addon are **temporary authorized analysis i
 
 These constraints are approved **design requirements**, not implemented or tested agent features.
 
-The roster built from the Forge and the addon, and the reduction of sentences to keywords, is specified in [ROSTER.md](ROSTER.md). That roster is the overview a later run reads. Announcements and other independent actions wait until it exists.
+The roster built from the Forge and the addon, and the reduction of sentences to keywords, is specified in [ROSTER.md](ROSTER.md). That roster is the overview a later run reads. Replies and other independent actions wait until it exists; the daily announcement already posts.
 
 ## 9. Confirmed local-memory pipeline — question 138
 

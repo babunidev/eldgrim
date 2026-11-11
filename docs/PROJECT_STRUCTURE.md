@@ -6,6 +6,8 @@
     ├── CONCEPT.md
     ├── ROADMAP.md
     ├── CHANGELOG.md
+    ├── bin/
+    │   └── eldgrim
     ├── docs/
     │   ├── DOCUMENTATION.md
     │   ├── PROJECT_STRUCTURE.md
@@ -73,8 +75,10 @@
     │   ├── ANNOUNCEMENT.md
     │   ├── ROSTER.md
     │   ├── eldgrim_agent/
+    │   ├── systemd/
     │   └── tests/
-    │       └── test_clock.py
+    │       ├── test_clock.py
+    │       └── test_post.py
     └── bot/
         └── README.md
 
@@ -90,7 +94,7 @@
 - assets/ stores approved creative resources and provenance.
 - templates/ provides reusable formats.
 - addon/ contains the separate Forever-only addon source, manifest, specification, API research, data model, test plan, and mock tests. The installable addon directory is addon/Eldgrim/. Further addon development happens in a separate environment (2026-11-10), so the copy here is the first-milestone recorder.
-- agent/ contains the local agent's architecture, scope, security, memory, operations, proclamation and roster documentation, and the eldgrim_agent runner with its tests. The runner writes a local announcement and chooses the next wake time; it does not post. Runtime data, the private origin and credentials stay outside the repository.
+- agent/ contains the local agent's architecture, scope, security, memory, operations, proclamation and roster documentation, the eldgrim_agent runner with its tests, and the root-owned wake path sources in agent/systemd/. The runner writes an announcement, posts it through the server bot, and chooses the next wake time; bin/eldgrim starts it from any directory. Runtime data, the private origin and credentials stay outside the repository.
 - bot/ contains the Eldgrim Discord bot workstream: approved direction, status, open decisions, and planned order. The bot's source lives in a separate private local repository.
 
 ## Boundaries

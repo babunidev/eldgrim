@@ -60,13 +60,14 @@ This roadmap records areas of development, not promises or fixed deadlines.
 - [x] Hide the public channels behind the ranks and restart every member except the server owner at Ember.
 - [x] Accept one character name or two, and call unregistered members in the Forge and by direct message.
 - [x] Ask Roar or Amberhearth before characters, and retire the automatic Roar role for every rank.
-- [x] Specify the first daily proclamation. It is not scheduled or posting.
+- [x] Specify the first daily proclamation.
 - [x] Specify the guild roster: one entry from Discord or the addon, sentences reduced to keywords, stored only on the founder's computer.
 - [x] Specify how the guild-chat file is read, compared, valued, and then emptied, and how a roster snapshot shows who is still in the guild.
 - [ ] Build that roster and show a daily run updating it from the guild-chat file without keeping raw sentences.
 - [x] Specify the wake: Eldgrim chooses one moment on the next day, a system timer wakes the computer, and the machine sleeps on its own afterwards.
 - [x] Post a finished announcement through the server bot.
-- [ ] Arm the wake timer with root. The roster is still not built.
+- [x] Move the wake path to root-owned files that never run repository code as root, and return to sleep after a timer wake.
+- [ ] Install it once with `sudo agent/systemd/install-wake.sh` and watch one timer-woken run post and sleep again.
 - [ ] Let members write to Eldgrim, and keep what Eldgrim learns, before it answers them.
 - [ ] Specify, build, and test replies to @Eldgrim mentions. The founder confirmed the limits; the creative asked to build the daily proclamation first.
 - [ ] Transfer shared guild activity to the founder's PC, keep interpreted memory there, and delete the raw archive. The addon half of that cleanup is specified in agent/ROSTER.md and is not built.
@@ -112,4 +113,4 @@ The addon remains a recorder only until the creative approves a broader scope. A
 - [ ] Evaluate semantic retrieval only if SQLite text search proves insufficient.
 - [x] Specify addon-data integration: agent/ROSTER.md (2026-11-11). Not built.
 
-The local runner writes a test announcement and chooses the next wake time; it posts nothing. Everything else in the agent is still design until it is implemented and integration-tested. The roster comes before a posted proclamation, and its channel is not chosen. Replies to mentions wait.
+The local runner writes an announcement, posts it through the server bot, and chooses the next wake time; test runs post too. Everything else in the agent is still design until it is implemented and integration-tested. The roster comes before replies and administration.

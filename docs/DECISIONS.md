@@ -4,6 +4,14 @@ A concise record of meaningful creative and structural decisions.
 
 Entries are listed newest first.
 
+## 2026-11-11 — Test runs post, and a timer wake ends in sleep
+
+**Decision:** A run started by hand posts its announcement, like a scheduled run, because posting is part of what has to be tested. Posting the daily announcement does not wait for the roster; replies and administration still do. After a run that the wake timer started, the computer returns to sleep when the timer woke it and no other program holds sleep off.
+
+**Safeguards:** Root runs only root-owned files and never Eldgrim's code; the chosen moment is read as plain data. Mentions in posted text are made inert, and the bot sends announcements with no allowed mentions. The audit note says truthfully whether the post came from the wake timer, a run started by hand, or `eldgrim post`. A post whose outcome is unclear is marked `unknown` and is not re-sent automatically.
+
+**Status:** Code and tests in this repository; the bot change is committed in its private repository. The wake path needs a one-time `sudo agent/systemd/install-wake.sh`, and the bot change needs a deploy.
+
 ## 2026-11-11 — The bot posts the announcement Eldgrim kept
 
 **Decision:** A finished announcement is handed to the server bot, which posts it in the announcements channel through the existing announce action. The model does not receive the bot token. The channel and server address stay in the local Discord config, outside this repository. The first posted text is the announcement written at 03:05 on 11 November 2026.
@@ -256,7 +264,7 @@ Guild chat, Discord messages and tool results are untrusted data, not governing 
 
 **Status:** Specified in agent/ANNOUNCEMENT.md. Not implemented. The channel and the hour are not chosen.
 
-**Update:** Since 2026-11-11 Eldgrim chooses its own next moment, so no fixed hour is needed. The channel is still not chosen, and a posted proclamation waits for the roster.
+**Update:** Since 2026-11-11 Eldgrim chooses its own next moment, and the announcement posts to the announcements channel without waiting for the roster.
 
 ## 2026-11-10 — Confirm the governance interview through question 62
 
@@ -404,7 +412,7 @@ Guild chat, Discord messages and tool results are untrusted data, not governing 
 
 - Further details of Eldgrim's public identity and history. Look, sound and presence are for Eldgrim to draft from its roots and for the creative to accept.
 - The precise scope of recurring in-world interactions.
-- The Discord channel allowlist, including the channel for the posted proclamation.
+- The Discord channel allowlist for mention intake.
 - The owner-controlled inspection, correction, export and deletion workflow. Retention periods are set by Q135–137.
 - Whether any proactive message beyond the one daily proclamation should ever be enabled, and its limits.
 - The installed model's verified tool-calling behavior and version compatibility.

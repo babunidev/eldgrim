@@ -59,11 +59,11 @@ One daily proclamation is approved and is the first thing built (see [ANNOUNCEME
 - The model cannot execute arbitrary shell commands, arbitrary Python, or unrestricted file operations. Discord administration is approved for a later milestone (2026-11-10), only through the server bot's validated operations.
 - The initial design does not maintain a Discord Gateway connection or request Message Content Intent.
 
-**Role since 2026-11-10:** The agent is Eldgrim's once-daily voice. It runs on the creative's PC and posts through the same Eldgrim Discord application as the always-online server bot. The first use, chosen on 2026-11-10, is one daily proclamation to the guild, specified in [ANNOUNCEMENT.md](ANNOUNCEMENT.md). It waits for the roster in [ROSTER.md](ROSTER.md). Replies to @Eldgrim mentions come after that. See [bot/README.md](../bot/README.md).
+**Role since 2026-11-10:** The agent is Eldgrim's once-daily voice. It runs on the creative's PC and posts through the same Eldgrim Discord application as the always-online server bot. The first use, chosen on 2026-11-10, is one daily proclamation to the guild, specified in [ANNOUNCEMENT.md](ANNOUNCEMENT.md). It does not wait for the roster in [ROSTER.md](ROSTER.md); replies and administration do. Replies to @Eldgrim mentions come after that. See [bot/README.md](../bot/README.md).
 
 ## Current reality
 
-`eldgrim run` writes one announcement, asks the server bot to post it, and chooses the next day's wake time. `eldgrim post` sends the newest announcement that has not been posted yet. The system wake timer still needs root to be armed. There is no SQLite roster database yet.
+`eldgrim run` writes one announcement, asks the server bot to post it, and chooses the next day's wake time. Test runs post too. `eldgrim post` sends the newest announcement that has not been posted yet. The system wake timer still needs root to be armed. There is no SQLite roster database yet.
 
 ## Technical references
 

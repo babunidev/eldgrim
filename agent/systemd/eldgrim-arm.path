@@ -1,0 +1,9 @@
+[Unit]
+Description=Re-arm Eldgrim's wake timer when it chooses a new moment
+
+[Path]
+PathChanged=@HOME@/.local/share/eldgrim/next-run.json
+Unit=eldgrim-arm.service
+
+[Install]
+WantedBy=paths.target
