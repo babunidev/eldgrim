@@ -1,6 +1,6 @@
 # Eldgrim Local Agent
 
-**Status:** Developing. A local runner writes test announcements; nothing is posted.  
+**Status:** Developing. A local runner writes an announcement and the server bot posts it.  
 **Execution model:** One run per day at a moment Eldgrim chose at the end of the previous run; one-shot process.  
 **Inference:** Local Ollama.  
 **Communication:** Discord HTTP API.  
@@ -63,7 +63,7 @@ One daily proclamation is approved and is the first thing built (see [ANNOUNCEME
 
 ## Current reality
 
-`eldgrim_agent` can write one local announcement and choose the next day's wake time. From any directory, `eldgrim run` does that. It does not post to Discord. The system wake timer is rendered on each run and still needs root to be armed. There is no SQLite roster database yet.
+`eldgrim run` writes one announcement, asks the server bot to post it, and chooses the next day's wake time. `eldgrim post` sends the newest announcement that has not been posted yet. The system wake timer still needs root to be armed. There is no SQLite roster database yet.
 
 ## Technical references
 

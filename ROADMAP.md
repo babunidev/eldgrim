@@ -64,8 +64,9 @@ This roadmap records areas of development, not promises or fixed deadlines.
 - [x] Specify the guild roster: one entry from Discord or the addon, sentences reduced to keywords, stored only on the founder's computer.
 - [x] Specify how the guild-chat file is read, compared, valued, and then emptied, and how a roster snapshot shows who is still in the guild.
 - [ ] Build that roster and show a daily run updating it from the guild-chat file without keeping raw sentences.
-- [x] Specify the wake: Eldgrim chooses one moment on the next day, a system timer wakes the computer, and the machine sleeps on its own afterwards. Test runs are on demand and are not posted.
-- [ ] Arm that wake timer with root, then post one daily announcement after the roster exists and the channel is chosen.
+- [x] Specify the wake: Eldgrim chooses one moment on the next day, a system timer wakes the computer, and the machine sleeps on its own afterwards.
+- [x] Post a finished announcement through the server bot.
+- [ ] Arm the wake timer with root. The roster is still not built.
 - [ ] Let members write to Eldgrim, and keep what Eldgrim learns, before it answers them.
 - [ ] Specify, build, and test replies to @Eldgrim mentions. The founder confirmed the limits; the creative asked to build the daily proclamation first.
 - [ ] Transfer shared guild activity to the founder's PC, keep interpreted memory there, and delete the raw archive. The addon half of that cleanup is specified in agent/ROSTER.md and is not built.

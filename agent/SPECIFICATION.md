@@ -1,7 +1,7 @@
 # Eldgrim Agent — Initial Specification
 
 **Status:** Developing.  
-**Implementation status:** A local runner writes test announcements and chooses the next wake time. Mention intake, memory and posting are not started.  
+**Implementation status:** A local runner writes an announcement, asks the server bot to post it, and chooses the next wake time. Mention intake and memory are not started.  
 **Target:** Local Linux desktop, initially Nobara Linux.  
 **Cadence:** Once per day.
 

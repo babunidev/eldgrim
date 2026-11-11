@@ -1,9 +1,10 @@
-"""One announcement from the pages Eldgrim is allowed to read. Nothing is posted."""
+"""One announcement from the pages Eldgrim is allowed to read."""
 
 from __future__ import annotations
 
 import re
 from datetime import datetime
+from pathlib import Path
 
 from eldgrim_agent.ollama import chat
 from eldgrim_agent.paths import ANNOUNCEMENTS, GUARD_PATH, ORIGIN_PATH, PUBLIC_PAGES, ensure_runtime
@@ -63,7 +64,7 @@ def read_pages() -> str:
     return "\n\n".join(parts)
 
 
-def write_announcement(text: str, when: datetime) -> None:
+def write_announcement(text: str, when: datetime) -> Path:
     ensure_runtime()
     stamp = when.astimezone().strftime("%Y%m%dT%H%M%S")
     path = ANNOUNCEMENTS / f"{stamp}.md"
@@ -82,9 +83,10 @@ def write_announcement(text: str, when: datetime) -> None:
         encoding="utf-8",
     )
     path.chmod(0o600)
+    return path
 
 
-def compose(now: datetime) -> str:
+def compose(now: datetime) -> tuple[str, Path]:
     private = ""
     guard: tuple[str, ...] = ()
     if ORIGIN_PATH.is_file():
@@ -123,5 +125,5 @@ def compose(now: datetime) -> str:
         text = strip_thinking(chat(messages, num_predict=500))
     if discloses_roots(text, guard) or repeats_motto(text) or not text.strip():
         raise RuntimeError("The announcement repeated the motto, disclosed private roots, or was empty.")
-    write_announcement(text, now)
-    return text.strip()
+    saved = text.strip()
+    return saved, write_announcement(saved, now)

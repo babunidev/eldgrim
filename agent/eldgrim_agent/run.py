@@ -8,6 +8,7 @@ from datetime import datetime
 
 from eldgrim_agent.announce import compose
 from eldgrim_agent.choose import choose_next
+from eldgrim_agent.discord_post import PostError, mark_posted, publish
 from eldgrim_agent.ollama import OllamaError, ensure_server, stop_server, unload
 from eldgrim_agent.paths import LOCK_PATH, LOGS, ensure_runtime
 from eldgrim_agent.schedule import install_system_timer, save_choice
@@ -24,10 +25,14 @@ def execute(*, scheduled: bool) -> dict[str, object]:
     server = None
     announcement = ""
     error = ""
+    posted = False
     try:
         server = ensure_server()
-        announcement = compose(started)
-    except (OllamaError, OSError, RuntimeError) as exc:
+        announcement, path = compose(started)
+        publish(announcement)
+        mark_posted(path)
+        posted = True
+    except (OllamaError, OSError, RuntimeError, PostError) as exc:
         error = str(exc)
     finally:
         chosen, source = _choose_quietly(started)
@@ -40,7 +45,7 @@ def execute(*, scheduled: bool) -> dict[str, object]:
     report = {
         "started": started.isoformat(timespec="seconds"),
         "scheduled": scheduled,
-        "posted": False,
+        "posted": posted,
         "announcement": announcement,
         "error": error,
         "next_at": chosen.isoformat(timespec="minutes"),

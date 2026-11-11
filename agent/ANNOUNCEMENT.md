@@ -1,6 +1,6 @@
 # Daily proclamation
 
-**Status:** Specified on 2026-11-10. A local test run can write one announcement whenever it is asked. It is not posted. A posted daily proclamation still waits for the roster in [ROSTER.md](ROSTER.md) and for a chosen channel.
+**Status:** A finished announcement is posted by the server bot to the announcements channel. The roster in [ROSTER.md](ROSTER.md) is still not built. Replies to mentions wait.
 
 The creative set this ahead of replies to @Eldgrim. Eldgrim speaks to the guild once a day. Answers to people who mention it come later. Messages people write to Eldgrim are a later source of information; this first version does not read them.
 
@@ -30,7 +30,7 @@ These are the instructions for the first version. They are read with the pages a
 
 ## Where it can be posted
 
-The server already has a channel named announcements. It is hidden from everyone and visible to the ranks, including Ember. Members who have not finished the Forge cannot see it. The hour is no longer a fixed choice: Eldgrim names the next day's moment at the end of a run. The channel for a posted proclamation is still not turned on. Test announcements stay in `~/.local/share/eldgrim/announcements/` and are marked as not posted.
+The server's announcements channel is the place a finished proclamation goes. It is hidden from everyone and visible to the ranks, including Ember. Members who have not finished the Forge cannot see it. Eldgrim names the next day's moment at the end of a run. The computer asks the server bot to post, through the bot's existing announce action. The channel, the operator, and the server address stay in `~/.config/eldgrim/discord.toml`, outside this repository. A copy of the text stays in `~/.local/share/eldgrim/announcements/` and is marked posted after the bot accepts it.
 
 ## Roots before any further story
 

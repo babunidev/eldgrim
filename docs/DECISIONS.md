@@ -4,6 +4,14 @@ A concise record of meaningful creative and structural decisions.
 
 Entries are listed newest first.
 
+## 2026-11-11 — The bot posts the announcement Eldgrim kept
+
+**Decision:** A finished announcement is handed to the server bot, which posts it in the announcements channel through the existing announce action. The model does not receive the bot token. The channel and server address stay in the local Discord config, outside this repository. The first posted text is the announcement written at 03:05 on 11 November 2026.
+
+**Boundary:** The roster is still not built. Mention replies are still not answered. A later `eldgrim run` posts again, because a run now includes the post.
+
+**Status:** Posted.
+
 ## 2026-11-11 — Eldgrim chooses its next day, and the computer wakes for it
 
 **Decision:** Eldgrim does not act at a fixed hour. At the end of a run it chooses one moment on the next local calendar day. The application checks the moment, saves it, and puts it on a system timer with `WakeSystem=true`, following Anskar Grotzschnapf's wake. Sleep is held off only during the run. Eldgrim does not suspend the computer afterwards. A missed day is skipped. Until a proclamation is posted, a run may be started whenever the creative asks, and the announcement stays on this computer.

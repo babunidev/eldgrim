@@ -2,6 +2,12 @@
 
 A concise account of meaningful project development, written from the human creative's perspective.
 
+## 2026-11-11 — The announcement reaches the guild
+
+The line Eldgrim kept deserved to be said in the guild, not only saved on this computer. The bot places the finished words in the announcements channel. The writing still happens here.
+
+**Result:** Posted the 03:05 announcement. Later runs post the one they keep.
+
 ## 2026-11-11 — A time Eldgrim chooses
 
 Eldgrim should not speak at the same hour every day. At the end of a run it picks one moment on the next day, and the computer wakes for that moment the way Anskar's noon run wakes it, then goes back to sleep on its own. For now a run can be asked for whenever it is needed. The announcement is written here and is not posted.

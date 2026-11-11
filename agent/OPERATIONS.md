@@ -1,6 +1,6 @@
 # Eldgrim Agent — Operations
 
-**Status:** The on-demand runner and the wake-timer units exist. A system wake timer is staged on this computer and is not armed until root installs it. Nothing is posted to Discord.  
+**Status:** The on-demand runner and the wake-timer units exist. A system wake timer is staged on this computer and is not armed until root installs it. A finished announcement is posted by the server bot.  
 **Target environment:** Nobara Linux, timezone Europe/Stockholm.
 
 ## 1. Scheduling model
@@ -9,7 +9,7 @@ Eldgrim does not run at a fixed hour. At the end of a run it chooses one moment 
 
 While the run is in progress, `systemd-inhibit` holds off idle sleep, as Anskar does. When the run exits, Eldgrim does not suspend the computer. The machine returns to sleep through the desktop's own idle suspend.
 
-A test run is allowed whenever it is asked for. It does the same work and still chooses the next day at the end. The once-a-day limit applies to a posted proclamation, and posting is not turned on.
+A run can be asked for at any time. It writes one announcement, asks the server bot to post that announcement, and then chooses the next day. Asking for another run posts another announcement.
 
 Units:
 

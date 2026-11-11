@@ -5,7 +5,8 @@ from __future__ import annotations
 import argparse
 import sys
 
-from eldgrim_agent.paths import MODEL
+from eldgrim_agent.discord_post import PostError, announcement_text, latest_unposted, mark_posted, publish
+from eldgrim_agent.paths import ANNOUNCEMENTS, MODEL
 from eldgrim_agent.run import execute
 from eldgrim_agent.schedule import install_system_timer, load_choice
 
@@ -20,7 +21,10 @@ def main(argv: list[str] | None = None) -> int:
         help="mark this run as the wake timer's run; it still does the same work",
     )
     sub.add_parser("install-timer", help="arm the system wake timer from the saved moment")
+    sub.add_parser("post", help="post the newest unposted announcement through the Discord bot")
     args = parser.parse_args(argv)
+    if args.command == "post":
+        return post_latest()
     if args.command == "install-timer":
         report = install_system_timer(load_choice())
         print(_format_wake(report))
@@ -30,10 +34,28 @@ def main(argv: list[str] | None = None) -> int:
     return 1 if report.get("error") else 0
 
 
+def post_latest() -> int:
+    path = latest_unposted(ANNOUNCEMENTS)
+    if path is None:
+        print("No unposted announcement.")
+        return 1
+    try:
+        text = announcement_text(path)
+        publish(text)
+        mark_posted(path)
+    except PostError as exc:
+        print(f"Not posted: {exc}")
+        return 1
+    print(text)
+    print()
+    print(f"Posted: yes ({path.name})")
+    return 0
+
+
 def _format_run(report: dict[str, object]) -> str:
     lines = [
         f"Model: {MODEL}",
-        "Posted: no",
+        "Posted: yes" if report.get("posted") else "Posted: no",
         "",
     ]
     if report.get("error"):
