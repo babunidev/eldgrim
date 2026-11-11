@@ -4,6 +4,7 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-11
 
+- Added the local Eldgrim runner. A run writes an announcement on this computer, then chooses one moment on the next day for a system wake timer. Test runs are on demand and are not posted.
 - Set Eldgrim's origin roots in a private file on the founder's computer. The public profile names Azeroth. Look, sound, and presence are left for Eldgrim to draft from those roots, and they count only after acceptance.
 - Specified how Eldgrim reads the guild-chat archive: compare keywords, record internal standing, clear the messages only after a successful save while the game is closed, and use a roster snapshot to see who is still in the guild.
 - Specified Eldgrim's guild roster: Forge and addon entries on the founder's computer, sentences reduced to keywords, and no announcement until that roster exists.

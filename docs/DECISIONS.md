@@ -132,6 +132,14 @@ A concise record of meaningful creative and structural decisions.
 
 **Status:** Documentation structure established; substantive policy gaps remain open.
 
+## 2026-11-11 — Eldgrim chooses its next day, and the computer wakes for it
+
+**Decision:** Eldgrim does not act at a fixed hour. At the end of a run it chooses one moment on the next local calendar day. The application checks the moment, saves it, and puts it on a system timer with `WakeSystem=true`, following Anskar Grotzschnapf's wake. Sleep is held off only during the run. Eldgrim does not suspend the computer afterwards. A missed day is skipped. Until a proclamation is posted, a run may be started whenever the creative asks, and the announcement stays on this computer.
+
+**Boundary:** The runner is in agent/eldgrim_agent. Arming the timer under `/etc` needs root and is not done. No announcement has been posted. The roster database is not built.
+
+**Status:** Runner and unit templates written. Wake timer not armed.
+
 ## 2026-11-11 — Origin roots before Eldgrim drafts a presence
 
 **Decision:** Eldgrim's world is the World of Warcraft Forever roleplaying world, and the people it reaches are on Azeroth. Eldgrim's private origin is written at `~/.local/share/eldgrim/private/ORIGIN.md` on the founder's computer. That file is internal knowledge. It is not copied into this repository and not told to the guild. Look, sound, and the way Eldgrim is present are not part of the roots. At the first runs Eldgrim may draft them, and a further story, from those roots. A draft becomes canon only when the creative accepts it.

@@ -2,6 +2,12 @@
 
 A concise account of meaningful project development, written from the human creative's perspective.
 
+## 2026-11-11 — A time Eldgrim chooses
+
+Eldgrim should not speak at the same hour every day. At the end of a run it picks one moment on the next day, and the computer wakes for that moment the way Anskar's noon run wakes it, then goes back to sleep on its own. For now a run can be asked for whenever it is needed. The announcement is written here and is not posted.
+
+**Result:** The runner is in place. qwen3:8b chose a real moment on the next day. The first tries only repeated the motto and were rejected after that; a later run wrote a short hearth line and did not post it. The wake timer still needs root once before it can wake the machine.
+
 ## 2026-11-11 — Roots before a face
 
 Eldgrim has to know where it stands before it tells any further story. The world is World of Warcraft Forever, and the people are on Azeroth. The rest of its roots is written on this computer and kept out of the public pages. Look, sound, and presence are not decided. Those are for Eldgrim to draft from the roots when the first runs begin, and they wait for acceptance before they count.

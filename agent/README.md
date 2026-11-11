@@ -63,7 +63,7 @@ Proactive messages that are not replies to a mention are disabled by default. En
 
 ## Current reality
 
-This directory contains architecture and specification documents only. No Python source, Discord bot integration, SQLite runtime database, systemd unit, credentials, or deployment has been created or tested.
+`eldgrim_agent` can write one local announcement and choose the next day's wake time. Run it with `PYTHONPATH=agent python -m eldgrim_agent run` from the repository root. It does not post to Discord. The system wake timer is rendered on each run and still needs root to be armed. There is no SQLite roster database yet.
 
 ## Technical references
 

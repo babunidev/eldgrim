@@ -1,32 +1,29 @@
 # Eldgrim Agent — Operations
 
-**Status:** Intended operating procedure; no service or agent implementation exists.  
-**Target environment:** Nobara Linux user session.
+**Status:** The on-demand runner and the wake-timer units exist. A system wake timer is staged on this computer and is not armed until root installs it. Nothing is posted to Discord.  
+**Target environment:** Nobara Linux, timezone Europe/Stockholm.
 
 ## 1. Scheduling model
 
-Use a systemd **user** timer to activate a matching one-shot service once per day.
+Eldgrim does not run at a fixed hour. At the end of a run it chooses one moment on the next local calendar day. The application checks that the moment is on that day, saves it, and writes it into a system timer. The timer uses `WakeSystem=true`, the same wake Anskar Grotzschnapf uses to bring the computer out of sleep. `Persistent=false`, so a missed day is skipped rather than replayed.
 
-Intended units:
+While the run is in progress, `systemd-inhibit` holds off idle sleep, as Anskar does. When the run exits, Eldgrim does not suspend the computer. The machine returns to sleep through the desktop's own idle suspend.
 
-- eldgrim-daily.timer
-- eldgrim-daily.service
+A test run is allowed whenever it is asked for. It does the same work and still chooses the next day at the end. The once-a-day limit applies to a posted proclamation, and posting is not turned on.
 
-The timer uses an OnCalendar schedule in the user's local timezone. The exact time is open and must be chosen during deployment.
+Units:
 
-The service is a one-shot process. It must not use a persistent agent loop or remain active after its daily work is complete.
+- `eldgrim-daily.service` — one-shot. The user unit starts a run on demand. The system unit is what the wake timer starts.
+- `eldgrim-daily.timer` — system timer, one absolute `OnCalendar` stamp, `WakeSystem=true`.
+
+The runner is `python -m eldgrim_agent run` with `PYTHONPATH` set to `agent/`.
 
 ## 2. Missed runs and machine availability
 
-Use Persistent=true with an OnCalendar timer.
-
-Systemd records the last trigger time and starts the service when the timer becomes active if at least one scheduled activation was missed while the timer was inactive. This is a catch-up run, not a replay of every missed day.
-
-- If the computer is powered off at the scheduled time, the run cannot happen at that time.
-- The service can catch up when the user timer becomes active again.
-- If the computer is suspended, a calendar timer is handled after resume; it does not imply that the machine will wake itself.
-- WakeSystem is not part of the initial design.
-- A systemd user manager normally runs with the user's session. Enabling lingering to run while logged out is an optional operational decision, not a default requirement.
+- If the computer is powered off at the chosen moment, that day is skipped. The next choice happens the next time a run finishes.
+- Suspend is different from power-off. The system timer is what wakes the machine from suspend. A user timer does not.
+- The chosen time is saved at `~/.local/share/eldgrim/next-run.json` without root. Copying the timer into `/etc/systemd/system` needs root the first time. After that, the wake script runs as root and arms the next day itself. A manual test run updates the saved time, and the system timer catches up when that root step runs.
+- Lingering is already enabled for this user. The wake service still runs the work as the user, not as root.
 
 ## 3. Service lifecycle
 
