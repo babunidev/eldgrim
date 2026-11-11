@@ -1,7 +1,7 @@
 # Eldgrim Local Agent
 
-**Status:** Developing architecture; documentation only.  
-**Execution model:** One scheduled run per day; one-shot process.  
+**Status:** Developing. A local runner writes test announcements; nothing is posted.  
+**Execution model:** One run per day at a moment Eldgrim chose at the end of the previous run; one-shot process.  
 **Inference:** Local Ollama.  
 **Communication:** Discord HTTP API.  
 **Memory:** Private local SQLite database.
@@ -14,7 +14,7 @@ It is designed to wake once per day, complete one bounded session, and exit. It 
 
 ## Daily cycle
 
-1. A systemd user timer activates the one-shot Python service.
+1. A system wake timer starts the one-shot Python service at the moment chosen by the previous run (see [OPERATIONS.md](OPERATIONS.md)).
 2. The service validates its local configuration and reads saved channel cursors.
 3. It polls only explicitly configured Discord channels through the HTTP API.
 4. It identifies messages that explicitly mention Eldgrim. The initial design does not request Discord's privileged Message Content Intent.
@@ -49,7 +49,7 @@ The first implementation milestone is intended to support:
 - Separately governed persistent memory and an auditable record of actions, distinct from the purged mention collection.
 - A one-shot systemd service that exits after the daily session.
 
-Proactive messages that are not replies to a mention are disabled by default. Enabling them requires an explicit scope decision and configuration.
+One daily proclamation is approved and is the first thing built (see [ANNOUNCEMENT.md](ANNOUNCEMENT.md)). Any other message that is not a reply to a mention is disabled by default; enabling it requires an explicit scope decision and configuration.
 
 ## Important boundaries
 
@@ -57,9 +57,9 @@ Proactive messages that are not replies to a mention are disabled by default. En
 - The agent's behavior does not establish Eldgrim's character canon or reveal concealed character information.
 - Private runtime data, actual Discord messages, database files, credentials, and private prompts do not belong in this public repository.
 - The model cannot execute arbitrary shell commands, arbitrary Python, or unrestricted file operations. Discord administration is approved for a later milestone (2026-11-10), only through the server bot's validated operations.
-
-**Role since 2026-11-10:** The agent is Eldgrim's once-daily voice. It runs on the creative's PC and posts through the same Eldgrim Discord application as the always-online server bot. The first use, chosen on 2026-11-10, is one daily proclamation to the guild, specified in [ANNOUNCEMENT.md](ANNOUNCEMENT.md). Replies to @Eldgrim mentions come after that. See bot/README.md.
 - The initial design does not maintain a Discord Gateway connection or request Message Content Intent.
+
+**Role since 2026-11-10:** The agent is Eldgrim's once-daily voice. It runs on the creative's PC and posts through the same Eldgrim Discord application as the always-online server bot. The first use, chosen on 2026-11-10, is one daily proclamation to the guild, specified in [ANNOUNCEMENT.md](ANNOUNCEMENT.md). It waits for the roster in [ROSTER.md](ROSTER.md). Replies to @Eldgrim mentions come after that. See [bot/README.md](../bot/README.md).
 
 ## Current reality
 

@@ -139,7 +139,7 @@ These are **approved design requirements**, not proof of implemented AI administ
 
 ## 13. Proactive actions
 
-Proactive messages are disabled in the initial milestone. If enabled later:
+The one approved daily proclamation ([ANNOUNCEMENT.md](ANNOUNCEMENT.md)) is the only proactive message in the initial milestone, and it follows the rules below. Any other proactive message stays disabled. If one is enabled later:
 
 - The operator must explicitly configure the allowed destination.
 - The application must enforce a strict daily action limit and cooldown.

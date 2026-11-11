@@ -1,7 +1,7 @@
 # Eldgrim Agent — Initial Specification
 
-**Status:** Developing; specification only.  
-**Implementation status:** Not started.  
+**Status:** Developing.  
+**Implementation status:** A local runner writes test announcements and chooses the next wake time. Mention intake, memory and posting are not started.  
 **Target:** Local Linux desktop, initially Nobara Linux.  
 **Cadence:** Once per day.
 
@@ -13,7 +13,7 @@ The agent should be autonomous within a defined environment, while the applicati
 
 ## 2. Initial operating model
 
-- A systemd user timer starts one one-shot Python process per day.
+- A system wake timer starts one one-shot Python process per day, at the moment the previous run chose.
 - The process polls a configured list of Discord channels through the HTTP API.
 - The initial input scope is messages that explicitly mention Eldgrim.
 - The bot does not maintain a Gateway connection between runs.
@@ -21,7 +21,7 @@ The agent should be autonomous within a defined environment, while the applicati
 - SQLite stores private runtime state and memory.
 - The service completes its work, unloads the model, and exits.
 
-The exact daily time is intentionally open.
+There is no fixed daily time: each run chooses one moment on the next local calendar day (2026-11-11). See [OPERATIONS.md](OPERATIONS.md).
 
 ## 3. Required behavior
 
@@ -52,7 +52,7 @@ The exact daily time is intentionally open.
 - Keep replies within Discord's message length limit.
 - Use safe allowed-mentions settings so model-generated text cannot accidentally ping roles or everyone.
 - Record the outbound message result and associate it with the triggering interaction.
-- Do not send unsolicited channel messages in the initial milestone.
+- Do not send unsolicited channel messages in the initial milestone, apart from the one approved daily proclamation in [ANNOUNCEMENT.md](ANNOUNCEMENT.md).
 
 ### Memory
 
@@ -85,9 +85,9 @@ The agent may independently:
 
 These actions do not require per-message human approval once the operator has configured and enabled the capability.
 
-### Later milestone — proactive communication
+### Proactive communication
 
-The agent may eventually initiate a message without a new mention, but only if the creative explicitly enables this capability and configures its destination and limits.
+One daily proclamation is approved (2026-11-10) and specified in [ANNOUNCEMENT.md](ANNOUNCEMENT.md). It is the first thing built and waits for the roster in [ROSTER.md](ROSTER.md) and a chosen channel. Any other message without a new mention needs the creative to enable it explicitly and configure its destination and limits.
 
 Potential safeguards include:
 
@@ -98,7 +98,7 @@ Potential safeguards include:
 - No repeated or duplicate announcements.
 - An action log and an immediate operator disable switch.
 
-This capability is not part of the initial milestone.
+Proactive messages beyond the daily proclamation are not part of the initial milestone.
 
 ## 5. Initial tool allowlist
 
@@ -138,14 +138,14 @@ No agent framework, vector database, cloud inference, or multi-agent architectur
 - Discord moderation, administration, role changes, or permission management in the initial milestone. Approved for a later milestone on 2026-11-10; see bot/README.md.
 - Unrestricted filesystem, shell, Python, or network access.
 - Cloud-hosted model inference.
-- Integration with the World of Warcraft Forever addon in the initial milestone. Approved for a later milestone on 2026-11-10.
+- Any addon access beyond the archive reading and message-list clearing specified in [ROSTER.md](ROSTER.md) (2026-11-11). The roster comes before any posted proclamation or reply.
 - Automatic publication of private canon or hidden character information.
 
 ## 8. Acceptance criteria
 
 The initial implementation is not complete until all of the following are verified:
 
-1. The timer starts one one-shot service at the configured daily time.
+1. The timer starts one one-shot service at the moment the previous run chose.
 2. The agent does not keep a persistent Gateway connection.
 3. Only configured channels are polled.
 4. Direct mention content is accessible without enabling Message Content Intent.
@@ -159,14 +159,13 @@ The initial implementation is not complete until all of the following are verifi
 12. The model unloads after the daily session.
 13. The service exits and releases its run lock.
 14. Secrets and runtime memory remain outside the repository.
-15. Proactive posting is disabled unless separately approved and configured.
+15. Proactive posting beyond the daily proclamation is disabled unless separately approved and configured.
 
 ## 9. Open decisions
 
-- Exact daily execution time.
 - Discord application identity and channel allowlist.
 - Exact Ollama version and model tag.
-- Memory retention period and deletion/export workflow.
+- Deletion/export workflow. Retention periods are set by Q135–137.
 - Whether to enable an optional daily reflection when there are no mentions.
-- Whether proactive communication should be enabled later.
+- Whether proactive communication beyond the daily proclamation should be enabled later.
 - Final per-run limits for replies, tool calls, runtime, and model tokens.

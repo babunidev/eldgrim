@@ -23,7 +23,7 @@ The model supplies reasoning and language. Python owns scheduling, API access, p
 ## 2. High-level design
 
 ~~~text
-systemd user timer (daily)
+systemd wake timer (moment chosen by the previous run)
           |
           v
 one-shot Python agent
@@ -59,12 +59,11 @@ The Ollama server may remain installed or available as a local service. The mode
 
 ### systemd user timer
 
-- Activates the service once per calendar day at a locally configured time.
-- Uses a calendar timer with Persistent enabled so an inactive timer can catch up after the user service manager becomes active.
+- Starts the service once, at the moment the previous run chose on the next local calendar day.
+- Is a system timer with `WakeSystem=true`, so it can wake the computer from suspend, and `Persistent=false`, so a missed day is skipped rather than replayed.
 - Does not wake a powered-off computer.
-- Does not replay every missed day; a missed calendar activation results in a catch-up activation, not a backlog of daily runs.
 
-The exact execution time is open and must be selected during deployment.
+There is no fixed execution time. See [OPERATIONS.md](OPERATIONS.md) for the units and the root step that arms the timer.
 
 ### Python application
 
@@ -221,7 +220,7 @@ A failed daily run must not create an infinite retry loop or keep the model load
 
 The agent may observe only configured guild channels, content intentionally addressed to Eldgrim and necessary onboarding/administrative interactions. The always-online bot's predefined moderation processing does not authorize wholesale memory ingestion (Q124). Member-to-member private messages outside the bot's legitimate participation are inaccessible and out of scope; DMs to the bot remain purpose-limited (Q125).
 
-Guild-chat archives from the Forever addon may become **temporary authorized analysis input** after a deletion procedure is designed; do not silently turn raw messages into persistent member memories (Q126). The per-run @Eldgrim mention collection is purged after processing, including unselected questions; operational audit metadata must not reconstruct content (Q127). Long-term impressions remain relevant, supported, non-sensitive and confidential (Q128). Member correction, departure and deletion requests require private procedures and an approved retention policy before integration (Q129–130).
+Guild-chat archives from the Forever addon are **temporary authorized analysis input**; their reading and cleanup are specified in [ROSTER.md](ROSTER.md). Do not silently turn raw messages into persistent member memories (Q126). The per-run @Eldgrim mention collection is purged after processing, including unselected questions; operational audit metadata must not reconstruct content (Q127). Long-term impressions remain relevant, supported, non-sensitive and confidential (Q128). Member correction, departure and deletion requests require private procedures and an approved retention policy before integration (Q129–130).
 
 These constraints are approved **design requirements**, not implemented or tested agent features.
 
@@ -258,7 +257,7 @@ Log minimal consequential action metadata—type, target, time, reason/rule, res
 - Guild-wide message archiving or member scraping.
 - Arbitrary shell, Python, filesystem, or network tools.
 - Discord moderation, permission changes, or administration in the initial milestone. Approved later through the server bot (2026-11-10).
-- Automatic access to the Forever addon archive in the initial milestone. Approved later (2026-11-10).
+- Addon archive access beyond what [ROSTER.md](ROSTER.md) specifies.
 - Publication of private canon or concealed character information.
 
 ## 12. Official technical references

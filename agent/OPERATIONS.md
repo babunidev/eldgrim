@@ -114,7 +114,7 @@ These commands are operational references only; no systemd units currently exist
 Before production use, implement and document:
 
 - A consistent SQLite backup procedure.
-- A retention policy for backups.
+- Backup rotation that keeps routine backups no more than 30 days (Q137).
 - A restore test.
 - Schema migration and rollback expectations.
 - Memory inspection, export, correction, and deletion.

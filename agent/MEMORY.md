@@ -120,13 +120,10 @@ The temporary collection may contain all explicitly eligible mentions, but **mus
 
 Do not intentionally store sensitive personal information, private account details, credentials, or sensitive inferences. Do not store private character canon in the shared database unless a separate private local design explicitly requires it.
 
-Before production use, define:
+Retention is decided by the confirmed rules below: raw messages are deleted after processing (Q134, Q138), interpreted memories may outlive them, and backups last no more than 30 days with deletions reapplied (Q137). Before production use, still define:
 
-- How long raw interaction messages are retained.
-- Whether summaries may outlive raw messages.
 - How the operator inspects, corrects, exports, and deletes a person's memories.
-- How a person can request that relevant memories be removed.
-- How backups reflect deletions.
+- How a person's request to remove relevant memories is handled in practice.
 - Whether and how database backups are encrypted.
 
 **Founder-confirmed Q131–137 and Q139–140:** Provide a pre-onboarding privacy notice, allow optional narrative profiling to be declined, and establish a lawful disclosed basis before importing in-game chat. Imported raw chat is deleted after authorized analysis (Q134), with a separate local SavedVariables retention/deletion procedure required before integration. Relevant interpreted personal memories are reviewed while membership is active and eligible memories deleted or anonymized within **30 days of departure** absent a specific legitimate retention obligation (Q135). Ordinary administrative audits are retained **up to 180 days**, with justified documented extensions (Q136). Routine backups are kept **no longer than 30 days**, protected appropriately, and any restored backup must reapply recorded deletions before service resumes (Q137). Provide private authorized-human data requests with legally required access/correction/export/deletion (Q139), and containment/notification/remediation for unauthorized disclosure (Q140). **Q138 confirmed:** Narrative memory is derived only from shared guild-visible sources and stored persistently **on the founder's PC**, accessible directly to **the founder alone** among humans and to the authorized local AI. Raw bot/addon message collections are temporary and purged after processing; the server's necessary Forge/role/administration data is a distinct operational store. **Publicly visible source content can still be personal data; the interpreted database is not public.** The operational procedures, backup encryption decisions and exact data categories still need design and testing; indefinite retention is not approved.
