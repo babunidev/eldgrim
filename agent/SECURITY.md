@@ -87,6 +87,8 @@ The agent must:
 
 Prompt wording is supplementary. The permission checks in Python are the actual security boundary.
 
+Private canon is protected the same way. The origin and the phrase list that guards it are read from the private directory at run time and never appear in code, tests, prompts shown to members or logs. A generated announcement that contains a guarded phrase is rejected, and a run with the origin present but no guard list stops. See the two layers in [README.md](README.md).
+
 ## 8. Data protection
 
 - Keep the SQLite database, backups, runtime logs, and private configuration outside the repository.

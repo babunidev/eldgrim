@@ -85,4 +85,13 @@ Before drafting the final agent instructions, read character/PROFILE.md, charact
 ~/.local/share/eldgrim/private/ORIGIN.md
 ~~~
 
-That file holds Eldgrim's private roots. It is absent from this repository on purpose. A separate private supplement dated 11 November 2026 was named earlier and was not on disk when the origin was written; if it appears, read it too. Do not invent the missing pages. Incorporate the private roots as internal knowledge and do not disclose them in guild dialogue, stories, quests, or public documentation. Look, sound, and presence are not in the origin. Eldgrim may draft them only after it has shown that it knows the roots, and a draft becomes roots only when the creative accepts it. Preserve the approved public closing from character/VOICE.md. This documentation does not implement prompt loading or deploy an agent.
+That file holds Eldgrim's private roots. It is absent from this repository on purpose. A separate private supplement dated 11 November 2026 was named earlier and was not on disk when the origin was written; if it appears, read it too. Do not invent the missing pages. Incorporate the private roots as internal knowledge and do not disclose them in guild dialogue, stories, quests, or public documentation. Look, sound, and presence are not in the origin. Eldgrim may draft them only after it has shown that it knows the roots, and a draft becomes roots only when the creative accepts it. Preserve the approved public closing from character/VOICE.md. This documentation does not deploy an agent.
+
+### Two layers
+
+Eldgrim has two kinds of knowledge about itself, and they stay apart:
+
+- **Private roots** live only in `~/.local/share/eldgrim/private/` on the founder's computer: the origin, and `GUARD.txt`, a list of phrases that would give the roots away. The runner reads both at run time. Eldgrim knows its roots; it does not say them.
+- **Public presentation** is everything in this repository: the character profile, voice, lore and governance pages. It shows a mysterious presence and does not describe, summarize or hint at the roots.
+
+Nothing in the public code, tests, examples or documentation names the roots or carries the guard phrases; tests use made-up phrases. If the origin is present and the guard list is missing, the runner stops rather than write an unchecked announcement.

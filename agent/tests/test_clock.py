@@ -10,7 +10,9 @@ from random import SystemRandom
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from eldgrim_agent.announce import discloses_roots, repeats_motto, strip_thinking
+import tempfile
+
+from eldgrim_agent.announce import discloses_roots, load_guard, repeats_motto, strip_thinking
 from eldgrim_agent.clock import fallback_moment, parse_choice
 from eldgrim_agent.schedule import render_timer
 
@@ -45,11 +47,38 @@ class ClockTests(unittest.TestCase):
         self.assertIn("RandomizedDelaySec=0", text)
 
     def test_private_roots_are_rejected_and_thinking_is_removed(self):
-        self.assertTrue(discloses_roots("Through the hidden door, a word."))
-        self.assertFalse(discloses_roots("Keep the fire."))
+        # Synthetic phrases only. The real list is private and never appears here.
+        guard = ("silver lantern", "hidden door")
+        self.assertTrue(discloses_roots("Through the Hidden Door, a word.", guard))
+        self.assertFalse(discloses_roots("Keep the fire.", guard))
         self.assertTrue(repeats_motto("Play to inspire, not to impress."))
         self.assertFalse(repeats_motto("The hearth is lit in Elwynn."))
         self.assertEqual(strip_thinking("<think>secret</think>\nKeep the fire."), "Keep the fire.")
+
+    def test_guard_list_is_read_from_a_private_file(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "GUARD.txt"
+            self.assertEqual(load_guard(path), ())
+            path.write_text("# comment\n\nSilver Lantern\nhidden door\n", encoding="utf-8")
+            self.assertEqual(load_guard(path), ("silver lantern", "hidden door"))
+
+    def test_origin_without_guard_list_refuses_to_compose(self):
+        from eldgrim_agent import announce
+
+        with tempfile.TemporaryDirectory() as tmp:
+            origin = Path(tmp) / "ORIGIN.md"
+            origin.write_text("synthetic roots", encoding="utf-8")
+            saved = announce.ORIGIN_PATH, announce.load_guard, announce.chat
+            called = []
+            announce.ORIGIN_PATH = origin
+            announce.load_guard = lambda path=None: ()
+            announce.chat = lambda *a, **k: called.append(1) or "text"
+            try:
+                with self.assertRaises(RuntimeError):
+                    announce.compose(NOW)
+            finally:
+                announce.ORIGIN_PATH, announce.load_guard, announce.chat = saved
+            self.assertEqual(called, [])
 
 
 if __name__ == "__main__":

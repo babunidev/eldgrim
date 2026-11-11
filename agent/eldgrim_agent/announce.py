@@ -6,10 +6,9 @@ import re
 from datetime import datetime
 
 from eldgrim_agent.ollama import chat
-from eldgrim_agent.paths import ANNOUNCEMENTS, ORIGIN_PATH, PUBLIC_PAGES, ensure_runtime
+from eldgrim_agent.paths import ANNOUNCEMENTS, GUARD_PATH, ORIGIN_PATH, PUBLIC_PAGES, ensure_runtime
 
 THINKING = re.compile(r"<think>.*?</think>", re.DOTALL | re.IGNORECASE)
-ROOTS: tuple[str, ...] = ()  # private phrases are kept outside the repository
 
 STANDING = (
     "You are Eldgrim, in the World of Warcraft Forever roleplaying world, "
@@ -32,9 +31,21 @@ STANDING = (
 MOTTO = "play to inspire, not to impress."
 
 
-def discloses_roots(text: str) -> bool:
+def load_guard(path=GUARD_PATH) -> tuple[str, ...]:
+    """Read the private phrase list. The phrases never live in this repository."""
+    if not path.is_file():
+        return ()
+    phrases = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip().lower()
+        if line and not line.startswith("#"):
+            phrases.append(line)
+    return tuple(phrases)
+
+
+def discloses_roots(text: str, phrases: tuple[str, ...]) -> bool:
     lowered = text.lower()
-    return any(phrase in lowered for phrase in ROOTS)
+    return any(phrase in lowered for phrase in phrases)
 
 
 def repeats_motto(text: str) -> bool:
@@ -75,8 +86,15 @@ def write_announcement(text: str, when: datetime) -> None:
 
 def compose(now: datetime) -> str:
     private = ""
+    guard: tuple[str, ...] = ()
     if ORIGIN_PATH.is_file():
         private = ORIGIN_PATH.read_text(encoding="utf-8")
+        guard = load_guard()
+        if not guard:
+            raise RuntimeError(
+                f"The private origin is present but {GUARD_PATH} is missing or empty; "
+                "refusing to write an unchecked announcement."
+            )
     messages = [
         {"role": "system", "content": STANDING},
         {
@@ -90,7 +108,7 @@ def compose(now: datetime) -> str:
         },
     ]
     text = strip_thinking(chat(messages, num_predict=500))
-    if discloses_roots(text) or repeats_motto(text):
+    if discloses_roots(text, guard) or repeats_motto(text):
         messages.append({"role": "assistant", "content": text})
         messages.append(
             {
@@ -103,7 +121,7 @@ def compose(now: datetime) -> str:
             }
         )
         text = strip_thinking(chat(messages, num_predict=500))
-    if discloses_roots(text) or repeats_motto(text) or not text.strip():
+    if discloses_roots(text, guard) or repeats_motto(text) or not text.strip():
         raise RuntimeError("The announcement repeated the motto, disclosed private roots, or was empty.")
     write_announcement(text, now)
     return text.strip()

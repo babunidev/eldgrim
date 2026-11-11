@@ -14,6 +14,10 @@ RUNTIME_ROOT = Path(
 ORIGIN_PATH = Path(
     os.environ.get("ELDGRIM_ORIGIN", RUNTIME_ROOT / "private" / "ORIGIN.md")
 )
+# Phrases that would give the roots away. Kept beside the origin, never in the repository.
+GUARD_PATH = Path(
+    os.environ.get("ELDGRIM_GUARD", RUNTIME_ROOT / "private" / "GUARD.txt")
+)
 NEXT_RUN_PATH = RUNTIME_ROOT / "next-run.json"
 ANNOUNCEMENTS = RUNTIME_ROOT / "announcements"
 LOGS = RUNTIME_ROOT / "logs"
