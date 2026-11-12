@@ -9,7 +9,7 @@
 #   finish       after a run: re-arm, and suspend again only if the timer woke the
 #                computer and no other program holds sleep off
 #   blockers     list programs that hold suspend off in block mode (not Eldgrim)
-#   rehearse N   wake test: arm the timer N minutes ahead (2-30), mark the run as a
+#   rehearse N   wake test: arm the timer N minutes ahead (1-30), mark the run as a
 #                wake test, and suspend now; the woken run posts and sleeps again
 set -uo pipefail
 
@@ -57,7 +57,7 @@ Description=Wake the computer for Eldgrim's next chosen moment
 OnCalendar=$when
 Persistent=false
 WakeSystem=true
-AccuracySec=1min
+AccuracySec=1s
 RandomizedDelaySec=0
 Unit=eldgrim-daily.service
 
@@ -132,13 +132,15 @@ finish() {
 }
 
 rehearse() {
-  local minutes="${1:-3}" target when
+  local minutes="${1:-1}" target when
   case "$minutes" in ''|*[!0-9]*) log "minutes must be a whole number"; return 2 ;; esac
-  if [ "$minutes" -lt 2 ] || [ "$minutes" -gt 30 ]; then
-    log "choose between 2 and 30 minutes"; return 2
+  if [ "$minutes" -lt 1 ] || [ "$minutes" -gt 30 ]; then
+    log "choose between 1 and 30 minutes"; return 2
   fi
-  target=$(( ( $(date +%s) + minutes * 60 + 59 ) / 60 * 60 ))
-  when=$(date -d "@$target" '+%Y-%m-%d %H:%M:00')
+  # To the second: suspend starts about 3 seconds from now, leaving the rest of
+  # the interval for the computer to fall asleep before the RTC alarm.
+  target=$(( $(date +%s) + minutes * 60 ))
+  when=$(date -d "@$target" '+%Y-%m-%d %H:%M:%S')
   write_timer "$when" || { log "could not arm the wake test"; return 1; }
   mkdir -p "$STATE_DIR"
   echo "$when" >"$REHEARSAL"
@@ -158,6 +160,6 @@ case "${1:-}" in
   begin) begin ;;
   finish) finish ;;
   blockers) sleep_blockers ;;
-  rehearse) rehearse "${2:-3}" ;;
+  rehearse) rehearse "${2:-1}" ;;
   *) echo "usage: $0 stamp [FILE] | arm | begin | finish | blockers | rehearse [MINUTES]" >&2; exit 2 ;;
 esac
