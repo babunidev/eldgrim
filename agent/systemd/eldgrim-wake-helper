@@ -8,6 +8,7 @@
 #   begin        before a run: note whether the timer just woke the computer, then settle
 #   finish       after a run: re-arm, and suspend again only if the timer woke the
 #                computer and no other program holds sleep off
+#   blockers     list programs that hold suspend off in block mode (not Eldgrim)
 #   rehearse N   wake test: arm the timer N minutes ahead (2-30), mark the run as a
 #                wake test, and suspend now; the woken run posts and sleeps again
 set -uo pipefail
@@ -93,12 +94,19 @@ begin() {
   return 0
 }
 
-foreign_sleep_blockers() {
-  # Count inhibitors in block mode on sleep or idle, except Eldgrim's own.
-  systemd-inhibit --list --no-legend --no-pager 2>/dev/null \
-    | grep -v 'Eldgrim' \
-    | awk '$NF == "block" && ($0 ~ /sleep/ || $0 ~ /idle/)' \
-    | wc -l
+inhibitor_list() {
+  if [ -n "${ELDGRIM_INHIBIT_LIST:-}" ]; then cat -- "$ELDGRIM_INHIBIT_LIST"
+  else systemd-inhibit --list --no-legend --no-pager 2>/dev/null; fi
+}
+
+sleep_blockers() {
+  # Only a block-mode inhibitor on "sleep" objects to a suspend request. Idle
+  # blocks (a game profile, a video) only stop automatic idle-suspend, and the
+  # computer was asleep with them a moment ago. Print the WHO of each blocker.
+  inhibitor_list | grep -v 'Eldgrim' | awk '
+    $NF == "block" {
+      for (i = 1; i < NF; i++) if ($i ~ /(^|:)sleep(:|$)/) { print $1; next }
+    }'
 }
 
 finish() {
@@ -110,9 +118,12 @@ finish() {
   fi
   rm -f "$WOKEN"
   local blockers
-  blockers=$(foreign_sleep_blockers)
-  if [ "${blockers:-1}" != "0" ]; then
-    log "another program holds sleep off; leaving the computer awake"
+  if ! blockers=$(sleep_blockers); then
+    log "could not read sleep inhibitors; leaving the computer awake"
+    return 0
+  fi
+  if [ -n "$blockers" ]; then
+    log "sleep is held off by: $(echo $blockers); leaving the computer awake"
     return 0
   fi
   log "run finished after a timer wake; returning to sleep"
@@ -146,6 +157,7 @@ case "${1:-}" in
   arm) arm ;;
   begin) begin ;;
   finish) finish ;;
+  blockers) sleep_blockers ;;
   rehearse) rehearse "${2:-3}" ;;
-  *) echo "usage: $0 stamp [FILE] | arm | begin | finish | rehearse [MINUTES]" >&2; exit 2 ;;
+  *) echo "usage: $0 stamp [FILE] | arm | begin | finish | blockers | rehearse [MINUTES]" >&2; exit 2 ;;
 esac

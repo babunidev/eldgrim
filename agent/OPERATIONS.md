@@ -33,7 +33,7 @@ The installer also removes the earlier user-owned wake script and gives back any
 After a scheduled run the helper suspends the computer again only when both are true:
 
 - The computer resumed from sleep within five minutes before the run, so the timer woke it.
-- No other program holds a sleep or idle inhibitor in block mode. Delay-mode agents such as NetworkManager do not count. Plasma's idle hint is not used, because it stays "not idle" for minutes after an RTC wake.
+- No other program holds a **sleep** inhibitor in block mode. Idle blocks, such as falcond's game profile, only stop automatic idle-suspend and do not count; delay-mode agents such as NetworkManager do not count either. Plasma's idle hint is not used, because it stays "not idle" for minutes after an RTC wake. When something does block, the journal names it.
 
 If the computer was already awake, or anything else holds sleep off, it is left awake. Eldgrim never suspends after a run started by hand. A wake counts only when `systemd-sleep` logged "returned from sleep" within five minutes before the run, so a suspend that failed is never mistaken for one.
 
@@ -51,6 +51,8 @@ If the computer was already awake, or anything else holds sleep off, it is left 
 ## 5. Posting and audit notes
 
 Posting goes through the server bot's preview-and-apply control. Each announcement file records `Posted: no`, `sending`, `yes`, or `unknown`. If the apply request leaves this computer but its outcome is unclear, the file becomes `unknown` and is never re-sent automatically; check the channel, then use `eldgrim post --resend NAME` only if it is missing. The approval note sent to the bot says truthfully whether the post came from the wake timer, a run started by hand, or `eldgrim post`. Mentions in the text are made inert before sending, and the bot sends announcements with no allowed mentions.
+
+The SSH key for the server is passphrase-protected, so a run reaches it through the user's ssh-agent at `/run/user/<uid>/ssh-agent.socket`, which the wake service passes in. After a reboot the key must be unlocked in the session again, or a scheduled run cannot post.
 
 ## 6. Service lifecycle
 

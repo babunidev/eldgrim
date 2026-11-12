@@ -2,6 +2,10 @@
 
 Meaningful repository and documentation changes are recorded here.
 
+## 2026-11-12
+
+- After the first wake test: the wake service passes the user's ssh-agent so a timer run can post, and only real sleep blocks keep the computer awake after a timer wake; the journal names them.
+
 ## 2026-11-11
 
 - Added `eldgrim wake-test`: the computer sleeps, the timer wakes it a few minutes later, Eldgrim posts with a note naming the wake test, and the computer sleeps again. A wake now counts only after a completed resume.

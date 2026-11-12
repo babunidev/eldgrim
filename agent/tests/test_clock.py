@@ -65,6 +65,26 @@ class ClockTests(unittest.TestCase):
                     self.assertEqual(done.returncode, 0, done.stdout + done.stderr)
                     self.assertEqual(done.stdout.strip(), expected)
 
+    def test_only_sleep_blocks_keep_the_computer_awake(self):
+        import subprocess
+
+        helper = Path(__file__).resolve().parents[1] / "systemd" / "eldgrim-wake-helper"
+        listing = (
+            "falcond 0 root 1 systemd-inhibit idle Game profile active block\n"
+            "PowerDevil 1000 u 2 org_kde_powerde handle-power-key:handle-suspend-key:handle-lid-switch KDE handles power events block\n"
+            "NetworkManager 0 root 3 NetworkManager sleep NetworkManager needs to turn off networks delay\n"
+            "Eldgrim 0 root 4 systemd-inhibit idle:sleep:handle-lid-switch Eldgrim daily run block\n"
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "list.txt"
+            path.write_text(listing, encoding="utf-8")
+            env = {"PATH": "/usr/bin:/bin", "ELDGRIM_INHIBIT_LIST": str(path)}
+            done = subprocess.run(["bash", str(helper), "blockers"], capture_output=True, text=True, env=env, timeout=10)
+            self.assertEqual(done.stdout.strip(), "")
+            path.write_text(listing + "obs 1000 u 5 obs sleep Recording block\n", encoding="utf-8")
+            done = subprocess.run(["bash", str(helper), "blockers"], capture_output=True, text=True, env=env, timeout=10)
+            self.assertEqual(done.stdout.strip(), "obs")
+
     def test_private_roots_are_rejected_and_thinking_is_removed(self):
         # Synthetic phrases only. The real list is private and never appears here.
         guard = ("silver lantern", "hidden door")

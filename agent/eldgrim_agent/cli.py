@@ -110,7 +110,7 @@ def _format_run(report: dict[str, object]) -> str:
         [
             "",
             f"Next run: {report.get('next_at') or 'not saved'} ({report.get('next_source') or '-'})",
-            "The wake timer re-arms itself from that choice once install-wake.sh has been run.",
+            "The wake timer re-arms itself from that choice.",
         ]
     )
     return "\n".join(lines)
