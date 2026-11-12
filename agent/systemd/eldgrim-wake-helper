@@ -1,16 +1,17 @@
 #!/bin/bash
 # Eldgrim wake helper. Installed root-owned into /usr/local/libexec/eldgrim/ by
 # install-wake.sh. Root never runs Eldgrim's Python code: it only reads the chosen
-# moment as data, writes the wake timer, and decides about returning to sleep.
+# moment as data and writes the wake timer. It never suspends the computer after a
+# run: once Eldgrim's work stops, the desktop's own idle timer puts it to sleep.
 #
 #   stamp FILE   print the validated OnCalendar stamp from a next-run.json (no root needed)
 #   arm          write and restart the wake timer from the saved choice
 #   begin        before a run: note whether the timer just woke the computer, then settle
-#   finish       after a run: re-arm, and suspend again only if the timer woke the
-#                computer and no other program holds sleep off
-#   blockers     list programs that hold suspend off in block mode (not Eldgrim)
+#   finish       after a run: re-arm, and note any program that would keep the
+#                desktop's idle timer from putting the computer to sleep
+#   blockers     list programs that block idle-sleep or sleep (not Eldgrim)
 #   rehearse N   wake test: arm the timer N minutes ahead (1-30), mark the run as a
-#                wake test, and suspend now; the woken run posts and sleeps again
+#                wake test, and suspend now; the woken run posts, then idle-sleep takes over
 set -uo pipefail
 
 NEXT_FILE="${ELDGRIM_NEXT_FILE:-@HOME@/.local/share/eldgrim/next-run.json}"
@@ -116,35 +117,26 @@ inhibitor_list() {
   else systemd-inhibit --list --no-legend --no-pager 2>/dev/null; fi
 }
 
-sleep_blockers() {
-  # Only a block-mode inhibitor on "sleep" objects to a suspend request. Idle
-  # blocks (a game profile, a video) only stop automatic idle-suspend, and the
-  # computer was asleep with them a moment ago. Print the WHO of each blocker.
+idle_blockers() {
+  # Block-mode inhibitors on idle or sleep keep the desktop's idle timer from
+  # suspending the computer. Print the WHO of each one, except Eldgrim's own.
   inhibitor_list | grep -v 'Eldgrim' | awk '
     $NF == "block" {
-      for (i = 1; i < NF; i++) if ($i ~ /(^|:)sleep(:|$)/) { print $1; next }
+      for (i = 1; i < NF; i++) if ($i ~ /(^|:)(idle|sleep)(:|$)/) { print $1; next }
     }'
 }
 
 finish() {
   rm -f "$REHEARSAL"
   arm || log "could not re-arm the wake timer"
-  if [ ! -f "$WOKEN" ]; then
-    log "not woken by the timer; leaving power alone"
-    return 0
-  fi
   rm -f "$WOKEN"
   local blockers
-  if ! blockers=$(sleep_blockers); then
-    log "could not read sleep inhibitors; leaving the computer awake"
-    return 0
-  fi
+  blockers=$(idle_blockers)
   if [ -n "$blockers" ]; then
-    log "sleep is held off by: $(echo $blockers); leaving the computer awake"
-    return 0
+    log "Eldgrim's work has stopped; idle-sleep is held off by: $(echo $blockers)"
+  else
+    log "Eldgrim's work has stopped; the desktop's idle timer can put the computer to sleep"
   fi
-  log "run finished after a timer wake; returning to sleep"
-  systemctl suspend || log "suspend request failed"
   return 0
 }
 
@@ -176,7 +168,7 @@ case "${1:-}" in
   arm) arm ;;
   begin) begin ;;
   finish) finish ;;
-  blockers) sleep_blockers ;;
+  blockers) idle_blockers ;;
   rehearse) rehearse "${2:-1}" ;;
   *) echo "usage: $0 stamp [FILE] | arm | begin | finish | blockers | rehearse [MINUTES]" >&2; exit 2 ;;
 esac

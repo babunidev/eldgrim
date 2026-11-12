@@ -65,7 +65,7 @@ class ClockTests(unittest.TestCase):
                     self.assertEqual(done.returncode, 0, done.stdout + done.stderr)
                     self.assertEqual(done.stdout.strip(), expected)
 
-    def test_only_sleep_blocks_keep_the_computer_awake(self):
+    def test_idle_and_sleep_blocks_are_named(self):
         import subprocess
 
         helper = Path(__file__).resolve().parents[1] / "systemd" / "eldgrim-wake-helper"
@@ -80,10 +80,10 @@ class ClockTests(unittest.TestCase):
             path.write_text(listing, encoding="utf-8")
             env = {"PATH": "/usr/bin:/bin", "ELDGRIM_INHIBIT_LIST": str(path)}
             done = subprocess.run(["bash", str(helper), "blockers"], capture_output=True, text=True, env=env, timeout=10)
-            self.assertEqual(done.stdout.strip(), "")
+            self.assertEqual(done.stdout.split(), ["falcond"])
             path.write_text(listing + "obs 1000 u 5 obs sleep Recording block\n", encoding="utf-8")
             done = subprocess.run(["bash", str(helper), "blockers"], capture_output=True, text=True, env=env, timeout=10)
-            self.assertEqual(done.stdout.strip(), "obs")
+            self.assertEqual(done.stdout.split(), ["falcond", "obs"])
 
     def test_a_resume_logged_after_the_unit_starts_still_counts(self):
         import subprocess

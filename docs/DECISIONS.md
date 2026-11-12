@@ -4,6 +4,12 @@ A concise record of meaningful creative and structural decisions.
 
 Entries are listed newest first.
 
+## 2026-11-12 — The desktop puts the computer back to sleep
+
+**Decision:** Eldgrim no longer suspends the computer after a run. In testing, the automatic suspend was not reliable. When a run ends, Eldgrim stops all of its activity, and the desktop's normal idle timer puts the computer to sleep.
+
+**Status:** The wake test showed sleep, a wake on time, and a post through the bot. Falling asleep afterwards depends on the desktop's idle setting and on nothing else holding idle-sleep off; the journal names any blocker.
+
 ## 2026-11-11 — Test runs post, and a timer wake ends in sleep
 
 **Decision:** A run started by hand posts its announcement, like a scheduled run, because posting is part of what has to be tested. Posting the daily announcement does not wait for the roster; replies and administration still do. After a run that the wake timer started, the computer returns to sleep when the timer woke it and no other program holds sleep off.

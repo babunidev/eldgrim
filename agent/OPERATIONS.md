@@ -18,7 +18,7 @@ Root runs only root-owned files. Eldgrim's Python code always runs as the user.
 | `/usr/local/libexec/eldgrim/eldgrim-wake-helper` | root | Reads the saved moment as plain data, accepts only a timestamp in the coming two days, writes the timer, and decides about returning to sleep |
 | `eldgrim-arm.path` → `eldgrim-arm.service` | root | Re-arms the timer whenever a run saves a new moment, including a test run |
 | `eldgrim-daily.timer` | — | One absolute `OnCalendar` stamp, `WakeSystem=true`, `Persistent=false` |
-| `eldgrim-daily.service` | root, then the user | `begin` notes whether the timer woke the machine and waits 30 seconds for the network; `systemd-inhibit` holds sleep off around `runuser`, which runs `eldgrim run --scheduled` as the user; `finish` re-arms and returns to sleep |
+| `eldgrim-daily.service` | root, then the user | `begin` notes whether the timer woke the machine and waits 30 seconds for the network; `systemd-inhibit` holds sleep off around `runuser`, which runs `eldgrim run --scheduled` as the user; `finish` re-arms and names anything still blocking idle-sleep |
 
 The sources are in `agent/systemd/`. Install or update them with:
 
@@ -30,16 +30,15 @@ The installer also removes the earlier user-owned wake script and gives back any
 
 ## 3. Returning to sleep
 
-After a scheduled run the helper suspends the computer again only when both are true:
+Eldgrim never suspends the computer after a run (2026-11-12; an automatic suspend proved unreliable). When its work ends, it unloads the model, stops Ollama if the run started it, and releases its sleep inhibitor. The desktop's own idle timer then puts the computer to sleep, by KDE's default after 15 minutes on mains power.
 
-- The computer resumed from sleep within five minutes before the run, so the timer woke it.
-- No other program holds a **sleep** inhibitor in block mode. Idle blocks, such as falcond's game profile, only stop automatic idle-suspend and do not count; delay-mode agents such as NetworkManager do not count either. Plasma's idle hint is not used, because it stays "not idle" for minutes after an RTC wake. When something does block, the journal names it.
+The helper's last journal line names any program that still blocks idle-sleep, for example falcond while a game profile is active. If the computer stays awake, that line says why. Delay-mode agents such as NetworkManager do not block it.
 
-If the computer was already awake, or anything else holds sleep off, it is left awake. Eldgrim never suspends after a run started by hand. A wake counts only when `systemd-sleep` logged "returned from sleep" within five minutes of the run, so a suspend that failed is never mistaken for one. The timer can start the unit the instant the computer resumes, before that line exists, so the helper keeps looking for it throughout the 30-second settle.
+The helper still notes whether the timer woke the computer: a wake counts when `systemd-sleep` logged "returned from sleep", and the helper keeps looking for that line throughout the 30-second settle, because the timer can start the unit the instant the computer resumes.
 
 ### Wake test
 
-`eldgrim wake-test` (default 1 minute, `--minutes 1` to `30`) proves the whole cycle in about a minute and a half: the wake is timed to the second, and the timer fires within a second (`AccuracySec=1s`). After your sudo password, the helper arms the timer a few minutes ahead and puts the computer to sleep. The timer wakes it, Eldgrim writes and posts one announcement through the bot with an audit note that names the wake test, chooses its next moment, and the computer sleeps again if nothing else holds it awake. The timer is then re-armed for Eldgrim's chosen moment. Check the result with `sudo journalctl -u eldgrim-daily.service -b --since -1h` and the newest file in `~/.local/share/eldgrim/logs/`.
+`eldgrim wake-test` (default 1 minute, `--minutes 1` to `30`) proves the whole cycle in about a minute and a half: the wake is timed to the second, and the timer fires within a second (`AccuracySec=1s`). After your sudo password, the helper arms the timer a few minutes ahead and puts the computer to sleep. The timer wakes it, Eldgrim writes and posts one announcement through the bot with an audit note that names the wake test, chooses its next moment, and stops its activity; the desktop's idle timer then puts the computer to sleep. The timer is then re-armed for Eldgrim's chosen moment. Check the result with `sudo journalctl -u eldgrim-daily.service -b --since -1h` and the newest file in `~/.local/share/eldgrim/logs/`.
 
 ## 4. Missed runs and machine availability
 

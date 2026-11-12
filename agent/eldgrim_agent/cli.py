@@ -35,7 +35,7 @@ def main(argv: list[str] | None = None) -> int:
         metavar="NAME",
         help="after checking the channel, mark an uncertain announcement as not posted and send it",
     )
-    wake = sub.add_parser("wake-test", help="sleep now, let the timer wake the computer, post, and sleep again")
+    wake = sub.add_parser("wake-test", help="sleep now, let the timer wake the computer, and post")
     wake.add_argument("--minutes", type=int, default=1, help="minutes until the wake, 1-30 (default 1)")
     args = parser.parse_args(argv)
     if args.command == "wake-test":
@@ -59,8 +59,8 @@ def wake_test(minutes: int) -> int:
         return 1
     print(
         f"Wake test: the computer goes to sleep now and the timer wakes it in {minutes} minute(s).\n"
-        "Eldgrim then writes and posts one announcement, chooses its next moment, and the computer\n"
-        "sleeps again if nothing else holds it awake. Check afterwards with:\n"
+        "Eldgrim then writes and posts one announcement, chooses its next moment, and stops all of\n"
+        "its activity, so the desktop's idle timer can put the computer to sleep. Check afterwards with:\n"
         "  journalctl -u eldgrim-daily.service -b --since -1h\n"
         "sudo asks for your password next."
     )
