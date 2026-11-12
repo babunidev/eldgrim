@@ -15,7 +15,7 @@ set -uo pipefail
 
 NEXT_FILE="${ELDGRIM_NEXT_FILE:-@HOME@/.local/share/eldgrim/next-run.json}"
 TIMER_FILE=/etc/systemd/system/eldgrim-daily.timer
-STATE_DIR=/run/eldgrim
+STATE_DIR="${ELDGRIM_STATE_DIR:-/run/eldgrim}"
 WOKEN="$STATE_DIR/woken"
 REHEARSAL="$STATE_DIR/rehearsal"
 SETTLE_SECONDS="${ELDGRIM_SETTLE_SECONDS:-30}"
@@ -70,25 +70,42 @@ EOF
   log "wake timer armed for $when"
 }
 
+sleep_log() {
+  if [ -n "${ELDGRIM_SLEEP_LOG:-}" ]; then cat -- "$ELDGRIM_SLEEP_LOG"
+  else journalctl -b -t systemd-sleep -o short-unix -q --no-pager 2>/dev/null; fi
+}
+
 resumed_recently() {
   # Only a completed resume counts: systemd-sleep logs this line after waking,
   # never after a suspend that failed.
   local last now
-  last=$(journalctl -b -t systemd-sleep -o short-unix -q --no-pager 2>/dev/null \
-          | grep 'returned from sleep' | tail -n 1 | awk '{print int($1)}')
+  last=$(sleep_log | grep 'returned from sleep' | tail -n 1 | awk '{print int($1)}')
   [ -n "$last" ] || return 1
   now=$(date +%s)
   [ $((now - last)) -le "$RESUME_WINDOW" ]
 }
 
 begin() {
+  # The timer can start this unit the instant the computer resumes, before
+  # systemd-sleep has logged the resume. Keep looking through the settle time.
   mkdir -p "$STATE_DIR"
-  if resumed_recently; then
-    : >"$WOKEN"
-    log "the computer just resumed; settling ${SETTLE_SECONDS}s before the run"
-    sleep "$SETTLE_SECONDS"
+  rm -f "$WOKEN"
+  local start deadline
+  start=$(date +%s)
+  deadline=$((start + SETTLE_SECONDS))
+  while :; do
+    if resumed_recently; then
+      : >"$WOKEN"
+      break
+    fi
+    [ "$(date +%s)" -lt "$deadline" ] || break
+    sleep 2
+  done
+  local left=$((deadline - $(date +%s)))
+  [ "$left" -gt 0 ] && sleep "$left"
+  if [ -f "$WOKEN" ]; then
+    log "the computer resumed from sleep; settled ${SETTLE_SECONDS}s before the run"
   else
-    rm -f "$WOKEN"
     log "the computer was already awake; it will be left awake"
   fi
   return 0

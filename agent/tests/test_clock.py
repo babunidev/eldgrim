@@ -85,6 +85,34 @@ class ClockTests(unittest.TestCase):
             done = subprocess.run(["bash", str(helper), "blockers"], capture_output=True, text=True, env=env, timeout=10)
             self.assertEqual(done.stdout.strip(), "obs")
 
+    def test_a_resume_logged_after_the_unit_starts_still_counts(self):
+        import subprocess
+        import threading
+        import time
+
+        helper = Path(__file__).resolve().parents[1] / "systemd" / "eldgrim-wake-helper"
+        with tempfile.TemporaryDirectory() as tmp:
+            log = Path(tmp) / "sleep.log"
+            log.write_text(f"{time.time() - 3600:.6f} pc systemd-sleep[1]: Performing sleep operation 'suspend'...\n", encoding="utf-8")
+            state = Path(tmp) / "state"
+            env = {"PATH": "/usr/bin:/bin", "ELDGRIM_SLEEP_LOG": str(log), "ELDGRIM_STATE_DIR": str(state), "ELDGRIM_SETTLE_SECONDS": "6"}
+
+            def resume_later():
+                time.sleep(2)
+                with log.open("a", encoding="utf-8") as f:
+                    f.write(f"{time.time():.6f} pc systemd-sleep[1]: System returned from sleep operation 'suspend'.\n")
+
+            threading.Thread(target=resume_later).start()
+            done = subprocess.run(["bash", str(helper), "begin"], capture_output=True, text=True, env=env, timeout=20)
+            self.assertIn("resumed from sleep", done.stdout)
+            self.assertTrue((state / "woken").is_file())
+
+            log.write_text(f"{time.time() - 3600:.6f} pc systemd-sleep[1]: System returned from sleep operation 'suspend'.\n", encoding="utf-8")
+            env["ELDGRIM_SETTLE_SECONDS"] = "2"
+            done = subprocess.run(["bash", str(helper), "begin"], capture_output=True, text=True, env=env, timeout=20)
+            self.assertIn("already awake", done.stdout)
+            self.assertFalse((state / "woken").exists())
+
     def test_private_roots_are_rejected_and_thinking_is_removed(self):
         # Synthetic phrases only. The real list is private and never appears here.
         guard = ("silver lantern", "hidden door")

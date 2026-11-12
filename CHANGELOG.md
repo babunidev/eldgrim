@@ -4,6 +4,7 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-12
 
+- Second wake test: the PC slept, woke on time and posted, but stayed awake because the unit started before systemd-sleep logged the resume. The helper now keeps looking for the resume during its 30-second settle.
 - The wake test defaults to one minute, timed to the second, and the wake timer fires within a second.
 - After the first wake test: the wake service passes the user's ssh-agent so a timer run can post, and only real sleep blocks keep the computer awake after a timer wake; the journal names them.
 

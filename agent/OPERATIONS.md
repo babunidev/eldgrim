@@ -35,7 +35,7 @@ After a scheduled run the helper suspends the computer again only when both are 
 - The computer resumed from sleep within five minutes before the run, so the timer woke it.
 - No other program holds a **sleep** inhibitor in block mode. Idle blocks, such as falcond's game profile, only stop automatic idle-suspend and do not count; delay-mode agents such as NetworkManager do not count either. Plasma's idle hint is not used, because it stays "not idle" for minutes after an RTC wake. When something does block, the journal names it.
 
-If the computer was already awake, or anything else holds sleep off, it is left awake. Eldgrim never suspends after a run started by hand. A wake counts only when `systemd-sleep` logged "returned from sleep" within five minutes before the run, so a suspend that failed is never mistaken for one.
+If the computer was already awake, or anything else holds sleep off, it is left awake. Eldgrim never suspends after a run started by hand. A wake counts only when `systemd-sleep` logged "returned from sleep" within five minutes of the run, so a suspend that failed is never mistaken for one. The timer can start the unit the instant the computer resumes, before that line exists, so the helper keeps looking for it throughout the 30-second settle.
 
 ### Wake test
 
