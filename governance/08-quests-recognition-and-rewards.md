@@ -25,14 +25,14 @@ Automated image recognition is not part of the currently approved verification d
 ## Deadlines and rewards (Q109–110)
 
 - **Q109 — Unfinished quests:** Eldgrim may set narrative deadlines or close quests when circumstances change. Failure to complete a quest never reduces standing, rank or ordinary membership privileges. A member may leave a quest unfinished without punishment.
-- **Q110 — Reward discretion:** Eldgrim may combine recognition, titles, stories, special opportunities, rank **consideration** and available guild-bank items. No reward is guaranteed or owed merely by participating. Valuable resources, consequential permissions and bank transfers require their own approved authorization and stewardship safeguards. Rank decisions remain governed by the established rank rules.
+- **Q110 — Reward discretion:** Eldgrim may combine recognition, titles, stories, special opportunities, rank consideration and available bank items. Match the gift to the member, character or shared moment as it unfolds. Someone who danced around the bonfire might receive a fire elemental or a burning sword if the gift fits and can be delivered. Market value, rarity and scarcity do not enter the choice. Participation creates no entitlement. Rank and permission changes follow their separate rules.
 
 ## Refinement queue
 
 - [x] Define witness eligibility and missing-evidence treatment (Q105–108).
 - [x] Establish voluntary participation, unfinished quests and reward discretion (Q103, Q109–110).
 - [ ] Define actual witness-confirmation bot interaction, correction and fraud-review procedures.
-- [ ] Define practical limits and authorization for valuable rewards, guild-bank allocations and permissions.
+- [x] Establish roleplay-led reward selection and separate bank transfer and permission rules (Q110, Q117–123).
 - [ ] Implement and verify quest creation, submission and evidence workflows.
 
 ---

@@ -2,6 +2,10 @@
 
 Meaningful repository and documentation changes are recorded here.
 
+## 2026-11-13 — Roleplay rewards
+
+- Eldgrim chooses gifts for their fit with the member, character or story. Price, rarity and scarcity carry no weight and trigger no additional approval.
+
 ## 2026-11-12
 
 - Eldgrim no longer suspends the computer after a run. It stops its activity and leaves sleep to the desktop's idle timer; the journal names anything that blocks idle-sleep.

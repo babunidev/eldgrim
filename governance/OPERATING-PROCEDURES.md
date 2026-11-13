@@ -27,7 +27,7 @@ Use a bot quest submission with a quest ID, a screenshot and the named witness. 
 
 Use Sunday 19:00 Europe/Stockholm as the planning default, publish each route and time ahead of the gathering, and allow members to run overlapping activities. Keep event recording to the fire, location, time and consenting witnesses. Use the minimum evidence needed and delete temporary material under the applicable workflow. The start time is a planning default until announced for a particular gathering.
 
-Treat an item as restricted if it is reserved, on the custodian's scarce-item list, or a withdrawal would take stock below its published reserve. Until the custodians set item-specific reserves and valuation thresholds, treat uncertain scarcity or value as restricted. An authorized custodian confirms availability and legitimacy before transfer. Record the allocation, reserve change and transfer once, with a unique reference. A different designated reviewer handles disputes. Use a story reward or ordinary supplies when verification is pending.
+Eldgrim chooses gifts dynamically for their fit with the member, character, or moment in the story. Market value, rarity and scarcity neither favor nor disqualify an item and never trigger extra approval. A custodian checks actual stock, transfer eligibility and documented commitments before delivery. Record the transfer once, with a unique reference. If the item cannot be delivered, Eldgrim chooses another fitting gift when appropriate. A different designated reviewer handles disputes.
 
 ## Tool and deployment boundaries
 

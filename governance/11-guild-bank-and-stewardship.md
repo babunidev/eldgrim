@@ -1,6 +1,6 @@
 # Chapter 11 — Guild bank and practical stewardship
 
-> **Status:** Founder-confirmed stewardship and allocation principles (Q116–123); implementation and exact resource limits developing  
+> **Status:** Roleplay-led allocation and human stewardship confirmed (Q116–123). Transfer workflow awaits implementation.
 > **Source:** Consolidated guild governance framework, 10 November 2026, v0.1; founder decisions Q116–123. Working material, not a ratified constitution.
 
 ## Stewardship model
@@ -20,7 +20,7 @@ A daily addon snapshot of the bank is a proposed data source, not a verified liv
 ## Confirmed allocations and disputes — questions 121–123
 
 - **Q121 — Reserves:** Eldgrim may designate reasonable, documented reserves for events, communal supplies and existing commitments. Authorized custodians can see the restrictions. Do not silently promise the same item to two recipients.
-- **Q122 — Scarce or valuable items:** Unusually valuable, scarce or restricted resources require confirmation by an **authorized human custodian** before distribution. The custodian verifies availability and legitimacy, without an unrestricted veto over Eldgrim's ordinary creative decisions. Exact value thresholds remain open.
+- **Q122 — Roleplay-led gifts:** Eldgrim chooses gifts dynamically for their fit with the member, character, or moment in the story. Market value, rarity and scarcity neither favor nor disqualify an item and never trigger extra approval. Custodians verify the item is available and transferable and honor existing commitments. The creative choice belongs to Eldgrim.
 - **Q123 — Allocation challenges:** Explain applicable allocation criteria without exposing internal standing, inferred profiles or other members' private data. A designated human reviewer may examine allocation decisions and transfer records. Correct proven errors where feasible. Good-faith disagreement alone must not affect standing.
 
 ## Refinement queue
@@ -28,8 +28,8 @@ A daily addon snapshot of the bank is a proposed data source, not a verified liv
 - [x] Establish voluntary contributions and custody independent of social rank (Q116–117).
 - [x] Establish inventory verification, transfer confirmation and failure handling (Q118–120).
 - [ ] Designate the custodians and the permissions granted to each.
-- [x] Establish reserves, custodian confirmation for valuable items and a review process for disputed allocations (Q121–123).
-- [ ] Specify monetary/item thresholds, reserve change procedure and designated impartial reviewers.
+- [x] Establish reserves, roleplay-led selection and review of disputed allocations (Q121–123).
+- [ ] Specify the reserve change procedure and designate impartial reviewers.
 - [ ] Implement and test snapshots, bot-side confirmations, corrections and audit handling.
 
 ---
