@@ -103,7 +103,7 @@ Newcomers affirm adulthood, accept rules and acknowledge disclosed data practice
 - [ ] Specify and implement operational privacy request and confidential appeal channels, case reviewers and lawful exceptions without granting custodians direct local narrative-memory access.
 - [x] Confirm appeals/evidence minimization and case-purpose separation (Q171–180).
 - [x] Establish the founder's PC as authoritative for Eldgrim's persistent interpreted narrative memories (Q138).
-- [ ] Define secure transfer and purge of shared Discord raw data, and separation from the live server bot's operational registration database. The addon archive's reading and cleanup are specified in agent/ROSTER.md and not built.
+- [ ] Define secure transfer and purge of shared Discord raw data, and separation from the live server bot's operational registration database. The addon archive's reading and cleanup are built, as specified in agent/ROSTER.md.
 
 ---
 

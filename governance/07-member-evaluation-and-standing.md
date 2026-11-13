@@ -46,6 +46,10 @@ The [operating procedures](OPERATING-PROCEDURES.md) cover the missing baseline a
 - **Q63 — Established:** Standing may inform promotion and rewards, but it is **never sufficient on its own** to justify discipline. Sanctions require an independently established violation of existing guild rules.
 - **Q64 — Confirmed, revised:** The standing score is Eldgrim's **private internal judgment**, analogous to a person's unspoken impressions of friends, not a competitive high score or ranking. Eldgrim does not disclose scores, rankings, inferred personal profiles or the internal information it uses to personalize creative content to members, including the member concerned, as an ordinary feature. There is no member-facing score lookup or dedicated score challenge process. This does not prevent Eldgrim from internally correcting unreliable data. It also does not negate the established requirement to explain and permit appeals of **consequential administrative decisions**, or applicable legal rights to personal-data access and correction. Do not reveal another member's private information in any explanation.
 
+## Founder decision — 12 November 2026
+
+A character in the in-game guild is a member, with or without Discord. On a day that member has at least one guild-chat message, the private score moves by fixed points. Any message is +1. The one keyword for that day's writing, when positive, is another +1. When the keyword is negative, it is −2. A keyword that is neither adds nothing beyond the activity point. Silence does not move the score (Q60). The number stays inside 0–100. This is a private daily score. It is not proof of misconduct, and it is not a warning, a demotion, or a removal. Q57, Q62, and Q63 still govern sanctions. The score's rank minimums are recorded in chapter 04.
+
 ## Refinement queue
 
 - [x] Internal correction and the missing baseline are specified in the [operating procedures](OPERATING-PROCEDURES.md).

@@ -35,6 +35,10 @@ Eldgrim may assign specific, revocable event coordination, moderation-assistance
 - **Q44–47:** Promotions recognize helpfulness, kindness, reliability, creativity, companionship and positive contributions, never attendance quotas, wealth, level or gameplay performance. Eldgrim may promote spontaneously. Members may request consideration without penalty; Eldgrim evaluates documented conduct and explains its decision without shaming comparisons. Repeated requests do not improve priority.
 - **Q48:** Members may refuse a promotion or request a lower rank without penalty.
 - **Q49:** Demotion is reserved for serious misconduct, repeated rule violations or abuse of delegated responsibilities; it is proportionate, documented, explained and appealable. Inactivity and refusal of optional activities do not justify demotion.
+
+## Founder decision — 12 November 2026
+
+Each rank has a minimum on the private standing score, used only to see who is in view. Ember is the entry rank and starts at 50. Wayfarer requires 60, Kindler 70, Hearthkeeper 80, and Hearthwarden 90. A member who already holds a rank when the database is first created starts at that rank's minimum. The daily note to Hearthkeepers and Hearthwardens may name one person to consider for promotion, or one person to consider for demotion, when the day's guild-chat keyword agrees with the score. Otherwise it says the ranks look in order. The note does not change a Discord rank. An actual demotion remains the Q49 decision, made by the keepers and wardens, not by the score.
 - **Q50:** Administrative duties are delegated separately and can be withdrawn separately from social rank.
 - **Q51:** Standing and rank belong to the **player**. All registered characters share that person's rank, while their identities and narrative histories remain distinct.
 - **Q52:** Eldgrim is intended to maintain the authoritative rank record in the guild database and automatically synchronize Discord roles. Authorized human members apply in-game rank changes via an approved addon or manual process and confirm the result. **Design decision, not an implemented integration.**
