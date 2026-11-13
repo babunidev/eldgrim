@@ -99,3 +99,8 @@ This changelog describes repository changes, not in-world events.
 
 - Added operating defaults for appeals, evidence, standing corrections, privacy, guild bank, quests and delegated tools.
 - Reconciled the open-items chapter with the confirmed decision register.
+
+## 2026-11-13 — License and rights
+
+- Established MIT for original agent/bot/addon code, with character rights separate and updated repository documentation to explain the permission boundary.
+- Preserved third-party authorship and external assets' separate terms. No gameplay or runtime verification is claimed.
