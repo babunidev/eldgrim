@@ -1,5 +1,7 @@
 # Agent and Contributor Instructions
 
+Follow [the documentation standard](docs/DOCUMENTATION.md) for first-person author voice throughout project documentation, factual changelogs, and naming the AI tool and verified model for each contribution.
+
 ## Project role
 
 Eldgrim is a character and narrative project in the World of Warcraft Forever roleplaying setting. The repository also contains three distinct technical workstreams:
