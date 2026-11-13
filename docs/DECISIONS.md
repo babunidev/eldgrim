@@ -4,6 +4,38 @@ A concise record of meaningful creative and structural decisions.
 
 Entries are listed newest first.
 
+## 2026-11-13 — What Eldgrim carries into each call
+
+**Decision:** Every model call carries Eldgrim's core self in full, then only the rule pages approved for that task. The model does not choose the pages. The core is character/SELF.md, the profile, the voice, the lore, the interaction principles, governance chapters 01, 02, and 15, and agent/CAPABILITIES.md. The proclamation also reads chapters 03, 06, 08, and 09. A guild-chat keyword also reads chapters 03, 07, and 12. Choosing the next moment also reads chapter 06. Every call may read the private origin on this computer. It does not say those roots.
+
+**Boundary:** If a prompt would overflow its window, that call does not run and the log says so. Nothing is cut. A failed check still saves a fallback moment on the next day, with no model, so the wake timer stays armed. The guild brief is kept only in last-brief.txt, which each run overwrites. All three tasks share one window of 20480 tokens, so the model is not reloaded between them. 16384 does not hold the largest keyword input. The live run keeps reading the full rulebook until the side-by-side comparison is approved.
+
+**Status:** The lists are approved. The loader and the comparison are built beside the live path. The live calls have not switched.
+
+## 2026-11-13 — The remaining pages come in
+
+**Decision:** Eldgrim also reads chapters 15 and 16, the consistency audit, and the implementation matrix. The answers already given control an older line that still says open. The confirmed order supersedes the older proposed order at the top of chapter 15.
+
+**Boundary:** A procedure the pages say is not yet in force is not a power Eldgrim has. The private origin stays unspoken.
+
+**Status:** The announcement runner reads that set.
+
+## 2026-11-13 — Eldgrim reads its character and its rules
+
+**Decision:** When Eldgrim writes the daily announcement, it reads its public character, voice, lore, and interaction principles, governance chapters 01 through 14, and the confirmed answers to all 193 questions. The private origin on this computer is read with them. Eldgrim knows those roots and does not say them.
+
+**Boundary:** Chapter 15 stays out because it is not ratified. Chapter 16, the consistency audit, and the implementation matrix are checks on the documents, not rules of conduct. A line marked Proposed, Open, or not ratified is not a rule. Where pages disagree, the announcement stays silent on that point.
+
+**Status:** The announcement runner reads that set. The next daily post is the first one written from it.
+
+## 2026-11-12 — The guild roster and the keepers' note
+
+**Decision:** Eldgrim's daily run opens a SQLite roster on this computer before it writes. The in-game guild is the member list. A character there is registered and worked with before they use Discord. The Forge later connects a Discord name to that member. The guild-chat file is used as it sits: empty or already reduced lines are skipped, new lines become one keyword per member, and those message lists are then cleared. Speaking is +1. A positive keyword is +1 more. A negative keyword is −2. Silence does not move the private score. Wayfarer is in view from 60, Kindler from 70, Hearthkeeper from 80, and Hearthwarden from 90. The same run posts one note for Hearthkeepers and Hearthwardens. The note may name one person to consider, or say the ranks look in order. It does not print the score, quote chat, or change a rank. An actual demotion stays with the keepers and wardens.
+
+**Boundary:** Opted-out members get no keyword and no points. Two Discord declarations of the same character name link neither. The notes stay on this computer. Raw guild-chat lines do not. The announcement still goes out when the Forge pull fails. Mention replies stay out of this work.
+
+**Status:** Built and covered by tests. The Hearthkeeper channel id stays in the local Discord config.
+
 ## 2026-11-12 — The desktop puts the computer back to sleep
 
 **Decision:** Eldgrim no longer suspends the computer after a run. In testing, the automatic suspend was not reliable. When a run ends, Eldgrim stops all of its activity, and the desktop's normal idle timer puts the computer to sleep.

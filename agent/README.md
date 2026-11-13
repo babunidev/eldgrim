@@ -1,6 +1,6 @@
 # Eldgrim Local Agent
 
-**Status:** Developing. A local runner writes an announcement and the server bot posts it.  
+**Status:** Developing. A local runner refreshes the guild roster, writes an announcement, and the server bot posts it.  
 **Execution model:** One run per day at a moment Eldgrim chose at the end of the previous run; one-shot process.  
 **Inference:** Local Ollama.  
 **Communication:** Discord HTTP API.  
@@ -53,7 +53,7 @@ One daily proclamation is approved and is the first thing built (see [ANNOUNCEME
 
 ## Important boundaries
 
-- The agent reads the Forever addon's SavedVariables on the founder's computer, as specified in [ROSTER.md](ROSTER.md). After a successful reduction, and only while the game client is closed, it may clear the guild-chat message lists in that one file. It does not edit the addon source, and it does not clear the file when the save failed (2026-11-11).
+- The agent reads the Forever addon's SavedVariables on the founder's computer, as specified in [ROSTER.md](ROSTER.md). It uses the file as it sits. After a successful reduction it may clear the guild-chat message lists it used. It does not edit the addon source, and it does not clear the file when the save failed or the file changed during the run (2026-11-12).
 - The agent's behavior does not establish Eldgrim's character canon or reveal concealed character information.
 - Private runtime data, actual Discord messages, database files, credentials, and private prompts do not belong in this public repository.
 - The model cannot execute arbitrary shell commands, arbitrary Python, or unrestricted file operations. Discord administration is approved for a later milestone (2026-11-10), only through the server bot's validated operations.
@@ -79,7 +79,7 @@ The architecture is based on the current official documentation:
 
 ## Sources for the final character instructions
 
-Before drafting the final agent instructions, read character/PROFILE.md, character/VOICE.md, the lore documents and the current governance decision register. Also read the private origin on the founder's computer:
+The daily announcement reads character/PROFILE.md, character/VOICE.md, the lore documents, the interaction principles, governance chapters 01–16, the operating procedures, the consistency audit, the implementation matrix, and the current governance decision register. It also reads the private origin on the founder's computer. A narrower reading is prepared in context.toml and is not what the live run uses until a blind comparison is accepted. The origin file is:
 
 ~~~text
 ~/.local/share/eldgrim/private/ORIGIN.md

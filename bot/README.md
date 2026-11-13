@@ -1,6 +1,6 @@
 # Eldgrim Discord Bot
 
-**Status:** Direction approved by the creative on 2026-11-10. The bot runs on the server as Eldgrim, and the multi-character Forge is deployed with its rank switch on. The local AI conversation system and **PC-local interpreted-memory database** are not built; the bot already has separate operational registration/role data.
+**Status:** Direction approved by the creative on 2026-11-10. The bot runs on the server as Eldgrim, and the multi-character Forge is deployed with its rank switch on. The local roster database is built on the founder's computer. Mention replies are not built. The bot already has separate operational registration and role data.
 
 Eldgrim is an entity, not a man: refer to it as "it", never "he".
 
@@ -76,7 +76,7 @@ The agent/ documents (2026-11-09) describe a once-daily local agent on the creat
 
 The local agent's observations are restricted to designated guild channels, intentionally addressed messages and necessary onboarding/administrative interactions. The bot may separately process other messages for **predefined moderation**, but they do not automatically become Eldgrim's long-term memories. No access to private member conversations outside the application's legitimate participation is authorized. DMs to the bot are used only for their stated purpose.
 
-All @Eldgrim mentions in a collection period may be gathered temporarily, but **their content is purged after the daily processing run**, including unselected questions. Non-content audit metadata must not recreate a hidden archive. The reading and clearing of the raw Forever addon guild chat is specified in [agent/ROSTER.md](../agent/ROSTER.md) and not built; long-term profiles should store relevant, supported interpretations rather than conversation quotations. Internal scores and profiles stay confidential under Q64. Member correction, departure and deletion processes remain to be designed, with applicable legal rights preserved.
+All @Eldgrim mentions in a collection period may be gathered temporarily, but **their content is purged after the daily processing run**, including unselected questions. Non-content audit metadata must not recreate a hidden archive. The reading and clearing of the raw Forever addon guild chat is built, as specified in [agent/ROSTER.md](../agent/ROSTER.md). Long-term profiles store one interpreted keyword rather than conversation quotations. Internal scores and profiles stay confidential under Q64. Member correction, departure and deletion processes remain to be designed, with applicable legal rights preserved.
 
 **Status:** These are approved policy boundaries, not proof of deployed collection, deletion, AI memory or privacy request workflows.
 
@@ -128,5 +128,5 @@ Use the [operating procedures](../governance/OPERATING-PROCEDURES.md) for the ap
 2. Deploy the bot on the server and stop the desktop service. **Done 2026-11-10;** connection to Discord confirmed through the bot's control socket.
 3. Rename the bot to Eldgrim and give it the new profile image. **Done 2026-11-10** by the creative in the Discord Developer Portal.
 4. Specify and build multi-character onboarding. **Done 2026-11-10.** The Forge is live, the public channels are visible to the ranks only, and every member except the server owner restarts at Ember.
-5. Build Eldgrim's roster on the founder's computer from the Forge and the addon archive. **Specified 2026-11-11** in [agent/ROSTER.md](../agent/ROSTER.md). Not built.
-6. One daily proclamation, written on the creative's computer from the character voice and the solid governance pages, then posted by the server bot. **The handoff is in place.** `eldgrim run` asks the server bot to post the announcement it kept. The roster is still not built. Replies to @Eldgrim mentions wait.
+5. Build Eldgrim's roster on the founder's computer from the Forge and the addon archive. **Built 2026-11-12.** A run copies the Forge through a read-only export and reduces the guild-chat file. See [agent/ROSTER.md](../agent/ROSTER.md).
+6. One daily proclamation, written on the creative's computer from the character voice and the solid governance pages, then posted by the server bot. **The handoff is in place.** The same run also posts one note for Hearthkeepers and Hearthwardens. Replies to @Eldgrim mentions wait.

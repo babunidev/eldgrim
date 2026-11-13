@@ -51,22 +51,39 @@ def ensure_server() -> subprocess.Popen[bytes] | None:
     raise OllamaError("Ollama did not become ready.")
 
 
-def chat(messages: list[dict[str, str]], *, num_predict: int) -> str:
+LAST_PROMPT_EVAL: int | None = None
+
+
+def prompt_eval_count() -> int | None:
+    """Tokens Ollama reported for the last chat() call. None before the first reply."""
+    return LAST_PROMPT_EVAL
+
+
+def chat(
+    messages: list[dict[str, str]],
+    *,
+    num_predict: int,
+    temperature: float = 0.8,
+    num_ctx: int = 8192,
+) -> str:
     body = {
         "model": MODEL,
         "messages": messages,
         "stream": False,
         "think": False,
         "keep_alive": "10m",
-        "options": {"temperature": 0.8, "num_predict": num_predict, "num_ctx": 8192},
+        "options": {"temperature": temperature, "num_predict": num_predict, "num_ctx": num_ctx},
     }
+    global LAST_PROMPT_EVAL
     try:
-        return _post_chat(body)
+        text, count = _post_chat(body)
     except OllamaError as exc:
         if "think" not in str(exc).lower() and "400" not in str(exc):
             raise
         body.pop("think")
-        return _post_chat(body)
+        text, count = _post_chat(body)
+    LAST_PROMPT_EVAL = count
+    return text
 
 
 def unload() -> None:
@@ -94,7 +111,7 @@ def stop_server(process: subprocess.Popen[bytes] | None) -> None:
         process.kill()
 
 
-def _post_chat(body: dict) -> str:
+def _post_chat(body: dict) -> tuple[str, int | None]:
     payload = json.dumps(body).encode()
     request = urllib.request.Request(
         HOST + "/api/chat",
@@ -114,7 +131,8 @@ def _post_chat(body: dict) -> str:
     text = str(message.get("content") or "").strip()
     if not text:
         raise OllamaError("Ollama returned an empty message.")
-    return text
+    count = data.get("prompt_eval_count")
+    return text, int(count) if isinstance(count, int) else None
 
 
 def log_path() -> Path:

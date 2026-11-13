@@ -63,7 +63,7 @@ This roadmap records areas of development, not promises or fixed deadlines.
 - [x] Specify the first daily proclamation.
 - [x] Specify the guild roster: one entry from Discord or the addon, sentences reduced to keywords, stored only on the founder's computer.
 - [x] Specify how the guild-chat file is read, compared, valued, and then emptied, and how a roster snapshot shows who is still in the guild.
-- [ ] Build that roster and show a daily run updating it from the guild-chat file without keeping raw sentences.
+- [x] Build that roster. A run updates it from the Forge and the guild-chat file, keeps keywords instead of sentences, and posts one note for the keepers and wardens.
 - [x] Specify the wake: Eldgrim chooses one moment on the next day, a system timer wakes the computer, and the machine sleeps on its own afterwards.
 - [x] Post a finished announcement through the server bot.
 - [x] Move the wake path to root-owned files that never run repository code as root, and leave sleep to the desktop's idle timer after a run.
@@ -72,7 +72,7 @@ This roadmap records areas of development, not promises or fixed deadlines.
 - [ ] Confirm the computer then falls asleep on its own idle timer.
 - [ ] Let members write to Eldgrim, and keep what Eldgrim learns, before it answers them.
 - [ ] Specify, build, and test replies to @Eldgrim mentions. The founder confirmed the limits; the creative asked to build the daily proclamation first.
-- [ ] Transfer shared guild activity to the founder's PC, keep interpreted memory there, and delete the raw archive. The addon half of that cleanup is specified in agent/ROSTER.md and is not built.
+- [ ] Transfer shared guild activity to the founder's PC, keep interpreted memory there, and delete the raw archive. The addon half of that cleanup is built: a run reduces the guild-chat file and clears the lines it used.
 
 The addon remains a recorder only until the creative approves a broader scope. A documented task is not an implemented feature, and API documentation is not an in-game test.
 
@@ -113,6 +113,6 @@ The addon remains a recorder only until the creative approves a broader scope. A
 - [ ] Evaluate scheduled internal intentions and follow-up handling.
 - [ ] Consider proactive messages in explicitly approved channels, with cooldowns and strict daily limits.
 - [ ] Evaluate semantic retrieval only if SQLite text search proves insufficient.
-- [x] Specify addon-data integration: agent/ROSTER.md (2026-11-11). Not built.
+- [x] Specify addon-data integration: agent/ROSTER.md. The roster is built (2026-11-12).
 
-The local runner writes an announcement, posts it through the server bot, and chooses the next wake time; test runs post too. Everything else in the agent is still design until it is implemented and integration-tested. The roster comes before replies and administration.
+The local runner refreshes the guild roster, writes an announcement, posts it through the server bot, posts one note for the keepers and wardens, and chooses the next wake time. Test runs post too. Mention replies and administration are still design until they are implemented and tested.

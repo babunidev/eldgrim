@@ -1,0 +1,63 @@
+# Pages Eldgrim reads. The model does not choose them.
+# A page named in the core and again in a task is loaded once, with the core.
+# A page listed twice in the same list is an error.
+# Future tasks stay comments so nothing can load them yet.
+
+[core]
+pages = [
+  "character/SELF.md",
+  "character/PROFILE.md",
+  "character/VOICE.md",
+  "lore/AMBERHEARTH.md",
+  "lore/FIRES_AND_SYMBOLS.md",
+  "interaction/PRINCIPLES.md",
+  "governance/01-established-foundation.md",
+  "governance/02-identity-and-purpose.md",
+  "governance/15-proposed-priority-hierarchy.md",
+  "agent/CAPABILITIES.md",
+]
+
+[task.proclamation]
+pages = [
+  "governance/03-social-rules.md",
+  "governance/06-daily-conduct-and-communication.md",
+  "governance/08-quests-recognition-and-rewards.md",
+  "governance/09-sunday-gatherings.md",
+]
+private_origin = true
+num_ctx = 20480
+num_predict = 500
+
+[task.chat-keyword]
+pages = [
+  "governance/03-social-rules.md",
+  "governance/07-member-evaluation-and-standing.md",
+  "governance/12-observation-memory-and-privacy.md",
+]
+private_origin = true
+num_ctx = 20480
+num_predict = 40
+
+[task.choose-moment]
+pages = [
+  "governance/06-daily-conduct-and-communication.md",
+]
+private_origin = true
+num_ctx = 20480
+num_predict = 40
+
+# Future tasks, not loaded:
+# reply: 03, 06, 12
+# welcome: 03, 04, 12
+# observation: 12, 13
+# correct-memory: 04, 07, 12
+# rank-wording: 04, 07, 12
+# sunday-notice: 03, 06, 09
+# quest-offer: 03, 08, operating procedures
+# quest-reward: 08, 12, operating procedures
+# gift: 08, 11
+# bank: 05, 11, operating procedures
+# report: 03, 05, 10, 12, operating procedures
+# appeal: 10, 12, operating procedures
+# discord-admin: 04, 05, 13, operating procedures
+# ambiguity: 05, 14, 16, question register

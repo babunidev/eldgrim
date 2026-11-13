@@ -2,12 +2,20 @@
 
 Meaningful repository and documentation changes are recorded here.
 
-## 2026-11-13 — Roleplay rewards
+## 2026-11-13
 
+- Eldgrim's core self and the approved task pages are ready in a manifest. The live run still reads the full rulebook until a blind comparison is accepted. A comparison cannot be posted, and a failed budget check would still arm the next wake.
+- The daily note for Hearthkeepers and Hearthwardens now ends with a guild census: how many members there are, who has written in guild chat in the last seven days, and who holds each profession. Each character keeps only the date of their latest guild-chat line for this.
+- The daily announcement now reads Eldgrim's character, lore, interaction principles, governance chapters 01–16, the operating procedures, the consistency audit, the implementation matrix, and the confirmed answers to all 193 questions. An older line that still says open yields to the confirmed answer. The private origin stays on this computer and is still not spoken.
 - Eldgrim chooses gifts for their fit with the member, character or story. Price, rarity and scarcity carry no weight and trigger no additional approval.
+- Added operating defaults for appeals, evidence, standing corrections, privacy, guild bank, quests and delegated tools. Reconciled the open-items chapter with the confirmed decision register.
+- Established MIT for original agent/bot/addon code, with character rights separate and updated repository documentation to explain the permission boundary.
+- Preserved third-party authorship and external assets' separate terms. No gameplay or runtime verification is claimed.
 
 ## 2026-11-12
 
+- The in-game guild is the member list. A character there is registered and included in the daily notes before they use Discord. The Forge connects a Discord name to that member later.
+- Eldgrim keeps a guild roster on this computer. A run reads the Forge and the guild-chat file as it sits, stores one keyword per speaking member, and records +1 for speaking, +1 more for a positive keyword, and −2 for a negative keyword. The same run posts one recommendation for Hearthkeepers and Hearthwardens. The score does not change a rank.
 - Eldgrim no longer suspends the computer after a run. It stops its activity and leaves sleep to the desktop's idle timer; the journal names anything that blocks idle-sleep.
 - Second wake test: the PC slept, woke on time and posted, but stayed awake because the unit started before systemd-sleep logged the resume. The helper now keeps looking for the resume during its 30-second settle.
 - The wake test defaults to one minute, timed to the second, and the wake timer fires within a second.
@@ -94,13 +102,3 @@ Meaningful repository and documentation changes are recorded here.
 - No in-game tests, public tags, GitHub Releases, or CurseForge publication were performed.
 
 This changelog describes repository changes, not in-world events.
-
-## Governance procedures
-
-- Added operating defaults for appeals, evidence, standing corrections, privacy, guild bank, quests and delegated tools.
-- Reconciled the open-items chapter with the confirmed decision register.
-
-## 2026-11-13 — License and rights
-
-- Established MIT for original agent/bot/addon code, with character rights separate and updated repository documentation to explain the permission boundary.
-- Preserved third-party authorship and external assets' separate terms. No gameplay or runtime verification is claimed.

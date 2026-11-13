@@ -2,6 +2,36 @@
 
 A concise account of meaningful project development, written from the human creative's perspective.
 
+## 2026-11-13 — A self it carries into every call
+
+The full rulebook was crowding the personality out of a small model. The approved core, a short account of what Eldgrim can do today, and a page list for each task are now written down. The live run still reads the whole rulebook. A blind comparison has to be accepted before that changes. The guild brief is kept in one file that the next run replaces, and a check that does not fit still names a next morning so the computer keeps waking.
+
+**Result:** The loader and the comparison command are in place. The Saturday run is unchanged.
+
+## 2026-11-13 — The last pages come in
+
+The lines still marked open were the policy questions, and those questions are answered. Eldgrim now reads the remaining chapters, the consistency audit, and the implementation matrix with the rest. The confirmed order of what matters stays above the older proposed order. A power the pages say is not yet in force stays out of reach.
+
+**Result:** The announcement runner reads the whole rulebook.
+
+## 2026-11-13 — The whole character, before it speaks
+
+The first announcements read four pages, because the rest of the rules were still being written. The questions are answered now. A run that speaks for the guild reads the character, the lore, the interaction principles, the governance chapters through the known conflicts, and every confirmed answer. The private roots stay on this computer. They are known, and they are not said.
+
+**Result:** The announcement runner reads that set. Chapter 15 stays out until it is ratified.
+
+## 2026-11-13 — The guild comes first
+
+The people in the game are the guild. Waiting until they open Discord left most of them out, including members who will never use it. A character in the guild is now a member from the start. Discord connects a name to that member when they use the Forge. The notes stay. The raw lines do not.
+
+**Result:** In-game characters are registered. A later Forge registration attaches to the member who is already there.
+
+## 2026-11-12 — A roster of its own
+
+The guild needed a memory that lives on this computer. A run now opens that database first, copies the Forge, and reads the guild-chat file as it sits. Someone who spoke gets one keyword for the whole day and a private point: one for being there, one more when the keyword is positive, and two off when it is negative. Keepers and wardens get one short note about the ranks. The note recommends. It does not move anyone.
+
+**Result:** The database, the Forge export, and the daily note are in place. Tests cover an empty file, a second pass over the same lines, an unlinked character, and a note that does not print the score.
+
 ## 2026-11-11 — Testing for real, and sleeping again
 
 Test runs have to post; otherwise there is nothing to test. A review then found weak spots around posting and waking. The model's text could have pinged everyone, the wake script that root ran was a file my own account could change, and the audit note claimed my approval even for runs I never saw. AI made mentions inert on both sides, gave each post an honest note, and recorded when a post's outcome is unclear so it is never sent twice. It also rebuilt the wake path on what worked for Anskar: root holds sleep off and starts the run as me, a small root-owned helper sets the next timer, and after a timer wake the computer goes back to sleep unless something else is keeping it up.

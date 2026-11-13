@@ -7,6 +7,8 @@ from datetime import datetime
 from eldgrim_agent.clock import fallback_moment, next_calendar_day, parse_choice
 from eldgrim_agent.ollama import chat
 
+SYSTEM = "You are Eldgrim. You choose when you next act. You reply with one timestamp."
+
 CHOICE = (
     "Choose the one moment on the next local calendar day when you will next act. "
     "Any minute of that day is allowed. Reply with only the date and time, "
@@ -19,7 +21,7 @@ def choose_next(now: datetime) -> tuple[datetime, str]:
     messages = [
         {
             "role": "system",
-            "content": "You are Eldgrim. You choose when you next act. You reply with one timestamp.",
+            "content": SYSTEM,
         },
         {
             "role": "user",

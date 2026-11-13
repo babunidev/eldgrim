@@ -7,18 +7,27 @@ from __future__ import annotations
 
 import fcntl
 import json
+from contextlib import contextmanager
 from datetime import datetime
 
 from eldgrim_agent.announce import compose
 from eldgrim_agent.choose import choose_next
 from eldgrim_agent.clock import fallback_moment
-from eldgrim_agent.discord_post import PostError, approval_for, post_file
+from eldgrim_agent.context import preflight, save_last_brief
+from eldgrim_agent.discord_post import PostError, approval_for, post_file, post_officer
+from eldgrim_agent.keywords import ask_keyword
 from eldgrim_agent.ollama import OllamaError, ensure_server, stop_server, unload
-from eldgrim_agent.paths import LOCK_PATH, LOGS, ensure_runtime
+from eldgrim_agent.paths import LOCK_PATH, LOGS, OFFICER_NOTES, ensure_runtime
+from eldgrim_agent.refresh import refresh_guild
 from eldgrim_agent.schedule import save_choice
 
+# The live calls keep the full reading until the comparison is approved.
+CONTEXT_SWITCHED = False
 
-def execute(*, scheduled: bool) -> dict[str, object]:
+
+@contextmanager
+def hold_run_lock():
+    """The same lock a scheduled run takes. A second run, or a comparison, waits outside."""
     ensure_runtime()
     handle = LOCK_PATH.open("a+")
     try:
@@ -26,27 +35,61 @@ def execute(*, scheduled: bool) -> dict[str, object]:
     except BlockingIOError as exc:
         handle.close()
         raise RuntimeError("Another Eldgrim run is already in progress.") from exc
+    try:
+        yield
+    finally:
+        fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
+        handle.close()
 
+
+def execute(*, scheduled: bool) -> dict[str, object]:
+    with hold_run_lock():
+        return _execute_locked(scheduled)
+
+
+def _execute_locked(scheduled: bool) -> dict[str, object]:
     started = datetime.now().astimezone()
     report: dict[str, object] = {
         "started": started.isoformat(timespec="seconds"),
         "scheduled": scheduled,
         "posted": False,
         "announcement": "",
+        "officer_posted": False,
         "error": "",
         "next_at": "",
         "next_source": "",
+        "context": [],
     }
     server = None
     try:
         try:
+            if CONTEXT_SWITCHED:
+                blocked = preflight(started)
+                if blocked is not None:
+                    report.update(blocked)
+                    return report
             server = ensure_server()
-            announcement, path = compose(started)
-            report["announcement"] = announcement
-            post_file(path, approval=approval_for(scheduled))
-            report["posted"] = True
+            refreshed = refresh_guild(started, ask_keyword)
+            save_last_brief(refreshed.brief)
+            _remember_officer(started, refreshed.note)
+            if refreshed.forge_error:
+                report["forge"] = refreshed.forge_error
+            if refreshed.chat_error:
+                report["chat"] = refreshed.chat_error
+            try:
+                announcement, path = compose(started, brief=refreshed.brief)
+                report["announcement"] = announcement
+                post_file(path, approval=approval_for(scheduled))
+                report["posted"] = True
+            except (OllamaError, OSError, RuntimeError, PostError) as exc:
+                report["error"] = _join(str(report["error"]), str(exc))
+            try:
+                post_officer(refreshed.note, approval=approval_for(scheduled, officer=True))
+                report["officer_posted"] = True
+            except (OSError, PostError) as exc:
+                report["error"] = _join(str(report["error"]), f"Officer note: {exc}")
         except (OllamaError, OSError, RuntimeError, PostError) as exc:
-            report["error"] = str(exc)
+            report["error"] = _join(str(report["error"]), str(exc))
         try:
             chosen, source = _choose_quietly(started)
             save_choice(chosen, source)
@@ -58,13 +101,22 @@ def execute(*, scheduled: bool) -> dict[str, object]:
         try:
             unload()
         finally:
-            try:
-                stop_server(server)
-            finally:
-                fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
-                handle.close()
-    _write_log(started, report)
+            stop_server(server)
+            _write_log(started, report)
     return report
+
+
+def _join(left: str, right: str) -> str:
+    if left and right:
+        return left + "; " + right
+    return left or right
+
+
+def _remember_officer(started: datetime, note: str) -> None:
+    OFFICER_NOTES.mkdir(parents=True, exist_ok=True)
+    path = OFFICER_NOTES / f"{started.astimezone().strftime('%Y%m%dT%H%M%S')}.md"
+    path.write_text(note.strip() + "\n", encoding="utf-8")
+    path.chmod(0o600)
 
 
 def _write_log(started: datetime, report: dict[str, object]) -> None:

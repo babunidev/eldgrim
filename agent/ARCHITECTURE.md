@@ -224,14 +224,14 @@ Guild-chat archives from the Forever addon are **temporary authorized analysis i
 
 These constraints are approved **design requirements**, not implemented or tested agent features.
 
-The roster built from the Forge and the addon, and the reduction of sentences to keywords, is specified in [ROSTER.md](ROSTER.md). That roster is the overview a later run reads. Replies and other independent actions wait until it exists; the daily announcement already posts.
+The roster is the in-game guild first. The Forge later connects a Discord name to a member who is already there. The reduction of sentences to keywords is specified in [ROSTER.md](ROSTER.md). That roster is the overview a later run reads. Replies and other independent actions wait until it exists; the daily announcement already posts.
 
 ## 9. Confirmed local-memory pipeline — question 138
 
 1. **Sources:** Use only authorized guild-visible messages from World of Warcraft Forever **guild chat** and **explicitly designated shared Discord guild channels**. Do not ingest whispers, private member conversations or private-channel content into Eldgrim's narrative memory. Mentions to Eldgrim remain a distinct temporary question-selection collection (Q100).
 2. **Temporary collection:** The always-online bot may stage raw shared-channel content on the server; the game addon already archives guild chat locally in SavedVariables. Securely transfer only authorized temporary input to the founder's PC. No long-term raw transcript archive on the server. The precise transport and permission mechanism is not yet designed.
 3. **Local interpretation:** The founder's PC runs the AI, selects relevant supported observations about members, characters and shared experiences, and saves **only interpreted memory** to its **local SQLite database**. The founder is the only human with direct access; the authorized local AI uses it under application controls. Internal standing remains confidential.
-4. **Purge:** Delete temporary raw collections after processing, including server staging and local raw copies. For the addon file, the approved cleanup is the one in [ROSTER.md](ROSTER.md): after the keywords and any standing adjustment are committed, clear the guild-chat message lists, leave the profile fields and `EldgrimRoster`, and do this only while the Forever client is closed. A failed commit leaves the messages in place.
+4. **Purge:** Delete temporary raw collections after processing, including server staging and local raw copies. For the addon file, the cleanup is the one in [ROSTER.md](ROSTER.md): after the keyword and the day's points are committed, clear the guild-chat message lists that were used, and leave the profile fields and `EldgrimRoster`. The file is used as it sits. A failed commit, or a file that changed during the run, leaves the messages in place.
 5. **Separate live bot operations:** The deployed bot keeps necessary Character Forge/role/administration data on the server. This is not Eldgrim's narrative-memory database and is not a justification for permanent raw-chat storage.
 6. **Privacy:** Guild-visible source messages may still contain personal data. Preserve Q131–137 and Q139–140 rights and safeguards, and never assume general shared-channel content is readable without the appropriate Discord permissions.
 

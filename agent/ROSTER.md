@@ -1,7 +1,7 @@
 # Eldgrim's guild roster
 
-**Status:** Specified on 2026-11-11. Not implemented and not tested.  
-**Comes before:** Any reply or administrative action Eldgrim takes by itself. The daily announcement already posts without it (2026-11-11).
+**Status:** Built on 2026-11-12. A run opens the local database, refreshes the Forge, reduces new guild-chat lines, then writes. Mention replies still wait.  
+**Comes before:** Any reply or administrative action Eldgrim takes by itself. The daily announcement posts after the refresh, and still posts when the refresh cannot be finished.
 
 Eldgrim acts once a day on the founder's computer. The server bot stays the always-online hands for onboarding and roles. The computer is where Eldgrim reads, reduces what it read to keywords, and keeps the guild roster. A little more lore can still be added to the pages it reads. Lore is not a substitute for the roster.
 
@@ -23,23 +23,23 @@ A guild member enters the roster from either door. Both doors create or update a
 
 | Door | What arrives | Roster result |
 | --- | --- | --- |
-| Discord, through the Character Forge | The member, their fellowship (Roar or Amberhearth), and each character's name, faction, race and class | A person entry, plus one character entry for each registered character |
-| The Forever addon, through guild chat | The speaking character's name and whatever human-readable details the addon actually saved: race, class, level, faction, zone, professions, achievement points | A character entry. A person entry is added only when that character is already registered to a Discord member |
+| The in-game guild, through the addon | The character's name, their guild rank when the roster saved it, and whatever human-readable details the addon actually saved | A member. The character name is the name until Discord is known |
+| Discord, through the Character Forge | The Discord name, their fellowship (Roar or Amberhearth), and each character they declare | That Discord name is attached to the member who already bears the character. A character who was not in the guild yet is added |
 
-An addon character with no Forge registration stays unlinked. A Forge member who has not yet spoken in guild chat still has a roster entry. Two characters with the same name are not merged. An uncertain match never moves a rank, a memory, or a keyword from one entry to another.
+The in-game guild is the member list. A character in that guild is a member Eldgrim works with, whether or not they have used Discord. Some members never will. The Forge connects a Discord name, and the characters that person declares, to the member who is already there. Two Discord members declaring the same character name link neither. An uncertain match never moves a rank, a memory, or a keyword from one entry to another.
 
-The addon file is read after the game has written it, and only while the Forever client is closed. While the client is running, the on-disk file can be stale, and a logout would write the client's copy back over any cleanup. A run that finds the client open skips this file. Raw guild messages and raw Discord sentences are temporary input. They are deleted after the run has reduced them. The cleanup of the addon file is specified under [The guild chat file](#the-guild-chat-file).
+The run uses the addon file as it sits, whether or not the game is open. An empty file is skipped. Lines already reduced are not sent to the model again; if they are still in the file, they are cleared. New lines are reduced, then those message lists are cleared. A file that changes while the run is reading it is left for the next run. Raw guild messages are temporary input. They are not written into the database. The cleanup is specified under [The guild chat file](#the-guild-chat-file).
 
 ## From a sentence to keywords
 
-When a run receives sentences about a person or a character, from a message addressed to Eldgrim or from an authorized guild record, it does four things:
+When a run receives guild-chat lines for a character, it does four things:
 
-1. Attribute the sentence only to a roster entry it can verify: the Discord member who wrote it, or the character name already on the roster.
-2. Read the whole temporary text that belongs to that entry in this run.
-3. Reduce it to keywords: short terms for what was actually said or shown, such as a craft, a place, a companion, or a deed.
-4. Save the keywords on that entry, then delete the sentences.
+1. Attribute them to the member who bears that character name. A name claimed by two people gets no keyword.
+2. Read every new line from that member in this file as one pile. A greeting and a long speech are the same pile.
+3. Reduce the pile to one keyword: a short term for the essence, marked positive, negative, or neither.
+4. Save that one keyword, then clear the message list.
 
-A keyword records whether it was stated or inferred, which door it came from, and when it was saved. The run then compares those keywords with the ones already stored for that entry. A keyword already present, and still true, is left as it is: the member is the same in that respect. A new keyword is added. A later fact marks an older keyword superseded. It does not erase the older keyword silently. Keywords are not a public profile and not a transcript. A sentence that does not belong to a verified entry produces no keyword.
+A keyword records its mark, the guild-chat door, and when it was saved. One member, one run, one keyword. An opted-out member, and a name claimed by two people, produces no keyword. Those lines stay in the file. Keywords are private notes for the founder and for Eldgrim. They are not a public profile and not a transcript.
 
 ## The guild chat file
 
@@ -49,38 +49,39 @@ The table `EldgrimDB` is already sorted by speaking character. Each character ke
 
 For each character in that table, one run does this:
 
-1. Load the character entry, and the person entry only when a Forge registration already links them.
+1. Load the member who bears that character name, creating the member when the guild names them and Discord does not.
 2. Read that character's messages for this run. The text stays temporary.
-3. Reduce the messages to keywords, then compare them with the keywords already stored, as specified above.
-4. Consider internal standing, as specified under [Same, new, and standing](#same-new-and-standing).
+3. Reduce that member's new messages to one keyword, as specified above.
+4. Record the day's standing points, as specified under [Same, new, and standing](#same-new-and-standing).
 5. Commit the database.
-6. Clear that character's message list, leaving an empty list the addon can append to. Profile fields stay. The separate roster table stays.
+6. Clear that character's message list, leaving an empty list the addon can append to. Profile fields stay. The separate roster table stays. An opted-out member's lines stay. A name claimed by two people stays, because it cannot be attributed.
 
 The clear is one fixed operation on this configured file. The model does not choose a path, and it does not receive a general write tool. If the database commit fails, the messages stay for the next run. A message already reduced is recognized by a temporary hash of the character, the timestamp and the text, so a failed clear cannot add the same keyword twice. Those hashes are deleted once the clear has succeeded. They are not a transcript.
 
-The client currently being played also writes `EldgrimRoster` into the same file: a guild name, an update time, and the members present at that refresh. The recorder milestone in this repository does not write that table. When the table is present and its update time is newer than the snapshot last applied, it is how Eldgrim sees who is still in the guild. Chat is not that list. A character who has not spoken is still a member if the newer roster names them. A character missing from a newer roster is no longer in the in-game guild. Their roster membership ends. Eligible personal keywords then follow the departure rule already confirmed: review, and delete or anonymize within 30 days unless a specific retention need applies. Leaving the game guild does not, by itself, remove a Discord member. A missing or older roster is not treated as everyone having left. Public notes, numeric rank indexes, online flags and last-online gaps are not keywords and do not change standing. A human-readable rank, level, class, zone or profession is kept only when the file actually contains it.
+The client currently being played also writes `EldgrimRoster` into the same file: a guild name, an update time, and the members present at that refresh. The recorder milestone in this repository does not write that table. When the table is present and its update time is newer than the snapshot last applied, it is how Eldgrim sees who is still in the guild. Chat is not that list. A character who has not spoken is still a member if the newer roster names them. A character missing from a newer roster is no longer in the in-game guild. Their roster membership ends, and `left_on` records that date. Keywords are not deleted by this run. A later review can use the date for the 30-day departure rule. Leaving the game guild does not, by itself, remove a Discord member. A missing or older roster is not treated as everyone having left. Public notes, numeric rank indexes, online flags and last-online gaps are not keywords and do not change standing. A human-readable rank, level, class, zone or profession is kept only when the file actually contains it.
 
 ## Same, new, and standing
 
-After the keyword comparison, Eldgrim may value what changed. Standing is the internal 0–100 judgment already confirmed in governance chapter 07. It is private. It is not a rank shown to the guild, and it never by itself warns, demotes or removes someone.
+After the keyword is saved, Eldgrim records the day's points. Standing is the internal 0–100 judgment in governance chapter 07. It is private. It is not a rank shown to the guild, and it never by itself warns, demotes, or removes someone.
 
-- A new person starts at 50 when standing is first stored. An unlinked addon character can gain keywords and does not gain a standing score until a verified registration ties that character to a person. Standing belongs to the person.
-- Nothing new, or the same keywords as before, leaves standing where it is. Silence, absence and a quiet log are not a minus.
-- A plus or a minus has to follow the confirmed bands: minor 1–3, significant 4–10, exceptional up to 20, and the result stays inside 0–100. Character facts and personal history give context. They do not move the number by themselves. Kindness, help, creativity and meaningful support can raise it when the messages reasonably support that. Verified misconduct can lower it. A joke, a rumor or an unsupported inference cannot.
-- The adjustment is stored with the rule it relied on and the keyword that supports it. Applying a Discord rank change or a sanction from that number is a later, separate action. It is not part of reading this file.
+- A new member, and a member at Ember, starts at 50. A member who already holds Wayfarer, Kindler, Hearthkeeper, or Hearthwarden starts at that rank's minimum: 60, 70, 80, or 90. The in-game rank is the one that sets this. Standing belongs to the person, including a member who has no Discord account.
+- Any guild-chat message on the day is +1. A positive keyword is +1 more. A negative keyword is −2. A keyword marked neither adds nothing beyond the activity point. Silence adds nothing and takes nothing.
+- The result stays inside 0–100. The adjustment is stored with the rule and the keyword. A later run does not score the same lines again.
+- The score shows who is in view for a rank. It does not apply the rank. Wayfarer is in view at 60, Kindler at 70, Hearthkeeper at 80, and Hearthwarden at 90. There is no demotion below Ember by score. The daily note for Hearthkeepers and Hearthwardens names at most one person, and only when the day's keyword agrees. Otherwise it says the ranks look in order.
+- The same note ends with a census of the in-game guild: the number of members; the number and names of members active in guild chat, meaning a guild-chat line within the last seven days; and each recorded profession with its count and the characters who hold it. A profession appears only when the addon saved it. If the note would pass Discord's 2,000-character limit, every list is shortened alike and ends with "and N more". An opted-out member is never marked active.
 
 ## What the roster holds
 
-The sketch below is the shape of the database. It is not built.
+The sketch below is the shape of the database.
 
 | Record | Keeps |
 | --- | --- |
-| Person | Discord member when known, current display name, fellowship, internal standing when stored, first seen, last updated |
-| Character | Name, faction, race, class, in-game membership when a roster snapshot says so, and any later addon details that were actually present. Linked to a person only by a verified registration |
-| Keyword | The term, the person or character it describes, stated or inferred, source door, time, and any keyword it supersedes |
-| Standing adjustment | The person, the amount, the rule, the supporting keyword, and the time. Private, and not a sanction |
+| Person | Discord name when known, current display name, fellowship, guild rank, internal standing, opt-out, owner flag, first seen, last updated, and `left_on` when no character remains in the game guild |
+| Character | Name, faction, race, class, in-game membership, `left_on` when a newer roster no longer names them, `last_spoke` (only the date of the latest guild-chat line, never its text), and any later addon details that were actually present. A Forge link is marked `declared` |
+| Keyword | The one term for that member on that run, whether it is positive, negative, or neither, source door, and time |
+| Standing adjustment | The person, the amount actually applied, the rule, the supporting keyword, and the time. Private, and not a sanction |
 
-Missing fields stay empty. The agent does not invent a race, a fellowship, or a keyword to fill a gap.
+Missing fields stay empty. The agent does not invent a race, a fellowship, or a keyword to fill a gap. The founder can set opt-out locally with `eldgrim opt-out NAME` and reverse it with `eldgrim opt-in NAME`. `eldgrim roster` prints counts and names, and no chat text.
 
 ## How a run uses it
 

@@ -33,11 +33,15 @@ APPROVAL_REHEARSAL = (
 REHEARSAL_FLAG = Path(os.environ.get("ELDGRIM_REHEARSAL_FLAG", "/run/eldgrim/rehearsal"))
 
 
-def approval_for(scheduled: bool) -> str:
+def approval_for(scheduled: bool, *, officer: bool = False) -> str:
     """The truthful audit note for a run."""
     if scheduled and REHEARSAL_FLAG.is_file():
-        return APPROVAL_REHEARSAL
-    return APPROVAL_SCHEDULED if scheduled else APPROVAL_MANUAL
+        note = APPROVAL_REHEARSAL
+    else:
+        note = APPROVAL_SCHEDULED if scheduled else APPROVAL_MANUAL
+    if officer:
+        note += " This message is the daily note for Hearthkeepers and Hearthwardens."
+    return note
 
 ZERO_WIDTH = "​"
 MENTION = re.compile(r"<(@[!&]?|#)(\d+)>")
@@ -63,7 +67,7 @@ def load_config(path: Path | None = None) -> dict[str, object]:
         key, value = line.split("=", 1)
         values[key.strip()] = value.strip().strip('"').strip("'")
     try:
-        return {
+        loaded: dict[str, object] = {
             "host": values["ssh_host"],
             "identity": values["ssh_identity"],
             "actor": int(values["actor"]),
@@ -71,6 +75,12 @@ def load_config(path: Path | None = None) -> dict[str, object]:
         }
     except (KeyError, ValueError) as exc:
         raise PostError("Discord config needs ssh_host, ssh_identity, actor, and channel.") from exc
+    if values.get("officer_channel"):
+        try:
+            loaded["officer_channel"] = int(values["officer_channel"])
+        except ValueError as exc:
+            raise PostError("The Hearthkeeper channel is not a number.") from exc
+    return loaded
 
 
 def defuse_mentions(text: str) -> str:
@@ -121,12 +131,21 @@ def control(config: dict[str, object], request: dict[str, object], runner=None, 
     return reply
 
 
-def publish(text: str, *, approval: str, config_path: Path | None = None, runner=None, before_apply=None) -> dict[str, object]:
+def publish(
+    text: str,
+    *,
+    approval: str,
+    config_path: Path | None = None,
+    runner=None,
+    before_apply=None,
+    channel: int | None = None,
+) -> dict[str, object]:
     """Preview, then apply the same plan. `before_apply(plan)` runs just before the apply is sent."""
     config = load_config(config_path)
+    target = int(config["channel"] if channel is None else channel)
     preview = control(
         config,
-        {"method": "preview", "actor": config["actor"], "operation": operation(int(config["channel"]), text)},
+        {"method": "preview", "actor": config["actor"], "operation": operation(target, text)},
         runner,
     )
     plan = str(preview["result"]["plan"])
@@ -173,6 +192,15 @@ def state(path: Path) -> str:
         if line.startswith("Posted: "):
             return line[len("Posted: "):].strip()
     return ""
+
+
+def post_officer(text: str, *, approval: str, config_path: Path | None = None, runner=None) -> None:
+    """Post the keepers' note. It is not an announcement file and is not sent twice by `eldgrim post`."""
+    config = load_config(config_path)
+    channel = config.get("officer_channel")
+    if not isinstance(channel, int):
+        raise PostError("The Hearthkeeper channel is not configured.")
+    publish(text, approval=approval, config_path=config_path, runner=runner, channel=channel)
 
 
 def post_file(path: Path, *, approval: str, config_path: Path | None = None, runner=None) -> None:

@@ -129,6 +129,23 @@ class ClockTests(unittest.TestCase):
             path.write_text("# comment\n\nSilver Lantern\nhidden door\n", encoding="utf-8")
             self.assertEqual(load_guard(path), ("silver lantern", "hidden door"))
 
+    def test_a_run_reads_the_character_and_the_confirmed_rules(self):
+        from eldgrim_agent.announce import read_pages
+        from eldgrim_agent.paths import ACTING_PAGES
+
+        names = [path.name for path in ACTING_PAGES]
+        self.assertIn("09-sunday-gatherings.md", names)
+        self.assertIn("QUESTION-DECISIONS.md", names)
+        self.assertIn("VOICE.md", names)
+        self.assertIn("15-proposed-priority-hierarchy.md", names)
+        self.assertIn("CONSISTENCY-AUDIT.md", names)
+        self.assertIn("IMPLEMENTATION-MATRIX.md", names)
+        self.assertIn("OPERATING-PROCEDURES.md", names)
+        text = read_pages()
+        self.assertIn("Attendance is always voluntary", text)
+        self.assertIn("Q111", text)
+        self.assertIn("This supersedes the proposal above.", text)
+
     def test_origin_without_guard_list_refuses_to_compose(self):
         from eldgrim_agent import announce
 
