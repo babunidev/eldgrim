@@ -16,6 +16,9 @@ class Census:
     members: list[str] = field(default_factory=list)
     active: list[str] = field(default_factory=list)
     professions: dict[str, list[str]] = field(default_factory=dict)
+    # (character, level at the last posted note, level now); only characters with a baseline.
+    level_ups: list[tuple[str, int, int]] = field(default_factory=list)
+    has_baseline: bool = True
 
 
 def profession_names(stored: str | None) -> list[str]:
@@ -40,7 +43,8 @@ def take_census(db: sqlite3.Connection, now: datetime) -> Census:
     """Characters in the in-game guild. Active means a guild-chat line within the last seven days."""
     since = (now.astimezone().date() - timedelta(days=ACTIVE_DAYS - 1)).isoformat()
     rows = db.execute(
-        "SELECT name, professions, last_spoke FROM character WHERE in_guild = 1 ORDER BY name COLLATE NOCASE"
+        "SELECT name, professions, last_spoke, level, census_level FROM character "
+        "WHERE in_guild = 1 ORDER BY name COLLATE NOCASE"
     ).fetchall()
     census = Census()
     for row in rows:
@@ -52,6 +56,10 @@ def take_census(db: sqlite3.Connection, now: datetime) -> Census:
             census.active.append(name)
         for profession in profession_names(row["professions"]):
             census.professions.setdefault(profession, []).append(name)
+        if row["level"] is not None and row["census_level"] is not None:
+            if int(row["level"]) > int(row["census_level"]):
+                census.level_ups.append((name, int(row["census_level"]), int(row["level"])))
+    census.has_baseline = any(row["census_level"] is not None for row in rows)
     census.professions = dict(sorted(census.professions.items(), key=lambda item: item[0].casefold()))
     return census
 
@@ -73,8 +81,15 @@ def render_census(census: Census, limit: int | None = None) -> str:
         f"**Active in guild chat, last {ACTIVE_DAYS} days: {len(census.active)}**",
         _names(census.active, limit),
         "",
-        "**Professions**",
     ]
+    if not census.has_baseline:
+        lines.append("**Level-ups:** counted from the next note on.")
+    else:
+        gained = sum(new - old for _name, old, new in census.level_ups)
+        people = len(census.level_ups)
+        lines.append(f"**Level-ups since the last note: {gained}** ({people} {'character' if people == 1 else 'characters'})")
+        lines.append(_names([f"{name} {old} → {new}" for name, old, new in census.level_ups], limit))
+    lines.extend(["", "**Professions**"])
     if not census.professions:
         lines.append("No professions recorded yet.")
     for profession, names in census.professions.items():

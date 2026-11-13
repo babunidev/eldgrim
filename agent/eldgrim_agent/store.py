@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS character (
     in_guild INTEGER NOT NULL DEFAULT 1,
     left_on TEXT,
     last_spoke TEXT,
+    census_level INTEGER,
     updated TEXT NOT NULL
 );
 CREATE TABLE IF NOT EXISTS keyword (
@@ -103,6 +104,14 @@ def _migrate(db: sqlite3.Connection) -> None:
     columns = {str(row["name"]) for row in db.execute("PRAGMA table_info(character)").fetchall()}
     if "last_spoke" not in columns:
         db.execute("ALTER TABLE character ADD COLUMN last_spoke TEXT")
+    if "census_level" not in columns:
+        db.execute("ALTER TABLE character ADD COLUMN census_level INTEGER")
+
+
+def mark_census_levels(db: sqlite3.Connection) -> None:
+    """After the keepers' note is posted, its levels become the baseline for the next note."""
+    db.execute("UPDATE character SET census_level = level WHERE level IS NOT NULL")
+    db.commit()
 
 
 def record_spoke(db: sqlite3.Connection, person_id: int, name: str, day: str) -> None:

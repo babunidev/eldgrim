@@ -2,6 +2,12 @@
 
 A concise account of meaningful project development, written from the human creative's perspective.
 
+## 2026-11-13 — Level-ups in the census
+
+The keepers should see the guild grow, so the census now counts level-ups since the last note. Claude Code (Claude Opus 5.5) added a remembered level per character that moves forward only after the note is posted, so a failed post does not lose a level, and tested it with a synthetic guild.
+
+**Result:** 60 agent tests pass. The first posted note sets the baseline; the one after shows the gains.
+
 ## 2026-11-13 — It knows the people of Amberhearth
 
 Eldgrim should know itself and the people of the fellowship. Every call now reads the guild's characters with their class, rank and professions, right after its self. My choices were that it may name anyone kindly, that opted-out members stay listed, and that declared characters sit under the member's Discord name. Claude Code (Claude Opus 5.5) built the block and tested drafts without posting. The first drafts named the first person on the list twice and invented her deeds, so Claude Code shuffled the order each run and limited what may be said about a named member to the list itself.

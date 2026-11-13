@@ -68,7 +68,7 @@ After the keyword is saved, Eldgrim records the day's points. Standing is the in
 - Any guild-chat message on the day is +1. A positive keyword is +1 more. A negative keyword is −2. A keyword marked neither adds nothing beyond the activity point. Silence adds nothing and takes nothing.
 - The result stays inside 0–100. The adjustment is stored with the rule and the keyword. A later run does not score the same lines again.
 - The score shows who is in view for a rank. It does not apply the rank. Wayfarer is in view at 60, Kindler at 70, Hearthkeeper at 80, and Hearthwarden at 90. There is no demotion below Ember by score. The daily note for Hearthkeepers and Hearthwardens names at most one person, and only when the day's keyword agrees. Otherwise it says the ranks look in order.
-- The same note ends with a census of the in-game guild: the number of members; the number and names of members active in guild chat, meaning a guild-chat line within the last seven days; and each recorded profession with its count and the characters who hold it. A profession appears only when the addon saved it. If the note would pass Discord's 2,000-character limit, every list is shortened alike and ends with "and N more". An opted-out member is never marked active.
+- The same note ends with a census of the in-game guild: the number of members; the number and names of members active in guild chat, meaning a guild-chat line within the last seven days; the level-ups since the last posted note, as a total with each character's old and new level; and each recorded profession with its count and the characters who hold it. Level-ups are counted from each character's level at the last note that was actually posted; a character with no level then is not counted until the following note. A profession appears only when the addon saved it. If the note would pass Discord's 2,000-character limit, every list is shortened alike and ends with "and N more". An opted-out member is never marked active.
 
 ## What Eldgrim knows of the people
 
@@ -83,7 +83,7 @@ The sketch below is the shape of the database.
 | Record | Keeps |
 | --- | --- |
 | Person | Discord name when known, current display name, fellowship, guild rank, internal standing, opt-out, owner flag, first seen, last updated, and `left_on` when no character remains in the game guild |
-| Character | Name, faction, race, class, in-game membership, `left_on` when a newer roster no longer names them, `last_spoke` (only the date of the latest guild-chat line, never its text), and any later addon details that were actually present. A Forge link is marked `declared` |
+| Character | Name, faction, race, class, in-game membership, `left_on` when a newer roster no longer names them, `last_spoke` (only the date of the latest guild-chat line, never its text), `census_level` (the level shown in the last posted keepers' note), and any later addon details that were actually present. A Forge link is marked `declared` |
 | Keyword | The one term for that member on that run, whether it is positive, negative, or neither, source door, and time |
 | Standing adjustment | The person, the amount actually applied, the rule, the supporting keyword, and the time. Private, and not a sanction |
 

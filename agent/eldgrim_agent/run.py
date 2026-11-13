@@ -87,6 +87,7 @@ def _execute_locked(scheduled: bool) -> dict[str, object]:
             try:
                 post_officer(refreshed.note, approval=approval_for(scheduled, officer=True))
                 report["officer_posted"] = True
+                _mark_levels()
             except (OSError, PostError) as exc:
                 report["error"] = _join(str(report["error"]), f"Officer note: {exc}")
         except (OllamaError, OSError, RuntimeError, PostError) as exc:
@@ -106,6 +107,19 @@ def _execute_locked(scheduled: bool) -> dict[str, object]:
             report["context"] = list(report.get("context") or []) + take_records()
             _write_log(started, report)
     return report
+
+
+def _mark_levels() -> None:
+    from eldgrim_agent.store import connect, mark_census_levels
+
+    try:
+        db = connect()
+    except Exception:
+        return
+    try:
+        mark_census_levels(db)
+    finally:
+        db.close()
 
 
 def _join(left: str, right: str) -> str:

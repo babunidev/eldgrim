@@ -27,7 +27,7 @@ def render_note(recommendation: Recommendation, census: Census | None = None) ->
     note = "\n\n".join(parts)
     if census is None:
         return note
-    longest = max([len(census.active), *(len(names) for names in census.professions.values()), 0])
+    longest = max([len(census.active), len(census.level_ups), *(len(names) for names in census.professions.values()), 0])
     # Name everyone when it fits; otherwise shorten every list alike until the note fits one message.
     for limit in [None, *range(longest - 1, -1, -1)]:
         candidate = note + "\n\n" + render_census(census, limit)

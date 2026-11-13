@@ -382,6 +382,72 @@ EldgrimDB = {
         reduce_chat(self.db, self.chat, lambda lines: "neither greeting", NOW)
         self.assertNotIn("Mira Stone", take_census(self.db, NOW).active)
 
+    def test_level_ups_count_from_the_last_posted_note(self):
+        from eldgrim_agent.store import mark_census_levels
+
+        self.db.execute("UPDATE character SET level = 10 WHERE name = 'Mira Stone'")
+        self.db.execute("UPDATE character SET level = 20 WHERE name = 'Élodie Marsh'")
+        self.db.commit()
+        first = take_census(self.db, NOW)
+        self.assertFalse(first.has_baseline)
+        self.assertIn("**Level-ups:** counted from the next note on.", render_census(first))
+        mark_census_levels(self.db)
+        self.db.execute("UPDATE character SET level = 13 WHERE name = 'Mira Stone'")
+        self.db.execute("INSERT INTO character (name, level, updated) VALUES ('Late Arrival', 30, 'x')")
+        self.db.commit()
+        later = take_census(self.db, NOW)
+        self.assertEqual(later.level_ups, [("Mira Stone", 10, 13)])
+        text = render_census(later)
+        self.assertIn("**Level-ups since the last note: 3** (1 character)\nMira Stone 10 → 13", text)
+        mark_census_levels(self.db)
+        self.assertEqual(take_census(self.db, NOW).level_ups, [])
+
+    def test_levels_are_marked_only_after_the_note_is_posted(self):
+        from unittest.mock import patch
+
+        from eldgrim_agent import run
+
+        def fake_refresh(started, ask):
+            from eldgrim_agent.refresh import Refresh
+
+            return Refresh(brief="Newcomers: none", note="A note.")
+
+        marked = []
+        common = [
+            patch("eldgrim_agent.run.preflight", lambda started: None),
+            patch("eldgrim_agent.run.ensure_server", lambda: None),
+            patch("eldgrim_agent.run.stop_server", lambda server: None),
+            patch("eldgrim_agent.run.unload", lambda: None),
+            patch("eldgrim_agent.run.refresh_guild", fake_refresh),
+            patch("eldgrim_agent.run.save_last_brief", lambda text: None),
+            patch("eldgrim_agent.run._remember_officer", lambda started, note: None),
+            patch("eldgrim_agent.run.compose", lambda started, brief: ("Text", Path(self.tmp.name) / "a.md")),
+            patch("eldgrim_agent.run.post_file", lambda path, approval: None),
+            patch("eldgrim_agent.run._choose_quietly", lambda started: (NOW, "fallback")),
+            patch("eldgrim_agent.run.save_choice", lambda chosen, source: None),
+            patch("eldgrim_agent.run._write_log", lambda started, report: None),
+            patch("eldgrim_agent.run.LOCK_PATH", Path(self.tmp.name) / "run.lock"),
+            patch("eldgrim_agent.run.ensure_runtime", lambda: None),
+            patch("eldgrim_agent.run._mark_levels", lambda: marked.append(1)),
+        ]
+        for item in common:
+            item.start()
+        try:
+            from eldgrim_agent.discord_post import PostError
+
+            def refuse(text, approval):
+                raise PostError("bot unreachable")
+
+            with patch("eldgrim_agent.run.post_officer", refuse):
+                run.execute(scheduled=False)
+            self.assertEqual(marked, [])
+            with patch("eldgrim_agent.run.post_officer", lambda text, approval: None):
+                run.execute(scheduled=False)
+            self.assertEqual(marked, [1])
+        finally:
+            for item in common:
+                item.stop()
+
     def test_long_census_is_shortened_to_one_message(self):
         names = [f"Character Number {index}" for index in range(200)]
         census = Census(members=names, active=names[:150], professions={"Tailoring": names[:120], "Mining": names[50:]})

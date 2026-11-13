@@ -4,6 +4,7 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-13
 
+- The keepers' census now counts level-ups since the last posted note, with each character's old and new level.
 - Every model call now knows the people of Amberhearth: each character in the in-game guild with race, class, level, rank and professions, grouped under a member only when declared in the Forge. Built at run time, shuffled every run, never stored in the repository. A proclamation may name a member kindly and say only what the list says.
 - Every model call now reads Eldgrim's core self first, then only the pages approved for that task. The creative approved the switch after two blind comparisons with the full rulebook. The proclamation prompt went from about 38,000 tokens to about 8,700. The run log names the pages each call read. `eldgrim compare --against MODEL` now compares two local models on that reading.
 - A proclamation tells as real only what the brief or pages say; a story may still imagine.
