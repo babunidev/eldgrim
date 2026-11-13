@@ -48,3 +48,7 @@ The [rulebook](governance/README.md) divides the framework into sixteen readable
 | How should code and documentation be handled? | [AGENTS.md](AGENTS.md) · [Documentation guide](docs/DOCUMENTATION.md) |
 
 This is a public repository. Credentials, runtime member data, private messages, local agent memory and concealed character instructions stay outside Git. Technical records distinguish source-level design, tests, live integration and unverified plans.
+
+## License
+
+Original bot, agent and addon code are licensed under [MIT](LICENSE). Eldgrim's character, lore and guild-associated creative content are not automatically included; see [asset rights](ASSET_RIGHTS.md).
