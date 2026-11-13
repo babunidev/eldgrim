@@ -227,3 +227,7 @@ With Eldgrim becoming a distinct character and narrative project, I asked AI to 
 ## 2026-11-13 — Governance reconciliation
 
 AI assistance compared the public working rulebook and ROARguild charter, wrote operating defaults, and identified the deployment evidence still required.
+
+## 2026-11-13 — Giving the repository clear permissions
+
+Public source alone did not explain what others could reuse, so I approved MIT for the agent, bot and addon code while reserving the Eldgrim character identity. AI assistance added the license and brought the project notes into agreement, without changing how the application runs. Other people's content retains its own terms.
