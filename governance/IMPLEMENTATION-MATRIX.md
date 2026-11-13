@@ -3,6 +3,8 @@
 **Baseline:** All 193 founder-confirmed questions, 10 November 2026.  
 **Status:** Requirements mapped; this file is **not** a test report, production sign-off, charter ratification or autonomous deployment authorization.
 
+See the [operating procedures](OPERATING-PROCEDURES.md) for design defaults. This matrix tracks implementation and evidence.
+
 ## Status legend
 
 - **Documented:** Confirmed requirement recorded in the numbered register and relevant chapter.

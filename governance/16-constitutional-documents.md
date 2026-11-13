@@ -51,3 +51,5 @@ Under Q193, interview completion establishes a **consolidated founder-confirmed 
 ---
 
 [← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)
+
+The [operating procedures](OPERATING-PROCEDURES.md) give the current practical defaults. Configuration, appointments, implementation and verification are tracked separately.

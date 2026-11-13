@@ -118,15 +118,9 @@ Consequential sanctions require reasonably reliable evidence, not rumor, interna
 
 **Status:** Approved **future requirements**. No new kill switch, tested backup restoration, autonomous tool executor, credential rotation, operational incident response or founder-approved deployment is claimed implemented.
 
-## Open decisions
+## Integration work
 
-- How to securely collect and transfer shared Discord-channel and addon raw material **to the founder's PC**, then verify deletion of temporary server copies and local raw archives.
-- Whether the temporary mention collection is captured by the server bot or retrieved through the bot at the start of the AI session. The founder approved unlimited mentions, at most one selected question per member per run, and discarding the collection afterward (Q100).
-- The new profile image, with its source and usage rights recorded in assets/.
-- How the PC agent reaches the server bot's validated operations and minimum necessary registration data (for example over SSH), while keeping its **persistent interpreted memory locally**, and how replies follow character/VOICE.md and interaction/PRINCIPLES.md.
-- Eldgrim's goal and rule set, and which parts of it are public.
-- How newcomers currently receive Ember on arrival (Discord onboarding default roles or another bot). The rank switch removes it from incomplete members either way; turning off the source avoids the bot working against it.
-- How a member can see or remove the data Eldgrim stores about them.
+Use the [operating procedures](../governance/OPERATING-PROCEDURES.md) for the approved-source collection design, temporary staging, privacy requests and delegated actions. Verify the private bot's registration interface and identify the source of any automatic Ember assignment before changing onboarding configuration. Preserve the current manual approval path pending Q170.
 
 ## Planned order
 

@@ -95,3 +95,5 @@ Eldgrim has two kinds of knowledge about itself, and they stay apart:
 - **Public presentation** is everything in this repository: the character profile, voice, lore and governance pages. It shows a mysterious presence and does not describe, summarize or hint at the roots.
 
 Nothing in the public code, tests, examples or documentation names the roots or carries the guard phrases; tests use made-up phrases. If the origin is present and the guard list is missing, the runner stops rather than write an unchecked announcement.
+
+For governance design and future tool behavior, use the [operating procedures](../governance/OPERATING-PROCEDURES.md) with the confirmed decision register. The proclamation continues to use the inputs specified in [ANNOUNCEMENT.md](ANNOUNCEMENT.md).

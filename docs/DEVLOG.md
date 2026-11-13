@@ -223,3 +223,7 @@ AI reviewed the repository instructions and documentation, researched the Foreve
 With Eldgrim becoming a distinct character and narrative project, I asked AI to establish a documentation structure that could hold the character's identity, voice, lore, and developing stories without confusing them with Amberhearth's guild administration or a possible future software implementation. The existing README provided the initial direction; AI organized the supporting documents and folder structure, preserving unresolved details as open rather than inventing canon.
 
 **Result:** Documentation structure committed to the repository. No addon, bot, or other software was implemented or verified.
+
+## 2026-11-13 — Governance reconciliation
+
+AI assistance compared the public working rulebook and ROARguild charter, wrote operating defaults, and identified the deployment evidence still required.

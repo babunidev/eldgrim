@@ -31,3 +31,5 @@ Eldgrim's Sunday hearth tradition does **not** reserve the guild calendar. Membe
 ---
 
 [← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)
+
+The [operating procedures](OPERATING-PROCEDURES.md) give the current practical defaults. Configuration, appointments, implementation and verification are tracked separately.

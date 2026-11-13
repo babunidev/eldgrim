@@ -1,6 +1,6 @@
 # Chapter 07 — Member evaluation and standing
 
-> **Status:** Scale, bands and neutral inactivity confirmed (Q53–64); correction workflow open  
+> **Status:** Scale, bands and neutral inactivity confirmed (Q53–64); internal correction procedure specified
 > **Source:** Consolidated guild governance framework, 10 November 2026, v0.1. Working material, not a ratified constitution.
 
 Four categories and 0–100 scale agreed · Bands and evidence rules confirmed
@@ -24,7 +24,7 @@ The baseline drew a conceptual scale from 0 (disengaged) to 100 (exemplary), not
 
 Eldgrim would evaluate members during its daily cycle, recognize the strongest positive contribution, and consider whether problematic behavior warrants a negative consequence.
 
-The scoring system is not yet safe to use for autonomous disciplinary decisions. In the baseline its weights, evidence requirements, decay, corrections, and connection to guild ranks were undefined. Q53–64 below now set the measure, starting value, bands, evidence rules and the separation from discipline; formal source-reliability criteria and the correction workflow remain open.
+The scoring system is not yet safe to use for autonomous disciplinary decisions. In the baseline its weights, evidence requirements, decay, corrections, and connection to guild ranks were undefined. Q53–64 below now set the measure, starting value, bands, evidence rules and the separation from discipline; the [operating procedures](OPERATING-PROCEDURES.md) define source checks and internal correction.
 
 Most importantly, the earlier interpretation of zero as disengagement conflicts with the guild's promise that participation is voluntary. Being absent, quiet, or uninterested in events must be distinguished from misconduct.
 
@@ -39,7 +39,7 @@ Most importantly, the earlier interpretation of zero as disengagement conflicts 
 - **Q60–61:** Inactivity is **neutral without time limit**. Silence, absence, missed messages and optional quests left incomplete are not misconduct. Only documented actions, never absence of action, may warrant negative adjustments. Members may resume participation without penalty or pressure.
 - **Q62:** Unverified interpretations and rumors cannot reduce standing. Negative adjustments require reliable evidence; ambiguous jokes, statements and unsupported AI inferences do not justify penalties. Positive recognition requires reasonably supported observations.
 
-**Not yet settled:** formal source reliability criteria; correction/appeal workflow; handling of the existing-members baseline when no score has been stored; relationship between a score and specific promotions or moderation. A score must not be treated as independently sufficient proof of misconduct. The earlier description of 0 as "disengaged" is superseded: inactivity is neutral, not a negative score state.
+The [operating procedures](OPERATING-PROCEDURES.md) cover the missing baseline and internal corrections. Q63 separates standing from discipline.
 
 ## Interview update — questions 63–64
 
@@ -48,7 +48,7 @@ Most importantly, the earlier interpretation of zero as disengagement conflicts 
 
 ## Refinement queue
 
-- [ ] What correction process governs 0–100 standing? Evidence and bands are set by Q58 and Q62.
+- [x] Internal correction and the missing baseline are specified in the [operating procedures](OPERATING-PROCEDURES.md).
 - [x] How is voluntary nonparticipation prevented from becoming a penalty? Inactivity is neutral (Q60–61).
 - [x] How are private scores related to promotions or discipline? Standing may inform promotion, never discipline alone (Q63).
 

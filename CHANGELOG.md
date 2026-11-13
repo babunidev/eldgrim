@@ -90,3 +90,8 @@ Meaningful repository and documentation changes are recorded here.
 - No in-game tests, public tags, GitHub Releases, or CurseForge publication were performed.
 
 This changelog describes repository changes, not in-world events.
+
+## Governance procedures
+
+- Added operating defaults for appeals, evidence, standing corrections, privacy, guild bank, quests and delegated tools.
+- Reconciled the open-items chapter with the confirmed decision register.

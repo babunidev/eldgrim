@@ -20,7 +20,7 @@ The present design does not yet establish:
 - Who can reverse a technically mistaken or harmful action.
 - Whether permanent removal requires additional safeguards.
 
-The sections below answer each of these as policy (Q63–81, Q155–156, Q164–165, Q171–180). Each batch's *Still open* note records what was open at that point; later batches answer most of them. The procedures are not implemented.
+The sections below answer each of these as policy (Q63–81, Q155–156, Q164–165, Q171–180). The operating procedures describe the remaining setup and verification. The procedures are not implemented.
 
 Randomness can serve roleplay or harmless tie-breaking. It should not determine whether a member is guilty of harassment or deserves permanent exclusion.
 
@@ -59,7 +59,6 @@ Eldgrim's disciplinary scope is guild spaces, guild activities and conduct direc
 - Consequential decisions must be explained to those affected while preserving confidentiality.
 - Eldgrim cannot create offenses beyond the existing guild rules.
 
-**Still open:** exact sanctions and durations, evidence thresholds, right of reply, independent appeal reviewer, exceptional emergency procedure and retention/correction of disciplinary records.
 
 ## Interview update — questions 63 and 65
 
@@ -73,7 +72,6 @@ Eldgrim's disciplinary scope is guild spaces, guild activities and conduct direc
 - **Q67 — Timeout durations:** **Short: 1 hour. Medium: 24 hours. Long: 7 days.** Permanent exclusion is a **ban**, not an indefinite timeout. A lesser response may be chosen when appropriate.
 - **Q68 — Fair hearing:** Eldgrim seeks accounts from those involved and examines evidence before consequential decisions whenever reasonably possible, preferably privately. For a credible immediate safety threat, it may impose a temporary protective measure first, then review the case. Random chance never determines guilt or punishment.
 
-**Still open:** exact evidence thresholds, conflicting testimony, unverified allegations, warning prerequisites, appeals reviewer, reinstatement rules and urgent-review timing. These decisions describe approved governance, not a live automated enforcement implementation.
 
 ## Confirmed procedures — questions 69–71
 
@@ -81,7 +79,6 @@ Eldgrim's disciplinary scope is guild spaces, guild activities and conduct direc
 - **Q70 — Distinct measures:** **Warning:** identifies misconduct and requests correction. **Demotion:** removes social recognition or entrusted responsibilities. **Timeout:** temporarily restricts Discord participation. **Kick:** removes the person from the server without barring rejoining. **Ban:** prevents rejoining unless reversed. All measures require documented reasons.
 - **Q71 — Prior warnings:** Minor and moderate violations ordinarily receive a warning and chance to improve. Serious or critical violations may justify stronger action without a warning. Repeated misconduct may lead to escalation, always subject to proportionality.
 
-**Still open:** independent evidence thresholds, handling single unverified accusations, permanent-ban criteria, formal appeal review, reinstatement, and off-cycle emergency response. These are policy decisions, not proof of automated enforcement.
 
 ## Confirmed procedures — questions 72–74
 
@@ -89,7 +86,6 @@ Eldgrim's disciplinary scope is guild spaces, guild activities and conduct direc
 - **Q73 — Emergency intervention:** Credible urgent threats to members, privacy or community safety permit immediate, proportionate restrictions or removal without advance warning or hearing. Such actions must be recorded and reviewed afterward; ordinary disputes do not qualify as emergencies.
 - **Q74 — Offline protection:** The always-online bot may execute only explicitly authorized, predefined emergency protections while the local AI is inactive; designated human custodians may intervene. Complex judgments await the next agent session. Every emergency action must be logged and reviewed. **No continuous AI monitoring or completed automated enforcement is implied.**
 
-**Open details:** precise ban-appeal process, evidence standards, emergency safeguards and implementation verification.
 
 ## Confirmed procedures — questions 75–77
 
@@ -97,7 +93,6 @@ Eldgrim's disciplinary scope is guild spaces, guild activities and conduct direc
 - **Q76 — Mistakes, jokes and deliberate harm:** Consider context, intent, impact, prior warnings and whether the person responds constructively to an explained boundary. Honest mistakes ordinarily call for clarification. Harmful jokes may warrant correction; deliberate or repeated harm may warrant stronger sanctions. Describing harassment as a joke does not excuse it.
 - **Q77 — Randomness prohibited in discipline:** Chance may be used in storytelling and harmless recreation but never to determine guilt, severity, punishment, appeals or member rights. Decisions must follow evidence, established rules and proportionality.
 
-**Still open:** precise evidence thresholds, appeal reviewer and process, reinstatement and retention. These are approved rules, not evidence of live AI moderation.
 
 ## Confirmed appeals and corrections — questions 78–80
 
@@ -105,7 +100,6 @@ Eldgrim's disciplinary scope is guild spaces, guild activities and conduct direc
 - **Q79 — Reviewer:** Eldgrim may reconsider its decision first. Members may seek review by the founder, whose appeal decision Eldgrim cannot override. If the founder was personally involved in the underlying dispute, a designated impartial human reviewer handles the appeal.
 - **Q80 — Remedy:** Promptly reverse or reduce incorrect sanctions, restore roles/privileges where technically feasible, correct records, and explain the correction to the affected member. Retain a private audit trail of the mistake; do not publish sensitive case details.
 
-**Open operational details:** appeal submission channel, review deadlines, reviewer designation, evidence thresholds and retention. No AI moderation implementation is claimed.
 
 ## Confirmed reinstatement — question 81
 
@@ -121,3 +115,5 @@ A permanently banned member may return only through a successful appeal or a doc
 ---
 
 [← Rulebook index](README.md) · [Amberhearth guild repository](https://github.com/babunidev/ROARguild)
+
+The [operating procedures](OPERATING-PROCEDURES.md) give the current practical defaults. Configuration, appointments, implementation and verification are tracked separately.

@@ -161,11 +161,6 @@ The initial implementation is not complete until all of the following are verifi
 14. Secrets and runtime memory remain outside the repository.
 15. Proactive posting beyond the daily proclamation is disabled unless separately approved and configured.
 
-## 9. Open decisions
+## 9. Configuration and verification
 
-- Discord application identity and channel allowlist.
-- Exact Ollama version and model tag.
-- Deletion/export workflow. Retention periods are set by Q135–137.
-- Whether to enable an optional daily reflection when there are no mentions.
-- Whether proactive communication beyond the daily proclamation should be enabled later.
-- Final per-run limits for replies, tool calls, runtime, and model tokens.
+Use the [operating procedures](../governance/OPERATING-PROCEDURES.md) for temporary mention collection, the private data-request process and initial reply budgets. Configure the permitted guild and channel IDs outside Git. Record the installed Ollama version and model tag during integration verification. The daily proclamation is the only routine proactive output. A run with no eligible mentions sends no replies.

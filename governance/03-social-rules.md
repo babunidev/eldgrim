@@ -1,6 +1,6 @@
 # Chapter 03 — The guild's social rules
 
-> **Status:** Social values established; formal conduct procedure open  
+> **Status:** Social values established; conduct procedure specified; charter adoption pending
 > **Source:** Consolidated guild governance framework, 10 November 2026, v0.1. Working material, not a ratified constitution.
 
 Established values · Formal code of conduct not yet adopted
@@ -40,7 +40,7 @@ These principles establish what the guild is trying to protect. They do not yet 
 - **Q19:** Members may organize their own activities without approval. Eldgrim's event-related responsibility concerns the Sunday evening gathering; member-led events remain independent.
 - **Q20:** Suspension or removal is reserved for serious misconduct or repeated rule violations, with proportionate sanctions, documented reasons and an opportunity to appeal. Severe threats to safety may justify immediate removal.
 
-Final investigation, review and appeal procedures still require decisions in Chapter 10.
+Chapter 10 and the [operating procedures](OPERATING-PROCEDURES.md) govern investigation, review and appeals.
 
 ## Refinement queue
 
