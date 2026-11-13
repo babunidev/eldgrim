@@ -129,39 +129,39 @@ class ClockTests(unittest.TestCase):
             path.write_text("# comment\n\nSilver Lantern\nhidden door\n", encoding="utf-8")
             self.assertEqual(load_guard(path), ("silver lantern", "hidden door"))
 
-    def test_a_run_reads_the_character_and_the_confirmed_rules(self):
-        from eldgrim_agent.announce import read_pages
-        from eldgrim_agent.paths import ACTING_PAGES
+    def test_a_proclamation_reads_its_self_and_the_approved_pages(self):
+        from unittest.mock import patch
 
-        names = [path.name for path in ACTING_PAGES]
-        self.assertIn("09-sunday-gatherings.md", names)
-        self.assertIn("QUESTION-DECISIONS.md", names)
-        self.assertIn("VOICE.md", names)
-        self.assertIn("15-proposed-priority-hierarchy.md", names)
-        self.assertIn("CONSISTENCY-AUDIT.md", names)
-        self.assertIn("IMPLEMENTATION-MATRIX.md", names)
-        self.assertIn("OPERATING-PROCEDURES.md", names)
-        text = read_pages()
-        self.assertIn("Attendance is always voluntary", text)
-        self.assertIn("Q111", text)
-        self.assertIn("This supersedes the proposal above.", text)
+        from eldgrim_agent.announce import STANDING, WRITE
+        from eldgrim_agent.context import build
+
+        with tempfile.TemporaryDirectory() as tmp, \
+                patch("eldgrim_agent.paths.ORIGIN_PATH", Path(tmp) / "absent-origin.md"):
+            built = build("proclamation", data="Newcomers: none", system=STANDING, instruction=WRITE)
+        names = [page.name for page in built.pages]
+        self.assertEqual(names[0], "character/SELF.md")
+        for name in ("character/VOICE.md", "governance/15-proposed-priority-hierarchy.md",
+                     "agent/CAPABILITIES.md", "governance/09-sunday-gatherings.md"):
+            self.assertIn(name, names)
+        for name in ("governance/QUESTION-DECISIONS.md", "governance/CONSISTENCY-AUDIT.md",
+                     "governance/10-moderation-and-discipline.md"):
+            self.assertNotIn(name, names)
+        self.assertIn("Attendance is always voluntary", built.messages[1]["content"])
 
     def test_origin_without_guard_list_refuses_to_compose(self):
+        from unittest.mock import patch
+
         from eldgrim_agent import announce
 
         with tempfile.TemporaryDirectory() as tmp:
             origin = Path(tmp) / "ORIGIN.md"
             origin.write_text("synthetic roots", encoding="utf-8")
-            saved = announce.ORIGIN_PATH, announce.load_guard, announce.chat
             called = []
-            announce.ORIGIN_PATH = origin
-            announce.load_guard = lambda path=None: ()
-            announce.chat = lambda *a, **k: called.append(1) or "text"
-            try:
+            with patch("eldgrim_agent.paths.ORIGIN_PATH", origin), \
+                    patch("eldgrim_agent.paths.GUARD_PATH", Path(tmp) / "absent-guard.txt"), \
+                    patch("eldgrim_agent.announce.chat", lambda *a, **k: called.append(1) or "text"):
                 with self.assertRaises(RuntimeError):
                     announce.compose(NOW)
-            finally:
-                announce.ORIGIN_PATH, announce.load_guard, announce.chat = saved
             self.assertEqual(called, [])
 
 

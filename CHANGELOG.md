@@ -4,7 +4,9 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-13
 
-- Eldgrim's core self and the approved task pages are ready in a manifest. The live run still reads the full rulebook until a blind comparison is accepted. A comparison cannot be posted, and a failed budget check would still arm the next wake.
+- Every model call now reads Eldgrim's core self first, then only the pages approved for that task. The creative approved the switch after two blind comparisons with the full rulebook. The proclamation prompt went from about 38,000 tokens to about 8,700. The run log names the pages each call read. `eldgrim compare --against MODEL` now compares two local models on that reading.
+- A proclamation tells as real only what the brief or pages say; a story may still imagine.
+- Eldgrim's core self and the approved task pages are written in a manifest. A comparison cannot be posted, and a failed budget check still arms the next wake.
 - The daily note for Hearthkeepers and Hearthwardens now ends with a guild census: how many members there are, who has written in guild chat in the last seven days, and who holds each profession. Each character keeps only the date of their latest guild-chat line for this.
 - The daily announcement now reads Eldgrim's character, lore, interaction principles, governance chapters 01–16, the operating procedures, the consistency audit, the implementation matrix, and the confirmed answers to all 193 questions. An older line that still says open yields to the confirmed answer. The private origin stays on this computer and is still not spoken.
 - Eldgrim chooses gifts for their fit with the member, character or story. Price, rarity and scarcity carry no weight and trigger no additional approval.

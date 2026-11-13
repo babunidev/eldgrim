@@ -65,9 +65,10 @@ def chat(
     num_predict: int,
     temperature: float = 0.8,
     num_ctx: int = 8192,
+    model: str | None = None,
 ) -> str:
     body = {
-        "model": MODEL,
+        "model": model or MODEL,
         "messages": messages,
         "stream": False,
         "think": False,
@@ -86,8 +87,8 @@ def chat(
     return text
 
 
-def unload() -> None:
-    payload = json.dumps({"model": MODEL, "keep_alive": 0, "prompt": ""}).encode()
+def unload(model: str | None = None) -> None:
+    payload = json.dumps({"model": model or MODEL, "keep_alive": 0, "prompt": ""}).encode()
     request = urllib.request.Request(
         HOST + "/api/generate",
         data=payload,

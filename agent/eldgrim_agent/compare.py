@@ -1,4 +1,4 @@
-"""Write a blind comparison. It does not post, and it does not build a guild brief."""
+"""Write a blind comparison of two models on the approved reading. It does not post, and it does not build a guild brief."""
 
 from __future__ import annotations
 
@@ -6,8 +6,9 @@ from datetime import datetime
 from pathlib import Path
 from random import SystemRandom
 
-from eldgrim_agent.announce import draft_current, draft_selected
+from eldgrim_agent.announce import draft
 from eldgrim_agent.ollama import ensure_server, stop_server, unload
+from eldgrim_agent.paths import MODEL
 from eldgrim_agent.paths import COMPARE_DIR, LAST_BRIEF, ensure_runtime
 from eldgrim_agent.run import hold_run_lock
 
@@ -45,10 +46,12 @@ def write_blind(pairs: list[tuple[str, str]], directory: Path) -> tuple[Path, Pa
     return texts_path, key_path
 
 
-def compare_proclamations(runs: int = 5, sample: Path | None = None) -> tuple[Path, Path]:
-    """Five of today's reading and five of the new bundle, from one stored brief."""
+def compare_proclamations(runs: int = 5, sample: Path | None = None, *, against: str) -> tuple[Path, Path]:
+    """Drafts from today's model and from another local model, on the same reading and one stored brief."""
     if not 1 <= runs <= 13:
         raise ValueError("Choose between 1 and 13 runs.")
+    if not against.strip() or against.strip() == MODEL:
+        raise ValueError(f"Name a model other than {MODEL} to compare against.")
     brief = load_brief(sample)
     pairs: list[tuple[str, str]] = []
     ensure_runtime()
@@ -57,11 +60,13 @@ def compare_proclamations(runs: int = 5, sample: Path | None = None) -> tuple[Pa
         try:
             server = ensure_server()
             for _ in range(runs):
-                pairs.append(("current", draft_current(brief)))
+                pairs.append((MODEL, draft(brief)))
+            unload()
             for _ in range(runs):
-                pairs.append(("selected", draft_selected(brief)))
+                pairs.append((against, draft(brief, model=against)))
         finally:
             unload()
+            unload(against)
             stop_server(server)
         stamp = datetime.now().astimezone().strftime("%Y%m%dT%H%M%S")
         return write_blind(pairs, COMPARE_DIR / stamp)

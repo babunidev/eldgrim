@@ -44,7 +44,8 @@ def main(argv: list[str] | None = None) -> int:
     context = sub.add_parser("context", help="measure the approved reading without calling the model")
     context_sub = context.add_subparsers(dest="context_command", required=True)
     context_sub.add_parser("check", help="report whether the three tasks fit, including the largest input")
-    compare = sub.add_parser("compare", help="write a blind comparison and do not post it")
+    compare = sub.add_parser("compare", help="compare today's model with another, blind, and do not post")
+    compare.add_argument("--against", required=True, help="the other local Ollama model tag, already pulled")
     compare.add_argument("--runs", type=int, default=5, help="drafts of each kind, 1-13 (default 5)")
     compare.add_argument("--brief", type=Path, default=None, help="a local sample brief, if none has been stored")
     wake = sub.add_parser("wake-test", help="sleep now, let the timer wake the computer, and post")
@@ -71,7 +72,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "context":
         return context_check()
     if args.command == "compare":
-        return run_compare(args.runs, args.brief)
+        return run_compare(args.runs, args.brief, args.against)
     report = execute(scheduled=args.scheduled)
     print(_format_run(report))
     return 1 if report.get("error") else 0
@@ -143,11 +144,11 @@ def context_check() -> int:
     return 0
 
 
-def run_compare(runs: int, sample: Path | None) -> int:
+def run_compare(runs: int, sample: Path | None, against: str) -> int:
     from eldgrim_agent.compare import compare_proclamations
 
     try:
-        texts, key = compare_proclamations(runs, sample)
+        texts, key = compare_proclamations(runs, sample, against=against)
     except (FileNotFoundError, RuntimeError, ValueError) as exc:
         print(str(exc))
         return 1

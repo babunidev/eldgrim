@@ -52,12 +52,13 @@ def ask_keyword(lines: list[str]) -> str:
     text = "\n".join(line.strip() for line in lines if line.strip())
     if len(text) > CHAT_LIMIT:
         text = text[-CHAT_LIMIT:]
-    reply = chat(
-        [
-            {"role": "system", "content": PROMPT},
-            {"role": "user", "content": text or "(no lines)"},
-        ],
-        num_predict=40,
-        temperature=0.2,
-    )
-    return strip_thinking(reply)
+    from eldgrim_agent.announce import _private, discloses_roots
+    from eldgrim_agent.context import build, record
+
+    _private_text, guard = _private()
+    built = build("chat-keyword", data=text or "(no lines)", system=PROMPT, instruction=INSTRUCTION)
+    reply = chat(built.messages, num_predict=built.num_predict, num_ctx=built.num_ctx, temperature=0.2)
+    record(built)
+    reply = strip_thinking(reply)
+    # A keyword that tells a private root is discarded, like any malformed reply.
+    return "" if discloses_roots(reply, guard) else reply

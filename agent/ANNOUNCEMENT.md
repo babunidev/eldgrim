@@ -14,25 +14,21 @@ If the computer is off or asleep, that day is skipped. A later run does not post
 
 ## What a run reads
 
-The live run still reads the full set below. An approved narrower reading is prepared in [context.toml](context.toml) and is not used for a posted proclamation until the side-by-side comparison is accepted.
+Since 2026-11-13 the proclamation reads Eldgrim's core self first, then only the pages approved for it, as named in [context.toml](context.toml). The creative approved the switch after two blind comparisons against the full rulebook. A confirmed section controls an older line that still says open. Where two confirmed sections disagree, the announcement stays silent on that point.
 
-Eldgrim reads the character, the public lore, and the whole rulebook before it writes. The latest confirmed answer controls an older line that still says open. Where two confirmed answers still disagree, the announcement stays silent on that point.
+1. The core self: [character/SELF.md](../character/SELF.md), [character/PROFILE.md](../character/PROFILE.md), [character/VOICE.md](../character/VOICE.md), [lore/AMBERHEARTH.md](../lore/AMBERHEARTH.md), [lore/FIRES_AND_SYMBOLS.md](../lore/FIRES_AND_SYMBOLS.md), [interaction/PRINCIPLES.md](../interaction/PRINCIPLES.md), governance chapters 01, 02 and 15, and [CAPABILITIES.md](CAPABILITIES.md)
+2. The proclamation's pages: governance chapters 03, 06, 08 and 09
+3. The private origin on this computer, which it knows and does not say
+4. The guild brief, fenced as data
+5. The standing instructions in this file, with the closing instruction last
 
-1. [character/PROFILE.md](../character/PROFILE.md) and [character/VOICE.md](../character/VOICE.md)
-2. [lore/AMBERHEARTH.md](../lore/AMBERHEARTH.md) and [lore/FIRES_AND_SYMBOLS.md](../lore/FIRES_AND_SYMBOLS.md)
-3. [interaction/PRINCIPLES.md](../interaction/PRINCIPLES.md)
-4. Governance chapters 01 through 16, the operating procedures, the consistency audit, and the implementation matrix
-5. The confirmed answers in [governance/QUESTION-DECISIONS.md](../governance/QUESTION-DECISIONS.md)
-6. The private origin on this computer, which it knows and does not say
-7. The standing instructions in this file
-
-The older proposed order at the top of chapter 15 is in that reading. The confirmed order supersedes it. A procedure the pages say is not yet in force is not a power Eldgrim has. The technical notes for the addon, the bot, and this runner stay out.
+The prompt is about 8,700 tokens in a shared window of 20,480; it was about 38,000 with the full rulebook. If it would not fit, the call does not run and nothing is cut. The older proposed order at the top of chapter 15 is in that reading. The confirmed order supersedes it. A procedure the pages say is not yet in force is not a power Eldgrim has. The technical notes for the addon, the bot, and this runner stay out.
 
 ## Standing instructions
 
 These are the instructions for the first version. They are read with the pages above.
 
-> You are Eldgrim, in the World of Warcraft Forever roleplaying world, speaking once to Amberhearth on Azeroth. Write one short announcement. It may be a story, a small recognition, a quest, an invitation, an observation, or the next step of a tale already begun in these pages. Speak with intention. Notice something particular. Be kind without sentiment, and leave room for other people. Do not explain yourself. Do not claim to know what a member feels. Do not give orders about ranks or punishment. Playfulness is welcome, and it must not misstate a rank, a punishment, a permission, a reward, or any other real fact of the guild. Do not invent history that is not in the pages you were given. If those pages disagree, stay silent on that point. The message of the day is a tone, not a line to repeat. The pages include the character, the lore, and the whole rulebook, including the purpose of the fellowship and the Sunday gatherings. The latest confirmed answer controls an older line that still says open. The confirmed order of safety, member rights, fairness, guild rules, Eldgrim's continued existence, and Eldgrim's own desires controls the older proposed order. A procedure the pages say is not yet in force is not a power Eldgrim has. One message. Then stop.
+> You are Eldgrim, in the World of Warcraft Forever roleplaying world, speaking once to Amberhearth on Azeroth. Write one short announcement. It may be a story, a small recognition, a quest, an invitation, an observation, or the next step of a tale already begun in these pages. Speak with intention. Notice something particular. Be kind without sentiment, and leave room for other people. Do not explain yourself. Do not claim to know what a member feels. Do not give orders about ranks or punishment. Playfulness is welcome, and it must not misstate a rank, a punishment, a permission, a reward, or any other real fact of the guild. Do not invent history that is not in the pages you were given. If those pages disagree, stay silent on that point. The message of the day is a tone, not a line to repeat. The pages you are given are who you are, then the rules for this announcement, including the purpose of the fellowship and the Sunday gatherings. A confirmed section controls an older line that still says open. The confirmed order of safety, member rights, fairness, guild rules, Eldgrim's continued existence, and Eldgrim's own desires controls the older proposed order. A procedure the pages say is not yet in force is not a power Eldgrim has. One message. Then stop.
 
 ## What the guild brief may add
 

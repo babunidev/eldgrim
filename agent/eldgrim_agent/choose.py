@@ -17,20 +17,22 @@ CHOICE = (
 
 
 def choose_next(now: datetime) -> tuple[datetime, str]:
+    from eldgrim_agent.announce import _private, discloses_roots
+    from eldgrim_agent.context import build, record
+
     tomorrow = next_calendar_day(now).date().isoformat()
-    messages = [
-        {
-            "role": "system",
-            "content": SYSTEM,
-        },
-        {
-            "role": "user",
-            "content": f"The next local calendar day is {tomorrow}.\n{CHOICE}",
-        },
-    ]
     try:
-        raw = chat(messages, num_predict=40)
+        _private_text, guard = _private()
+        built = build(
+            "choose-moment",
+            system=SYSTEM,
+            instruction=f"The next local calendar day is {tomorrow}.\n{CHOICE}",
+        )
+        raw = chat(built.messages, num_predict=built.num_predict, num_ctx=built.num_ctx)
+        record(built)
     except Exception:
+        return fallback_moment(now), "fallback"
+    if discloses_roots(raw, guard):
         return fallback_moment(now), "fallback"
     chosen = parse_choice(raw, now)
     if chosen is None:

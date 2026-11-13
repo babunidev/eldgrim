@@ -223,8 +223,48 @@ class ContextTests(unittest.TestCase):
         self.assertIn("Tell as real only what the brief or the pages say", tail)
         self.assertIn("plainly a tale", tail)
 
-    def test_the_live_run_is_not_switched(self):
-        self.assertFalse(CONTEXT_SWITCHED)
+    def test_the_live_run_is_switched(self):
+        self.assertTrue(CONTEXT_SWITCHED)
+
+    def test_live_calls_read_the_approved_reading_and_record_it(self):
+        from eldgrim_agent import announce, choose, keywords
+        from eldgrim_agent.context import take_records
+
+        take_records()
+        sent = []
+
+        def fake_chat(messages, **options):
+            sent.append((messages, options))
+            return "positive kept company"
+
+        with patch("eldgrim_agent.keywords.chat", fake_chat):
+            self.assertEqual(keywords.ask_keyword(["Hello there"]), "positive kept company")
+        with patch("eldgrim_agent.choose.chat", lambda messages, **options: "2026-11-14 10:30"):
+            chosen, source = choose.choose_next(NOW)
+        self.assertEqual((chosen.hour, chosen.minute, source), (10, 30, "model"))
+        with patch("eldgrim_agent.announce.chat", lambda messages, **options: "The kettle sings."):
+            self.assertEqual(announce.draft("Newcomers: none"), "The kettle sings.")
+        records = take_records()
+        self.assertEqual([entry["task"] for entry in records], ["chat-keyword", "choose-moment", "proclamation"])
+        for entry in records:
+            self.assertIn("character/SELF.md", entry["pages"])
+            self.assertEqual(entry["num_ctx"], 20480)
+        keyword_messages, keyword_options = sent[0]
+        self.assertEqual(keyword_messages[0]["content"], PROMPT)
+        self.assertTrue(keyword_messages[1]["content"].endswith(INSTRUCTION))
+        self.assertIn("violet test root", keyword_messages[1]["content"])
+        self.assertEqual(keyword_options["temperature"], 0.2)
+        self.assertEqual(take_records(), [])
+
+    def test_a_reply_that_tells_a_root_is_discarded(self):
+        from eldgrim_agent import choose, keywords
+        from eldgrim_agent.context import take_records
+
+        with patch("eldgrim_agent.keywords.chat", lambda messages, **options: "positive violet test root"):
+            self.assertEqual(keywords.ask_keyword(["Hello"]), "")
+        with patch("eldgrim_agent.choose.chat", lambda messages, **options: "2026-11-14 10:30 violet test root"):
+            self.assertEqual(choose.choose_next(NOW)[1], "fallback")
+        take_records()
 
     def _held_lock(self):
         import fcntl
@@ -244,19 +284,19 @@ class ContextTests(unittest.TestCase):
         sample = Path(self.tmp.name) / "brief.txt"
         sample.write_text("Newcomers: none\n", encoding="utf-8")
         output = Path(self.tmp.name) / "compare"
-        server, current, selected = MagicMock(), MagicMock(), MagicMock()
+        server, drafted = MagicMock(), MagicMock()
         with patch("eldgrim_agent.run.LOCK_PATH", lock), \
                 patch("eldgrim_agent.run.ensure_runtime"), \
                 patch("eldgrim_agent.compare.ensure_runtime"), \
                 patch("eldgrim_agent.compare.COMPARE_DIR", output), \
                 patch("eldgrim_agent.compare.ensure_server", server), \
-                patch("eldgrim_agent.compare.draft_current", current), \
-                patch("eldgrim_agent.compare.draft_selected", selected):
+                patch("eldgrim_agent.compare.draft", drafted):
             with self.assertRaisesRegex(RuntimeError, "already in progress"):
-                compare.compare_proclamations(2, sample)
+                compare.compare_proclamations(2, sample, against="other-model:test")
+            with self.assertRaisesRegex(ValueError, "other than"):
+                compare.compare_proclamations(2, sample, against=compare.MODEL)
         server.assert_not_called()
-        current.assert_not_called()
-        selected.assert_not_called()
+        drafted.assert_not_called()
         self.assertFalse(output.exists())
 
     def test_compare_keeps_the_key_out_of_the_texts(self):

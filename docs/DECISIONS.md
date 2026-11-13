@@ -8,9 +8,9 @@ Entries are listed newest first.
 
 **Decision:** Every model call carries Eldgrim's core self in full, then only the rule pages approved for that task. The model does not choose the pages. The core is character/SELF.md, the profile, the voice, the lore, the interaction principles, governance chapters 01, 02, and 15, and agent/CAPABILITIES.md. The proclamation also reads chapters 03, 06, 08, and 09. A guild-chat keyword also reads chapters 03, 07, and 12. Choosing the next moment also reads chapter 06. Every call may read the private origin on this computer. It does not say those roots.
 
-**Boundary:** If a prompt would overflow its window, that call does not run and the log says so. Nothing is cut. A failed check still saves a fallback moment on the next day, with no model, so the wake timer stays armed. The guild brief is kept only in last-brief.txt, which each run overwrites. All three tasks share one window of 20480 tokens, so the model is not reloaded between them. 16384 does not hold the largest keyword input. The live run keeps reading the full rulebook until the side-by-side comparison is approved.
+**Boundary:** If a prompt would overflow its window, that call does not run and the log says so. Nothing is cut. A failed check still saves a fallback moment on the next day, with no model, so the wake timer stays armed. The guild brief is kept only in last-brief.txt, which each run overwrites. All three tasks share one window of 20480 tokens, so the model is not reloaded between them. 16384 does not hold the largest keyword input. The live run read the full rulebook until the comparison was approved.
 
-**Status:** The lists are approved. The loader and the comparison are built beside the live path. The live calls have not switched.
+**Status:** The lists are approved. After two blind comparisons, the creative approved the switch on 2026-11-13, and the three live calls now use this reading. The full-rulebook reading is removed. A real call without posting measured 8,749 prompt tokens for the proclamation, 10,444 for a keyword and 5,793 for the next moment.
 
 ## 2026-11-13 — The remaining pages come in
 

@@ -13,7 +13,7 @@ from datetime import datetime
 from eldgrim_agent.announce import compose
 from eldgrim_agent.choose import choose_next
 from eldgrim_agent.clock import fallback_moment
-from eldgrim_agent.context import preflight, save_last_brief
+from eldgrim_agent.context import preflight, save_last_brief, take_records
 from eldgrim_agent.discord_post import PostError, approval_for, post_file, post_officer
 from eldgrim_agent.keywords import ask_keyword
 from eldgrim_agent.ollama import OllamaError, ensure_server, stop_server, unload
@@ -22,7 +22,8 @@ from eldgrim_agent.refresh import refresh_guild
 from eldgrim_agent.schedule import save_choice
 
 # The live calls keep the full reading until the comparison is approved.
-CONTEXT_SWITCHED = False
+# Approved by the creative on 2026-11-13 after two blind comparisons.
+CONTEXT_SWITCHED = True
 
 
 @contextmanager
@@ -102,6 +103,7 @@ def _execute_locked(scheduled: bool) -> dict[str, object]:
             unload()
         finally:
             stop_server(server)
+            report["context"] = list(report.get("context") or []) + take_records()
             _write_log(started, report)
     return report
 

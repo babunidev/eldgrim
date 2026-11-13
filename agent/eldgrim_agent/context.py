@@ -94,6 +94,23 @@ def build(
     return Built(task, messages, tuple(records), estimate, num_ctx, num_predict)
 
 
+_RECORDS: list[dict[str, object]] = []
+
+
+def record(built: Built) -> None:
+    """Note what a live call read, with the prompt size Ollama reported. Hashes and counts only."""
+    from eldgrim_agent.ollama import prompt_eval_count
+
+    _RECORDS.append(log_entry(built, prompt_eval_count()))
+
+
+def take_records() -> list[dict[str, object]]:
+    """Hand the run its records and start empty for the next run."""
+    taken = list(_RECORDS)
+    _RECORDS.clear()
+    return taken
+
+
 def log_entry(built: Built, actual: int | None) -> dict[str, object]:
     """Hashes and counts only. No page text and no chat."""
     return {

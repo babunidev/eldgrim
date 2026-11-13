@@ -2,6 +2,12 @@
 
 A concise account of meaningful project development, written from the human creative's perspective.
 
+## 2026-11-13 — The new reading goes live
+
+Two blind rounds of ten proclamations each settled it. The full rulebook wrote the same sentence again and again, while the narrower reading varied and sounded more like the character. The first round also invented a traveler's find, so the closing instruction now forbids news that is not in the brief or the pages, while a story may still imagine. I approved the switch. AI assistance pointed the three live calls at the loader, removed the old reading, recorded which pages each call reads in the run log, and tested a real call of each kind without posting.
+
+**Result:** 54 agent tests pass. The proclamation prompt is about 8,700 tokens instead of 38,000. The comparison command now compares two local models on the same reading.
+
 ## 2026-11-13 — A self it carries into every call
 
 The full rulebook was crowding the personality out of a small model. The approved core, a short account of what Eldgrim can do today, and a page list for each task are now written down. The live run still reads the whole rulebook. A blind comparison has to be accepted before that changes. The guild brief is kept in one file that the next run replaces, and a check that does not fit still names a next morning so the computer keeps waking.
