@@ -36,7 +36,7 @@ These are the instructions for the first version. They are read with the pages a
 
 ## What the guild brief may add
 
-After the roster refresh, the same prompt receives a short guild brief: the names of newcomers, and a few general themes with no name attached. The instruction on that brief is to never quote guild chat and never attribute a detail to a person. The public announcement still does not give orders about ranks or punishment. If the Forge pull fails, or the chat file is empty, the announcement is still written from the pages and from whatever the database already holds.
+After the roster refresh, the same prompt receives a short guild brief: the names of newcomers, and a few general themes with no name attached. The instruction on that brief is to never quote guild chat and never attribute a detail to a person. The closing instruction allows Eldgrim to tell as real only what the brief or the pages say: no event, find, gathering or fire's place that is not there. A story may imagine, as long as it reads plainly as a tale and not as news (2026-11-13, after a blind comparison invented a traveler's find). The public announcement still does not give orders about ranks or punishment. If the Forge pull fails, or the chat file is empty, the announcement is still written from the pages and from whatever the database already holds.
 
 ## The note for Hearthkeepers and Hearthwardens
 

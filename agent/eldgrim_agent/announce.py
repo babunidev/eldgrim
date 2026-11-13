@@ -36,7 +36,12 @@ STANDING = (
 
 
 MOTTO = "play to inspire, not to impress."
-WRITE = "Write the one announcement. Output only the announcement."
+WRITE = (
+    "Write the one announcement. Tell as real only what the brief or the pages say. "
+    "Do not announce an event, a find, a gathering, or a fire's place that is not there. "
+    "A story may imagine, as long as it is plainly a tale and not news. "
+    "Output only the announcement."
+)
 
 
 def load_guard(path=GUARD_PATH) -> tuple[str, ...]:

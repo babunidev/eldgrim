@@ -217,6 +217,12 @@ class ContextTests(unittest.TestCase):
             windows.add(built.num_ctx)
         self.assertEqual(windows, {20480})
 
+    def test_proclamation_ends_by_forbidding_invented_news(self):
+        built = build("proclamation", data="Newcomers: none", system=STANDING, instruction=WRITE)
+        tail = built.messages[-1]["content"].rsplit("Newcomers: none", 1)[1]
+        self.assertIn("Tell as real only what the brief or the pages say", tail)
+        self.assertIn("plainly a tale", tail)
+
     def test_the_live_run_is_not_switched(self):
         self.assertFalse(CONTEXT_SWITCHED)
 
