@@ -4,13 +4,13 @@ A concise account of meaningful project development, written from the human crea
 
 ## 2026-11-13 — It knows the people of Amberhearth
 
-Eldgrim should know itself and the people of the fellowship. Every call now reads the guild's characters with their class, rank and professions, right after its self. I chose that it may name anyone kindly, that opted-out members stay listed, and that declared characters sit under the member's Discord name. The first drafts named the first person on the list twice and invented her deeds, so AI assistance shuffled the order each run and limited what may be said about a named member to the list itself.
+Eldgrim should know itself and the people of the fellowship. Every call now reads the guild's characters with their class, rank and professions, right after its self. My choices were that it may name anyone kindly, that opted-out members stay listed, and that declared characters sit under the member's Discord name. Claude Code (Claude Opus 5.5) built the block and tested drafts without posting. The first drafts named the first person on the list twice and invented her deeds, so Claude Code shuffled the order each run and limited what may be said about a named member to the list itself.
 
 **Result:** 58 agent tests pass. With the narrower rule, five drafts named no one and invented nothing about a member.
 
 ## 2026-11-13 — The new reading goes live
 
-Two blind rounds of ten proclamations each settled it. The full rulebook wrote the same sentence again and again, while the narrower reading varied and sounded more like the character. The first round also invented a traveler's find, so the closing instruction now forbids news that is not in the brief or the pages, while a story may still imagine. I approved the switch. AI assistance pointed the three live calls at the loader, removed the old reading, recorded which pages each call reads in the run log, and tested a real call of each kind without posting.
+Two blind rounds of ten proclamations each settled it. The full rulebook wrote the same sentence again and again, while the narrower reading varied and sounded more like the character. The first round also invented a traveler's find, so the closing instruction now forbids news that is not in the brief or the pages, while a story may still imagine. After reading both rounds, the switch had my approval. Claude Code (Claude Opus 5.5) ran the comparisons, pointed the three live calls at the loader, removed the old reading, recorded which pages each call reads in the run log, and tested a real call of each kind without posting.
 
 **Result:** 54 agent tests pass. The proclamation prompt is about 8,700 tokens instead of 38,000. The comparison command now compares two local models on the same reading.
 
