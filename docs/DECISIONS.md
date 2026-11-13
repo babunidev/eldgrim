@@ -4,6 +4,14 @@ A concise record of meaningful creative and structural decisions.
 
 Entries are listed newest first.
 
+## 2026-11-13 — Eldgrim knows the people of Amberhearth
+
+**Decision:** Every model call knows who is in the guild: each character in the in-game guild with race, class, level, in-game rank and professions, built at run time from the local database. Characters a member declared in the Forge are grouped under that member's Discord name. Opted-out members stay listed with basic facts. The proclamation may name any member, kindly.
+
+**Boundary:** The block never holds standing, keywords, chat, Discord ids or location, and is never stored in the repository. A named member is given only what their line says. Discord names are never used in public. An opted-out member is not named in public (Q132). The order is shuffled every run so no name is favoured. Undeclared characters are never merged (Q158).
+
+**Status:** Implemented and tested with synthetic data; five real drafts without posting named no one and invented no member's deeds. The 8B model either invents about a named member or names no one, so a fair rotation chosen by code is a possible later step.
+
 ## 2026-11-13 — What Eldgrim carries into each call
 
 **Decision:** Every model call carries Eldgrim's core self in full, then only the rule pages approved for that task. The model does not choose the pages. The core is character/SELF.md, the profile, the voice, the lore, the interaction principles, governance chapters 01, 02, and 15, and agent/CAPABILITIES.md. The proclamation also reads chapters 03, 06, 08, and 09. A guild-chat keyword also reads chapters 03, 07, and 12. Choosing the next moment also reads chapter 06. Every call may read the private origin on this computer. It does not say those roots.

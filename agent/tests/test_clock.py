@@ -136,7 +136,8 @@ class ClockTests(unittest.TestCase):
         from eldgrim_agent.context import build
 
         with tempfile.TemporaryDirectory() as tmp, \
-                patch("eldgrim_agent.paths.ORIGIN_PATH", Path(tmp) / "absent-origin.md"):
+                patch("eldgrim_agent.paths.ORIGIN_PATH", Path(tmp) / "absent-origin.md"), \
+                patch("eldgrim_agent.paths.DATABASE_PATH", Path(tmp) / "absent.sqlite3"):
             built = build("proclamation", data="Newcomers: none", system=STANDING, instruction=WRITE)
         names = [page.name for page in built.pages]
         self.assertEqual(names[0], "character/SELF.md")

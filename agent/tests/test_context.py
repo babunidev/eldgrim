@@ -45,6 +45,11 @@ class ContextTests(unittest.TestCase):
         self.guard_patch.start()
         self.addCleanup(self.origin_patch.stop)
         self.addCleanup(self.guard_patch.stop)
+        # Never the real guild: a synthetic roster database for every test.
+        self.database = root / "people.sqlite3"
+        self.database_patch = patch("eldgrim_agent.paths.DATABASE_PATH", self.database)
+        self.database_patch.start()
+        self.addCleanup(self.database_patch.stop)
 
     def test_core_comes_before_task_pages(self):
         built = build("proclamation", data="A newcomer arrived.", system=STANDING, instruction=WRITE)
@@ -222,6 +227,85 @@ class ContextTests(unittest.TestCase):
         tail = built.messages[-1]["content"].rsplit("Newcomers: none", 1)[1]
         self.assertIn("Tell as real only what the brief or the pages say", tail)
         self.assertIn("plainly a tale", tail)
+
+    def _synthetic_guild(self):
+        from eldgrim_agent.store import connect, upsert_forge
+
+        db = connect(self.database)
+        upsert_forge(db, [{
+            "member": 501, "display_name": "Wren", "fellowship": "Amberhearth", "rank": "Kindler",
+            "owner": False,
+            "characters": [{"name": "Wren Ashvale", "race": "Dwarf", "class": "Paladin"},
+                           {"name": "Wren Tallow", "race": "Gnome", "class": "Mage"}],
+        }], NOW)
+        when = "2026-11-13T19:00:00+01:00"
+        db.execute(
+            "INSERT INTO person (display_name, standing, rank, opt_out, created, updated) VALUES ('Quiet Fen', 77, 'Ember', 1, ?, ?)",
+            (when, when),
+        )
+        quiet = db.execute("SELECT id FROM person WHERE display_name = 'Quiet Fen'").fetchone()["id"]
+        db.execute(
+            "INSERT INTO character (person_id, name, class_name, level, game_rank, link, updated) VALUES (?, 'Quiet Fen', 'Hunter', 20, 'Ember', 'in-game', ?)",
+            (quiet, when),
+        )
+        db.execute(
+            "INSERT INTO character (name, class_name, in_guild, left_on, updated) VALUES ('Gone Away', 'Rogue', 0, '2026-11-01', ?)",
+            (when,),
+        )
+        db.execute(
+            "UPDATE character SET level = 14, game_rank = 'Kindler', professions = ? WHERE name = 'Wren Ashvale'",
+            ('professions = {\n\t{\n\t\t["name"] = "Blacksmithing",\n\t},\n}',),
+        )
+        person = db.execute("SELECT person_id FROM character WHERE name = 'Wren Ashvale'").fetchone()["person_id"]
+        db.execute("INSERT INTO keyword (person_id, term, polarity, source, created) VALUES (?, 'sharp words', 'negative', 'guild-chat', ?)", (person, when))
+        db.commit()
+        db.close()
+
+    def test_people_lists_members_and_nothing_judged(self):
+        from eldgrim_agent.people import PRIVATE, load_people
+
+        self._synthetic_guild()
+        text = load_people(shuffle=False)
+        self.assertIn("3 characters are in the in-game guild.", text)
+        self.assertIn("- Wren, on Discord, plays:", text)
+        self.assertIn("  - Wren Ashvale: Dwarf Paladin; level 14; Kindler; Blacksmithing", text)
+        self.assertIn("  - Wren Tallow: Gnome Mage", text)
+        self.assertIn(f"- Quiet Fen: Hunter; level 20; Ember ({PRIVATE})", text)
+        for absent in ("Gone Away", "77", "sharp words", "501", "standing"):
+            self.assertNotIn(absent, text)
+
+    def test_people_order_changes_between_runs(self):
+        from eldgrim_agent.people import load_people
+
+        self._synthetic_guild()
+        orders = {load_people() for _ in range(30)}
+        self.assertGreater(len(orders), 1)
+        self.assertTrue(all(order.startswith("3 characters are in the in-game guild.") for order in orders))
+
+    def test_people_never_creates_or_changes_the_database(self):
+        from eldgrim_agent.people import load_people
+
+        self.assertFalse(self.database.exists())
+        self.assertIn("No one is recorded", load_people())
+        self.assertFalse(self.database.exists())
+        self._synthetic_guild()
+        before = self.database.read_bytes()
+        load_people()
+        self.assertEqual(self.database.read_bytes(), before)
+
+    def test_every_task_knows_the_people_after_its_self(self):
+        self._synthetic_guild()
+        for task, (system, instruction) in {
+            "proclamation": (STANDING, WRITE),
+            "chat-keyword": (PROMPT, INSTRUCTION),
+            "choose-moment": (CHOOSE_SYSTEM, CHOICE),
+        }.items():
+            built = build(task, data="x", system=system, instruction=instruction)
+            names = [page.name for page in built.pages]
+            self.assertIn("The people of Amberhearth", names, task)
+            core_end = names.index("agent/CAPABILITIES.md")
+            self.assertEqual(names.index("The people of Amberhearth"), core_end + 1, task)
+            self.assertIn("Wren Ashvale", built.messages[1]["content"])
 
     def test_the_live_run_is_switched(self):
         self.assertTrue(CONTEXT_SWITCHED)

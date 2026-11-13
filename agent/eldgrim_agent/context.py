@@ -71,10 +71,14 @@ def build(
     ordered = core + [name for name in extra if name not in core]
     blocks: list[str] = []
     records: list[PageRecord] = []
-    for name in ordered:
+    for index, name in enumerate(ordered):
+        if index == len(core) and loaded["core"].get("people", False):
+            _add_people(blocks, records)
         text = _read_page(repo, name)
         blocks.append(f"## {name}\n\n{text}")
         records.append(PageRecord(name, hashlib.sha256(text.encode()).hexdigest()))
+    if len(ordered) == len(core) and loaded["core"].get("people", False):
+        _add_people(blocks, records)
     if spec.get("private_origin", False):
         origin = _origin_text()
         if origin:
@@ -177,6 +181,15 @@ def save_last_brief(text: str, path: Path | None = None) -> None:
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(text, encoding="utf-8")
     target.chmod(0o600)
+
+
+def _add_people(blocks: list[str], records: list[PageRecord]) -> None:
+    """Who is in Amberhearth, right after the core self. Built from the local database."""
+    from eldgrim_agent.people import HEADING, load_people
+
+    known = load_people()
+    blocks.append(f"## {HEADING}\n\n{known}")
+    records.append(PageRecord(HEADING, hashlib.sha256(known.encode()).hexdigest()))
 
 
 def _once(names: list[str], label: str) -> list[str]:

@@ -16,6 +16,9 @@ pages = [
   "governance/15-proposed-priority-hierarchy.md",
   "agent/CAPABILITIES.md",
 ]
+# Built at run time from the local database, never stored here: every character in the
+# in-game guild with race, class, level, in-game rank and professions (approved 2026-11-13).
+people = true
 
 [task.proclamation]
 pages = [

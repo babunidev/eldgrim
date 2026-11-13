@@ -70,6 +70,12 @@ After the keyword is saved, Eldgrim records the day's points. Standing is the in
 - The score shows who is in view for a rank. It does not apply the rank. Wayfarer is in view at 60, Kindler at 70, Hearthkeeper at 80, and Hearthwarden at 90. There is no demotion below Ember by score. The daily note for Hearthkeepers and Hearthwardens names at most one person, and only when the day's keyword agrees. Otherwise it says the ranks look in order.
 - The same note ends with a census of the in-game guild: the number of members; the number and names of members active in guild chat, meaning a guild-chat line within the last seven days; and each recorded profession with its count and the characters who hold it. A profession appears only when the addon saved it. If the note would pass Discord's 2,000-character limit, every list is shortened alike and ends with "and N more". An opted-out member is never marked active.
 
+## What Eldgrim knows of the people
+
+Every model call reads "The people of Amberhearth" right after Eldgrim's core self (approved 2026-11-13). The block is built at run time from this database and never stored in the repository. It lists every character in the in-game guild with race, class, level, in-game rank and professions, leaving out any field the addon did not record. Characters are grouped under one member, with that member's Discord display name, only when the member declared them in the Forge; an in-game-only character stands alone (Q158). A member who opted out stays listed with basic facts and is marked not to be named in public (Q132). The block never holds standing, keywords, chat, Discord ids or where someone is. Its order is shuffled on every run, because a small model favours whoever is listed first.
+
+The proclamation may name a member's character when it is kind, and may then say only what that member's line says. It never gives a member a deed, find, journey, feeling or quality that is not written there, never compares members, never hints at a rank change or judgement, and never uses Discord names in public.
+
 ## What the roster holds
 
 The sketch below is the shape of the database.
