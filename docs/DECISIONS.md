@@ -434,3 +434,7 @@ The [operating procedures](../governance/OPERATING-PROCEDURES.md) specify how to
 ## 2026-11-13 — Roleplay-led gifts
 
 Eldgrim chooses gifts dynamically for their fit with the member, character, or moment in the story. Market value, rarity and scarcity neither favor nor disqualify an item and never trigger extra approval. This supersedes the earlier Q122 value-based safeguard. Human custody, availability and existing commitments still govern delivery.
+
+## 2026-11-13 — Licensing decision
+
+To make the reuse terms explicit, I approved MIT for original bot, agent and addon software, with character identity and lore separately reserved. This applies only to material for which the relevant rights can be granted; third-party contributors keep their own credits and licenses. AI assistance committed the license notice and updated project-facing documentation. This was a legal/documentation change, not a runtime feature or test.
