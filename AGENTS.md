@@ -106,3 +106,7 @@ These summarize the confirmed interview answers in [governance/QUESTION-DECISION
 - Keep proposals separate from implemented and tested work.
 - Prefer small, reviewable changes with clear commit messages.
 - Push each completed step to GitHub so the public record stays current.
+
+## Repository layout
+
+The repository root holds only `README.md`, `AGENTS.md`, `LICENSE` and `CHANGELOG.md` (plus any additional license files). All other documentation lives in `docs/`; put new documents there.

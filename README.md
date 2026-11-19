@@ -40,8 +40,8 @@ The [rulebook](governance/README.md) divides the framework into sixteen readable
 
 | Question | Document |
 | --- | --- |
-| What is the core vision? | [Concept](CONCEPT.md) |
-| What comes next? | [Roadmap](ROADMAP.md) |
+| What is the core vision? | [Concept](docs/CONCEPT.md) |
+| What comes next? | [Roadmap](docs/ROADMAP.md) |
 | Which decisions are established or still open? | [Decisions](docs/DECISIONS.md) |
 | How did the project develop? | [Development journal](docs/DEVLOG.md) · [Changelog](CHANGELOG.md) |
 | How does it fit together? | [Project structure](docs/PROJECT_STRUCTURE.md) |
@@ -51,4 +51,4 @@ This is a public repository. Credentials, runtime member data, private messages,
 
 ## License
 
-Original bot, agent and addon code are licensed under [MIT](LICENSE). Eldgrim's character, lore and guild-associated creative content are not automatically included; see [asset rights](ASSET_RIGHTS.md).
+Original bot, agent and addon code are licensed under [MIT](LICENSE). Eldgrim's character, lore and guild-associated creative content are not automatically included; see [asset rights](docs/ASSET_RIGHTS.md).
