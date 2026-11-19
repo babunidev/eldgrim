@@ -2,6 +2,10 @@
 
 Meaningful repository and documentation changes are recorded here.
 
+## 2026-11-19 — human–AI collaboration record
+
+- Rewrote `docs/AI_COLLABORATION.md` to the shared text used in all of Babuni's repositories: how Babuni works with AI, who did what (the tools and recorded models named in this project's records) and where the details are. The earlier, longer version stays in the Git history. Claude Code (Claude Opus 5.5).
+
 ## 2026-11-19
 
 - Cancelling a quest only sets it aside. Eldgrim says another may be asked for whenever the member wants, and it does not prepare a replacement. The member can then ask again and choose the character.
