@@ -4,6 +4,7 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-19
 
+- Added a rule to `AGENTS.md` and `docs/DOCUMENTATION.md`: `docs/AI_COLLABORATION.md` takes no dated entries; contributions are recorded in the journal and changelog. Claude Code (Claude Opus 5.5).
 - Rewrote `docs/AI_COLLABORATION.md` to the shared text used in all of Babuni's repositories: how Babuni works with AI, who did what (the tools and recorded models named in this project's records) and where the details are. The earlier, longer version stays in the Git history. Claude Code (Claude Opus 5.5).
 - After a run reduces guild chat, it clears those message lists whether or not the game is open. The addon fills them again. A line that one member relays does not back a keyword or a standing point.
 - The Discord channel in-game is for Amberhearth. That role can see it and write there. Roar and the ranks cannot. An administrator still can, because Discord does not lock administrators out of a channel. The shared chats are unchanged.
