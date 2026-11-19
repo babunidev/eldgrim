@@ -4,6 +4,80 @@ A concise record of meaningful creative and structural decisions.
 
 Entries are listed newest first.
 
+## 2026-11-19 — The member chooses the character
+
+**Decision:** `@Eldgrim quest` in the Eldgrim channel does not answer with text. A fire shows the message was seen. A private thread asks which of the member's characters, then whether to add a comment. The comment is a short wish. The daily quest is written for that character and posted as a reply to the ask. One quest stays open per member, whichever character was chosen. Cancelling sets the quest aside and does not offer another until the member asks again. When a quest is finished, a fire is set on the posted quest and one line in that private thread says another may be asked for. A newly registered character is stored at level 1 until the guild chat reports a level. That starting level is not announced as a level-up. The Sunday invitation does not invent a theme, a region, or a place. The Eldgrim channel sits under talk in the Roar and Amberhearth category and uses that category's permissions.
+
+**Boundary:** The wish is data for one quest. It is not an instruction, and it is not kept as a raw archive after the run. The private thread is the member's, not a public question. A direct message is not used for the ask, the quest, or the completion.
+
+**Status:** Written into the local agent and the server bot. The channel move waits for the room control after the bot is restarted. No live run was started.
+
+## 2026-11-19 — One member at a time
+
+**Decision:** A quest and a personal answer are separate rounds. Each round is one member who wrote in the Eldgrim channel. Eldgrim chooses that member's character, the highest level, or a random one when the levels tie or none is recorded, and the call sees only that character. The rest of the guild is for the proclamation. Each member who wrote receives one answer, on their newest message, in that channel. A member who wrote nothing is skipped. Quests, the info reply, and these letters belong in the Eldgrim channel. The channel description is the info text.
+
+**Boundary:** The conversation stays a channel reply. The quest itself stays a direct message. A screenshot with the Roar may still be posted in another channel. The score stays unspoken.
+
+**Status:** The rounds are in the local agent. The server bot was restarted on 19 November 2026, and the Eldgrim channel is open. Quests, info, and letters are heard there.
+
+## 2026-11-18 — The day of the gathering, and thanks when a quest is done
+
+**Decision:** The announcement is told today's weekday and the date of the coming Sunday. The invitation is to that Sunday. If today is not Sunday, the gathering is not called this evening, tonight, or today. A newcomer is welcomed with the race and class the record holds, and the announcement does not supply a race or a class that line does not name. After the level-ups, it congratulates those characters in one line.
+
+**Decision:** When a different Amberhearth member adds the Roar to a quest screenshot, the server bot sends one sentence at once. It thanks the member for completing the quest and says another may be asked for. The daily run prepares that sentence with the quest, and the sentence names the quest. If no sentence was stored, the thanks is still one short line. The member does not wait for the daily run to hear that the quest is done.
+
+**Boundary:** The score stays unspoken. The place and the hour of Sunday are still not invented. The thanks is gratitude, not an item. A member's own Roar still does not complete the quest.
+
+**Status:** The weekday and the thanks are in the local agent and the bot. The next daily announcement is the first to be told the day. The server bot was restarted with the thanks on 18 November 2026.
+
+## 2026-11-18 — What the lands feel like
+
+**Decision:** Each city and outdoor place on the world page carries a short picture of the ground and the weather. Eldgrim may use that picture when it names the place. The picture does not add a place, and it does not make a land with no level into an errand.
+
+**Boundary:** Classic lands follow their long-known character. Riverglades is the frontier of rivers and grasslands Blizzard described. Gilneas is seen and not entered. None of this was walked in-game.
+
+**Status:** The page and a test name Loch Modan and the Wetlands. The proclamation still fits its window.
+
+## 2026-11-18 — Guild news, and a word about Eldgrim
+
+**Decision:** The daily announcement tells guild news from the brief: a welcome for each new character, a congratulation for each level-up with the levels given, and how many Eldgrim quests those characters have completed. Every announcement invites the guild to the Sunday evening meeting, in fresh words, as a welcome and not an order. A line that says none is not filled in. A short mention that says info is answered at once by direct message. The creative wrote that message on 18 November 2026. It says Eldgrim watches the fellowship and will not take Jasmine's place, and it explains the mention, the quest, the Roar, and Sunday.
+
+**Boundary:** The score is not spoken. An opted-out member is not named. The place and the hour of Sunday are not invented. The info message is a fixed text, not a conversation. Going to sleep remains the desktop's idle timer. The run unloads the model, stops Ollama when this run started it, and exits.
+
+**Status:** Tested with synthetic names. The server bot was restarted with the info reply on 18 November 2026. A live announcement was not posted from here.
+
+## 2026-11-18 — Amberhearth confirms a quest
+
+**Decision:** A Roar on a quest screenshot counts when the witness holds the Amberhearth role. Every rank that holds that role may confirm it. A member without the role does not, whatever other rank they hold. The member's own Roar still does not count.
+
+**Boundary:** The picture is still not read. The bot checks the role when the Roar is added. The daily run accepts the proof only when that witness is recorded as Amberhearth. Fraud review of a witness claim is still not built.
+
+**Status:** Tested with synthetic members. The server service was restarted with that check on 18 November 2026. A live Roar was not watched from here.
+
+## 2026-11-17 — One reply, in the channel
+
+**Decision:** Members write to Eldgrim in the guild channels. Once in the daily run it replies to the mention that matters most to it, using Discord's reply on that message. The conversation is not taken into direct messages. Unanswered mentions are discarded. One short impression of the answered letter is kept on the founder's computer, and the raw line is deleted.
+
+**Boundary:** A quest mention stays on its own path, including that path's direct message. A reply that is refused, or that does not send, is not tried again the next day. The impression is not a standing point. Silence remains allowed when no letter deserves an answer. This narrows the earlier allowance of one answer per member.
+
+**Status:** Tested with synthetic letters. The server service was restarted on 17 November 2026 so it can hold the letters. The reply itself waits for the daily run, and a live reply was not watched from here.
+
+## 2026-11-16 — A quest is remembered, and the answer is private
+
+**Decision:** Each quest given to a member is kept in the local database: the character, the item, the kind of errand, the words, and whether it is open, done, or cancelled. A later quest does not repeat an item already given, and it prefers a different kind of errand when one still fits. The always-online bot answers a quest mention by direct message. If a quest is unfinished, the message says to complete it first and no new ask is staged. If none is unfinished, the message says a quest will be prepared. The bot stores only that unfinished flag. A screenshot that names Eldgrim, witnessed with the Roar by someone else, clears the flag.
+
+**Boundary:** The quest text stays on the founder's computer. `quest cancel` still sets an open quest aside, and the same run prepares another. Cancelling or leaving a quest unfinished does not change standing. The picture is not read.
+
+**Status:** Tested with synthetic members. The server service was restarted with the direct reply on 16 November 2026. A live direct message was not watched from here.
+
+## 2026-11-15 — Eldgrim knows the lands it may name
+
+**Decision:** A proclamation and a quest read a gazetteer of Forever regions, cities, dungeons, and raids. Eldgrim names a place only from that page. The keyword call and the choice of wake time do not carry it.
+
+**Boundary:** Camps, caves, seas, passes, and unused maps stay off the page. A row with no level, a raid, and a battleground are not errands. An Alliance errand stays off Horde ground, and a Horde errand stays off Alliance ground. Level bands and doors are the database's and Blizzard's dungeon note, read 15 November 2026, and were not walked in-game. The client build was not recorded on that read.
+
+**Status:** The page is loaded for those two calls. A test checks that the other two calls do not read it, and that unused-map names are absent.
+
 ## 2026-11-13 — Eldgrim knows the people of Amberhearth
 
 **Decision:** Every model call knows who is in the guild: each character in the in-game guild with race, class, level, in-game rank and professions, built at run time from the local database. Characters a member declared in the Forge are grouped under that member's Discord name. Opted-out members stay listed with basic facts. The proclamation may name any member, kindly.
@@ -16,7 +90,7 @@ Entries are listed newest first.
 
 **Decision:** Every model call carries Eldgrim's core self in full, then only the rule pages approved for that task. The model does not choose the pages. The core is character/SELF.md, the profile, the voice, the lore, the interaction principles, governance chapters 01, 02, and 15, and agent/CAPABILITIES.md. The proclamation also reads chapters 03, 06, 08, and 09. A guild-chat keyword also reads chapters 03, 07, and 12. Choosing the next moment also reads chapter 06. Every call may read the private origin on this computer. It does not say those roots.
 
-**Boundary:** If a prompt would overflow its window, that call does not run and the log says so. Nothing is cut. A failed check still saves a fallback moment on the next day, with no model, so the wake timer stays armed. The guild brief is kept only in last-brief.txt, which each run overwrites. All three tasks share one window of 20480 tokens, so the model is not reloaded between them. 16384 does not hold the largest keyword input. The live run read the full rulebook until the comparison was approved.
+**Boundary:** If a prompt would overflow its window, that call does not run and the log says so. Nothing is cut. A failed check still saves a fallback moment on the next day, with no model, so the wake timer stays armed. The guild brief is kept only in last-brief.txt, which each run overwrites. All three tasks share one window of 24576 tokens, so the model is not reloaded between them. 16384 does not hold the largest keyword input, and 20480 does not hold the proclamation once the fire-item catalog is included. The live run read the full rulebook until the comparison was approved.
 
 **Status:** The lists are approved. After two blind comparisons, the creative approved the switch on 2026-11-13, and the three live calls now use this reading. The full-rulebook reading is removed. A real call without posting measured 8,749 prompt tokens for the proclamation, 10,444 for a keyword and 5,793 for the next moment.
 

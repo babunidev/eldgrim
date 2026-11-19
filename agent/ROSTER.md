@@ -1,6 +1,6 @@
 # Eldgrim's guild roster
 
-**Status:** Built on 2026-11-12. A run opens the local database, refreshes the Forge, reduces new guild-chat lines, then writes. Mention replies still wait.  
+**Status:** Built on 2026-11-12. A run opens the local database, refreshes the Forge, reduces new guild-chat lines, then writes. For each member who wrote in the Eldgrim channel, it may reply on that member's newest message, using only that member's character.  
 **Comes before:** Any reply or administrative action Eldgrim takes by itself. The daily announcement posts after the refresh, and still posts when the refresh cannot be finished.
 
 Eldgrim acts once a day on the founder's computer. The server bot stays the always-online hands for onboarding and roles. The computer is where Eldgrim reads, reduces what it read to keywords, and keeps the guild roster. A little more lore can still be added to the pages it reads. Lore is not a substitute for the roster.

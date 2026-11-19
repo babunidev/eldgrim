@@ -10,7 +10,7 @@ Our earlier design established a deliberately restrained presence.
 | Activity                  | Intended limit                                         |
 | ------------------------- | ------------------------------------------------------ |
 | AI processing             | One daily session when the local computer is available |
-| Individual questions      | Unlimited mentions; one selected question per member per run (Q100) |
+| Individual questions      | Unlimited mentions in the Eldgrim channel. One reply for each member who wrote, on their newest message (19 November 2026) |
 | Guild proclamation        | One guild-wide message per day                         |
 | Routine governance        | One decision per category per day                      |
 | Critical moderation       | Exception to the normal daily schedule                 |
@@ -20,7 +20,9 @@ Our earlier design established a deliberately restrained presence.
 
 The daily proclamation may contain a story, recognition, quest, invitation, observation, or development in an ongoing narrative.
 
-The baseline wording was imprecise about how one daily session relates to individual questions and the proclamation. Q91–100 below settle it: one session may answer several members, at most one question per member is selected per run, and one proclamation per successful session is independent of replies. Per-run technical limits such as tool calls and runtime are still to be configured.
+The baseline wording was imprecise about how one daily session relates to individual questions and the proclamation. Q91–100 below settle the first version of that cadence. On 17 November 2026 the creative narrowed the daily conversation: members may still mention Eldgrim without limit, in the guild channels, and Eldgrim answers once in that run. The answer uses Discord's reply on the message that matters most to it. The conversation is not taken into direct messages. The other mentions are not answered and are not kept for a later day. One short impression of the answered letter may be kept on the founder's computer, and the raw line is deleted. Eldgrim may still stay silent when no letter deserves an answer. That later decision controls an older line that allows an answer to each member. One proclamation per successful session stays separate from this reply.
+
+On 19 November 2026 the creative separated those personal rounds from the guild proclamation. A quest and a personal answer each take one member who wrote in the Eldgrim channel. A personal answer sees only the character chosen for that member, the highest level, or a random one when the levels tie. A quest uses the character the member chose in the private thread. It does not read the rest of the guild. The proclamation still does. Each member who wrote receives one answer in that run, on their newest message. A member who did not write is skipped. This decision controls the 17 November line that allowed only one reply for the whole day.
 
 ## Confirmed operating cadence — question 90
 
@@ -40,7 +42,7 @@ The **local AI agent** runs one scheduled decision session per day when its host
 
 ## Confirmed temporary collection — question 100
 
-Members may mention Eldgrim without limit. The server bot may temporarily collect these mentions as they arrive, **or** the local AI may collect them through the bot during its daily session; this technical choice is still open. Eldgrim considers the collection per member and may select **one** question per member, randomly or according to narrative suitability. Selection does not oblige it to answer. After the run, discard the temporary collection and begin a new one. **Do not maintain a queue of unselected questions or carry them forward.** The former Q92 one-submission-per-UTC-day limit and 00:00 UTC reset are superseded. Privacy safeguards and failure handling require separate technical decisions. This is an approved governance design, not an implemented AI service.
+Members may mention Eldgrim without limit in the Eldgrim channel. The server bot collects these mentions as they arrive there. The 19 November 2026 decision above answers each member who wrote, one character at a time, so the 17 November line that chose one reply for the whole day yields to it. Selection does not oblige an answer. After the run, discard the temporary collection and begin a new one. **Do not maintain a queue of unselected questions or carry them forward.** The former Q92 one-submission-per-UTC-day limit and 00:00 UTC reset are superseded.
 
 ## Refinement queue
 

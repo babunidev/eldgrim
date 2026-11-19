@@ -338,7 +338,7 @@ EldgrimDB = {
         self.assertNotIn("61", refreshed.note)
         self.assertNotIn("59", refreshed.note)
         self.assertNotIn("Hello", refreshed.note)
-        self.assertIn("Newcomer", refreshed.brief)
+        self.assertIn("Newcomers: New Soul, Human Mage", refreshed.brief)
         self.assertNotIn("greeting", refreshed.brief)
         self.assertIn("kept company", refreshed.brief)
         self.db.execute("UPDATE person SET rank = 'Ember' WHERE display_name = 'Mira'")
@@ -402,6 +402,23 @@ EldgrimDB = {
         mark_census_levels(self.db)
         self.assertEqual(take_census(self.db, NOW).level_ups, [])
 
+    def test_the_brief_names_level_ups_and_completed_quests(self):
+        from eldgrim_agent.refresh import level_lines, quest_lines
+
+        self.db.execute("UPDATE character SET level = 10, census_level = 8 WHERE name = 'Mira Stone'")
+        self.db.execute("UPDATE character SET level = 12, census_level = 10 WHERE name = 'Élodie Marsh'")
+        self.db.execute("UPDATE person SET opt_out = 1 WHERE display_name = 'Élodie'")
+        self.db.execute(
+            """INSERT INTO quest (person_id, character_name, item, body, status, delivered, created, updated)
+               VALUES ((SELECT id FROM person WHERE display_name = 'Mira'), 'Mira Stone', 'Flint', 'words', 'done', 1, 't', 't')"""
+        )
+        self.db.commit()
+        brief = guild_brief([], [], "", "", level_lines(self.db, take_census(self.db, NOW)), quest_lines(self.db))
+        self.assertIn("Mira Stone 8 to 10", brief)
+        self.assertIn("Mira Stone 1", brief)
+        self.assertNotIn("Élodie", brief)
+        self.assertNotIn("standing", brief.lower())
+
     def test_levels_are_marked_only_after_the_note_is_posted(self):
         from unittest.mock import patch
 
@@ -419,6 +436,8 @@ EldgrimDB = {
             patch("eldgrim_agent.run.stop_server", lambda server: None),
             patch("eldgrim_agent.run.unload", lambda: None),
             patch("eldgrim_agent.run.refresh_guild", fake_refresh),
+            patch("eldgrim_agent.run.run_daily_quests", lambda started: {}),
+            patch("eldgrim_agent.run.run_daily_replies", lambda started: {}),
             patch("eldgrim_agent.run.save_last_brief", lambda text: None),
             patch("eldgrim_agent.run._remember_officer", lambda started, note: None),
             patch("eldgrim_agent.run.compose", lambda started, brief: ("Text", Path(self.tmp.name) / "a.md")),

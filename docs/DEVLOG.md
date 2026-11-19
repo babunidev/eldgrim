@@ -2,6 +2,90 @@
 
 A concise account of meaningful project development, written from the human creative's perspective.
 
+## 2026-11-19 — The character, the wish, and a fire
+
+A quest had been choosing the highest level, so one character always walked it, and the ask itself was thrown away. Cursor (Grok 4.7) had the ask open a private thread. The member chooses the character, then may add a short wish, such as a place. The wish goes to the quest as a wish, not as an instruction. The quest is posted as a reply to the original message. A mention in the Eldgrim channel gets a fire between three and thirty-seven seconds later. When the quest is done, the quest reply gets a fire and the private thread gets one line that another may be asked for. A new character is stored at level 1 until the guild chat reports a level. The announcement is told not to invent a theme, a region, or a place for Sunday. The Eldgrim channel is placed under talk, in the Roar and Amberhearth category, with that category's permissions.
+
+**Result:** Synthetic tests choose the named character, keep the wish fenced, start a character at level 1 without a census mark, and place the channel under talk. No live run was started.
+
+## 2026-11-19 — One member at a time
+
+A quest came back addressed to another character, because the quest call could see the whole guild. Cursor (Grok 4.7) separated the rounds. A quest and a personal answer now take one member who wrote in the Eldgrim channel, choose that member's character, and see only that character. The proclamation still reads the guild list. Each member who wrote gets one reply, on their newest message. The Eldgrim channel carries the info text as its description.
+
+**Result:** Synthetic tests answer two members from two separate cards, and a quest call no longer receives the guild list. The server bot was restarted with the Eldgrim channel on 19 November 2026.
+
+## 2026-11-18 — The day, and a word when the quest is done
+
+The Wednesday announcement invited the fellowship to light a fire this evening, and called that Sunday's gathering. It also called Pimbleton Mirelight a gnome mage. The stored record says Human mage, and it holds no level. Cursor (Grok 4.7) gave the announcement today's weekday and the date of the coming Sunday, put the recorded race and class on a newcomer's line, and asked for one congratulation after the level-ups.
+
+A Roar had closed a quest and left no word that it was done, so a new quest could be asked for without knowing the last one was finished. Cursor (Grok 4.7) had the bot send one sentence of thanks the moment an Amberhearth Roar lands. The sentence names the quest when the daily run stored that line with it.
+
+**Result:** A Wednesday brief names Sunday 22 November and forbids this evening. A synthetic Roar sends the prepared thanks once. The stored character record was read and not changed. The server bot was restarted with the thanks on 18 November 2026.
+
+## 2026-11-18 — What the lands feel like
+
+The world page could name Loch Modan and the Wetlands, and it could not say what either one was. A level band is not a place. Cursor (Grok 4.7) added one short line of ground and weather to each city and outdoor land already on the page. Riverglades stays the frontier of rivers and grasslands. Gilneas stays seen and not entered. No new place went on the list.
+
+**Result:** A test looks for the loch and the marsh. The proclamation still fits its window. None of the lands were walked.
+
+## 2026-11-18 — Guild news, and a word about Eldgrim
+
+The announcements had begun to name people, and that was the interesting part. They can carry a little guild news as well: a welcome for a new character, a congratulation when someone gains a level, a count of the Eldgrim quests a character has finished, and a fresh reminder of the Sunday evening meeting. A mention that says info now gets a direct message about who Eldgrim is and how to speak to it. Sleep stays with the desktop. The run's own job is to finish, unload, and leave the machine quiet. Cursor (Grok 4.7) put the news into the brief and wrote the info message.
+
+The first info wording was replaced the same night. The creative wrote the message that goes out: Eldgrim watches the fellowship, will not take Jasmine's chair, and explains the mention, the quest, the Roar, and Sunday. Cursor (Grok 4.7) put that text in place.
+
+**Result:** Synthetic tests check the welcome name, the level, the quest count, and that an opted-out name stays off the brief. The server bot was restarted with the info reply on 18 November 2026. A live announcement was not posted from here.
+
+## 2026-11-18 — Amberhearth confirms a quest
+
+A quest screenshot needed a witness, and that witness had been any other registered member, with a Hearthkeeper or a Hearthwarden named as a welcome one. The creative narrowed it. The Roar counts from every member who holds the Amberhearth role, at any rank. Someone without that role does not close the quest. Cursor (Grok 4.7) changed the check and the quest wording, and tested both with synthetic members.
+
+**Result:** A Roar from Amberhearth completes the quest. A Roar from outside it leaves the quest open. The server service was restarted with that check on 18 November 2026. A live Roar was not watched from here.
+
+## 2026-11-17 — One reply, in the channel
+
+Members can write to Eldgrim in the guild channels. The conversation stays there. Once in the daily run, Eldgrim replies to the one mention that matters most to it, on that message, and it does not take the conversation into a direct message. The other letters are dropped. One short impression of the answered letter stays on this computer, and the raw line does not. Cursor (Grok 4.7) wrote the collection, the choice, and the synthetic tests.
+
+**Result:** The local tests cover the one reply, a silence, and the deletion of the raw lines. The server service was restarted on 17 November 2026 so it can hold the letters. The reply itself waits for the daily run, and a live reply was not watched from here.
+
+## 2026-11-16 — The Forge welcome, in Eldgrim's name
+
+The earlier reminder left the Forge under the old bot name, and people could not tell who was asking. The account now speaks as Eldgrim. The new message welcomes them, asks them to finish the Forge so the Discord opens again, and tells them the three small things it needs: the hearth rules, Roar or Amberhearth, and a little about the character they bring. Cursor (Grok 4.7) sent it through the bot to every member who had not finished.
+
+**Result:** 67 direct messages were sent. None were blocked by a closed inbox, and none failed. The messages themselves were not read back from Discord.
+
+## 2026-11-16 — A quest remembered, and a private answer
+
+Asking again while a quest was still unfinished looked like a promise of a new one, and the answer sat in the channel where everyone could see it. The reply now goes directly to the member. An unfinished quest is answered by asking them to complete it. When none is unfinished, Eldgrim says it will prepare one. Every quest given to a member stays in the local database, and the next quest does not repeat that item. When the catalog still has another kind of errand, the next one prefers that kind. The bot keeps only whether a quest is unfinished. A picture that names Eldgrim, with another member's Roar, clears that mark. Cursor (Grok 4.7) wrote the memory check, the direct reply, and the synthetic tests.
+
+**Result:** The local tests cover the unfinished reply, the new-quest reply, and a later quest that is not a repeat. The server service was restarted with that reply on 16 November 2026. A live direct message was not watched from here.
+
+## 2026-11-15 — The lands Eldgrim may name
+
+A quest that sends someone across Azeroth needs the real map, and the daily word does too. ZugZugDB's zone index, read the same night, holds the outdoor lands and the cities. Its dungeon pages name some doors and leave others blank. Blizzard's note supplies the nine Forever dungeons, with their ranges and where the door is. Cursor (Grok 4.7) wrote that gazetteer and pointed the proclamation and the quest at it. Camps, caves, and unused maps stayed off, because a copied dump would teach Eldgrim to name a test island.
+
+**Result:** The keyword call and the wake-time choice still do not carry the map. The level bands were not walked in-game, and the client build was not recorded on this read.
+
+## 2026-11-15 — A word that the ask was heard
+
+Waiting until the daily run left the ask looking unanswered. The channel reply is a fixed line, in Eldgrim's voice: it heard them, it will prepare a quest, and they should be patient. A cancel is answered the same way, with the current quest set aside. Cursor (Grok 4.7) added that reply and tested it with a synthetic channel. The server bot was not restarted.
+
+**Result:** The server service was restarted on 15 November 2026, after a mention in the channel got no reply. The local test checks both the ask and the cancel. A live reply in Discord was not watched from here.
+
+## 2026-11-14 — A quest by mention
+
+A short mention that says quest should come back, on the daily run, as a direct message for one character. The first one is a bonfire. Later ones name a fire-themed thing that fits the character, and the proof is a picture plus someone else's Roar. Doing it adds one private point. Cancelling it does not take a point away, and it is replaced. Epic and legendary things were too hard to ask for, and the low copies from the beta goodbye event are not in the live game, so those left the catalog. A red firework rocket from Fizzlebang Booms in Tinker Town went on, because it is easy to buy. Cursor (Grok 4.7) wrote the staging, the daily message, and the catalog edits, and tested them with synthetic members. The server bot was not restarted.
+
+**Result:** The running bot does not receive quest mentions until that restart. The local tests cover the ask, the cancel, the witness, and the private point.
+
+## 2026-11-14 — Fire-themed things for the bonfire
+
+A torch a person can get without gold, and then carry, raised the question of what else in Forever burns. ZugZugDB, Wowhead Forever, and the Warcraft Wiki supplied the Night Watchman's Torch: a slain Night Watch Guard in Duskwood, the quest An Unfortunate End, no coin, and a light that is carried once lit. Cursor (Grok 4.7) read ZugZugDB's Forever pages, build 1.60.1.70938, and wrote one hundred items whose source the page actually names, plus the quest flames that are given up and should not be treated as keepsakes. A private reason for the interest stays off the public page. The full list is given to the proclamation only, so a keyword call does not carry the table.
+
+**Result:** The catalog is a reference, not an in-game check. The next proclamation can name one of these objects only when the page says where it is found.
+
+A second list of one hundred arrived the same evening, closer to what a person can carry to a fire: campfire kits, flint, wood, and named wands. Cursor (Grok 4.7) checked those rows against ZugZugDB and added the ones the Forever page actually describes. Fiery Cloak was left out because that item number has no page. Rows with no item number stayed out.
+
 ## 2026-11-13 — Level-ups in the census
 
 The keepers should see the guild grow, so the census now counts level-ups since the last note. Claude Code (Claude Opus 5.5) added a remembered level per character that moves forward only after the note is posted, so a failed post does not lose a level, and tested it with a synthetic guild.

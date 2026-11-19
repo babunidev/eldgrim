@@ -1,6 +1,6 @@
 # Eldgrim Local Agent
 
-**Status:** Developing. A local runner refreshes the guild roster, writes an announcement, and the server bot posts it.  
+**Status:** Developing. A local runner refreshes the guild roster, writes an announcement, and replies once to each member who wrote in the Eldgrim channel. Each of those replies sees only that member's character. The server bot posts the announcement and the replies.  
 **Execution model:** One run per day at a moment Eldgrim chose at the end of the previous run; one-shot process.  
 **Inference:** Local Ollama.  
 **Communication:** Discord HTTP API.  
@@ -18,10 +18,10 @@ It is designed to wake once per day, complete one bounded session, and exit. It 
 2. The service validates its local configuration and reads saved channel cursors.
 3. It polls only explicitly configured Discord channels through the HTTP API.
 4. It identifies messages that explicitly mention Eldgrim. The initial design does not request Discord's privileged Message Content Intent.
-5. Gather eligible mentions into a **temporary collection** (captured by the server bot or retrieved from it during the run; implementation choice open). Operational cursors may be stored privately; raw collected mentions are not a permanent message archive.
+5. The server bot has already gathered guild-channel mentions into a **temporary collection**. The run takes that collection. A direct message is not part of it. Raw collected mentions are not a permanent message archive.
 6. If there is eligible work or a due internal intention, the application loads relevant memories and starts local Ollama inference.
 7. The model reasons and may request allowlisted tools. Python validates and executes each request.
-8. Eldgrim may select one question per member at random or for narrative suitability, reply or choose silence, and record separately authorized concise memories.
+8. For each member who wrote in the Eldgrim channel, Eldgrim reads only that member's character, replies on their newest message or stays silent, and may keep one short impression of the letter it answered. It does not read the rest of the guild for that reply.
 9. After processing, discard the temporary mention collection, start a fresh collection period, record the outcome, unload the model, close resources, and exit. Unselected questions are not queued.
 
 If there is no eligible work and no due task, the service can finish without loading the model. A daily run does not have to produce a Discord message.
@@ -41,7 +41,7 @@ If there is no eligible work and no due task, the service can finish without loa
 The first implementation milestone is intended to support:
 
 - Daily polling of a configured channel allowlist.
-- Direct messages in those channels that explicitly mention Eldgrim.
+- One reply, in the guild channel, to a message that explicitly mentions Eldgrim. The conversation is not a direct message.
 - Context retrieval from separately authorized memories; temporary mention collections are not durable conversation archives.
 - Local model reasoning through Ollama's chat and tool-calling API.
 - A small allowlist of memory and reply tools.

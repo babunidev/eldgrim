@@ -69,9 +69,9 @@ This roadmap records areas of development, not promises or fixed deadlines.
 - [x] Move the wake path to root-owned files that never run repository code as root, and leave sleep to the desktop's idle timer after a run.
 - [x] Install it once with `sudo agent/systemd/install-wake.sh`.
 - [x] Prove a timer-woken run that posts with `eldgrim wake-test` (2026-11-12).
-- [ ] Confirm the computer then falls asleep on its own idle timer.
-- [ ] Let members write to Eldgrim, and keep what Eldgrim learns, before it answers them.
-- [ ] Specify, build, and test replies to @Eldgrim mentions. The founder confirmed the limits; the creative asked to build the daily proclamation first.
+- [x] Leave the computer free to sleep. The run unloads the model, stops Ollama when this run started it, and exits, so the sleep hold ends with the run. Going to sleep is the desktop's idle timer, not this project (2026-11-18).
+- [x] Let members write to Eldgrim in the guild channels. The bot holds those mentions until the daily run, Eldgrim keeps one short impression of the letter it answered, and the raw lines are deleted.
+- [x] Reply once to each member who wrote in the Eldgrim channel, on their newest message, seeing only that member's character. The conversation is not a direct message. Tested with synthetic letters on 19 November 2026.
 - [ ] Transfer shared guild activity to the founder's PC, keep interpreted memory there, and delete the raw archive. The addon half of that cleanup is built: a run reduces the guild-chat file and clears the lines it used.
 
 The addon remains a recorder only until the creative approves a broader scope. A documented task is not an implemented feature, and API documentation is not an in-game test.
@@ -115,4 +115,4 @@ The addon remains a recorder only until the creative approves a broader scope. A
 - [ ] Evaluate semantic retrieval only if SQLite text search proves insufficient.
 - [x] Specify addon-data integration: agent/ROSTER.md. The roster is built (2026-11-12).
 
-The local runner refreshes the guild roster, writes an announcement, posts it through the server bot, posts one note for the keepers and wardens, and chooses the next wake time. Test runs post too. Mention replies and administration are still design until they are implemented and tested.
+The local runner refreshes the guild roster, writes an announcement, posts it through the server bot, posts one note for the keepers and wardens, replies once to each member who wrote in the Eldgrim channel, and chooses the next wake time. Test runs post too. Administration is still design until it is implemented and tested.

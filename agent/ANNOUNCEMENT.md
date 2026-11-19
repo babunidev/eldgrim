@@ -18,12 +18,12 @@ Since 2026-11-13 the proclamation reads Eldgrim's core self first, then only the
 
 1. The core self: [character/SELF.md](../character/SELF.md), [character/PROFILE.md](../character/PROFILE.md), [character/VOICE.md](../character/VOICE.md), [lore/AMBERHEARTH.md](../lore/AMBERHEARTH.md), [lore/FIRES_AND_SYMBOLS.md](../lore/FIRES_AND_SYMBOLS.md), [interaction/PRINCIPLES.md](../interaction/PRINCIPLES.md), governance chapters 01, 02 and 15, and [CAPABILITIES.md](CAPABILITIES.md)
 2. The people of Amberhearth, built at run time from the local database (see [ROSTER.md](ROSTER.md))
-3. The proclamation's pages: governance chapters 03, 06, 08 and 09
+3. The proclamation's pages: governance chapters 03, 06, 08 and 09, [lore/FIRE_ITEMS.md](../lore/FIRE_ITEMS.md), and [lore/WORLD.md](../lore/WORLD.md)
 4. The private origin on this computer, which it knows and does not say
 5. The guild brief, fenced as data
 6. The standing instructions in this file, with the closing instruction last
 
-The prompt is about 8,700 tokens in a shared window of 20,480; it was about 38,000 with the full rulebook. If it would not fit, the call does not run and nothing is cut. The older proposed order at the top of chapter 15 is in that reading. The confirmed order supersedes it. A procedure the pages say is not yet in force is not a power Eldgrim has. The technical notes for the addon, the bot, and this runner stay out.
+The shared window is 24576 tokens. An earlier reading, before the fire catalog and the world page, was about 8,700 tokens in a window of 20,480. If the prompt would not fit, the call does not run and nothing is cut. The older proposed order at the top of chapter 15 is in that reading. The confirmed order supersedes it. A procedure the pages say is not yet in force is not a power Eldgrim has. The technical notes for the addon, the bot, and this runner stay out.
 
 ## Standing instructions
 
@@ -33,7 +33,7 @@ These are the instructions for the first version. They are read with the pages a
 
 ## What the guild brief may add
 
-After the roster refresh, the same prompt receives a short guild brief: the names of newcomers, and a few general themes with no name attached. The instruction on that brief is to never quote guild chat and never attribute a detail to a person. The closing instruction allows Eldgrim to tell as real only what the brief or the pages say: no event, find, gathering or fire's place that is not there. A story may imagine, as long as it reads plainly as a tale and not as news (2026-11-13, after a blind comparison invented a traveler's find). The public announcement still does not give orders about ranks or punishment. If the Forge pull fails, or the chat file is empty, the announcement is still written from the pages and from whatever the database already holds.
+After the roster refresh, the same prompt receives a short guild brief. The brief begins with today's weekday and the date of the coming Sunday, so the invitation is to that Sunday. It names new characters with the race and class on record, level-ups since the last posted note, and how many Eldgrim quests each character has completed. It also carries a few general themes with no name attached. An opted-out member is left off those lines. The score is not in the brief. Eldgrim welcomes a named newcomer as that line describes them, names the level-ups and then congratulates those characters, and says a quest count the brief gives. If a line says none, it invents nothing for that line. If today is not Sunday, it does not call the gathering this evening, tonight, or today, and it does not invent the place or the hour. The instruction still forbids quoting guild chat. A story may imagine, as long as it reads plainly as a tale and not as news (2026-11-13, after a blind comparison invented a traveler's find). The public announcement still does not give orders about ranks or punishment. If the Forge pull fails, or the chat file is empty, the announcement is still written from the pages and from whatever the database already holds.
 
 ## The note for Hearthkeepers and Hearthwardens
 

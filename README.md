@@ -11,7 +11,7 @@ Eldgrim set the idea of Amberhearth in motion. The fellowship has since been fou
 A few entry points:
 
 - [Character](character/README.md) — who Eldgrim appears to be, and how it speaks.
-- [Lore](lore/README.md) — the hearth, the fires and their place in the fellowship.
+- [Lore](lore/README.md) — the hearth, the fires, and the lands Eldgrim may name.
 - [Narrative](narrative/README.md) — developing stories and in-world material.
 - [Interaction](interaction/README.md) — how Eldgrim appears and communicates.
 

@@ -2,9 +2,43 @@
 
 Meaningful repository and documentation changes are recorded here.
 
-## 2026-11-19 — documentation moved into `docs/`
+## 2026-11-19
 
+- Cancelling a quest only sets it aside. Eldgrim says another may be asked for whenever the member wants, and it does not prepare a replacement. The member can then ask again and choose the character.
+- A quest ask in the Eldgrim channel opens a private thread. The member chooses the character and may add a short wish. The quest is posted as a reply to that message. A fire marks a mention after a few seconds, and a finished quest gets a fire and one private line. A new character is kept at level 1 until the guild chat says otherwise. The Eldgrim channel sits under talk in the Roar and Amberhearth category. The announcement does not invent a theme, a region, or a place for Sunday.
+- A quest and a personal answer are one round per member who wrote in the Eldgrim channel. That round sees only the character chosen for that member. The proclamation still reads the whole guild. Each member who wrote receives one reply, on their newest message. The server bot was restarted with the Eldgrim channel on 19 November 2026.
 - Moved `CONCEPT.md`, `ROADMAP.md` and `ASSET_RIGHTS.md` into `docs/`. The root keeps only `README.md`, `AGENTS.md`, `LICENSE` and `CHANGELOG.md`; links to the moved files and the documentation rules in `AGENTS.md` were updated. No code changed. Claude Code (Claude Opus 5.5).
+
+## 2026-11-18
+
+- The announcement is told today's weekday and the coming Sunday, so a Wednesday does not invite the guild to this evening. A newcomer is welcomed with the race and class on record. After the level-ups, the announcement congratulates those characters.
+- When an Amberhearth member adds the Roar to a quest screenshot, the server bot sends one sentence of thanks at once and says another quest may be asked for. The sentence names the quest when that line was stored with it. The thanks does not wait for the daily run. The server bot was restarted with that thanks on 18 November 2026.
+
+- Each city and outdoor land on the world page now has a short picture of the ground and the weather. Loch Modan is a cool highland loch. The Wetlands are a rain-soaked marsh. The land note is not a permission to send someone somewhere new.
+- A Roar on a quest screenshot counts from any rank, when the witness holds the Amberhearth role. A member without that role does not confirm the quest. The server bot was restarted with that check on 18 November 2026.
+- The daily announcement welcomes new characters by name, congratulates level-ups, says how many Eldgrim quests those characters have completed, and invites the guild to the Sunday evening meeting. It does not invent a name, a level, or a count.
+- A short mention that says info is answered at once by direct message: who Eldgrim is, how to ask for a quest, and how the once-a-day reply works. The creative wrote that message. The server bot was restarted with it on 18 November 2026.
+- Going to sleep stays with the desktop. The run unloads the model, stops Ollama when this run started it, and exits.
+
+## 2026-11-17
+
+- A guild-channel mention is held until the daily run. Eldgrim replies once, on that message, to the letter that matters most. Other mentions are not answered. One short impression of the answered letter is kept, and the raw line is deleted. The conversation is not a direct message. The server bot was restarted to hold those letters on 17 November 2026.
+
+## 2026-11-16
+
+- Members who had not finished the Character Forge received Eldgrim's welcome again, as a direct message from Eldgrim. It asks them to agree to the hearth rules, choose Roar or Amberhearth, and name the character they bring, so the Discord opens again. 67 messages were sent.
+- A quest mention is answered by direct message. If a quest is unfinished, the message says to complete it first. If none is unfinished, Eldgrim says it will prepare one. The daily run remembers every quest given to that member and does not repeat the item. A verified Roar on the screenshot makes that member eligible for another. The server bot was restarted with that reply on 16 November 2026.
+
+## 2026-11-15
+
+- A proclamation and a quest now read a gazetteer of Forever regions, cities, dungeons, and raids. A place is named only from that page. The keyword call and the wake-time choice do not carry it.
+- A quest mention is answered at once in the channel: Eldgrim heard them and will prepare a quest. The quest itself still waits for the daily run. The server bot was restarted with that reply on 15 November 2026.
+
+## 2026-11-14
+
+- A member can ask Eldgrim for one quest by a short mention, or cancel it the same way. The daily run sends one direct message for that member's highest-level character. The first quest is to light a bonfire. A later one names a fire-catalog item. A screenshot that names Eldgrim, witnessed with the Roar by someone else, adds one private standing point. The score is not spoken, and no item is handed out. The server bot was restarted with the quest reply on 15 November 2026.
+- The fire catalog no longer lists epic or legendary items, including the live raid pieces and the low-level beta-goodbye copies. Red Fireworks Rocket, bought from Fizzlebang Booms in Tinker Town, is listed as an easy firework.
+- Eldgrim can invite someone to bring one fire-themed object to a fellowship fire. The catalog records item level and where each one is found, including campfires a person can place and materials that can be shown. The three model calls share a 24576-token window so that catalog still fits. The object is for the fire, and the invitation stays voluntary.
 
 ## 2026-11-13
 

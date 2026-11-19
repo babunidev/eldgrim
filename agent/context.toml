@@ -16,9 +16,8 @@ pages = [
   "governance/15-proposed-priority-hierarchy.md",
   "agent/CAPABILITIES.md",
 ]
-# Built at run time from the local database, never stored here: every character in the
-# in-game guild with race, class, level, in-game rank and professions (approved 2026-11-13).
-people = true
+# The guild list is not part of the core. The proclamation asks for it. A quest or a
+# reply receives one character, built at run time, and does not read the rest of the guild.
 
 [task.proclamation]
 pages = [
@@ -26,9 +25,12 @@ pages = [
   "governance/06-daily-conduct-and-communication.md",
   "governance/08-quests-recognition-and-rewards.md",
   "governance/09-sunday-gatherings.md",
+  "lore/FIRE_ITEMS.md",
+  "lore/WORLD.md",
 ]
+people = true
 private_origin = true
-num_ctx = 20480
+num_ctx = 24576
 num_predict = 500
 
 [task.chat-keyword]
@@ -38,7 +40,7 @@ pages = [
   "governance/12-observation-memory-and-privacy.md",
 ]
 private_origin = true
-num_ctx = 20480
+num_ctx = 24576
 num_predict = 40
 
 [task.choose-moment]
@@ -46,11 +48,33 @@ pages = [
   "governance/06-daily-conduct-and-communication.md",
 ]
 private_origin = true
-num_ctx = 20480
+num_ctx = 24576
 num_predict = 40
 
+# A quest that does not fit this window is replaced with the bonfire text.
+# It is not one of the three calls that stop the run when the budget fails.
+[task.quest]
+pages = [
+  "governance/08-quests-recognition-and-rewards.md",
+  "lore/FIRE_ITEMS.md",
+  "lore/WORLD.md",
+]
+private_origin = true
+num_ctx = 24576
+num_predict = 400
+
+# One reply for each member who wrote in the Eldgrim channel. Overflow skips that member.
+[task.reply]
+pages = [
+  "governance/03-social-rules.md",
+  "governance/06-daily-conduct-and-communication.md",
+  "governance/12-observation-memory-and-privacy.md",
+]
+private_origin = true
+num_ctx = 24576
+num_predict = 400
+
 # Future tasks, not loaded:
-# reply: 03, 06, 12
 # welcome: 03, 04, 12
 # observation: 12, 13
 # correct-memory: 04, 07, 12

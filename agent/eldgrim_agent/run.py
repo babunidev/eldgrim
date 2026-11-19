@@ -16,8 +16,10 @@ from eldgrim_agent.clock import fallback_moment
 from eldgrim_agent.context import preflight, save_last_brief, take_records
 from eldgrim_agent.discord_post import PostError, approval_for, post_file, post_officer
 from eldgrim_agent.keywords import ask_keyword
+from eldgrim_agent.mentions import run_daily_replies
 from eldgrim_agent.ollama import OllamaError, ensure_server, stop_server, unload
 from eldgrim_agent.paths import LOCK_PATH, LOGS, OFFICER_NOTES, ensure_runtime
+from eldgrim_agent.quests import run_daily_quests
 from eldgrim_agent.refresh import refresh_guild
 from eldgrim_agent.schedule import save_choice
 
@@ -73,6 +75,16 @@ def _execute_locked(scheduled: bool) -> dict[str, object]:
             refreshed = refresh_guild(started, ask_keyword)
             save_last_brief(refreshed.brief)
             _remember_officer(started, refreshed.note)
+            try:
+                report["quests"] = run_daily_quests(started)
+            except (OSError, PostError, RuntimeError):
+                report["quests"] = {"error": "unavailable"}
+                report["error"] = _join(str(report["error"]), "Quests: the bot exchange failed.")
+            try:
+                report["reply"] = run_daily_replies(started)
+            except (OSError, PostError, RuntimeError):
+                report["reply"] = {"error": "unavailable"}
+                report["error"] = _join(str(report["error"]), "Reply: the bot exchange failed.")
             if refreshed.forge_error:
                 report["forge"] = refreshed.forge_error
             if refreshed.chat_error:

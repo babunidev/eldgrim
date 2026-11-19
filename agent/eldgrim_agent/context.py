@@ -71,13 +71,14 @@ def build(
     ordered = core + [name for name in extra if name not in core]
     blocks: list[str] = []
     records: list[PageRecord] = []
+    people = bool(spec.get("people", False))
     for index, name in enumerate(ordered):
-        if index == len(core) and loaded["core"].get("people", False):
+        if people and index == len(core):
             _add_people(blocks, records)
         text = _read_page(repo, name)
         blocks.append(f"## {name}\n\n{text}")
         records.append(PageRecord(name, hashlib.sha256(text.encode()).hexdigest()))
-    if len(ordered) == len(core) and loaded["core"].get("people", False):
+    if people and len(ordered) == len(core):
         _add_people(blocks, records)
     if spec.get("private_origin", False):
         origin = _origin_text()

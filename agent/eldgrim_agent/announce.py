@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 
 from eldgrim_agent.ollama import chat
@@ -30,6 +30,17 @@ STANDING = (
     "The confirmed order of safety, member rights, fairness, guild rules, "
     "your continued existence, and your own desires controls the older proposed order. "
     "A procedure the pages say is not yet in force is not a power you have. "
+    "The guild brief may name newcomers, level-ups, and completed quests. Those are real. "
+    "Welcome a named newcomer by that character's name. Congratulate a named level-up, "
+    "and use the levels the brief gives. Say a completed-quest count the brief gives. "
+    "If a line says none, invent no name, no level, and no count for it. "
+    "The brief names today's weekday and the coming Sunday. Invite to that Sunday, "
+    "in fresh words, as a welcome and not an order. "
+    "If today is not Sunday, do not say this evening, tonight, or today for the gathering. "
+    "Do not name a place or an hour the brief does not give. "
+    "Do not give the Sunday gathering a theme, a region, or a place. "
+    "Welcome a newcomer only as the brief describes them. Do not give them a race or a class it does not name. "
+    "After the level-ups, congratulate those characters in one warm line. "
     "You know the people of Amberhearth. You may name a member's character when it is kind. "
     "About a named member, say only what their line in the list says, such as their class or "
     "their craft. Never give them a deed, a find, a journey, a feeling, or a quality that is "
@@ -45,7 +56,15 @@ STANDING = (
 MOTTO = "play to inspire, not to impress."
 WRITE = (
     "Write the one announcement. Tell as real only what the brief or the pages say. "
-    "Do not announce an event, a find, a gathering, or a fire's place that is not there. "
+    "When the brief names a newcomer, welcome that character as the brief describes them. "
+    "Do not give them a race or a class the brief does not name. "
+    "When it names a level-up, name those characters and those levels, then congratulate them in one warm line. "
+    "When it names completed quests, say those counts. "
+    "If a line says none, do not invent a name, a level, or a count for it. "
+    "Invite the guild to the Sunday the brief names. "
+    "If today is not Sunday, do not say this evening, tonight, or today for that gathering. "
+    "Do not give that gathering a theme, a region, or a place. "
+    "Do not announce any other event, find, gathering, or fire's place that is not in the brief or the pages. "
     "A story may imagine, as long as it is plainly a tale and not news. "
     "Output only the announcement."
 )
@@ -152,7 +171,23 @@ def draft(brief: str, *, model: str | None = None) -> str:
     return text
 
 
+def with_day(now: datetime, brief: str) -> str:
+    """Name today and the coming Sunday. The gathering is that Sunday, not tonight."""
+    local = now.astimezone()
+    today = f"{local.strftime('%A')} {local.day} {local.strftime('%B')} {local.year}"
+    ahead = (6 - local.weekday()) % 7
+    if ahead == 0:
+        gathering = "Today is Sunday, so the gathering is today."
+    else:
+        sunday = local.date() + timedelta(days=ahead)
+        gathering = (
+            f"The coming Sunday is {sunday.strftime('%A')} {sunday.day} {sunday.strftime('%B')}. "
+            "Invite to that Sunday. Do not say this evening, tonight, or today."
+        )
+    return f"Today is {today}. {gathering}\n{brief}".strip()
+
+
 def compose(now: datetime, brief: str = "") -> tuple[str, Path]:
     """The live proclamation: core self, then the approved pages (approved 2026-11-13)."""
-    saved = draft(brief)
+    saved = draft(with_day(now, brief))
     return saved, write_announcement(saved, now)

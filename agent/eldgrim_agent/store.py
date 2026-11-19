@@ -74,6 +74,29 @@ CREATE TABLE IF NOT EXISTS roster_snapshot (
     names TEXT NOT NULL,
     applied TEXT NOT NULL
 );
+CREATE TABLE IF NOT EXISTS quest (
+    id INTEGER PRIMARY KEY,
+    person_id INTEGER NOT NULL REFERENCES person(id),
+    character_name TEXT NOT NULL,
+    item TEXT NOT NULL,
+    body TEXT NOT NULL,
+    kind TEXT NOT NULL DEFAULT 'other',
+    channel INTEGER NOT NULL DEFAULT 0,
+    message INTEGER NOT NULL DEFAULT 0,
+    thread INTEGER NOT NULL DEFAULT 0,
+    status TEXT NOT NULL,
+    delivered INTEGER NOT NULL DEFAULT 0,
+    created TEXT NOT NULL,
+    updated TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS quest_seen (
+    kind TEXT NOT NULL,
+    remote_id INTEGER NOT NULL,
+    PRIMARY KEY (kind, remote_id)
+);
+CREATE TABLE IF NOT EXISTS mention_seen (
+    remote_id INTEGER PRIMARY KEY
+);
 """
 
 
@@ -106,6 +129,13 @@ def _migrate(db: sqlite3.Connection) -> None:
         db.execute("ALTER TABLE character ADD COLUMN last_spoke TEXT")
     if "census_level" not in columns:
         db.execute("ALTER TABLE character ADD COLUMN census_level INTEGER")
+    db.execute("UPDATE character SET level = 1 WHERE level IS NULL")
+    quest_columns = {str(row["name"]) for row in db.execute("PRAGMA table_info(quest)").fetchall()}
+    if quest_columns and "kind" not in quest_columns:
+        db.execute("ALTER TABLE quest ADD COLUMN kind TEXT NOT NULL DEFAULT 'other'")
+    for name in ("channel", "message", "thread"):
+        if quest_columns and name not in quest_columns:
+            db.execute(f"ALTER TABLE quest ADD COLUMN {name} INTEGER NOT NULL DEFAULT 0")
 
 
 def mark_census_levels(db: sqlite3.Connection) -> None:
@@ -177,6 +207,7 @@ def upsert_forge(db: sqlite3.Connection, members: list[dict[str, object]], now: 
                 if int(person["id"]) not in holders:
                     holders.append(int(person["id"]))
         existing = db.execute("SELECT id FROM person WHERE discord_id = ?", (discord_id,)).fetchone()
+        fresh = existing is None and not holders
         if existing is not None:
             person_id = int(existing["id"])
         elif holders:
@@ -189,8 +220,6 @@ def upsert_forge(db: sqlite3.Connection, members: list[dict[str, object]], now: 
                 (discord_id, display, fellowship, _seed(rank or "Ember"), owner, rank or "Ember", when, when),
             )
             person_id = int(cursor.lastrowid)
-            if display:
-                newcomers.append(display)
         for other in holders:
             _merge_person(db, person_id, other, now)
         current = person_row(db, person_id)
@@ -222,6 +251,8 @@ def upsert_forge(db: sqlite3.Connection, members: list[dict[str, object]], now: 
                 _upsert_character(db, person_id=person_id, name=name, link="declared", fields=fields, now=when)
                 continue
             rows = _characters_named(db, name)
+            if fresh:
+                newcomers.append(name)
             if rows:
                 db.execute(
                     "UPDATE character SET person_id = ?, link = 'declared', name = ? WHERE id = ?",
@@ -258,6 +289,8 @@ def _upsert_character(
     row = _find_character(db, person_id=person_id, name=name)
     present = {key: value for key, value in fields.items() if value not in (None, "")}
     if row is None:
+        if "level" not in present:
+            present["level"] = 1
         columns = ["person_id", "name", "link", "updated", *present.keys()]
         values: list[object] = [person_id, name, link, now, *present.values()]
         placeholders = ", ".join("?" for _ in columns)
@@ -274,6 +307,9 @@ def _upsert_character(
     for key, value in present.items():
         assignments.append(f"{key} = ?")
         values.append(value)
+    if row["level"] is None and "level" not in present:
+        assignments.append("level = ?")
+        values.append(1)
     if row["left_on"] and link == "declared":
         assignments.append("left_on = NULL")
         assignments.append("in_guild = 1")
@@ -444,11 +480,18 @@ def forget_hashes(db: sqlite3.Connection, hashes: list[str]) -> None:
     db.executemany("DELETE FROM seen_message WHERE hash = ?", [(item,) for item in hashes])
 
 
-def add_keyword(db: sqlite3.Connection, person_id: int, term: str, polarity: str, now: datetime) -> int:
+def add_keyword(
+    db: sqlite3.Connection,
+    person_id: int,
+    term: str,
+    polarity: str,
+    now: datetime,
+    source: str = "guild-chat",
+) -> int:
     cursor = db.execute(
         """INSERT INTO keyword (person_id, term, polarity, source, created)
-           VALUES (?, ?, ?, 'guild-chat', ?)""",
-        (person_id, term, polarity, stamp(now)),
+           VALUES (?, ?, ?, ?, ?)""",
+        (person_id, term, polarity, source, stamp(now)),
     )
     return int(cursor.lastrowid)
 

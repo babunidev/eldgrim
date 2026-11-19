@@ -51,6 +51,24 @@ class ContextTests(unittest.TestCase):
         self.database_patch.start()
         self.addCleanup(self.database_patch.stop)
 
+    def test_the_world_page_is_only_on_the_calls_that_name_places(self):
+        world = Path(__file__).resolve().parents[2] / "lore" / "WORLD.md"
+        text = world.read_text(encoding="utf-8")
+        for name in ("Stormwind", "Riverglades", "Hall of Thanes", "Zephras Isle"):
+            self.assertIn(name, text)
+        self.assertIn("A highland loch, cool, pine and stone", text)
+        self.assertIn("Rain-soaked marsh and canals, mist", text)
+        for name in ("Designer Island", "Programmer Isle", "Elsewhen"):
+            self.assertNotIn(name, text)
+        proclaim = build("proclamation", data="Newcomers: none", system=STANDING, instruction=WRITE)
+        self.assertIn("lore/WORLD.md", [page.name for page in proclaim.pages])
+        for task, system, instruction in (
+            ("chat-keyword", PROMPT, INSTRUCTION),
+            ("choose-moment", CHOOSE_SYSTEM, CHOICE),
+        ):
+            built = build(task, data="", system=system, instruction=instruction)
+            self.assertNotIn("lore/WORLD.md", [page.name for page in built.pages])
+
     def test_core_comes_before_task_pages(self):
         built = build("proclamation", data="A newcomer arrived.", system=STANDING, instruction=WRITE)
         text = built.messages[1]["content"]
@@ -220,7 +238,7 @@ class ContextTests(unittest.TestCase):
         for task, (system, instruction, data) in samples.items():
             built = build(task, data=data, system=system, instruction=instruction)
             windows.add(built.num_ctx)
-        self.assertEqual(windows, {20480})
+        self.assertEqual(windows, {24576})
 
     def test_proclamation_ends_by_forbidding_invented_news(self):
         built = build("proclamation", data="Newcomers: none", system=STANDING, instruction=WRITE)
@@ -293,19 +311,33 @@ class ContextTests(unittest.TestCase):
         load_people()
         self.assertEqual(self.database.read_bytes(), before)
 
-    def test_every_task_knows_the_people_after_its_self(self):
+    def test_the_proclamation_knows_the_people_after_its_self(self):
         self._synthetic_guild()
-        for task, (system, instruction) in {
-            "proclamation": (STANDING, WRITE),
-            "chat-keyword": (PROMPT, INSTRUCTION),
+        built = build("proclamation", data="x", system=STANDING, instruction=WRITE)
+        names = [page.name for page in built.pages]
+        self.assertIn("The people of Amberhearth", names)
+        core_end = names.index("agent/CAPABILITIES.md")
+        self.assertEqual(names.index("The people of Amberhearth"), core_end + 1)
+        self.assertIn("Wren Ashvale", built.messages[1]["content"])
+
+    def test_a_personal_round_does_not_read_the_guild_list(self):
+        self._synthetic_guild()
+        from eldgrim_agent.keywords import INSTRUCTION as KEYWORD_INSTRUCTION
+        from eldgrim_agent.keywords import PROMPT as KEYWORD_PROMPT
+        from eldgrim_agent.mentions import REPLY_INSTRUCTION, REPLY_SYSTEM
+        from eldgrim_agent.quests import QUEST_INSTRUCTION, QUEST_SYSTEM
+
+        samples = {
+            "chat-keyword": (KEYWORD_PROMPT, KEYWORD_INSTRUCTION),
             "choose-moment": (CHOOSE_SYSTEM, CHOICE),
-        }.items():
-            built = build(task, data="x", system=system, instruction=instruction)
+            "quest": (QUEST_SYSTEM, QUEST_INSTRUCTION),
+            "reply": (REPLY_SYSTEM, REPLY_INSTRUCTION),
+        }
+        for task, (system, instruction) in samples.items():
+            built = build(task, data="Character: Ada", system=system, instruction=instruction)
             names = [page.name for page in built.pages]
-            self.assertIn("The people of Amberhearth", names, task)
-            core_end = names.index("agent/CAPABILITIES.md")
-            self.assertEqual(names.index("The people of Amberhearth"), core_end + 1, task)
-            self.assertIn("Wren Ashvale", built.messages[1]["content"])
+            self.assertNotIn("The people of Amberhearth", names, task)
+            self.assertNotIn("Wren Ashvale", built.messages[1]["content"], task)
 
     def test_the_live_run_is_switched(self):
         self.assertTrue(CONTEXT_SWITCHED)
@@ -332,7 +364,7 @@ class ContextTests(unittest.TestCase):
         self.assertEqual([entry["task"] for entry in records], ["chat-keyword", "choose-moment", "proclamation"])
         for entry in records:
             self.assertIn("character/SELF.md", entry["pages"])
-            self.assertEqual(entry["num_ctx"], 20480)
+            self.assertEqual(entry["num_ctx"], 24576)
         keyword_messages, keyword_options = sent[0]
         self.assertEqual(keyword_messages[0]["content"], PROMPT)
         self.assertTrue(keyword_messages[1]["content"].endswith(INSTRUCTION))
