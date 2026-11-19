@@ -53,7 +53,7 @@ One daily proclamation is approved and is the first thing built (see [ANNOUNCEME
 
 ## Important boundaries
 
-- The agent reads the Forever addon's SavedVariables on the founder's computer, as specified in [ROSTER.md](ROSTER.md). It uses the file as it sits. After a successful reduction it may clear the guild-chat message lists it used. It does not edit the addon source, and it does not clear the file when the save failed or the file changed during the run (2026-11-12).
+- The agent reads the Forever addon's SavedVariables on the founder's computer, as specified in [ROSTER.md](ROSTER.md). It uses the file as it sits. After a successful reduction it clears the guild-chat message lists it used, whether or not the game is open. It does not edit the addon source, and it does not clear the file when the save failed or the file changed during the run (2026-11-12).
 - The agent's behavior does not establish Eldgrim's character canon or reveal concealed character information.
 - Private runtime data, actual Discord messages, database files, credentials, and private prompts do not belong in this public repository.
 - The model cannot execute arbitrary shell commands, arbitrary Python, or unrestricted file operations. Discord administration is approved for a later milestone (2026-11-10), only through the server bot's validated operations.

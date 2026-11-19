@@ -4,6 +4,22 @@ A concise record of meaningful creative and structural decisions.
 
 Entries are listed newest first.
 
+## 2026-11-19 — The in-game chat belongs to Amberhearth
+
+**Decision:** The in-game chat on Discord is for Amberhearth, the new guild. The channel is named in-game and sits in the Roar and Amberhearth category. The Amberhearth role may see it and write there. Roar and the ranks are denied on that channel, so a rank alone does not open it.
+
+**Boundary:** A role with Administrator still sees every channel. Discord does not allow a channel lock to keep an administrator out. The shared chat channels are unchanged.
+
+**Status:** Created on Discord on 19 November 2026. Access was checked from the live role overwrites. No one was watched opening it in the app.
+
+## 2026-11-19 — Characters, not the people who play them
+
+**Decision:** Eldgrim's notes about behavior belong to characters. A guild-chat keyword is saved on the character who spoke. A reply's short impression is saved on the character that reply was about. The guild list Eldgrim reads names characters, race, class, level, rank and professions. It does not name the player or a Discord display name. A real-world name, place or illness is not a keyword. The Discord account remains only so a message can be delivered and so Eldgrim knows which characters one player plays. Standing and rank stay on that account, shared by those characters, as already decided.
+
+**Boundary:** Raw chat is still deleted after the keyword is saved. An older keyword that cannot be tied to one character, because the account has several, is not treated as anyone's behavior.
+
+**Status:** In the local roster. No live run was started.
+
 ## 2026-11-19 — The member chooses the character
 
 **Decision:** `@Eldgrim quest` in the Eldgrim channel does not answer with text. A fire shows the message was seen. A private thread asks which of the member's characters, then whether to add a comment. The comment is a short wish. The daily quest is written for that character and posted as a reply to the ask. One quest stays open per member, whichever character was chosen. Cancelling sets the quest aside and does not offer another until the member asks again. When a quest is finished, a fire is set on the posted quest and one line in that private thread says another may be asked for. A newly registered character is stored at level 1 until the guild chat reports a level. That starting level is not announced as a level-up. The Sunday invitation does not invent a theme, a region, or a place. The Eldgrim channel sits under talk in the Roar and Amberhearth category and uses that category's permissions.

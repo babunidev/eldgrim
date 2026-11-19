@@ -5,6 +5,7 @@ from __future__ import annotations
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -147,6 +148,12 @@ class RosterTests(unittest.TestCase):
         ).fetchall()
         self.assertEqual(mira["standing"], 51)
         self.assertEqual([(row["term"], row["polarity"]) for row in keywords], [("greeting", "neither")])
+        named = self.db.execute(
+            """SELECT character.name FROM keyword
+               JOIN character ON character.id = keyword.character_id
+               WHERE keyword.term = 'greeting'"""
+        ).fetchone()
+        self.assertEqual(named["name"], "Mira Stone")
         self.assertIn("Mira Stone", outcome.cleared)
         self.assertIn("Unregistered Soul", outcome.cleared)
         rewritten = self.chat.read_text(encoding="utf-8")

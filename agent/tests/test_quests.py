@@ -524,7 +524,7 @@ class QuestContextTests(unittest.TestCase):
         names = [page.name for page in built.pages]
         self.assertIn("lore/FIRE_ITEMS.md", names)
         self.assertIn("lore/WORLD.md", names)
-        self.assertNotIn("The people of Amberhearth", names)
+        self.assertNotIn("The characters of Amberhearth", names)
         self.assertIn("Riverglades", built.messages[1]["content"])
         self.assertNotIn("Designer Island", built.messages[1]["content"])
         self.assertIn("Do not name any other character", built.messages[0]["content"])

@@ -135,6 +135,17 @@ class DailyReplyTests(unittest.TestCase):
         self.assertNotIn("Member5", self.seen_data[0])
         self.assertEqual(self.standing(6), 50)
         self.assertEqual(self.keywords(6)[0]["term"], "cold hearth")
+        db = connect(self.db_path)
+        try:
+            named = db.execute(
+                """SELECT character.name FROM keyword
+                   JOIN character ON character.id = keyword.character_id
+                   JOIN person ON person.id = keyword.person_id
+                   WHERE person.discord_id = 6"""
+            ).fetchone()
+        finally:
+            db.close()
+        self.assertEqual(named["name"], "Ada")
         self.assertEqual(self.keywords(5)[0]["source"], "mention")
         again = run_daily_replies(
             NOW,
@@ -190,7 +201,7 @@ class DailyReplyTests(unittest.TestCase):
         self.assertEqual(self.standing(6), 50)
         db = connect(self.db_path)
         try:
-            card, names, quiet = character_card(db, 6, __import__("random").Random(0))
+            card, names, quiet, _character = character_card(db, 6, __import__("random").Random(0))
         finally:
             db.close()
         shown = letter_text(card, self.letters()[1]["body"])
@@ -238,7 +249,7 @@ class ReplyContextTests(unittest.TestCase):
         self.assertIn("governance/06-daily-conduct-and-communication.md", names)
         self.assertIn("governance/12-observation-memory-and-privacy.md", names)
         self.assertNotIn("lore/WORLD.md", names)
-        self.assertNotIn("The people of Amberhearth", names)
+        self.assertNotIn("The characters of Amberhearth", names)
         self.assertLessEqual(built.estimate + built.num_predict, built.num_ctx)
         self.assertIn("never a direct message", built.messages[0]["content"])
         self.assertIn("Do not name any other character", built.messages[0]["content"])

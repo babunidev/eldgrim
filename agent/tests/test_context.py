@@ -285,11 +285,10 @@ class ContextTests(unittest.TestCase):
         self._synthetic_guild()
         text = load_people(shuffle=False)
         self.assertIn("3 characters are in the in-game guild.", text)
-        self.assertIn("- Wren, on Discord, plays:", text)
-        self.assertIn("  - Wren Ashvale: Dwarf Paladin; level 14; Kindler; Blacksmithing", text)
-        self.assertIn("  - Wren Tallow: Gnome Mage", text)
+        self.assertIn("- Wren Ashvale: Dwarf Paladin; level 14; Kindler; Blacksmithing", text)
+        self.assertIn("- Wren Tallow: Gnome Mage", text)
         self.assertIn(f"- Quiet Fen: Hunter; level 20; Ember ({PRIVATE})", text)
-        for absent in ("Gone Away", "77", "sharp words", "501", "standing"):
+        for absent in ("Gone Away", "77", "sharp words", "501", "standing", "on Discord", "Wren, "):
             self.assertNotIn(absent, text)
 
     def test_people_order_changes_between_runs(self):
@@ -315,9 +314,9 @@ class ContextTests(unittest.TestCase):
         self._synthetic_guild()
         built = build("proclamation", data="x", system=STANDING, instruction=WRITE)
         names = [page.name for page in built.pages]
-        self.assertIn("The people of Amberhearth", names)
+        self.assertIn("The characters of Amberhearth", names)
         core_end = names.index("agent/CAPABILITIES.md")
-        self.assertEqual(names.index("The people of Amberhearth"), core_end + 1)
+        self.assertEqual(names.index("The characters of Amberhearth"), core_end + 1)
         self.assertIn("Wren Ashvale", built.messages[1]["content"])
 
     def test_a_personal_round_does_not_read_the_guild_list(self):
@@ -336,7 +335,7 @@ class ContextTests(unittest.TestCase):
         for task, (system, instruction) in samples.items():
             built = build(task, data="Character: Ada", system=system, instruction=instruction)
             names = [page.name for page in built.pages]
-            self.assertNotIn("The people of Amberhearth", names, task)
+            self.assertNotIn("The characters of Amberhearth", names, task)
             self.assertNotIn("Wren Ashvale", built.messages[1]["content"], task)
 
     def test_the_live_run_is_switched(self):

@@ -52,6 +52,7 @@ CREATE TABLE IF NOT EXISTS character (
 CREATE TABLE IF NOT EXISTS keyword (
     id INTEGER PRIMARY KEY,
     person_id INTEGER NOT NULL REFERENCES person(id),
+    character_id INTEGER REFERENCES character(id),
     term TEXT NOT NULL,
     polarity TEXT NOT NULL,
     source TEXT NOT NULL,
@@ -136,6 +137,23 @@ def _migrate(db: sqlite3.Connection) -> None:
     for name in ("channel", "message", "thread"):
         if quest_columns and name not in quest_columns:
             db.execute(f"ALTER TABLE quest ADD COLUMN {name} INTEGER NOT NULL DEFAULT 0")
+    keyword_columns = {str(row["name"]) for row in db.execute("PRAGMA table_info(keyword)").fetchall()}
+    if keyword_columns and "character_id" not in keyword_columns:
+        db.execute("ALTER TABLE keyword ADD COLUMN character_id INTEGER REFERENCES character(id)")
+    # An older note belongs to a character only when that account has exactly one.
+    # Several characters means the note is not guessed onto one of them.
+    if keyword_columns:
+        db.execute(
+            """UPDATE keyword
+               SET character_id = (
+                   SELECT MIN(character.id) FROM character
+                   WHERE character.person_id = keyword.person_id
+               )
+               WHERE character_id IS NULL
+                 AND (
+                     SELECT COUNT(*) FROM character WHERE character.person_id = keyword.person_id
+                 ) = 1"""
+        )
 
 
 def mark_census_levels(db: sqlite3.Connection) -> None:
@@ -480,18 +498,25 @@ def forget_hashes(db: sqlite3.Connection, hashes: list[str]) -> None:
     db.executemany("DELETE FROM seen_message WHERE hash = ?", [(item,) for item in hashes])
 
 
+def character_id_for(db: sqlite3.Connection, person_id: int, name: str) -> int | None:
+    row = _find_character(db, person_id=person_id, name=name)
+    return None if row is None else int(row["id"])
+
+
 def add_keyword(
     db: sqlite3.Connection,
     person_id: int,
+    character_id: int,
     term: str,
     polarity: str,
     now: datetime,
     source: str = "guild-chat",
 ) -> int:
+    """The term is about the character. The account is only who plays that character."""
     cursor = db.execute(
-        """INSERT INTO keyword (person_id, term, polarity, source, created)
-           VALUES (?, ?, ?, ?, ?)""",
-        (person_id, term, polarity, source, stamp(now)),
+        """INSERT INTO keyword (person_id, character_id, term, polarity, source, created)
+           VALUES (?, ?, ?, ?, ?, ?)""",
+        (person_id, character_id, term, polarity, source, stamp(now)),
     )
     return int(cursor.lastrowid)
 
@@ -635,14 +660,18 @@ def summary(db: sqlite3.Connection) -> str:
         lines.append(
             f"{person['display_name'] or '(unnamed)'} — {person['fellowship'] or '-'} — {person['rank'] or '-'} — standing {standing}{extra}"
         )
-        keywords = db.execute(
-            "SELECT term, polarity FROM keyword WHERE person_id = ? ORDER BY id",
-            (int(person["id"]),),
-        ).fetchall()
-        if keywords:
-            lines.append("  keywords: " + "; ".join(f"{row['term']} ({row['polarity']})" for row in keywords))
         for character in by_person.get(int(person["id"]), []):
             lines.append(f"  {character['name']} ({character['link'] or 'unlinked'})")
+            keywords = db.execute(
+                "SELECT term, polarity FROM keyword WHERE character_id = ? ORDER BY id",
+                (int(character["id"]),),
+            ).fetchall()
+            if keywords:
+                lines.append("    keywords: " + "; ".join(f"{row['term']} ({row['polarity']})" for row in keywords))
+    loose = db.execute("SELECT COUNT(*) AS n FROM keyword WHERE character_id IS NULL").fetchone()
+    if loose is not None and int(loose["n"]):
+        lines.append("")
+        lines.append(f"Older notes not tied to one character: {int(loose['n'])}. They are not read as anyone's behavior.")
     if unlinked:
         lines.append("")
         lines.append("Unlinked characters:")

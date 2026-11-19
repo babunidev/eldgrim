@@ -19,6 +19,7 @@ from eldgrim_agent.lua_saved import (
 )
 from eldgrim_agent.store import (
     add_keyword,
+    character_id_for,
     adjust_standing,
     apply_ingame_roster,
     ensure_member,
@@ -189,13 +190,15 @@ def _reduce_characters(db: sqlite3.Connection, characters: Table, ask, now: date
         keyword_id = None
         if parsed is not None:
             polarity, term = parsed
-            keyword_id = add_keyword(db, person_id, term, polarity, now)
-            outcome.themes.append(term)
-            outcome.polarity[person_id] = polarity
-            if polarity == "positive":
-                adjust_standing(db, person_id, 1, "positive keyword", keyword_id, now)
-            elif polarity == "negative":
-                adjust_standing(db, person_id, -2, "negative keyword", keyword_id, now)
+            character_id = character_id_for(db, person_id, name)
+            if character_id is not None:
+                keyword_id = add_keyword(db, person_id, character_id, term, polarity, now)
+                outcome.themes.append(term)
+                outcome.polarity[person_id] = polarity
+                if polarity == "positive":
+                    adjust_standing(db, person_id, 1, "positive keyword", keyword_id, now)
+                elif polarity == "negative":
+                    adjust_standing(db, person_id, -2, "negative keyword", keyword_id, now)
         else:
             outcome.polarity.setdefault(person_id, "")
         adjust_standing(db, person_id, 1, "guild-chat activity", keyword_id, now)

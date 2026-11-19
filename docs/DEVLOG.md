@@ -2,6 +2,24 @@
 
 A concise account of meaningful project development, written from the human creative's perspective.
 
+## 2026-11-19 — An in-game chat for Amberhearth
+
+The in-game chat needed to belong to the new guild alone. Cursor (Grok 4.7) opened a channel named in-game in the Roar and Amberhearth category. Amberhearth can see it and write there. Roar and the ranks cannot. A Hearthwarden still can, because that role is an administrator and Discord lets administrators through every lock.
+
+**Result:** The channel is on the server. The live overwrites were checked: Amberhearth can see and write, and Roar with a rank cannot. It was not opened in the Discord app from here. It sits at the bottom of that category.
+
+## 2026-11-19 — The clear stays, game open or not
+
+The hearth-board review suggested leaving guild chat in the file while Forever is running. That is not the rule. The run reduces the lines and clears them whether or not the game is open, and the addon fills the lists again. Cursor (Grok 4.7) took the open-client hold back out. The first-hand rule for the hearth board stays: a record counts only when the reported sender is the person acting, and a line relayed by one member does not back a keyword or a standing point.
+
+**Result:** The clear no longer looks for `Wow.exe`. The relay itself is not built.
+
+## 2026-11-19 — Characters, not the players
+
+A keyword had been saved on the Discord member, so a note about conduct belonged to the person rather than the character who spoke. Cursor (Grok 4.7) moved those notes onto the character. Guild chat keeps one keyword for the character who wrote. A reply keeps its short impression on the character that reply was about. The list Eldgrim reads names characters and leaves the player's name out. Standing and rank stay on the shared account.
+
+**Result:** A synthetic greeting is stored on Mira Stone, and a reply's impression is stored on Ada. The guild list no longer says who plays them on Discord. No live run was started.
+
 ## 2026-11-19 — The character, the wish, and a fire
 
 A quest had been choosing the highest level, so one character always walked it, and the ask itself was thrown away. Cursor (Grok 4.7) had the ask open a private thread. The member chooses the character, then may add a short wish, such as a place. The wish goes to the quest as a wish, not as an instruction. The quest is posted as a reply to the original message. A mention in the Eldgrim channel gets a fire between three and thirty-seven seconds later. When the quest is done, the quest reply gets a fire and the private thread gets one line that another may be asked for. A new character is stored at level 1 until the guild chat reports a level. The announcement is told not to invent a theme, a region, or a place for Sunday. The Eldgrim channel is placed under talk, in the Roar and Amberhearth category, with that category's permissions.

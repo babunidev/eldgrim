@@ -8,6 +8,9 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-19
 
+- After a run reduces guild chat, it clears those message lists whether or not the game is open. The addon fills them again. A line that one member relays does not back a keyword or a standing point.
+- The Discord channel in-game is for Amberhearth. That role can see it and write there. Roar and the ranks cannot. An administrator still can, because Discord does not lock administrators out of a channel. The shared chats are unchanged.
+- A keyword belongs to the character who spoke or who was answered. It is not a note about the player, and Eldgrim's guild list names characters rather than Discord names. Standing and rank stay on the account the characters share.
 - Cancelling a quest only sets it aside. Eldgrim says another may be asked for whenever the member wants, and it does not prepare a replacement. The member can then ask again and choose the character.
 - A quest ask in the Eldgrim channel opens a private thread. The member chooses the character and may add a short wish. The quest is posted as a reply to that message. A fire marks a mention after a few seconds, and a finished quest gets a fire and one private line. A new character is kept at level 1 until the guild chat says otherwise. The Eldgrim channel sits under talk in the Roar and Amberhearth category. The announcement does not invent a theme, a region, or a place for Sunday.
 - A quest and a personal answer are one round per member who wrote in the Eldgrim channel. That round sees only the character chosen for that member. The proclamation still reads the whole guild. Each member who wrote receives one reply, on their newest message. The server bot was restarted with the Eldgrim channel on 19 November 2026.

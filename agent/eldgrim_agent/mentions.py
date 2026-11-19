@@ -174,7 +174,7 @@ def run_daily_replies(
         chooser = rng or SystemRandom()
         for member in sorted(latest):
             letter = latest[member]
-            card, names, quiet = character_card(db, member, chooser)
+            card, names, quiet, character_id = character_card(db, member, chooser)
             try:
                 raw = (ask or ask_model)(letter_text(card, str(letter["body"])))
             except Exception:
@@ -190,7 +190,7 @@ def run_daily_replies(
             if status != "sent":
                 continue
             counts["replied"] += 1
-            if choice.polarity and _remember_impression(db, member, choice.polarity, choice.term, now):
+            if choice.polarity and character_id and _remember_impression(db, character_id, choice.polarity, choice.term, now):
                 counts["learned"] += 1
         return counts
     finally:
@@ -199,11 +199,12 @@ def run_daily_replies(
             (purge or purge_letters)(ids)
 
 
-def _remember_impression(db, member: int, polarity: str, term: str, now: datetime) -> bool:
-    person = db.execute("SELECT id FROM person WHERE discord_id = ?", (member,)).fetchone()
-    if person is None:
+def _remember_impression(db, character_id: int, polarity: str, term: str, now: datetime) -> bool:
+    """The impression belongs to the character the reply was about, not to the player."""
+    row = db.execute("SELECT person_id FROM character WHERE id = ?", (int(character_id),)).fetchone()
+    if row is None or row["person_id"] is None:
         return False
-    add_keyword(db, int(person["id"]), term, polarity, now, source="mention")
+    add_keyword(db, int(row["person_id"]), int(character_id), term, polarity, now, source="mention")
     db.commit()
     return True
 

@@ -523,17 +523,18 @@ def _complete(db, author: int, witness: int, now: datetime) -> tuple[int, bool]:
     return applied, True
 
 
-def character_card(db, discord_id: int, rng) -> tuple[str, list[str], bool]:
+def character_card(db, discord_id: int, rng) -> tuple[str, list[str], bool, int | None]:
     """One character for this member. The names are for the opt-out check, not for another prompt."""
     person = _person(db, discord_id)
     if person is None:
-        return "No character is recorded for this member. Do not invent one.", [], False
+        return "No character is recorded for this member. Do not invent one.", [], False, None
     rows = list(_characters(db, int(person["id"])))
     names = [str(row["name"]) for row in rows]
     quiet = bool(person["opt_out"])
     chosen = choose_character(rows, rng)
     if chosen is None:
-        return "No character is recorded for this member. Do not invent one.", names, quiet
+        return "No character is recorded for this member. Do not invent one.", names, quiet, None
+    chosen_id = int(chosen["id"])
     if quiet:
         kind = " ".join(part for part in (chosen["race"], chosen["class_name"]) if part)
         lines = ["This member is not to be named."]
@@ -544,7 +545,7 @@ def character_card(db, discord_id: int, rng) -> tuple[str, list[str], bool]:
         if chosen["faction"]:
             lines.append(f"Faction: {chosen['faction']}")
         lines.append("Do not name them.")
-        return "\n".join(lines), names, True
+        return "\n".join(lines), names, True, chosen_id
     lines = [f"Character: {chosen['name']}"]
     if chosen["race"]:
         lines.append(f"Race: {chosen['race']}")
@@ -555,7 +556,7 @@ def character_card(db, discord_id: int, rng) -> tuple[str, list[str], bool]:
     if chosen["faction"]:
         lines.append(f"Faction: {chosen['faction']}")
     lines.append("Address this character. Do not name any other character.")
-    return "\n".join(lines), names, False
+    return "\n".join(lines), names, False, chosen_id
 
 
 def request_character() -> str:
@@ -592,7 +593,7 @@ def choose_character(rows, rng):
 
 def _characters(db, person_id: int):
     return db.execute(
-        """SELECT name, faction, race, class_name, level FROM character
+        """SELECT id, name, faction, race, class_name, level FROM character
            WHERE person_id = ? AND in_guild = 1 AND (left_on IS NULL OR left_on = '')
            ORDER BY name COLLATE NOCASE""",
         (person_id,),

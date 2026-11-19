@@ -36,6 +36,8 @@ The existing Babuni Gaming Discord bot is the foundation. Verified on 2026-11-10
 
 The Roar role used to be given to every member who held a guild rank. That automatic assignment is retired, because it would have put Amberhearth members into Roar as soon as they became Ember.
 
+**In-game chat (19 November 2026).** A channel named in-game sits in the Roar and Amberhearth category. Only the Amberhearth role may see it and write there. Roar and the ranks are denied on that channel. A role with Administrator still sees it, because Discord does not let a channel lock out an administrator. The shared chats are unchanged.
+
 Everyone passes through the new Forge, including existing members; only the server owner is exempt. Ember is given on completion rather than on arrival, because Discord cannot hide channels that a role grants explicitly. The channels currently visible to everyone (all-chat, looking-for-group, wow-addons, morkahja, azeroth-moments) are now visible to the ranks only, so the Forge is all a newcomer sees.
 
 **Rank reset.** Approved by the creative on 2026-11-10: every member except the server owner restarts at Ember. When the switch that holds back ranks is turned on, members who have not completed the Forge lose all five ranks, including Administrator held through Hearthwarden; members who already completed keep only Ember. Completing the Forge then grants Ember, and Eldgrim decides any promotion afterwards. Once a member has completed, a later change to their character roles never removes a rank. The bot records each member's former ranks before removing them.
