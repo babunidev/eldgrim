@@ -2,6 +2,10 @@
 
 Meaningful repository and documentation changes are recorded here.
 
+## 2026-11-21
+
+- A task in `agent/context.toml` may name the `##` sections it reads from a page; it then gets the page's opening and those sections in page order. The core is always read whole. A section name the page does not have stops the run. Every task now leaves out the governance chapters' refinement queues, and the proclamation reads from `lore/FIRE_ITEMS.md` only what Eldgrim may ask, small flames, campfires and one-evening items. With the largest allowed brief, the proclamation's estimate fell from about 24,900 to 19,300 tokens; the window stays 28,672. Claude Code (Claude Opus 5.5).
+
 ## 2026-11-20
 
 - Rank recommendations use overall positivity instead of the day's keyword: promotion at the next rank's minimum and at least 75% positivity, demotion below the current rank's minimum and under 50%. Positivity is the share of a member's recorded days without a negative keyword. The score runs 0–200, with minimums of 60, 90, 150 and 200. The note may name up to three people per line. `eldgrim roster` shows positivity. The founder's local score was set to 200 as a founder correction, after a backup. Claude Code (Claude Opus 5.5).

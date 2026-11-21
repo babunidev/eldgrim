@@ -2,6 +2,12 @@
 
 A concise account of meaningful project development, written from the human creative's perspective.
 
+## 2026-11-21 — Reading only what a task needs
+
+The proclamation on 20 November did not fit: it needed about 24,725 tokens in a window of 24,576. The window had already been raised twice to keep up, and a larger window needs more memory while the model runs. Smaller reading for each task was the step I had named, so that is what came next. Claude Code (Claude Opus 5.5) let each task name the sections it reads from a page, while Eldgrim's core self stays whole. It proposed the sections: the confirmed rules each task acts on, without the refinement queues of open questions, and for the proclamation only the fire items anyone can bring to a guild fire, not the gear lists. The choice lives in `agent/context.toml`, where I can change it.
+
+**Result:** 117 agent tests passed, 6 of them new. With the largest allowed brief, the proclamation's estimate fell from about 24,900 to 19,300 tokens, and every task fits. No live run was made.
+
 ## 2026-11-20 — A member's whole record
 
 After re-running the ranks step, the note no longer recommended a member it had recommended before; it only said to look at that character. Claude Code (Claude Opus 5.5) found why: the note waited for a positive keyword on that same day, and the second preparation found no new chat. One day should not decide that. Now every day someone has been in Eldgrim's records counts, and only days with a negative keyword lower their positivity. At 75% or more, with enough points, Eldgrim recommends the promotion; the guild still decides. The ranks are further apart too: Wayfarer at 60, Kindler at 90, Hearthkeeper at 150 and Hearthwarden at 200, on a scale up to 200, and my own score is set to 200.

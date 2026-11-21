@@ -97,6 +97,75 @@ class ContextTests(unittest.TestCase):
         with self.assertRaises(ContextError):
             build("sample", system="system", instruction="do it", manifest=manifest, root=root)
 
+    CHAPTER = (
+        "# Chapter\n\nThe opening line.\n\n"
+        "## Kept rule\n\nKeep this.\n\n"
+        "## Open questions\n\nLeave this out.\n\n"
+        "## Second rule\n\nKeep this too.\n"
+    )
+
+    def test_a_task_reads_only_the_sections_it_names_in_page_order(self):
+        root, manifest = self._manifest(
+            {"core.md": "the self", "chapter.md": self.CHAPTER},
+            core=["core.md"],
+            tasks={"sample": [{"page": "chapter.md", "sections": ["Second rule", "Kept rule"]}]},
+        )
+        built = build("sample", system="s", instruction="i", manifest=manifest, root=root)
+        text = built.messages[1]["content"]
+        self.assertIn("The opening line.", text)
+        self.assertLess(text.index("Keep this."), text.index("Keep this too."))
+        self.assertNotIn("Leave this out.", text)
+        self.assertNotIn("Open questions", text)
+        self.assertEqual([page.name for page in built.pages], ["core.md", "chapter.md"])
+
+    def test_a_section_the_page_does_not_have_stops_the_build(self):
+        root, manifest = self._manifest(
+            {"core.md": "the self", "chapter.md": self.CHAPTER},
+            core=["core.md"],
+            tasks={"sample": [{"page": "chapter.md", "sections": ["Kept rul"]}]},
+        )
+        with self.assertRaisesRegex(ContextError, "no section named 'Kept rul'"):
+            build("sample", system="s", instruction="i", manifest=manifest, root=root)
+
+    def test_the_core_is_never_cut_to_sections(self):
+        root, manifest = self._manifest(
+            {"chapter.md": self.CHAPTER},
+            core=[{"page": "chapter.md", "sections": ["Kept rule"]}],
+            tasks={"sample": []},
+        )
+        with self.assertRaisesRegex(ContextError, "core is read whole"):
+            build("sample", system="s", instruction="i", manifest=manifest, root=root)
+
+    def test_a_core_page_named_with_sections_in_a_task_stays_whole(self):
+        root, manifest = self._manifest(
+            {"chapter.md": self.CHAPTER},
+            core=["chapter.md"],
+            tasks={"sample": [{"page": "chapter.md", "sections": ["Kept rule"]}]},
+        )
+        built = build("sample", system="s", instruction="i", manifest=manifest, root=root)
+        self.assertIn("Leave this out.", built.messages[1]["content"])
+        self.assertEqual(built.messages[1]["content"].count("## chapter.md"), 1)
+
+    def test_an_empty_or_repeated_section_list_is_an_error(self):
+        for sections in ([], ["Kept rule", "Kept rule"]):
+            root, manifest = self._manifest(
+                {"core.md": "the self", "chapter.md": self.CHAPTER},
+                core=["core.md"],
+                tasks={"sample": [{"page": "chapter.md", "sections": sections}]},
+            )
+            with self.assertRaises(ContextError):
+                build("sample", system="s", instruction="i", manifest=manifest, root=root)
+
+    def test_the_proclamation_reads_no_refinement_queue_and_no_gear_lists(self):
+        built = build("proclamation", data="Newcomers: none", system=STANDING, instruction=WRITE)
+        text = built.messages[1]["content"]
+        tasks = text[text.index("## governance/03-social-rules.md"):]
+        self.assertNotIn("## Refinement queue", tasks)
+        self.assertIn("## What Eldgrim may ask", text)
+        self.assertIn("## Campfires, and what can be laid beside them", text)
+        self.assertNotIn("## Weapons", text)
+        self.assertNotIn("## Quest flames that are usually given up", text)
+
     def test_unknown_missing_and_outside_paths_fail(self):
         root, manifest = self._manifest({"note.md": "a public note"}, core=["note.md"], tasks={"sample": []})
         with self.assertRaises(ContextError):
@@ -453,16 +522,23 @@ class ContextTests(unittest.TestCase):
             path = root / name
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(text, encoding="utf-8")
-        lines = ["[core]", "pages = [" + ", ".join(repr(name) for name in core) + "]"]
+        lines = ["[core]", "pages = [" + ", ".join(_toml(entry) for entry in core) + "]"]
         for task, extra in tasks.items():
             lines.append(f"[task.{task}]")
-            lines.append("pages = [" + ", ".join(repr(name) for name in extra) + "]")
+            lines.append("pages = [" + ", ".join(_toml(entry) for entry in extra) + "]")
             lines.append("private_origin = false")
             lines.append(f"num_ctx = {num_ctx}")
             lines.append(f"num_predict = {num_predict}")
         manifest = root / "context.toml"
         manifest.write_text("\n".join(lines) + "\n", encoding="utf-8")
         return root, manifest
+
+
+def _toml(entry) -> str:
+    if isinstance(entry, str):
+        return json.dumps(entry)
+    sections = ", ".join(json.dumps(heading) for heading in entry["sections"])
+    return f'{{ page = {json.dumps(entry["page"])}, sections = [{sections}] }}'
 
 
 if __name__ == "__main__":

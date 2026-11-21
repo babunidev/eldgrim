@@ -79,7 +79,7 @@ The architecture is based on the current official documentation:
 
 ## Sources for the final character instructions
 
-Every model call reads Eldgrim's core self first (character/SELF.md, the profile, the voice, the lore documents, the interaction principles, governance chapters 01, 02 and 15, and agent/CAPABILITIES.md), then only the pages approved for that task in agent/context.toml. It also reads the private origin on the founder's computer. The live run has used this reading since 2026-11-13. `eldgrim compare --against MODEL` writes a blind set from today's model and another local model on the same reading, and does not post. The origin file is:
+Every model call reads Eldgrim's core self first (character/SELF.md, the profile, the voice, the lore documents, the interaction principles, governance chapters 01, 02 and 15, and agent/CAPABILITIES.md), then only the pages approved for that task in agent/context.toml. Since 2026-11-21 a task may read only named sections of a page; the core is always read whole, and a section name the page does not have stops the run. It also reads the private origin on the founder's computer. The live run has used this reading since 2026-11-13. `eldgrim compare --against MODEL` writes a blind set from today's model and another local model on the same reading, and does not post. The origin file is:
 
 ~~~text
 ~/.local/share/eldgrim/private/ORIGIN.md

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import math
+import re
 import tomllib
 from dataclasses import dataclass
 from datetime import datetime
@@ -67,15 +68,20 @@ def build(
         raise ContextError(f"Unknown task: {task}")
     spec = tasks[task]
     core = _once(list(loaded["core"]["pages"]), "core")
+    if any(sections is not None for _, sections in core):
+        raise ContextError("The core is read whole. Sections may be chosen only in a task.")
+    core_names = [name for name, _ in core]
     extra = _once(list(spec.get("pages") or []), task)
-    ordered = core + [name for name in extra if name not in core]
+    ordered = core + [(name, sections) for name, sections in extra if name not in core_names]
     blocks: list[str] = []
     records: list[PageRecord] = []
     people = bool(spec.get("people", False))
-    for index, name in enumerate(ordered):
+    for index, (name, sections) in enumerate(ordered):
         if people and index == len(core):
             _add_people(blocks, records)
         text = _read_page(repo, name)
+        if sections is not None:
+            text = _sections(text, name, sections)
         blocks.append(f"## {name}\n\n{text}")
         records.append(PageRecord(name, hashlib.sha256(text.encode()).hexdigest()))
     if people and len(ordered) == len(core):
@@ -194,13 +200,50 @@ def _add_people(blocks: list[str], records: list[PageRecord]) -> None:
     records.append(PageRecord(HEADING, hashlib.sha256(known.encode()).hexdigest()))
 
 
-def _once(names: list[str], label: str) -> list[str]:
-    seen: list[str] = []
-    for name in names:
-        if name in seen:
+def _once(entries: list, label: str) -> list[tuple[str, tuple[str, ...] | None]]:
+    """Each entry is a page, or a table naming a page and the sections this task reads."""
+    seen: list[tuple[str, tuple[str, ...] | None]] = []
+    for entry in entries:
+        name, sections = _entry(entry, label)
+        if name in [known for known, _ in seen]:
             raise ContextError(f"{name} is listed twice in {label}.")
-        seen.append(str(name))
+        seen.append((name, sections))
     return seen
+
+
+def _entry(entry: object, label: str) -> tuple[str, tuple[str, ...] | None]:
+    if isinstance(entry, str):
+        return entry, None
+    if isinstance(entry, dict) and set(entry) == {"page", "sections"} and isinstance(entry["page"], str):
+        name, sections = entry["page"], entry["sections"]
+        if not isinstance(sections, list) or not sections or not all(isinstance(item, str) for item in sections):
+            raise ContextError(f"{name} in {label} needs a list of section headings.")
+        if len(set(sections)) != len(sections):
+            raise ContextError(f"{name} in {label} names a section twice.")
+        return name, tuple(sections)
+    raise ContextError(f"An entry in {label} is neither a page nor a page with its sections.")
+
+
+_SECTION = re.compile(r"(?m)^## (.+?)[ \t]*$")
+
+
+def _sections(text: str, name: str, wanted: tuple[str, ...]) -> str:
+    """The page's opening, before its first ## heading, and only the named ## sections, in page order."""
+    marks = list(_SECTION.finditer(text))
+    headings = [mark.group(1) for mark in marks]
+    for heading in wanted:
+        if heading not in headings:
+            raise ContextError(f"{name} has no section named {heading!r}.")
+        if headings.count(heading) > 1:
+            raise ContextError(f"{name} has more than one section named {heading!r}.")
+    if not marks:
+        return text
+    parts = [text[: marks[0].start()].rstrip()]
+    for index, mark in enumerate(marks):
+        if mark.group(1) in wanted:
+            end = marks[index + 1].start() if index + 1 < len(marks) else len(text)
+            parts.append(text[mark.start() : end].rstrip())
+    return "\n\n".join(part for part in parts if part)
 
 
 def _read_page(root: Path, name: str) -> str:

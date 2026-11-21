@@ -14,7 +14,7 @@ If the computer is off or asleep, that day is skipped. A later run does not post
 
 ## What a run reads
 
-Since 2026-11-13 the proclamation reads Eldgrim's core self first, then only the pages approved for it, as named in [context.toml](context.toml). The creative approved the switch after two blind comparisons against the full rulebook. A confirmed section controls an older line that still says open. Where two confirmed sections disagree, the announcement stays silent on that point.
+Since 2026-11-13 the proclamation reads Eldgrim's core self first, then only the pages approved for it, as named in [context.toml](context.toml). Since 2026-11-21 it reads only the confirmed sections of governance chapters 03, 06, 08 and 09, without their refinement queues, and from the fire catalogue only what Eldgrim may ask and the small flames, campfires and one-evening items, not the gear lists. The creative approved the switch after two blind comparisons against the full rulebook. A confirmed section controls an older line that still says open. Where two confirmed sections disagree, the announcement stays silent on that point.
 
 1. The core self: [character/SELF.md](../character/SELF.md), [character/PROFILE.md](../character/PROFILE.md), [character/VOICE.md](../character/VOICE.md), [lore/AMBERHEARTH.md](../lore/AMBERHEARTH.md), [lore/FIRES_AND_SYMBOLS.md](../lore/FIRES_AND_SYMBOLS.md), [interaction/PRINCIPLES.md](../interaction/PRINCIPLES.md), governance chapters 01, 02 and 15, and [CAPABILITIES.md](CAPABILITIES.md)
 2. The characters of Amberhearth, built at run time from the local database (see [ROSTER.md](ROSTER.md))
