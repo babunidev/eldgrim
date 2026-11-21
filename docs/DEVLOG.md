@@ -4,6 +4,12 @@ A concise account of meaningful project development, written from the human crea
 
 Entries before 14 November 2026 that say only "AI", or name no tool, did not record which tool or model did the work. The [collaboration record](AI_COLLABORATION.md) lists them as earlier AI help, tool and model not recorded.
 
+## 2026-11-21 — A call to the fire, not a census
+
+Today's announcement listed fourteen level-ups and a quest count, which is the keepers' census and not Eldgrim. Its wish to bring people to the fire, which is its whole role, had not shown in any announcement. Claude Code (Claude Opus 5.5) found the cause in the run itself: the public brief carried every level-up since the last keepers' note, and the instructions told Eldgrim twice to name them all. It took the level-ups out of the public brief, rewrote the instructions to open with what Eldgrim wants, gave each day a random way in such as a dare, a riddle or an empty seat, and added checks that send back a draft listing levels or saying what Sunday lacks. The reason Eldgrim wants the fire full stays in the private roots.
+
+**Result:** 135 agent tests passed, 4 of them new, and the context check passed. Twenty-seven local drafts from today's brief, none posted, were reviewed in five rounds. The reviews led to a check against drafts that echo the rules, a voice-not-body line, and "tomorrow" on Saturdays. No live run was made.
+
 ## 2026-11-21 — Which Ollama ran it
 
 The documentation guide asks every agent record to name the Ollama version, and the run logs named only the model. Claude Code (Claude Opus 5.5) explained the difference between Ollama's background server and the command I type, then made each run ask the server for its version when it starts the model and write that beside the model tag.

@@ -231,6 +231,40 @@ class GuardReasonTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "the draft was empty"):
             self._guarded("<think>only thinking</think>")
 
+    def test_a_level_report_is_sent_back_once(self):
+        self.assertEqual(
+            self._guarded("Anna Sherwood has risen from level 1 to 18.", "Who will sit in the empty seat?"),
+            "Who will sit in the empty seat?",
+        )
+        with self.assertRaisesRegex(RuntimeError, "listed levels"):
+            self._guarded("Garran Veyne from 35 to 36.", "Kyfi reached level 30.")
+
+    def test_a_call_without_levels_passes(self):
+        from eldgrim_agent.announce import rejection
+
+        self.assertEqual(rejection("Bring your worst joke on Sunday 22 November. Keep the fire.", ()), "")
+        self.assertEqual(rejection("Level up your laughter; two songs to one.", ()), "")
+        self.assertEqual(rejection("Come Sunday, no need to name a place, no theme to chase.", ()), "said what Sunday has none of")
+        self.assertEqual(rejection("Sunday's the day, no need for maps or themes.", ()), "said what Sunday has none of")
+
+    def test_saturday_names_sunday_as_tomorrow(self):
+        from datetime import datetime
+        from zoneinfo import ZoneInfo
+
+        from eldgrim_agent.announce import with_day
+
+        zone = ZoneInfo("Europe/Stockholm")
+        self.assertIn("Tomorrow is Sunday 22 November", with_day(datetime(2026, 11, 21, 14, 30, tzinfo=zone), ""))
+        self.assertNotIn("omorrow", with_day(datetime(2026, 11, 18, 14, 30, tzinfo=zone), ""))
+
+    def test_each_call_is_given_a_way_in(self):
+        from eldgrim_agent.announce import WAYS_IN, WRITE, way_in
+
+        way = way_in()
+        self.assertIn(way, WAYS_IN)
+        self.assertIn(way, WRITE.format(way=way))
+        self.assertNotIn("{way}", WRITE.format(way=way))
+
 
 if __name__ == "__main__":
     unittest.main()

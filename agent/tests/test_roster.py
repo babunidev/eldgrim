@@ -454,8 +454,8 @@ EldgrimDB = {
         mark_census_levels(self.db)
         self.assertEqual(take_census(self.db, NOW).level_ups, [])
 
-    def test_the_brief_names_level_ups_and_completed_quests(self):
-        from eldgrim_agent.refresh import level_lines, quest_lines
+    def test_the_brief_leaves_level_ups_to_the_keepers_and_names_completed_quests(self):
+        from eldgrim_agent.refresh import quest_lines
 
         self.db.execute("UPDATE character SET level = 10, census_level = 8 WHERE name = 'Mira Stone'")
         self.db.execute("UPDATE character SET level = 12, census_level = 10 WHERE name = 'Élodie Marsh'")
@@ -465,11 +465,13 @@ EldgrimDB = {
                VALUES ((SELECT id FROM person WHERE display_name = 'Mira'), 'Mira Stone', 'Flint', 'words', 'done', 1, 't', 't')"""
         )
         self.db.commit()
-        brief = guild_brief([], [], "", "", level_lines(self.db, take_census(self.db, NOW)), quest_lines(self.db))
-        self.assertIn("Mira Stone 8 to 10", brief)
+        brief = guild_brief([], [], "", "", quest_lines(self.db))
+        self.assertNotIn("Level-ups", brief)
+        self.assertNotIn("8 to 10", brief)
         self.assertIn("Mira Stone 1", brief)
         self.assertNotIn("Élodie", brief)
         self.assertNotIn("standing", brief.lower())
+        self.assertIn("Mira Stone 8 → 10", render_census(take_census(self.db, NOW)))
 
     def test_levels_are_marked_only_after_the_note_is_posted(self):
         from unittest.mock import patch

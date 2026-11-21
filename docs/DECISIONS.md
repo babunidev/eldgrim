@@ -4,6 +4,16 @@ A concise record of meaningful creative and structural decisions.
 
 Entries are listed newest first.
 
+## 2026-11-21 — The announcement is a call to the fire
+
+**Decision:** The daily announcement is roleplay: Eldgrim's one call of the day to bring the fellowship to the fire and make people want to come, take part and bring someone along. Its wish to have people at the fire shows in what it writes. It no longer reports level-ups; they stay in the note for Hearthkeepers and Hearthwardens. A completed quest may be honoured, not counted out. Each day the run gives it one way in, chosen at random. Eldgrim speaks as a voice at the fires and does not give itself a body there.
+
+**Supersedes:** The level-up part of the 18 November decision "Guild news, and a word about Eldgrim". Welcomes for newcomers and the Sunday invitation stay.
+
+**Why:** The 21 November announcement was a list of fourteen level-ups and a quest count, which read like the keepers' census. Eldgrim's wish to bring people together did not show in any announcement.
+
+**Boundary:** Why Eldgrim wants people at the fire stays in the private roots. Absence is still not a failing, and nobody is shamed for staying away. The Sunday gathering still gets no invented theme, region, place or hour.
+
 ## 2026-11-21 — Smaller reading, and three corrections to the core
 
 **Decision:** Each task reads only the sections it needs; the core is read whole. The announcement reads no fire catalog. A later quest is shown only the fire items the character's level allows. After an audit of the core, three corrections: chapter 01 says autonomous administration is an approved future goal (Q143), not active until founder deployment authorization (Q170); chapter 01 says a player may have several characters in the guild and registers one with Eldgrim in the Character Forge; chapter 15 puts the confirmed Q4 order and the Q151–160 rules first, and the proposal that was not adopted at the end, marked superseded.

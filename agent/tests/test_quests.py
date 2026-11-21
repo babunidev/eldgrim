@@ -681,7 +681,7 @@ class DayAndThanksTests(unittest.TestCase):
         from eldgrim_agent.announce import STANDING, WRITE
 
         self.assertIn("Do not give the Sunday gathering a theme, a region, or a place.", STANDING)
-        self.assertIn("Do not give that gathering a theme, a region, or a place.", WRITE)
+        self.assertIn("Do not give that gathering a theme, a region, or a place, and do not say that it has none.", WRITE)
         from eldgrim_agent.announce import with_day
 
         text = with_day(datetime(2026, 11, 18, 18, 9, tzinfo=STOCKHOLM), "Newcomers: none")

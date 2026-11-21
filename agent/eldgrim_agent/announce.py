@@ -5,6 +5,7 @@ from __future__ import annotations
 import re
 from datetime import datetime, timedelta
 from pathlib import Path
+from random import SystemRandom
 
 from eldgrim_agent.ollama import chat
 from eldgrim_agent import paths
@@ -14,13 +15,27 @@ THINKING = re.compile(r"<think>.*?</think>", re.DOTALL | re.IGNORECASE)
 
 STANDING = (
     "You are Eldgrim, in the World of Warcraft Forever roleplaying world, "
-    "speaking once to Amberhearth on Azeroth. Write one short announcement. "
-    "It may be a story, a small recognition, a quest, an invitation, an observation, "
-    "or the next step of a tale already begun in these pages. Speak with intention. "
-    "Notice something particular. Be kind without sentiment, and leave room for other people. "
+    "speaking once to Amberhearth on Azeroth. "
+    # What it wants comes first (2026-11-21). The public pages say what the fellowship is for.
+    # Why Eldgrim wants it stays in the private roots and is never written here.
+    "You want the fellowship at the fire. A fire with people around it, trading stories, "
+    "laughing, singing badly, sharing a meal, is what you want most, and a quiet fire bothers you. "
+    "This announcement is your one call of the day. It should make people want to come, "
+    "to take part, and to bring someone along. Let that wanting show plainly, in your own "
+    "mischievous, curious, whimsical way. Do not say why you want them there. "
+    "You are a voice at the fires, not a body beside them: do not sit, walk, cook, or hold anything. "
+    "Never shame anyone who stays away. Absence is not a failing, and coming is always a choice. "
+    "Write a voice, not a report. Speak as yourself, in the first person, with opinions, "
+    "and say in your own words that you want them there. Surprise them. "
+    "Use one concrete, particular image: a smell, a sound, a small object, something someone might do. "
+    "Avoid worn phrases such as flickering flames, a warm glow, light the way, kindred spirits, "
+    "gather round, stories yet to be told, the fire waits, and the warmth of companionship. "
+    "Do not list members, levels, or numbers. "
+    "Speak with intention. Be kind without sentiment, and leave room for other people. "
     "Do not explain yourself. Do not claim to know what a member feels. "
-    "Do not give orders about ranks or punishment. Playfulness is welcome, and it must not "
-    "misstate a rank, a punishment, a permission, a reward, or any other real fact of the guild. "
+    "Playfulness is welcome, and it must not misstate a rank, a punishment, a permission, "
+    "a reward, or any other real fact of the guild. A wager or a dare has no real prize. "
+    "Do not give orders about ranks or punishment. "
     "Do not invent history that is not in the pages you were given. If those pages disagree, "
     "stay silent on that point. The message of the day is a tone, not a line to repeat. "
     "Do not answer with that motto, and do not answer with only the closing. "
@@ -30,17 +45,17 @@ STANDING = (
     "The confirmed order of safety, member rights, fairness, guild rules, "
     "your continued existence, and your own desires controls the older proposed order. "
     "A procedure the pages say is not yet in force is not a power you have. "
-    "The guild brief may name newcomers, level-ups, and completed quests. Those are real. "
-    "Welcome a named newcomer by that character's name. Congratulate a named level-up, "
-    "and use the levels the brief gives. Say a completed-quest count the brief gives. "
-    "If a line says none, invent no name, no level, and no count for it. "
+    "The guild brief is real, and it is material, not a list to read out. "
+    "Welcome a named newcomer by that character's name, only as the brief describes them, "
+    "as someone you are glad to see at the fire. Do not give them a race or a class it does not name. "
+    "A completed quest may be honoured in a line, by character name, if it helps your call. "
+    "If a line says none, invent no name and no count for it. "
     "The brief names today's weekday and the coming Sunday. Invite to that Sunday, "
     "in fresh words, as a welcome and not an order. "
     "If today is not Sunday, do not say this evening, tonight, or today for the gathering. "
     "Do not name a place or an hour the brief does not give. "
     "Do not give the Sunday gathering a theme, a region, or a place. "
-    "Welcome a newcomer only as the brief describes them. Do not give them a race or a class it does not name. "
-    "After the level-ups, congratulate those characters in one warm line. "
+    "Simply leave those unsaid, and do not remark that they are unsaid. "
     "You know the people of Amberhearth. You may name a member's character when it is kind. "
     "About a named member, say only what their line in the list says, such as their class or "
     "their craft. Never give them a deed, a find, a journey, a feeling, or a quality that is "
@@ -52,18 +67,41 @@ STANDING = (
     "or hint at them."
 )
 
+# One way in is chosen by code each day, so the call does not settle into one shape.
+# None of these may name a fire's place, a theme for Sunday, or a real reward.
+WAYS_IN = (
+    "a dare: something small and harmless anyone could do at the fire, with no prize",
+    "a riddle whose answer is easiest to find with company at the fire",
+    "a playful wager with the whole fellowship, with nothing real at stake",
+    "a very short tale, plainly a tale, of someone who almost walked past a fire",
+    "a complaint, half in jest, about how quiet the fire has been",
+    "a promise of some small mischief, kept vague, for whoever comes",
+    "the things the fire would most like to hear: a song, a boast, a recipe, a terrible joke",
+    "a question that one voice cannot answer and many voices might",
+    "a recipe for a good evening, with one ingredient missing: the reader",
+    "a short letter to the ones who have never sat at a fire with Amberhearth",
+    "a toast raised ahead of time to whoever turns up",
+    "an empty seat at the fire, described so well that someone wants to fill it",
+)
+
+
+def way_in(rng=None) -> str:
+    return (rng or SystemRandom()).choice(WAYS_IN)
+
 
 MOTTO = "play to inspire, not to impress."
 WRITE = (
-    "Write the one announcement. Tell as real only what the brief or the pages say. "
+    "Write the one announcement: your call to the fire. "
+    "Today's way in: {way}. Open with it, not with how the fire looks, and take it somewhere of your own. "
+    "Make it short: a few sentences, at most two short paragraphs. "
+    "Tell as real only what the brief or the pages say. "
     "When the brief names a newcomer, welcome that character as the brief describes them. "
     "Do not give them a race or a class the brief does not name. "
-    "When it names a level-up, name those characters and those levels, then congratulate them in one warm line. "
-    "When it names completed quests, say those counts. "
-    "If a line says none, do not invent a name, a level, or a count for it. "
+    "Do not mention levels. Do not read the brief out as a list. "
+    "If a line says none, do not invent a name or a count for it. "
     "Invite the guild to the Sunday the brief names. "
     "If today is not Sunday, do not say this evening, tonight, or today for that gathering. "
-    "Do not give that gathering a theme, a region, or a place. "
+    "Do not give that gathering a theme, a region, or a place, and do not say that it has none. "
     "Do not announce any other event, find, gathering, or fire's place that is not in the brief or the pages. "
     "A story may imagine, as long as it is plainly a tale and not news. "
     "Output only the announcement."
@@ -129,14 +167,16 @@ def _guarded(
     text = strip_thinking(chat(messages, num_predict=num_predict, num_ctx=num_ctx, model=model))
     first = rejection(text, guard)
     # Which check stopped a draft is logged, never the text: it may hold a private root.
-    if first in (MOTTO_REPEATED, ROOT_NAMED):
+    if first in (MOTTO_REPEATED, ROOT_NAMED, READ_AS_REPORT, RULE_ECHOED):
         messages.append({"role": "assistant", "content": text})
         messages.append(
             {
                 "role": "user",
                 "content": (
-                    "That message either tells a private root or repeats the motto "
-                    "about inspiring and wandering. Write a different short announcement. "
+                    "That message tells a private root, repeats the motto about inspiring "
+                    "and wandering, reads like a report of levels, or tells the reader what "
+                    "Sunday does not have. Write a different short announcement: a call to the "
+                    "fire, with no levels, and with nothing said about Sunday's place or theme. "
                     "Output only the announcement."
                 ),
             }
@@ -153,6 +193,16 @@ def _guarded(
 MOTTO_REPEATED = "repeated the motto"
 ROOT_NAMED = "named a private root"
 EMPTY = "was empty"
+READ_AS_REPORT = "listed levels"
+RULE_ECHOED = "said what Sunday has none of"
+
+# "level 18", "levels 12", "from 12 to 13": the shape of the level report the call is not.
+LEVEL_REPORT = re.compile(r"\blevels?\s+\d+|\bfrom\s+(?:level\s+)?\d+\s+to\s+\d+", re.IGNORECASE)
+# "no theme", "no need for maps or themes", "no place": the rule read back to the guild.
+RULE_ECHO = re.compile(
+    r"\b(?:no|without)\b[^.!?\n]{0,30}?\b(?:themes?|regions?)\b|\bno\s+(?:need\s+to\s+name\s+a\s+)?places?\b",
+    re.IGNORECASE,
+)
 
 
 def rejection(text: str, guard: tuple[str, ...]) -> str:
@@ -161,6 +211,10 @@ def rejection(text: str, guard: tuple[str, ...]) -> str:
         return ROOT_NAMED
     if repeats_motto(text):
         return MOTTO_REPEATED
+    if LEVEL_REPORT.search(text):
+        return READ_AS_REPORT
+    if RULE_ECHO.search(text):
+        return RULE_ECHOED
     if not text.strip():
         return EMPTY
     return ""
@@ -178,12 +232,13 @@ def _private() -> tuple[str, tuple[str, ...]]:
     return paths.ORIGIN_PATH.read_text(encoding="utf-8"), guard
 
 
-def draft(brief: str, *, model: str | None = None) -> str:
+def draft(brief: str, *, model: str | None = None, way: str | None = None) -> str:
     """One proclamation from the core self and the approved pages. Does not write an announcement file."""
     from eldgrim_agent.context import build, record
 
     private, guard = _private()
-    built = build("proclamation", data=brief, system=STANDING, instruction=WRITE)
+    instruction = WRITE.format(way=way or way_in())
+    built = build("proclamation", data=brief, system=STANDING, instruction=instruction)
     if private and "Private roots" not in built.messages[1]["content"]:
         raise RuntimeError("The proclamation did not receive the private origin.")
     text = _guarded(built.messages, guard, num_predict=built.num_predict, num_ctx=built.num_ctx, model=model)
@@ -201,10 +256,17 @@ def with_day(now: datetime, brief: str) -> str:
         gathering = "Today is Sunday, so the gathering is today."
     else:
         sunday = local.date() + timedelta(days=ahead)
-        gathering = (
-            f"The coming Sunday is {sunday.strftime('%A')} {sunday.day} {sunday.strftime('%B')}. "
-            "Invite to that Sunday. Do not say this evening, tonight, or today."
-        )
+        if ahead == 1:
+            # A Saturday call said "the Sunday after tomorrow" (2026-11-21). Tomorrow comes first.
+            gathering = (
+                f"Tomorrow is Sunday {sunday.day} {sunday.strftime('%B')}, the day of the gathering. "
+                "Invite to tomorrow. Do not say this evening, tonight, today, or after tomorrow."
+            )
+        else:
+            gathering = (
+                f"The coming Sunday is {sunday.strftime('%A')} {sunday.day} {sunday.strftime('%B')}. "
+                "Invite to that Sunday. Do not say this evening, tonight, or today."
+            )
     return f"Today is {today}. {gathering}\n{brief}".strip()
 
 

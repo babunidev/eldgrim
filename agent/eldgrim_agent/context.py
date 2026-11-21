@@ -11,7 +11,7 @@ from datetime import datetime
 from pathlib import Path
 
 from eldgrim_agent import paths
-from eldgrim_agent.announce import STANDING, WRITE
+from eldgrim_agent.announce import STANDING, WAYS_IN, WRITE
 from eldgrim_agent.choose import CHOICE, SYSTEM as CHOOSE_SYSTEM
 from eldgrim_agent.clock import fallback_moment
 from eldgrim_agent.keywords import CHAT_LIMIT, INSTRUCTION as KEYWORD_INSTRUCTION, PROMPT
@@ -143,7 +143,7 @@ def find_problems(
     """Measure the named tasks against the real origin and the largest allowed input."""
     problems: list[str] = []
     samples = {
-        "proclamation": (STANDING, WRITE, "n" * BRIEF_LIMIT),
+        "proclamation": (STANDING, WRITE.format(way=max(WAYS_IN, key=len)), "n" * BRIEF_LIMIT),
         "chat-keyword": (PROMPT, KEYWORD_INSTRUCTION, "c" * CHAT_LIMIT),
         "choose-moment": (CHOOSE_SYSTEM, CHOICE, ""),
     }

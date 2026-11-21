@@ -32,12 +32,11 @@ def guild_brief(
     themes: list[str],
     forge_error: str,
     chat_skipped: str,
-    level_ups: list[str] | None = None,
     quests: list[str] | None = None,
 ) -> str:
-    """At most 2,000 characters. Extra people and themes are dropped whole, never cut mid-name."""
+    """At most 2,000 characters. Extra people and themes are dropped whole, never cut mid-name.
+    Level-ups are not in the public brief. They belong to the keepers' note (2026-11-21)."""
     names = [str(name).strip() for name in newcomers if str(name).strip()]
-    levels = [str(item).strip() for item in (level_ups or []) if str(item).strip()]
     done = [str(item).strip() for item in (quests or []) if str(item).strip()]
     unique: list[str] = []
     for theme in themes:
@@ -52,20 +51,17 @@ def guild_brief(
     if chat_skipped:
         notes.append("No new guild-chat lines were waiting.")
     kept_notes = list(notes)
-    while len(_render_brief([], 0, [], kept_notes, [], 0, [], 0)) > BRIEF_LIMIT and kept_notes:
+    while len(_render_brief([], 0, [], kept_notes, [], 0)) > BRIEF_LIMIT and kept_notes:
         kept_notes.pop()
-    shown_levels, waiting_levels = _fit(levels, lambda shown, omitted: _render_brief(
-        [], 0, [], kept_notes, shown, omitted, [], 0
-    ))
     shown_quests, waiting_quests = _fit(done, lambda shown, omitted: _render_brief(
-        [], 0, [], kept_notes, shown_levels, len(waiting_levels), shown, omitted
+        [], 0, [], kept_notes, shown, omitted
     ))
     shown: list[str] = []
     waiting = list(names)
     while waiting:
         trial = _render_brief(
             shown + [waiting[0]], len(waiting) - 1, [], kept_notes,
-            shown_levels, len(waiting_levels), shown_quests, len(waiting_quests),
+            shown_quests, len(waiting_quests),
         )
         if len(trial) <= BRIEF_LIMIT:
             shown.append(waiting.pop(0))
@@ -76,7 +72,7 @@ def guild_brief(
     while pending:
         trial = _render_brief(
             shown, len(waiting), shown_themes + [pending[0]], kept_notes,
-            shown_levels, len(waiting_levels), shown_quests, len(waiting_quests),
+            shown_quests, len(waiting_quests),
         )
         if len(trial) <= BRIEF_LIMIT:
             shown_themes.append(pending.pop(0))
@@ -84,7 +80,7 @@ def guild_brief(
             break
     return _render_brief(
         shown, len(waiting), shown_themes, kept_notes,
-        shown_levels, len(waiting_levels), shown_quests, len(waiting_quests),
+        shown_quests, len(waiting_quests),
     )
 
 
@@ -111,16 +107,6 @@ def describe_newcomers(db, names: list[str]) -> list[str]:
         kind = " ".join(part for part in ((row["race"] if row else None), (row["class_name"] if row else None)) if part)
         described.append(f"{name}, {kind}" if kind else name)
     return described
-
-
-def level_lines(db, census) -> list[str]:
-    """Character names and the two levels. An opted-out member is left out."""
-    quiet = _opted_out(db)
-    return [
-        f"{name} {old} to {new}"
-        for name, old, new in census.level_ups
-        if normalize(name) not in quiet
-    ]
 
 
 def quest_lines(db) -> list[str]:
@@ -161,8 +147,6 @@ def _render_brief(
     omitted: int,
     shown_themes: list[str],
     notes: list[str],
-    shown_levels: list[str] | None = None,
-    omitted_levels: int = 0,
     shown_quests: list[str] | None = None,
     omitted_quests: int = 0,
 ) -> str:
@@ -172,7 +156,6 @@ def _render_brief(
         theme_line = "Themes, with no name attached: none"
     return "\n".join([
         _news("Newcomers", shown, omitted),
-        _news("Level-ups", list(shown_levels or []), omitted_levels),
         _news("Quests completed", list(shown_quests or []), omitted_quests),
         theme_line,
         *notes,
@@ -218,7 +201,6 @@ def refresh_guild(
             chat.themes,
             result.forge_error,
             chat.skipped,
-            level_lines(db, census),
             quest_lines(db),
         )
         result.note = render_note(recommend(db, chat.polarity, reviewed=reviewed, now=now), census)
