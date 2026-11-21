@@ -18,7 +18,7 @@ These qualities should coexist rather than collapse into a single comic, solemn,
 
 A separate **Eldgrim addon for World of Warcraft Forever only** is approved and documented under addon/. Its first milestone is deliberately narrow: passively collect guild-chat messages and the available human-readable character information associated with each speaker, then save the archive locally through SavedVariables.
 
-The first milestone has no in-game interface, commands, chat output, notifications, sounds, addon communication, network activity, AI, summaries, or interpretation. It is a local recorder, not an in-game chatbot. The technical project does not change Eldgrim's character canon or reveal concealed lore.
+The first milestone had no in-game interface, commands, chat output, notifications, sounds, addon communication, network activity, AI, summaries, or interpretation. The archive is still a local recorder, not an in-game chatbot. Since version 0.4.0-alpha the addon also carries the hearth board, specified in addon/HEARTH.md: the weekly ember, member quests, and a one-way guild-chat relay. The technical project does not change Eldgrim's character canon or reveal concealed lore.
 
 The initial Lua and TOC implementation exists under addon/Eldgrim. In-game event correlation, character enrichment, and SavedVariables persistence remain unverified.
 
@@ -30,7 +30,7 @@ The design avoids a permanently connected Discord Gateway session and does not r
 
 This is an out-of-character software design, not an established in-world power or proof of autonomous behavior. A local runner can write a test announcement and choose the next wake time; nothing is posted, and there is no Discord integration, roster database or armed timer yet. The agent must not expose private character information or concealed motives to players.
 
-The agent never changes the addon's approved passive-recorder scope. Reading the addon's archive, and clearing its message lists after a successful save, is approved and specified in agent/ROSTER.md (2026-11-11).
+The agent never changes the addon's approved scope. Reading the addon's archive, and clearing its message lists after a successful save, is approved and specified in agent/ROSTER.md (2026-11-11).
 
 ## Technical companion: Discord bot
 

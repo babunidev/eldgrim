@@ -22,13 +22,13 @@ Only public-safe details belong here. Deliberately concealed character informati
 | Part | Purpose | Current position |
 | --- | --- | --- |
 | [Discord bot](bot/README.md) | Always-online member onboarding and authorized server operations | Running on the server; Character Forge and rank handling are documented as live |
-| [Local agent](agent/README.md) | A once-daily voice and bounded decision process using Ollama on the creative's PC | Designed; AI posting, local interpreted memory and autonomous administration not implemented |
-| [WoW Forever addon](addon/README.md) | Passive recording of permitted guild-facing information | Initial source and mock checks exist; full in-game integration remains unverified |
+| [Local agent](agent/README.md) | A once-daily voice and bounded decision process using Ollama on the creative's PC | Runs daily: the announcement, quests, replies and the Hearth Keepers note are posted through the bot. Autonomous administration is not implemented |
+| [WoW Forever addon](addon/README.md) | Passive recording of permitted guild-facing information, and the hearth board with the weekly ember | Built; mock checks pass; the formal in-game checks have not been run |
 | [Governance rulebook](governance/README.md) | Chapter-by-chapter framework for proposed stewardship, rights and safeguards | Working draft; **not a ratified charter** |
 
 Eldgrim is an entity, referred to as **it**. The old working label *Oracle* survives only in earlier records.
 
-The bot and agent have different jobs: the bot continues its verified server-side functions while the local agent is intended to run periodically on the creative's computer. The separate addon supplies another possible source of observation. None of those planned connections should be described as operational merely because it has been specified.
+The bot and agent have different jobs: the bot keeps its verified server-side functions running, while the local agent runs once a day on the creative's computer. The addon's guild-chat archive is read by that daily run. A connection that is only specified is not described as operational.
 
 ## The governance chapters
 

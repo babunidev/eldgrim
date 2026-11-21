@@ -6,14 +6,14 @@ Follow [the documentation standard](docs/DOCUMENTATION.md) for first-person auth
 
 Eldgrim is a character and narrative project in the World of Warcraft Forever roleplaying setting. The repository also contains three distinct technical workstreams:
 
-- addon/ — the Forever-only passive guild-chat recorder.
+- addon/ — the Forever-only addon: the passive guild-chat recorder and, since 0.4.0-alpha, the hearth board.
 - agent/ — the developing design for a once-daily local Discord agent using Ollama.
 - bot/ — the always-online Eldgrim Discord bot, running on the creative's server.
 
 Keep these areas separate:
 
 - Character, lore, and narrative documents describe Eldgrim as an in-world character.
-- addon/ describes the out-of-character game addon. Its approved first milestone remains a passive local recorder.
+- addon/ describes the out-of-character game addon. Its guild-chat archive remains a passive local recorder; the hearth board (addon/HEARTH.md) is its one approved interface.
 - agent/ describes a separate out-of-character communication system. Its behavior does not establish character canon.
 - bot/ describes Eldgrim's always-online Discord bot on the creative's server. Its behavior does not establish character canon either.
 - Eldgrim's **working** governance rulebook belongs in governance/ here. The binding Amberhearth guild charter and guild operations belong in ROARguild; drafts here do not silently override them.
@@ -22,16 +22,16 @@ The human creative owns the concept, canon, tone, scope, priorities, and final d
 
 ## WoW Forever addon rules
 
-- Edit the addon in addon/Eldgrim/ in this repository (2026-11-20). After a change that should be tested in game, run addon/install-local.sh. That copies addon/Eldgrim/ into the Forever client's Interface/AddOns/Eldgrim on this machine. Do not edit the game folder as the source. The install stops when the installed copy is newer than the project copy. The source in addon/ remains the first-milestone recorder.
+- Edit the addon in addon/Eldgrim/ in this repository (2026-11-20). After a change that should be tested in game, run addon/install-local.sh. That copies addon/Eldgrim/ into the Forever client's Interface/AddOns/Eldgrim on this machine. Do not edit the game folder as the source. The install stops when the installed copy is newer than the project copy. The source in addon/Eldgrim/ is the one copy to edit.
 - Develop for World of Warcraft Forever only. Current baseline: version 1.60.1, interface 16001. Record the exact client build used for research and testing; reverify after updates.
 - Do not add Retail, Classic Era, Vanilla, Burning Crusade, or other-client compatibility or fallback branches.
 - Verify every API against Forever-specific documentation or the current Forever client. Distinguish API-documented behavior, inference, and in-game verification. An API's presence in documentation does not prove that the intended event flow works in-game.
 - Respect chat-messaging lockdown and secret-value restrictions. Skip inaccessible data safely; never attempt to bypass client restrictions.
-- Keep the first addon milestone within addon/SPECIFICATION.md. Do not add an interface, slash commands, chat output, notifications, sounds, addon messages, network communication, AI, summaries, or interpretation.
+- Keep the guild-chat archive within addon/SPECIFICATION.md and the hearth board within addon/HEARTH.md. Beyond what those two specify, do not add an interface, slash commands, chat output, notifications, sounds, addon messages, network communication, AI, summaries, or interpretation without an explicit scope decision.
 - Persist only the approved character-facing information and guild messages. Do not persist account identities, GUIDs, club/member/message/chat-line IDs, or other technical identifiers. An identifier may be used transiently for a verified lookup or correlation, but must be discarded before saving.
 - Use SavedVariables for local persistence. Do not assume an addon can write or append arbitrary files. Document the save lifecycle and verify persistence in the current client.
 - Do not invent missing character details. Omit unavailable fields rather than guessing.
-- Do not scan the entire guild roster, inspect characters, or poll in the first milestone. Enrich a character only from information associated with a guild message, using a targeted lookup only if verified and necessary.
+- Do not scan the entire guild roster, inspect characters, or poll for the archive. Enrich a character only from information associated with a guild message, using a targeted lookup only if verified and necessary.
 
 ## Local agent rules
 

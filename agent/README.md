@@ -63,7 +63,7 @@ One daily proclamation is approved and is the first thing built (see [ANNOUNCEME
 
 ## Current reality
 
-`eldgrim run` does the day's steps in order: prepare the guild information, quests, replies, the announcement, the Hearth Keepers note, and the next day's wake time. `eldgrim run STEP` does one step; see [OPERATIONS.md](OPERATIONS.md). Test runs post too. `eldgrim post` sends the newest announcement that has not been posted yet. The system wake timer still needs root to be armed. There is no SQLite roster database yet.
+`eldgrim run` does the day's steps in order: prepare the guild information, quests, replies, the announcement, the Hearth Keepers note, and the next day's wake time. `eldgrim run STEP` does one step; see [OPERATIONS.md](OPERATIONS.md). Test runs post too. `eldgrim post` sends the newest announcement that has not been posted yet. The system wake timer still needs root to be armed. The roster, keywords, standing and quests are kept in one local SQLite database, `eldgrim.sqlite3`, in the runtime folder outside the repository; see [ROSTER.md](ROSTER.md).
 
 ## Technical references
 

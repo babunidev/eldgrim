@@ -26,7 +26,7 @@ Eldgrim's administrative authority is an approved design goal. This directory re
 | 12 | [Observation, memory, and privacy](12-observation-memory-and-privacy.md) | Privacy rules confirmed; systems partly specified |
 | 13 | [Technical limits on Eldgrim's autonomy](13-technical-autonomy.md) | Technical architecture approved; agent administration unimplemented |
 | 14 | [Conflicts and gaps that must be resolved](14-conflicts-and-gaps.md) | Inventory of open and conflicting decisions |
-| 15 | [Proposed hierarchy for a watertight Eldgrim constitution](15-proposed-priority-hierarchy.md) | Proposed precedence; not ratified |
+| 15 | [Priority hierarchy](15-proposed-priority-hierarchy.md) | Established working policy; earlier proposal superseded; no charter ratified |
 | 16 | [What the final rule set must contain](16-constitutional-documents.md) | Document division confirmed; no charter ratified |
 
 ## Editing and approval rules
@@ -40,7 +40,7 @@ Eldgrim's administrative authority is an approved design goal. This directory re
 
 ## Current implementation boundary
 
-The server bot and Character Forge are running; the creative tested onboarding and approved the rank reset on 10 November 2026. The daily Ollama agent, AI-driven administration, and **founder-PC-local interpreted-memory database** are not yet implemented or verified. The live bot's separate registration and administrative data remains on the server (Q138). The proposed hierarchy in Chapter 15 has not been ratified. Q161–170 establish **how** a charter may become binding and require a verified safeguard-and-founder-approval gate before activating new autonomous administration; no charter ratification or deployment approval occurred.
+The server bot and Character Forge are running; the creative tested onboarding and approved the rank reset on 10 November 2026. The daily Ollama agent, AI-driven administration, and **founder-PC-local interpreted-memory database** are not yet implemented or verified. The live bot's separate registration and administrative data remains on the server (Q138). Chapter 15's earlier proposed hierarchy was not adopted; the confirmed Q4 order and Q151–160 rules lead that chapter. Q161–170 establish **how** a charter may become binding and require a verified safeguard-and-founder-approval gate before activating new autonomous administration; no charter ratification or deployment approval occurred.
 
 ## Confirmed decisions from the founder interview
 

@@ -10,7 +10,7 @@ Entries are listed newest first.
 
 **Why:** The 20 November proclamation overflowed its window. The core is read on every run, and its lines read as Eldgrim's present: chapter 01 described autonomy as a power it has, and chapter 15 put an unadopted order before the confirmed one.
 
-**Next, not yet decided:** world zones by the character's level for quests.
+**Added the same day:** a quest is also shown only the places its character's level and side allow, and refused if it names another place from the world page. Catalog items without a named source are not errands, and the Night Watchman's Torch needs its quest's level, 60.
 
 ## 2026-11-20 — Ranks by overall positivity, on a 0–200 scale
 

@@ -2,9 +2,19 @@
 
 A concise account of meaningful project development, written from the human creative's perspective.
 
+Entries before 14 November 2026 that say only "AI", or name no tool, did not record which tool or model did the work. The [collaboration record](AI_COLLABORATION.md) lists them as earlier AI help, tool and model not recorded.
+
+## 2026-11-21 — Places by level, and the documentation set straight
+
+The last part of my 20 November plan was world zones by the character's level. Claude Code (Claude Opus 5.5) made a quest see only the places that character's level and side allow, from the world page's own level bands, and made the run refuse a quest that names a place outside them. The world page already said a row with no level is not an errand, so those are never shown either. The two catalog rows the level filter could not fix were mine to correct, and I asked for them: the Night Watchman's Torch now needs its quest's level, 60, and the torches and the fish with no named source wait under Not an errand yet.
+
+Then I asked for the documentation to be set right and checked against the writing rules. Claude Code found the roadmap, the project structure and the root README still describing the agent as a design and the addon as a recorder only, rewrote them from the code and the records, and corrected the bot README, the concept, the documentation guide and AGENTS.md the same way. It also reworded six journal sentences that began with "I" or "My", put two misplaced entries back in date order, noted that older entries did not record their AI tool, and moved a stray research file out of the root. Links were checked and none were broken.
+
+**Result:** 129 agent tests passed, 7 of them new. A level 1 quest now reads about 11,600 tokens, a level 60 quest about 15,600. No live run was made.
+
 ## 2026-11-21 — What Eldgrim reads about itself
 
-The last planned step was an audit of the core, the ten pages every task reads whole. Claude Code (Claude Opus 5.5) read them against the current decisions and the code. The capabilities page matched what was checked against the code. Three lines elsewhere did not. Chapter 01 called autonomous administration Eldgrim's authority, as if it were a power it has today; it is an approved goal that waits for my deployment authorization. The same table said several characters per player, which needed my 20 November decision beside it: several characters may stay in the guild, and one is registered with Eldgrim in the Forge. Chapter 15 opened with a priority order I never adopted, before the one I did. I chose to reorder that chapter rather than delete the old proposal, so it stays as a record at the end.
+The last planned step was an audit of the core, the ten pages every task reads whole. Claude Code (Claude Opus 5.5) read them against the current decisions and the code. The capabilities page matched what was checked against the code. Three lines elsewhere did not. Chapter 01 called autonomous administration Eldgrim's authority, as if it were a power it has today; it is an approved goal that waits for my deployment authorization. The same table said several characters per player, which needed my 20 November decision beside it: several characters may stay in the guild, and one is registered with Eldgrim in the Forge. Chapter 15 opened with a priority order I never adopted, before the one I did. Rather than delete the old proposal, I chose to reorder that chapter, so it stays as a record at the end.
 
 Reading the decision log, Claude Code also noticed that I had planned no fire catalog for the announcement at all, while its first change that day had kept four sections of it. The announcement now reads none.
 
@@ -40,13 +50,13 @@ Claude Code made the steps, kept today's brief so a single step does not prepare
 
 ## 2026-11-20 — One character, and quests that wait
 
-A member brings one character now. I am the only one who registered several, so I will go through the Forge again and keep Jasmine Amberbrew. Member quests also lost their timer: a quest stays until the one who made it deletes it, and it leaves the list only for someone who has completed it. Claude Code (Claude Opus 5.5) changed the Forge to ask for one character, made the local roster let go of characters the Forge no longer lists, and took the end date out of the addon.
+A member brings one character now. Since I am the only one who registered several, I will go through the Forge again and keep Jasmine Amberbrew. Member quests also lost their timer: a quest stays until the one who made it deletes it, and it leaves the list only for someone who has completed it. Claude Code (Claude Opus 5.5) changed the Forge to ask for one character, made the local roster let go of characters the Forge no longer lists, and took the end date out of the addon.
 
 **Result:** 108 bot tests, 91 agent tests and the addon's mock tests passed. Then I asked for it live. The deploy script still archived a repository the bot no longer has, so Claude Code changed it to pack the bot folder itself, checked first that the server held no file the sync would delete, and deployed. Two runs stopped on the service's Python cache before the restart; the third restarted the bot at 02:51 UTC. The Forge panel was updated through the bot's preview and apply. Not tested in game.
 
 ## 2026-11-20 — Proof belongs in Discord
 
-I never meant anyone to tick a quest off for themselves. A weekly ember is proved the way every Eldgrim quest is: a screenshot in the Eldgrim channel with @Eldgrim, and another member's Roar. The guild accepts it first, then the record lands on my computer, the daily run brings it together, and my next login passes it on to everyone. Member quests became simpler: the one who took it marks it complete, the one who made it confirms, and nothing about them is kept afterwards. I chose the word ember to tell the two kinds of screenshot apart, a private thread to ask which character, and one standing point for a witnessed ember.
+Ticking a quest off for oneself was never what I meant. A weekly ember is proved the way every Eldgrim quest is: a screenshot in the Eldgrim channel with @Eldgrim, and another member's Roar. The guild accepts it first, then the record lands on my computer, the daily run brings it together, and my next login passes it on to everyone. Member quests became simpler: the one who took it marks it complete, the one who made it confirms, and nothing about them is kept afterwards. To tell the two kinds of screenshot apart, I chose the word ember; I also chose a private thread to ask which character, and one standing point for a witnessed ember.
 
 Claude Code (Claude Opus 5.5) built it across all three parts: the bot stages ember proofs with their character, the daily run records them and writes `EldgrimVerified.lua` into the installed addon, and the addon takes completions only from Jasmine Amberbrew and drops the old proof choices. One early test run wrote an empty verified file into the installed addon through my real configuration; the file was removed, and the tests now write only to a temporary folder.
 
@@ -54,7 +64,7 @@ Claude Code (Claude Opus 5.5) built it across all three parts: the bot stages em
 
 ## 2026-11-20 — Why the ember stayed dark
 
-After two reloads the board still had no ember. Claude Code (Claude Opus 5.5) read the saved file: revision 0, and my test quest's creator was "Jasmine". Forever gives a character's own name without the surname, while the roster and guild chat say "Jasmine Amberbrew", so the addon never knew it was the master. It now takes the full name from the character's own roster entry. I also wanted the first ember to run now and end on Sunday, with the next one ready behind it, so the file holds two cards, and a third card is to be written each week.
+After two reloads the board still had no ember. Claude Code (Claude Opus 5.5) read the saved file: revision 0, and my test quest's creator was "Jasmine". Forever gives a character's own name without the surname, while the roster and guild chat say "Jasmine Amberbrew", so the addon never knew it was the master. It now takes the full name from the character's own roster entry. Beyond that, I wanted the first ember to run now and end on Sunday, with the next one ready behind it, so the file holds two cards, and a third card is to be written each week.
 
 **Result:** A mock where the name arrives short and the roster arrives late, with a second Jasmine in the guild, found the right name, published both cards and handed over at Sunday 00:00 UTC. Not yet seen in game.
 
@@ -200,7 +210,7 @@ The keepers should see the guild grow, so the census now counts level-ups since 
 
 ## 2026-11-13 — It knows the people of Amberhearth
 
-Eldgrim should know itself and the people of the fellowship. Every call now reads the guild's characters with their class, rank and professions, right after its self. My choices were that it may name anyone kindly, that opted-out members stay listed, and that declared characters sit under the member's Discord name. Claude Code (Claude Opus 5.5) built the block and tested drafts without posting. The first drafts named the first person on the list twice and invented her deeds, so Claude Code shuffled the order each run and limited what may be said about a named member to the list itself.
+Eldgrim should know itself and the people of the fellowship. Every call now reads the guild's characters with their class, rank and professions, right after its self. The choices I made were that it may name anyone kindly, that opted-out members stay listed, and that declared characters sit under the member's Discord name. Claude Code (Claude Opus 5.5) built the block and tested drafts without posting. The first drafts named the first person on the list twice and invented her deeds, so Claude Code shuffled the order each run and limited what may be said about a named member to the list itself.
 
 **Result:** 58 agent tests pass. With the narrower rule, five drafts named no one and invented nothing about a member.
 
@@ -233,6 +243,14 @@ The first announcements read four pages, because the rest of the rules were stil
 The people in the game are the guild. Waiting until they open Discord left most of them out, including members who will never use it. A character in the guild is now a member from the start. Discord connects a name to that member when they use the Forge. The notes stay. The raw lines do not.
 
 **Result:** In-game characters are registered. A later Forge registration attaches to the member who is already there.
+
+## 2026-11-13 — Governance reconciliation
+
+AI assistance compared the public working rulebook and ROARguild charter, wrote operating defaults, and identified the deployment evidence still required.
+
+## 2026-11-13 — Giving the repository clear permissions
+
+Public source alone did not explain what others could reuse, so I approved MIT for the agent, bot and addon code while reserving the Eldgrim character identity. AI assistance added the license and brought the project notes into agreement, without changing how the application runs. Other people's content retains its own terms.
 
 ## 2026-11-12 — A roster of its own
 
@@ -461,11 +479,3 @@ AI reviewed the repository instructions and documentation, researched the Foreve
 With Eldgrim becoming a distinct character and narrative project, I asked AI to establish a documentation structure that could hold the character's identity, voice, lore, and developing stories without confusing them with Amberhearth's guild administration or a possible future software implementation. The existing README provided the initial direction; AI organized the supporting documents and folder structure, preserving unresolved details as open rather than inventing canon.
 
 **Result:** Documentation structure committed to the repository. No addon, bot, or other software was implemented or verified.
-
-## 2026-11-13 — Governance reconciliation
-
-AI assistance compared the public working rulebook and ROARguild charter, wrote operating defaults, and identified the deployment evidence still required.
-
-## 2026-11-13 — Giving the repository clear permissions
-
-Public source alone did not explain what others could reuse, so I approved MIT for the agent, bot and addon code while reserving the Eldgrim character identity. AI assistance added the license and brought the project notes into agreement, without changing how the application runs. Other people's content retains its own terms.

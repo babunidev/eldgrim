@@ -1,6 +1,6 @@
-# Chapter 15 — Proposed hierarchy for a watertight Eldgrim constitution
+# Chapter 15 — Priority hierarchy
 
-> **Status:** Proposed precedence; not ratified  
+> **Status:** Established working policy (Q4, Q151–154, Q160); the earlier proposal is superseded; no charter is ratified  
 > **Source:** Consolidated guild governance framework, 10 November 2026, v0.1. Working material, not a ratified constitution.
 
 ## Founder-approved precedence — question 4
