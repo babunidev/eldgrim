@@ -243,7 +243,11 @@ def character_messages(character: Table) -> list[dict[str, object]]:
         text = value.get("message")
         timestamp = value.get("timestamp")
         if isinstance(text, str) and isinstance(timestamp, (int, float)):
-            messages.append({"message": text, "timestamp": int(timestamp)})
+            item: dict[str, object] = {"message": text, "timestamp": int(timestamp)}
+            passed_by = value.get("passedBy")
+            if isinstance(passed_by, str) and passed_by:
+                item["passedBy"] = passed_by
+            messages.append(item)
     return messages
 
 

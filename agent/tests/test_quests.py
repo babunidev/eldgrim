@@ -2,6 +2,10 @@
 
 from __future__ import annotations
 
+import json
+import os
+import subprocess
+import shutil
 import random
 import sys
 import tempfile
@@ -104,6 +108,11 @@ class SettleTests(unittest.TestCase):
         self.catalog.write_text(TINY, encoding="utf-8")
         self.sent = []
         self.purged = []
+        # Never the installed addon: the run writes EldgrimVerified.lua here.
+        self.verified = Path(self.tmp.name) / "EldgrimVerified.lua"
+        patcher = patch.dict(os.environ, {"ELDGRIM_VERIFIED": str(self.verified)})
+        patcher.start()
+        self.addCleanup(patcher.stop)
 
     def deliver(self, member, text):
         self.sent.append((member, text))
@@ -331,6 +340,86 @@ class SettleTests(unittest.TestCase):
         self.assertEqual(self.quests(5)[0]["status"], "done")
         self.assertEqual(self.standing(5), 50)
 
+    def ember(self, pid, author, witness, character="", posted=None):
+        return {
+            "id": pid,
+            "author": author,
+            "witness": witness,
+            "kind": "ember",
+            "character": character,
+            "posted": posted if posted is not None else NOW.timestamp() - 3600,
+        }
+
+    def test_a_witnessed_ember_is_recorded_with_one_point_a_week(self):
+        self.seed(5, [
+            {"name": "Low One", "race": "Gnome", "class": "Mage", "faction": "Alliance"},
+            {"name": "High One", "race": "Dwarf", "class": "Warrior", "faction": "Alliance"},
+        ])
+        self.seed(6, [{"name": "Witness", "race": "Dwarf", "class": "Warrior", "faction": "Alliance"}])
+        self.seed(7, [{"name": "Solo Seven", "race": "Human", "class": "Priest", "faction": "Alliance"}])
+        result = self.go({"requests": [], "proofs": [
+            self.ember(1, 5, 6, "High One"),
+            self.ember(2, 5, 6, "Low One"),
+            self.ember(3, 7, 6),
+            self.ember(4, 5, 6),
+        ]})
+        self.assertEqual(result["counts"]["embers"], 3)
+        self.assertEqual(result["proofs"], [1, 2, 3], "a picture still waiting for its character stays staged")
+        self.assertEqual(self.standing(5), 51, "one point a week, however many characters")
+        self.assertEqual(self.standing(7), 51)
+        self.assertEqual(self.quests(5), [], "an ember is not a personal quest")
+        again = self.go({"requests": [], "proofs": [self.ember(9, 5, 6, "High One")]})
+        self.assertEqual(again["counts"]["embers"], 0)
+        self.assertEqual(self.standing(5), 51)
+
+    def test_an_ember_needs_another_amberhearth_witness_and_a_chosen_character_in_time(self):
+        self.seed(5, [
+            {"name": "Low One", "race": "Gnome", "class": "Mage", "faction": "Alliance"},
+            {"name": "High One", "race": "Dwarf", "class": "Warrior", "faction": "Alliance"},
+        ])
+        self.seed(6, [{"name": "Witness", "race": "Dwarf", "class": "Warrior", "faction": "Alliance"}])
+        db = connect(self.db_path)
+        db.execute("UPDATE person SET fellowship = 'Roar' WHERE discord_id = 6")
+        db.commit()
+        db.close()
+        old = NOW.timestamp() - 8 * 86400
+        result = self.go({"requests": [], "proofs": [
+            self.ember(1, 5, 6, "High One"),
+            self.ember(2, 5, 5, "High One"),
+            self.ember(3, 5, 6, posted=old),
+            self.ember(4, 5, 6, "Somebody Else"),
+        ]})
+        self.assertEqual(result["counts"]["embers"], 0)
+        self.assertEqual(result["proofs"], [1, 2, 3, 4], "refused proofs are not kept")
+        self.assertEqual(self.standing(5), 50)
+
+    def test_the_verified_file_is_lua_the_addon_can_read(self):
+        from eldgrim_agent.embers import week_end, write_verified
+
+        self.assertEqual(week_end(1795132800), 1795305600, "Friday counts for the Sunday after")
+        self.assertEqual(week_end(1795305600), 1795910400, "Sunday 00:00 starts the next week")
+        self.seed(5, [{"name": "Garran Veyne", "race": "Human", "class": "Warrior", "faction": "Alliance"}])
+        self.seed(6, [{"name": "Witness", "race": "Dwarf", "class": "Warrior", "faction": "Alliance"}])
+        self.go({"requests": [], "proofs": [self.ember(1, 5, 6)]})
+        db = connect(self.db_path)
+        try:
+            self.assertTrue(write_verified(db, NOW, self.verified))
+        finally:
+            db.close()
+        text = self.verified.read_text(encoding="utf-8")
+        self.assertIn('name = "Garran Veyne"', text)
+        self.assertNotIn("Member5", text)
+        lua = shutil.which("lua") or shutil.which("luajit")
+        if lua:
+            script = (
+                f"dofile({json.dumps(str(self.verified))}) "
+                "local e = EldgrimVerifiedFile.embers[1] "
+                "io.write(EldgrimVerifiedFile.revision, ' ', e.week, ' ', e.name)"
+            )
+            out = subprocess.run([lua, "-e", script], capture_output=True, text=True, check=True).stdout
+            week = week_end(NOW.timestamp() - 3600)
+            self.assertEqual(out, f"1 {week} Garran Veyne")
+
     def test_a_closed_refusal_is_kept_for_the_next_run(self):
         def closed(member, text):
             self.sent.append((member, text))
@@ -372,6 +461,7 @@ class SettleTests(unittest.TestCase):
             rng=random.Random(0),
             catalog_path=self.catalog,
             mark=lambda member, open_quest, thanks=None: None,
+            verified=self.verified,
         )
         self.assertEqual(first["sent"], 1)
         self.assertEqual(self.purged, [([1], [])])
@@ -386,6 +476,7 @@ class SettleTests(unittest.TestCase):
             rng=random.Random(0),
             catalog_path=self.catalog,
             mark=lambda member, open_quest, thanks=None: None,
+            verified=self.verified,
         )
         self.assertEqual(second["cancelled"], 1)
         self.assertEqual(self.quests(5)[-1]["item"], BONFIRE_ITEM)
@@ -400,6 +491,7 @@ class SettleTests(unittest.TestCase):
             rng=random.Random(0),
             catalog_path=self.catalog,
             mark=lambda member, open_quest, thanks=None: None,
+            verified=self.verified,
         )
         self.assertEqual(third["sent"], 1)
         self.assertEqual(self.quests(5)[-1]["item"], "Flint and Tinder")
@@ -519,7 +611,7 @@ class QuestContextTests(unittest.TestCase):
                 system=QUEST_SYSTEM,
                 instruction=QUEST_INSTRUCTION,
             )
-        self.assertEqual(built.num_ctx, 24576)
+        self.assertEqual(built.num_ctx, 28672)
         self.assertLessEqual(built.estimate + built.num_predict, built.num_ctx)
         names = [page.name for page in built.pages]
         self.assertIn("lore/FIRE_ITEMS.md", names)

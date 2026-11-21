@@ -24,6 +24,8 @@ OFFICER_NOTES = RUNTIME_ROOT / "officer"
 LOGS = RUNTIME_ROOT / "logs"
 LOCK_PATH = RUNTIME_ROOT / "run.lock"
 LAST_BRIEF = RUNTIME_ROOT / "last-brief.txt"
+# Today's brief and Hearth Keepers note, so a single step can use them without preparing again.
+PREPARED_PATH = RUNTIME_ROOT / "prepared.json"
 COMPARE_DIR = RUNTIME_ROOT / "compare"
 DATABASE_PATH = RUNTIME_ROOT / "eldgrim.sqlite3"
 

@@ -3,7 +3,7 @@
 **Target:** World of Warcraft Forever only.  
 **Baseline:** Version 1.60.1, interface 16001.  
 **Build reference:** 1.60.1.70862 (latest public build found on 2026-11-08).  
-**Status:** Local Lua syntax validation and mocked behavior tests passed with texlua. All in-game checks remain not run.
+**Status:** Local mocked tests for the archive and the hearth board passed on this machine. All in-game checks remain not run. The hearth checks are listed in [HEARTH.md](HEARTH.md).
 
 ## 1. Client and loading
 - [ ] Confirm the installed client is World of Warcraft Forever.

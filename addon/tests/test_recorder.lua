@@ -14,7 +14,10 @@ function CreateFrame(kind)
     return frame
 end
 
+frame.events = {}
+
 function frame:RegisterEvent(event)
+    self.events[event] = true
     self.registeredEvent = event
 end
 
@@ -53,9 +56,10 @@ time = function()
 end
 
 EldgrimDB = nil
+SlashCmdList = {}
 dofile(addonFile)
 
-assert(frame.registeredEvent == "CHAT_MSG_GUILD", "only guild chat should be registered")
+assert(frame.events.CHAT_MSG_GUILD, "guild chat should be registered")
 assert(frame.hidden == true, "event frame should remain hidden")
 
 communityInfo = {

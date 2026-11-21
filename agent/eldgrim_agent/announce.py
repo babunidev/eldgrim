@@ -127,7 +127,9 @@ def _guarded(
     model: str | None = None,
 ) -> str:
     text = strip_thinking(chat(messages, num_predict=num_predict, num_ctx=num_ctx, model=model))
-    if discloses_roots(text, guard) or repeats_motto(text):
+    first = rejection(text, guard)
+    # Which check stopped a draft is logged, never the text: it may hold a private root.
+    if first in (MOTTO_REPEATED, ROOT_NAMED):
         messages.append({"role": "assistant", "content": text})
         messages.append(
             {
@@ -140,9 +142,28 @@ def _guarded(
             }
         )
         text = strip_thinking(chat(messages, num_predict=num_predict, num_ctx=num_ctx, model=model))
-    if discloses_roots(text, guard) or repeats_motto(text) or not text.strip():
-        raise RuntimeError("The announcement repeated the motto, disclosed private roots, or was empty.")
+        last = rejection(text, guard)
+        if last:
+            raise RuntimeError(f"The announcement was rejected: the draft {first}, and the retry {last}.")
+    elif first:
+        raise RuntimeError(f"The announcement was rejected: the draft {first}.")
     return text.strip()
+
+
+MOTTO_REPEATED = "repeated the motto"
+ROOT_NAMED = "named a private root"
+EMPTY = "was empty"
+
+
+def rejection(text: str, guard: tuple[str, ...]) -> str:
+    """Why a draft may not be posted, or an empty string. A private root is checked first."""
+    if discloses_roots(text, guard):
+        return ROOT_NAMED
+    if repeats_motto(text):
+        return MOTTO_REPEATED
+    if not text.strip():
+        return EMPTY
+    return ""
 
 
 def _private() -> tuple[str, tuple[str, ...]]:

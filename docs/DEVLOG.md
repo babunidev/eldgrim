@@ -2,11 +2,79 @@
 
 A concise account of meaningful project development, written from the human creative's perspective.
 
+## 2026-11-20 — A member's whole record
+
+After re-running the ranks step, the note no longer recommended a member it had recommended before; it only said to look at that character. Claude Code (Claude Opus 5.5) found why: the note waited for a positive keyword on that same day, and the second preparation found no new chat. One day should not decide that. Now every day someone has been in Eldgrim's records counts, and only days with a negative keyword lower their positivity. At 75% or more, with enough points, Eldgrim recommends the promotion; the guild still decides. The ranks are further apart too: Wayfarer at 60, Kindler at 90, Hearthkeeper at 150 and Hearthwarden at 200, on a scale up to 200, and my own score is set to 200.
+
+Claude Code wrote the positivity measure and the new recommendation, showed it in `eldgrim roster`, set my score after a backup, and updated chapters 04 and 07, the decision register and the roster page.
+
+**Result:** 111 agent tests passed, 7 of them new. A read-only check of the real database now recommends that member again and names one other to look at. Nothing was posted.
+
+## 2026-11-20 — One step at a time
+
+Eldgrim's run today did only part of its work. The scheduled run stopped before anything, because the announcement's reading was estimated just over its window, and that one overflow stopped quests, replies and the Hearth Keepers note too. When we ran it by hand, the note went out, but both announcement drafts were rejected, and the quest step only set my quest aside, since a cancel was the only request waiting. Claude Code (Claude Opus 5.5) traced that from the run logs, Ollama's log and the quest records. What I asked for was a run in parts, each standing on its own and each able to run alone: `prepare`, `quests`, `replies`, `announce`, `ranks` and `choose`. Ranks stay in one note.
+
+Claude Code made the steps, kept today's brief so a single step does not prepare the guild again, and made a rejected announcement log which check stopped it. Smaller reading for each task, fire items by level and an audit of the core are the next steps, not done yet.
+
+**Result:** 104 agent tests passed, 13 of them new. No live run was made with the new steps.
+
+## 2026-11-20 — One character, and quests that wait
+
+A member brings one character now. I am the only one who registered several, so I will go through the Forge again and keep Jasmine Amberbrew. Member quests also lost their timer: a quest stays until the one who made it deletes it, and it leaves the list only for someone who has completed it. Claude Code (Claude Opus 5.5) changed the Forge to ask for one character, made the local roster let go of characters the Forge no longer lists, and took the end date out of the addon.
+
+**Result:** 108 bot tests, 91 agent tests and the addon's mock tests passed. Then I asked for it live. The deploy script still archived a repository the bot no longer has, so Claude Code changed it to pack the bot folder itself, checked first that the server held no file the sync would delete, and deployed. Two runs stopped on the service's Python cache before the restart; the third restarted the bot at 02:51 UTC. The Forge panel was updated through the bot's preview and apply. Not tested in game.
+
+## 2026-11-20 — Proof belongs in Discord
+
+I never meant anyone to tick a quest off for themselves. A weekly ember is proved the way every Eldgrim quest is: a screenshot in the Eldgrim channel with @Eldgrim, and another member's Roar. The guild accepts it first, then the record lands on my computer, the daily run brings it together, and my next login passes it on to everyone. Member quests became simpler: the one who took it marks it complete, the one who made it confirms, and nothing about them is kept afterwards. I chose the word ember to tell the two kinds of screenshot apart, a private thread to ask which character, and one standing point for a witnessed ember.
+
+Claude Code (Claude Opus 5.5) built it across all three parts: the bot stages ember proofs with their character, the daily run records them and writes `EldgrimVerified.lua` into the installed addon, and the addon takes completions only from Jasmine Amberbrew and drops the old proof choices. One early test run wrote an empty verified file into the installed addon through my real configuration; the file was removed, and the tests now write only to a temporary folder.
+
+**Result:** Mock tests passed in the addon, 107 bot tests and 90 agent tests. The bot is not deployed on the server, so ember screenshots are not yet staged. Not tested in game.
+
+## 2026-11-20 — Why the ember stayed dark
+
+After two reloads the board still had no ember. Claude Code (Claude Opus 5.5) read the saved file: revision 0, and my test quest's creator was "Jasmine". Forever gives a character's own name without the surname, while the roster and guild chat say "Jasmine Amberbrew", so the addon never knew it was the master. It now takes the full name from the character's own roster entry. I also wanted the first ember to run now and end on Sunday, with the next one ready behind it, so the file holds two cards, and a third card is to be written each week.
+
+**Result:** A mock where the name arrives short and the roster arrives late, with a second Jasmine in the guild, found the right name, published both cards and handed over at Sunday 00:00 UTC. Not yet seen in game.
+
+## 2026-11-20 — The first ember
+
+With the board looking right, I wanted it to hold something. Claude Code (Claude Opus 5.5) wrote the first weekly ember, "A Fire of Your Own", from Eldgrim's self and voice pages, the fire motifs, the world page and the fire catalogue. It asks each member to light a small fire somewhere new on the road, stay by it, and notice one thing. The hint names only a campfire kit and goods whose source the catalogue gives. The card starts on Sunday 22 November so it runs a full week, and sits in the ember file installed on Jasmine Amberbrew's machine. The text is kept in `narrative/EMBERS.md`.
+
+**Result:** In a mock of two clients, the real sync published the card from Jasmine Amberbrew's file in five messages of at most 255 bytes, and the other client rebuilt the title, story and hint exactly. It has not been published in Forever yet.
+
+## 2026-11-20 — The hearth board gets its frame
+
+The first board opened from the guild panel, but it did not look like Eldgrim. The flame was a flat flask, the buttons were coloured boxes, and the text fields had no edge. The frame instructions had not come through either. What I had asked for was cut corners with triangles in them, and lines from the outside in: one thick line, one thin line broken at random, an even thinner line all the way round, a gap, and one more line.
+
+Claude Code (Claude Opus 5.5) redrew it. It wrote `addon/tools/hearth_art.py`, which draws the textures: a new flame emblem, the four frame corners with a flame plaque and scrolls in each, and buttons, fields and glyphs. It split the look into `EldgrimSkin.lua` and rebuilt `EldgrimBoard.lua` on it. To see the work without the game, it wrote a small mock of the frame API that runs the real board code on sample data and renders it to PNG. A first corner flame pointed at the window's centre and read as a seed. Mirroring one corner texture would have turned the flames upside down at the bottom, so each corner is drawn on its own.
+
+**Result:** The preview renders, and the new mock test of the window's buttons and form passed, as did the existing mock tests. Nothing has been seen in Forever yet. The client must be restarted to load the new textures.
+
+## 2026-11-20 — The hearth board is in the addon
+
+The hearth board had a plan and no addon. Cursor (Grok 4.7) added the ember file, the guild sync, and the coal-and-fire board in `addon/Eldgrim`. Jasmine Amberbrew is the only character whose addon messages can publish the weekly ember. Other clients hold guild chat until her addon acknowledges a batch, then delete that batch. A quest record counts only when the reported sender is the person acting. A guild line passed on by one member is stored with that member's name, and the daily run does not score it.
+
+**Result:** Mock tests passed on this machine. The two-client checks have not been run in Forever. The project addon was copied into the local AddOns folder. Rank index 0 is the only invite rank on the list. The rest of the guild's invite ranks are not written down yet.
+
+## 2026-11-20 — One project for the bot
+
+The Discord bot had its own folder and its own local git history, with no remote. Eldgrim has one public repository. Cursor (Grok 4.7) moved the working copy into `bot/private` and gitignored that directory. The source contains live Discord identifiers, so it stays on this machine and out of the public record. The earlier local history was kept beside the project and was not imported.
+
+**Result:** `git status` does not list the bot source. The server copy of the bot was not changed.
+
+## 2026-11-20 — The addon stays in the project
+
+The game's AddOns folder and `addon/Eldgrim` had become two copies. The project copy is the 0.1.0 recorder. The installed copy is 0.3.0, with the daily roster and the invite whisper, last written on 19 November 2026. Cursor (Grok 4.7) left both files where they were and added `addon/install-local.sh`, which copies the project addon into the Forever AddOns folder and stops when the installed copy is newer.
+
+**Result:** No file in the game folder was replaced. The install was not run.
+
 ## 2026-11-19 — An in-game chat for Amberhearth
 
 The in-game chat needed to belong to the new guild alone. Cursor (Grok 4.7) opened a channel named in-game in the Roar and Amberhearth category. Amberhearth can see it and write there. Roar and the ranks cannot. A Hearthwarden still can, because that role is an administrator and Discord lets administrators through every lock.
 
-**Result:** The channel is on the server. The live overwrites were checked: Amberhearth can see and write, and Roar with a rank cannot. It was not opened in the Discord app from here. It sits at the bottom of that category.
+**Result:** The channel was created, then removed the same night. The game had offered #chat before it existed, and with the new channel present the list was empty. #chat was left as it was. No one was watched opening the guild window after the removal.
 
 ## 2026-11-19 — The clear stays, game open or not
 

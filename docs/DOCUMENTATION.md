@@ -34,9 +34,9 @@ An API entry proves that the service documents an API surface; it does not prove
 ## Workstream boundaries
 
 - **Character and narrative:** public character identity, lore, relationships, and stories.
-- **Addon:** the separate Forever-only passive recorder described under addon/.
+- **Addon:** the Forever-only passive recorder described under addon/. Edit it in addon/Eldgrim/. `addon/install-local.sh` copies that directory into the local Forever AddOns folder for testing.
 - **Agent:** the local, once-daily Discord agent described under agent/.
-- **Bot:** the always-online Eldgrim Discord bot described under bot/. Its source lives in a separate private repository.
+- **Bot:** the always-online Eldgrim Discord bot described under bot/. Its source lives in bot/private inside this project and is gitignored. Discord identifiers, credentials, and runtime data stay out of the public repository.
 - **Eldgrim governance:** the public, non-ratified chapter-by-chapter framework and refinement questions belong in governance/. The binding Amberhearth charter and guild operations remain in ROARguild.
 
 The addon, agent and bot must not silently expand one another's scope. Neither technical implementation nor model output establishes character canon.

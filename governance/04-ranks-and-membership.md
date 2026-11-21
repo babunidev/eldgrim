@@ -36,7 +36,11 @@ Eldgrim may assign specific, revocable event coordination, moderation-assistance
 - **Q48:** Members may refuse a promotion or request a lower rank without penalty.
 - **Q49:** Demotion is reserved for serious misconduct, repeated rule violations or abuse of delegated responsibilities; it is proportionate, documented, explained and appealable. Inactivity and refusal of optional activities do not justify demotion.
 
-## Founder decision — 12 November 2026
+## Founder decision — 20 November 2026
+
+**Established.** Supersedes the minimums and the day's-keyword condition of 12 November below. The private score runs from 0 to 200. Wayfarer is in view at 60, Kindler at 90, Hearthkeeper at 150, and Hearthwarden at 200. The founder holds 200 and remains Hearthwarden. Positivity is the share of a member's days in Eldgrim's database without a negative keyword, counting every day since the member was first recorded; a silent day counts as a good one (Q60). The note to Hearthkeepers and Hearthwardens recommends a promotion when the score reaches the next rank's minimum and positivity is at least 75%, and a demotion when the score is below the current rank's minimum and positivity is under 50%. Anyone else past a minimum is named only to look at. It may name more than one person. Whether someone is promoted is still decided in the guild, for example by a vote; an actual demotion remains the Q49 decision of the keepers and wardens.
+
+## Founder decision — 12 November 2026 (minimums superseded on 20 November)
 
 Each rank has a minimum on the private standing score, used only to see who is in view. Ember is the entry rank and starts at 50. Wayfarer requires 60, Kindler 70, Hearthkeeper 80, and Hearthwarden 90. A member who already holds a rank when the database is first created starts at that rank's minimum. The daily note to Hearthkeepers and Hearthwardens may name one person to consider for promotion, or one person to consider for demotion, when the day's guild-chat keyword agrees with the score. Otherwise it says the ranks look in order. The note does not change a Discord rank. An actual demotion remains the Q49 decision, made by the keepers and wardens, not by the score.
 - **Q50:** Administrative duties are delegated separately and can be withdrawn separately from social rank.

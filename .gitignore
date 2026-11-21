@@ -1,2 +1,6 @@
 __pycache__/
 *.pyc
+
+# The Discord bot lives in this project. Its source, live Discord identifiers,
+# server snapshots, credentials, and runtime data stay out of the public repository.
+bot/private/

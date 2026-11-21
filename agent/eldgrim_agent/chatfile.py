@@ -158,7 +158,7 @@ def _reduce_characters(db: sqlite3.Connection, characters: Table, ask, now: date
             continue
         messages = character_messages(value)
         if messages:
-            spoken.append((key, value, messages))
+            spoken.append((key, value, messages, [item for item in messages if not item.get("passedBy")]))
     for key, value in characters.items:
         if isinstance(key, str) and isinstance(value, Table):
             ensure_member(db, key, _profile_fields(value), now)
@@ -168,21 +168,24 @@ def _reduce_characters(db: sqlite3.Connection, characters: Table, ask, now: date
         return
     finished: list[str] = []
     finished_hashes: list[str] = []
-    for name, table, messages in spoken:
+    for name, table, _messages, counting in spoken:
         person_id = ensure_member(db, name, _profile_fields(table), now)
         if not person_id:
             continue
         person = db.execute("SELECT opt_out, standing FROM person WHERE id = ?", (person_id,)).fetchone()
         if person is None or person["opt_out"] or person["standing"] is None:
             continue
-        record_spoke(db, person_id, name, _spoke_on(messages, now))
-        hashes = [message_hash(name, int(item["timestamp"]), str(item["message"])) for item in messages]
+        if not counting:
+            finished.append(name)
+            continue
+        record_spoke(db, person_id, name, _spoke_on(counting, now))
+        hashes = [message_hash(name, int(item["timestamp"]), str(item["message"])) for item in counting]
         fresh_index = [index for index, digest in enumerate(hashes) if digest not in known_hashes(db, hashes)]
         if not fresh_index:
             finished.append(name)
             finished_hashes.extend(hashes)
             continue
-        fresh = [str(messages[index]["message"]) for index in fresh_index]
+        fresh = [str(counting[index]["message"]) for index in fresh_index]
         try:
             parsed = None if ask is None else validate_keyword(str(ask(fresh)))
         except Exception:

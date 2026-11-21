@@ -136,4 +136,10 @@ The source stores only the character-facing fields and message records approved 
 | High Order Skyborne ID 95 | Found in build 69913; provisionally mapped, still needs live confirmation |
 | SavedVariables reload and cold-start behavior on the user's current build | Must be tested in-game |
 
-No API calls, event correlation, profile enrichment, or SavedVariables behavior have been tested in-game. The source passed local Lua syntax validation and mocked behavior tests with texlua; these tests do not prove live Forever compatibility.
+No API calls, event correlation, profile enrichment, or SavedVariables behavior have been tested in-game. The source passed local mocked tests; these tests do not prove live Forever compatibility.
+
+## 11. Hearth board messages
+
+**Inferred, not in-game verified.** Other addons on this Forever install call `C_ChatInfo.RegisterAddonMessagePrefix` and `C_ChatInfo.SendAddonMessage`. The hearth board uses the prefix `ELDGRIM`, plain text, a version digit, and a short checksum. Long text is split. Guild chat lines travel by addon whisper, not on the guild addon channel.
+
+Still unchecked on 1.60.1: the real 255-byte cap, the rate limit, whether an addon whisper reaches a two-part name with no realm (`Jasmine Amberbrew`), and whether a payload keeps `#`. The guild line "has gone offline" is not used. `GetGuildRosterInfo`'s online flag is the offline check. `GuildControlGetRankFlags` is not the officer check. Rank index 0 is the only invite rank on the list until the guild's other invite ranks are written down.

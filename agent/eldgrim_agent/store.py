@@ -13,8 +13,10 @@ from eldgrim_agent.paths import DATABASE_PATH, ensure_runtime
 
 RANKS = ("Ember", "Wayfarer", "Kindler", "Hearthkeeper", "Hearthwarden")
 # Minimum standing before that rank is in view. Ember is the entry rank.
-RANK_MINIMUM = {"Wayfarer": 60, "Kindler": 70, "Hearthkeeper": 80, "Hearthwarden": 90}
+# Founder decision 2026-11-20: 60, 90, 150 and 200, on a 0–200 scale.
+RANK_MINIMUM = {"Wayfarer": 60, "Kindler": 90, "Hearthkeeper": 150, "Hearthwarden": 200}
 STARTING_STANDING = 50
+STANDING_MAX = 200
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS person (
@@ -279,6 +281,29 @@ def upsert_forge(db: sqlite3.Connection, members: list[dict[str, object]], now: 
                 for extra in rows[1:]:
                     db.execute("DELETE FROM character WHERE id = ?", (int(extra["id"]),))
             _upsert_character(db, person_id=person_id, name=name, link="declared", fields=fields, now=when)
+        if characters:
+            # A member brings one character (2026-11-20). A character the Forge no
+            # longer lists is no longer theirs: it stays as an in-game record,
+            # without the link to this member, as its own in-game member.
+            kept = {normalize(str(character["name"])) for character in characters}
+            for row in db.execute(
+                "SELECT id, name, game_rank FROM character WHERE person_id = ?", (person_id,)
+            ).fetchall():
+                if normalize(str(row["name"])) in kept:
+                    continue
+                use_rank = str(row["game_rank"] or "")
+                if use_rank not in RANKS:
+                    use_rank = "Ember"
+                cursor = db.execute(
+                    """INSERT INTO person
+                       (display_name, fellowship, standing, rank, created, updated)
+                       VALUES (?, '', ?, ?, ?, ?)""",
+                    (str(row["name"]), _seed(use_rank), use_rank, when, when),
+                )
+                db.execute(
+                    "UPDATE character SET person_id = ?, link = 'in-game', updated = ? WHERE id = ?",
+                    (int(cursor.lastrowid), when, int(row["id"])),
+                )
     db.commit()
     return newcomers
 
@@ -529,12 +554,12 @@ def adjust_standing(
     keyword_id: int | None,
     now: datetime,
 ) -> int:
-    """Apply a daily point and clamp it to 0–100. The stored amount is what actually changed."""
+    """Apply a daily point and clamp it to 0–200. The stored amount is what actually changed."""
     row = person_row(db, person_id)
     if row["standing"] is None or row["opt_out"]:
         return 0
     current = int(row["standing"])
-    updated = max(0, min(100, current + amount))
+    updated = max(0, min(STANDING_MAX, current + amount))
     applied = updated - current
     if applied == 0:
         return 0
@@ -545,6 +570,34 @@ def adjust_standing(
         (person_id, applied, rule, keyword_id, stamp(now)),
     )
     return applied
+
+
+def positivity(db: sqlite3.Connection, person_id: int, now: datetime) -> float | None:
+    """The share of a member's days in the database without a negative keyword, from 0 to 1.
+
+    Every day since the person was first recorded counts, the first day and today included.
+    A silent day counts as a good one: silence is neutral (Q60). A day with any negative
+    keyword, on any of the person's characters, counts once.
+    """
+    row = db.execute("SELECT created FROM person WHERE id = ?", (person_id,)).fetchone()
+    if row is None:
+        return None
+    try:
+        first = datetime.fromisoformat(str(row["created"])).astimezone(now.tzinfo).date()
+    except ValueError:
+        return None
+    days = (now.date() - first).days + 1
+    if days < 1:
+        return None
+    negative_days = set()
+    for keyword in db.execute(
+        "SELECT created FROM keyword WHERE person_id = ? AND polarity = 'negative'", (person_id,)
+    ):
+        try:
+            negative_days.add(datetime.fromisoformat(str(keyword["created"])).astimezone(now.tzinfo).date())
+        except ValueError:
+            continue
+    return max(0.0, (days - len(negative_days)) / days)
 
 
 def apply_ingame_roster(
@@ -649,8 +702,12 @@ def summary(db: sqlite3.Connection) -> str:
             unlinked.append(character)
         else:
             by_person.setdefault(int(character["person_id"]), []).append(character)
+    now = datetime.now().astimezone()
     for person in people:
         standing = "-" if person["standing"] is None else str(person["standing"])
+        share = positivity(db, int(person["id"]), now)
+        if share is not None:
+            standing += f" — positivity {share:.0%}"
         flags = []
         if person["opt_out"]:
             flags.append("opted out")

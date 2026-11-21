@@ -60,11 +60,23 @@
     │   ├── SPECIFICATION.md
     │   ├── API_RESEARCH.md
     │   ├── TEST_PLAN.md
+    │   ├── HEARTH.md
+    │   ├── install-local.sh
     │   ├── Eldgrim/
     │   │   ├── Eldgrim.toc
-    │   │   └── Eldgrim.lua
+    │   │   ├── Eldgrim.lua
+    │   │   ├── EldgrimEmbers.lua
+    │   │   ├── EldgrimSync.lua
+    │   │   ├── EldgrimSkin.lua
+    │   │   ├── EldgrimBoard.lua
+    │   │   └── *.tga
+    │   ├── tools/
+    │   │   ├── hearth_art.py
+    │   │   └── preview/
     │   └── tests/
-    │       └── test_recorder.lua
+    │       ├── test_recorder.lua
+    │       ├── test_hearth.lua
+    │       └── test_board.lua
     ├── agent/
     │   ├── README.md
     │   ├── ARCHITECTURE.md
@@ -93,9 +105,9 @@
 - interaction/ records how Eldgrim communicates and participates in roleplay.
 - assets/ stores approved creative resources and provenance.
 - templates/ provides reusable formats.
-- addon/ contains the separate Forever-only addon source, manifest, specification, API research, data model, test plan, and mock tests. The installable addon directory is addon/Eldgrim/. Further addon development happens in a separate environment (2026-11-10), so the copy here is the first-milestone recorder.
+- addon/ contains the Forever-only addon source, manifest, specification, hearth board, API research, data model, test plan, and mock tests. The installable addon directory is addon/Eldgrim/. That directory is the source. addon/install-local.sh copies it into the Forever client's Interface/AddOns/Eldgrim for a local test, and stops when the installed copy is newer. A newer installed ember file is left in place. The hearth board is implemented and has not been tested in game.
 - agent/ contains the local agent's architecture, scope, security, memory, operations, proclamation and roster documentation, the eldgrim_agent runner with its tests, and the root-owned wake path sources in agent/systemd/. The runner writes an announcement, posts it through the server bot, and chooses the next wake time; bin/eldgrim starts it from any directory. Runtime data, the private origin and credentials stay outside the repository.
-- bot/ contains the Eldgrim Discord bot workstream: approved direction, status, open decisions, and planned order. The bot's source lives in a separate private local repository.
+- bot/ contains the Eldgrim Discord bot workstream: approved direction, status, open decisions, and planned order. The bot's source lives in bot/private inside this project. That directory is gitignored, so live Discord identifiers, credentials, and runtime data are not part of the public repository.
 
 ## Boundaries
 

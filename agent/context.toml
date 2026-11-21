@@ -30,7 +30,7 @@ pages = [
 ]
 people = true
 private_origin = true
-num_ctx = 24576
+num_ctx = 28672
 num_predict = 500
 
 [task.chat-keyword]
@@ -40,7 +40,7 @@ pages = [
   "governance/12-observation-memory-and-privacy.md",
 ]
 private_origin = true
-num_ctx = 24576
+num_ctx = 28672
 num_predict = 40
 
 [task.choose-moment]
@@ -48,11 +48,11 @@ pages = [
   "governance/06-daily-conduct-and-communication.md",
 ]
 private_origin = true
-num_ctx = 24576
+num_ctx = 28672
 num_predict = 40
 
 # A quest that does not fit this window is replaced with the bonfire text.
-# It is not one of the three calls that stop the run when the budget fails.
+# Each quest call is measured on its own; an overflow does not skip the quest step.
 [task.quest]
 pages = [
   "governance/08-quests-recognition-and-rewards.md",
@@ -60,7 +60,7 @@ pages = [
   "lore/WORLD.md",
 ]
 private_origin = true
-num_ctx = 24576
+num_ctx = 28672
 num_predict = 400
 
 # One reply for each member who wrote in the Eldgrim channel. Overflow skips that member.
@@ -71,7 +71,7 @@ pages = [
   "governance/12-observation-memory-and-privacy.md",
 ]
 private_origin = true
-num_ctx = 24576
+num_ctx = 28672
 num_predict = 400
 
 # Future tasks, not loaded:

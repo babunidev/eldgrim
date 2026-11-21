@@ -3,7 +3,7 @@
 > **Status:** Scale, bands and neutral inactivity confirmed (Q53–64); internal correction procedure specified
 > **Source:** Consolidated guild governance framework, 10 November 2026, v0.1. Working material, not a ratified constitution.
 
-Four categories and 0–100 scale agreed · Bands and evidence rules confirmed
+Four categories agreed · Scale 0–200 since 20 November 2026 (founder decision, formerly 0–100) · Bands and evidence rules confirmed
 
 Eldgrim's memory model distinguishes a Discord member from their registered in-game characters.
 
@@ -30,7 +30,7 @@ Most importantly, the earlier interpretation of zero as disengagement conflicts 
 
 ## Confirmed standing rules — questions 53–62
 
-- **Q53:** The internal **0–100** score measures evidence of positive contribution (kindness, helpfulness, reliability, creativity and respectful conduct), not personal worth, popularity, attendance or character progression.
+- **Q53:** The internal **0–100** score (**0–200** by founder decision of 20 November 2026; see chapter 04) measures evidence of positive contribution (kindness, helpfulness, reliability, creativity and respectful conduct), not personal worth, popularity, attendance or character progression.
 - **Q54–55:** Every *new* member starts at **50**, a neutral baseline. Existing members retain their previously established standing when the new system is introduced.
 - **Q56:** Standing may rise for kindness, helping members and newcomers, creativity, accepted quest achievements, constructive dispute resolution and meaningful support of the fellowship. Simply being online or attending an event does not automatically earn points.
 - **Q57:** Standing may fall for **verified** misconduct, harassment, dishonesty, deliberate disruption, abuse of entrusted responsibilities or repeated established-rule violations. Disagreement, inactivity, missed events and refusing optional activities never lower standing.
@@ -48,7 +48,7 @@ The [operating procedures](OPERATING-PROCEDURES.md) cover the missing baseline a
 
 ## Founder decision — 12 November 2026
 
-A character in the in-game guild is a member, with or without Discord. On a day that member has at least one guild-chat message, the private score moves by fixed points. Any message is +1. The one keyword for that day's writing, when positive, is another +1. When the keyword is negative, it is −2. A keyword that is neither adds nothing beyond the activity point. Silence does not move the score (Q60). The number stays inside 0–100. This is a private daily score. It is not proof of misconduct, and it is not a warning, a demotion, or a removal. Q57, Q62, and Q63 still govern sanctions. The score's rank minimums are recorded in chapter 04.
+A character in the in-game guild is a member, with or without Discord. On a day that member has at least one guild-chat message, the private score moves by fixed points. Any message is +1. The one keyword for that day's writing, when positive, is another +1. When the keyword is negative, it is −2. A keyword that is neither adds nothing beyond the activity point. Silence does not move the score (Q60). The number stays inside 0–200 (0–100 until the founder decision of 20 November 2026). Positivity, the share of a member's days without a negative keyword, is described in chapter 04. This is a private daily score. It is not proof of misconduct, and it is not a warning, a demotion, or a removal. Q57, Q62, and Q63 still govern sanctions. The score's rank minimums are recorded in chapter 04.
 
 ## Refinement queue
 

@@ -132,15 +132,16 @@ def find_problems(
     *,
     manifest: Path | None = None,
     root: Path | None = None,
+    tasks: tuple[str, ...] = TASKS,
 ) -> list[str]:
-    """Measure the three tasks against the real origin and the largest allowed input."""
+    """Measure the named tasks against the real origin and the largest allowed input."""
     problems: list[str] = []
     samples = {
         "proclamation": (STANDING, WRITE, "n" * BRIEF_LIMIT),
         "chat-keyword": (PROMPT, KEYWORD_INSTRUCTION, "c" * CHAT_LIMIT),
         "choose-moment": (CHOOSE_SYSTEM, CHOICE, ""),
     }
-    for task in TASKS:
+    for task in tasks:
         system, instruction, data = samples[task]
         try:
             build(

@@ -172,6 +172,33 @@ class RosterTests(unittest.TestCase):
         self.assertEqual(len(self.calls), asked)
         self.assertEqual(len(self.db.execute("SELECT id FROM keyword").fetchall()), 3)
 
+    def test_a_single_relay_does_not_score_and_two_do(self):
+        relay = Path(self.tmp.name) / "relay.lua"
+        relay.write_text(
+            'EldgrimDB = {\n'
+            '["Mira Stone"] = {["messages"] = {{["message"] = "one passer", ["timestamp"] = 20, ["passedBy"] = "Ann",},}},\n'
+            '["Élodie Marsh"] = {["messages"] = {{["message"] = "heard in guild", ["timestamp"] = 21,},}},\n'
+            '}\n',
+            encoding="utf-8",
+        )
+        self.calls = []
+        before = {
+            row["display_name"]: row["standing"]
+            for row in self.db.execute("SELECT display_name, standing FROM person")
+        }
+        reduce_chat(self.db, relay, self.ask, NOW)
+        self.assertEqual(self.calls, [["heard in guild"]])
+        mira = self.db.execute("SELECT id, standing FROM person WHERE display_name = 'Mira'").fetchone()
+        self.assertEqual(mira["standing"], before["Mira"])
+        self.assertEqual(
+            self.db.execute("SELECT COUNT(*) AS n FROM standing_adjustment WHERE person_id = ?", (mira["id"],)).fetchone()["n"],
+            0,
+        )
+        saved = parse_saved(relay.read_text(encoding="utf-8"))["EldgrimDB"]
+        for key, value in saved.items:
+            if key == "Mira Stone":
+                self.assertEqual(value.get("messages").items, [])
+
     def test_positive_and_negative_points_and_no_second_keyword_when_the_clear_fails(self):
         self.calls = []
 
@@ -244,6 +271,24 @@ class RosterTests(unittest.TestCase):
         self.assertEqual(person["display_name"], "Glen")
         self.assertEqual(person["standing"], 60)
         self.assertEqual(person["rank"], "Wayfarer")
+
+    def test_a_character_no_longer_declared_becomes_its_own_in_game_member(self):
+        five = [{"name": name, "faction": "Alliance", "race": "Human", "class": "Mage"}
+                for name in ("Jade Amber", "Loni Amber", "Arand Amber")]
+        upsert_forge(self.db, [member(30, "Owner", "Ember", five)], NOW)
+        upsert_forge(self.db, [member(30, "Owner", "Ember", five[:1])], NOW)
+        rows = self.db.execute(
+            """SELECT character.name, character.link, person.discord_id FROM character
+               JOIN person ON person.id = character.person_id
+               WHERE character.name IN ('Jade Amber', 'Loni Amber', 'Arand Amber') ORDER BY character.name"""
+        ).fetchall()
+        self.assertEqual(
+            [(row["name"], row["link"], row["discord_id"]) for row in rows],
+            [("Arand Amber", "in-game", None), ("Jade Amber", "declared", 30), ("Loni Amber", "in-game", None)],
+        )
+        upsert_forge(self.db, [member(30, "Owner", "Ember", [])], NOW)
+        kept = self.db.execute("SELECT person.discord_id FROM character JOIN person ON person.id = character.person_id WHERE name = 'Jade Amber'").fetchone()
+        self.assertEqual(kept["discord_id"], 30, "an empty export does not unlink anything")
 
     def test_same_declared_name_links_neither_and_one_name_does_not_match(self):
         upsert_forge(
@@ -438,7 +483,8 @@ EldgrimDB = {
 
         marked = []
         common = [
-            patch("eldgrim_agent.run.preflight", lambda started: None),
+            patch("eldgrim_agent.run._fits", lambda task: None),
+            patch("eldgrim_agent.run.PREPARED_PATH", Path(self.tmp.name) / "prepared.json"),
             patch("eldgrim_agent.run.ensure_server", lambda: None),
             patch("eldgrim_agent.run.stop_server", lambda server: None),
             patch("eldgrim_agent.run.unload", lambda: None),

@@ -1,6 +1,6 @@
 # Eldgrim Agent — Operations
 
-**Status:** `eldgrim run` writes an announcement, posts it through the server bot, and chooses the next moment. The root-owned wake path in `agent/systemd/` is installed once with `sudo agent/systemd/install-wake.sh`.  
+**Status:** `eldgrim run` does the day's steps in order: it prepares the guild information, settles quests, answers mentions, posts the announcement and the Hearth Keepers note, and chooses the next moment. `eldgrim run STEP` does one step. The root-owned wake path in `agent/systemd/` is installed once with `sudo agent/systemd/install-wake.sh`.  
 **Target environment:** Nobara Linux, timezone Europe/Stockholm.
 
 ## 1. Scheduling model
@@ -8,6 +8,19 @@
 Eldgrim does not run at a fixed hour. At the end of a run it chooses one moment on the next local calendar day, and the application saves it to `~/.local/share/eldgrim/next-run.json`. A system timer with `WakeSystem=true` wakes the computer for that moment, following the pattern used by Anskar Grotzschnapf. `Persistent=false`, so a missed day is skipped rather than replayed.
 
 A run can be asked for at any time with `eldgrim run`. A test run posts, like a scheduled one, because posting is part of what is being tested. Asking for another run posts another announcement.
+
+### Steps
+
+| Step | Does | Model |
+| --- | --- | --- |
+| `prepare` | Reads the Forge roster and the addon's guild chat, writes keywords and standing, takes the census, and saves today's brief and Hearth Keepers note in `prepared.json` | Keyword calls |
+| `quests` | Settles quest asks and cancels staged on the bot, and writes the witnessed embers | One call per ask |
+| `replies` | Answers the members who mentioned Eldgrim | One call per member |
+| `announce` | Writes the proclamation from today's brief and posts it | One call, one retry |
+| `ranks` | Posts today's Hearth Keepers note | None |
+| `choose` | Chooses tomorrow's moment | One call |
+
+A full run does them in that order. A step that fails, or whose reading does not fit its window, is logged, and the steps after it still run. Before, one task that did not fit stopped the whole run. `announce` and `ranks` use the brief prepared earlier the same local day; with none, they prepare first. In a full run whose preparation failed, they are skipped rather than preparing again, because preparing clears the guild-chat lists it reads. Ollama starts only for a step that needs the model. Only a full run and `eldgrim run choose` change the next moment. `--scheduled` is for the timer's full run only.
 
 ## 2. The wake path and who runs what
 
@@ -101,7 +114,7 @@ The current local Qwen3 8B model is an initial candidate. The exact tag, install
 
 ## 9. Logs and diagnostics
 
-The wake path logs to the system journal. Each run also writes `~/.local/share/eldgrim/logs/run-*.json` with the outcome, the announcement, any problem, and the next moment. Logs contain no tokens.
+The wake path logs to the system journal. Each run also writes `~/.local/share/eldgrim/logs/run-*.json` with each step's outcome, the announcement, any problem, and the next moment. A rejected announcement is logged with which check stopped it (the motto, a private root, or an empty draft), never with its text. Logs contain no tokens.
 
 ~~~bash
 systemctl list-timers eldgrim-daily.timer

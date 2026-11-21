@@ -22,9 +22,9 @@ This register preserves decisions made in a sequential governance interview, inc
 | **43–44** | Ranks: Ember welcomed member, Wayfarer established traveler, Kindler gathers others, Hearthkeeper trusted contributor, Hearthwarden exceptional trust/service. Promotions reward good contributions, not attendance, level, gold or performance. |
 | **45–47** | Eldgrim may promote spontaneously; member requests allowed without penalties, evaluated against evidence and criteria with fair explanation; repetitive requests confer no advantage. |
 | **48–50** | Members may decline promotions or lower rank voluntarily. Demotions only for misconduct/abuse and are appealable. Rank recognition separate from delegated administrative power. |
-| **51–53** | One player shares rank and standing among registered characters. Guild database intended as rank authority; Discord/in-game syncing planned, not implemented. Internal 0–100 score measures positive contribution, not worth or popularity. |
+| **51–53** | One player shares rank and standing among registered characters. Guild database intended as rank authority; Discord/in-game syncing planned, not implemented. Internal 0–100 score measures positive contribution, not worth or popularity. **Amended by founder decision, 20 November 2026:** the scale is 0–200 (chapter 04). |
 | **54–56** | New members begin at neutral 50/100; previously established standing retained where it exists. Positive adjustments for meaningful acts, not mere event attendance. |
-| **57–59** | Verified misconduct may lower standing. Minor actions 1–3, significant 4–10, exceptional up to 20; score remains 0–100. Profile categories A/D context, B/C social and participation evidence; misconduct assessed separately. |
+| **57–59** | Verified misconduct may lower standing. Minor actions 1–3, significant 4–10, exceptional up to 20; score remains 0–100 (0–200 since the founder decision of 20 November 2026). Profile categories A/D context, B/C social and participation evidence; misconduct assessed separately. |
 | **60–62** | Inactivity is neutral indefinitely, including silence or declining quests. Negative scoring requires reliable evidence, not rumor, ambiguous jokes or unsupported AI interpretations; positive acknowledgment requires reasonable observation. |
 
 ## Additional confirmed answers — 10 November 2026

@@ -15,6 +15,7 @@ from random import SystemRandom
 from eldgrim_agent.announce import discloses_roots, load_guard, repeats_motto, strip_thinking
 from eldgrim_agent.context import ContextError, build, record
 from eldgrim_agent.discord_post import PostError, control, defuse_mentions, load_config
+from eldgrim_agent.embers import settle_ember, write_verified
 from eldgrim_agent.ollama import chat
 from eldgrim_agent.paths import REPO_ROOT
 from eldgrim_agent.store import adjust_standing, connect, stamp
@@ -275,8 +276,9 @@ def run_daily_quests(
     rng=None,
     catalog_path=None,
     mark=None,
+    verified=None,
 ) -> dict[str, int]:
-    """Pull the staged notes, write or close quests, then delete the notes the run took."""
+    """Pull the staged notes, write or close quests, record embers, then delete the notes the run took."""
     staged = (pull or pull_staged)()
     db = connect(database)
     try:
@@ -292,6 +294,8 @@ def run_daily_quests(
             mark=mark if mark is not None else mark_open,
         )
         db.commit()
+        # The witnessed embers, for Jasmine Amberbrew's client to send on.
+        write_verified(db, now, verified)
     finally:
         db.close()
     (purge or purge_staged)(outcome["requests"], outcome["proofs"])
@@ -307,6 +311,7 @@ def settle(db, now, staged, *, ask, deliver, rng, items, kinds=None, mark=None) 
         "standing": 0,
         "unsent": 0,
         "refused": 0,
+        "embers": 0,
     }
     taken_requests: list[int] = []
     taken_proofs: list[int] = []
@@ -314,6 +319,17 @@ def settle(db, now, staged, *, ask, deliver, rng, items, kinds=None, mark=None) 
     for proof in staged.get("proofs") or []:
         if _seen(db, "proof", proof["id"]):
             taken_proofs.append(proof["id"])
+            continue
+        if proof.get("kind") == "ember":
+            # The weekly ember. It never finishes the member's own quest.
+            result = settle_ember(db, proof, now)
+            if result == "wait":
+                continue
+            if result == "recorded":
+                counts["embers"] += 1
+            _mark_seen(db, "proof", proof["id"])
+            taken_proofs.append(proof["id"])
+            db.commit()
             continue
         if proof["author"] != proof["witness"]:
             applied, done = _complete(db, proof["author"], proof["witness"], now)
@@ -717,5 +733,13 @@ def _proofs(value) -> list[dict]:
             continue
         if any(type(item.get(key)) is not int for key in ("id", "author", "witness")):
             continue
-        rows.append({"id": item["id"], "author": item["author"], "witness": item["witness"]})
+        posted = item.get("posted")
+        rows.append({
+            "id": item["id"],
+            "author": item["author"],
+            "witness": item["witness"],
+            "kind": "ember" if item.get("kind") == "ember" else "quest",
+            "character": " ".join(str(item.get("character") or "").split())[:80],
+            "posted": float(posted) if isinstance(posted, (int, float)) and posted > 0 else 0.0,
+        })
     return rows

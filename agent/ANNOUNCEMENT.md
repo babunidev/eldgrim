@@ -23,7 +23,7 @@ Since 2026-11-13 the proclamation reads Eldgrim's core self first, then only the
 5. The guild brief, fenced as data
 6. The standing instructions in this file, with the closing instruction last
 
-The shared window is 24576 tokens. An earlier reading, before the fire catalog and the world page, was about 8,700 tokens in a window of 20,480. If the prompt would not fit, the call does not run and nothing is cut. The older proposed order at the top of chapter 15 is in that reading. The confirmed order supersedes it. A procedure the pages say is not yet in force is not a power Eldgrim has. The technical notes for the addon, the bot, and this runner stay out.
+The shared window is 28672 tokens. An earlier reading, before the fire catalog and the world page, was about 8,700 tokens in a window of 20,480. If the prompt would not fit, the call does not run and nothing is cut. The older proposed order at the top of chapter 15 is in that reading. The confirmed order supersedes it. A procedure the pages say is not yet in force is not a power Eldgrim has. The technical notes for the addon, the bot, and this runner stay out.
 
 ## Standing instructions
 
@@ -37,7 +37,7 @@ After the roster refresh, the same prompt receives a short guild brief. The brie
 
 ## The note for Hearthkeepers and Hearthwardens
 
-The same run posts one more message, in the Hearthkeeper channel, for Hearthkeepers and Hearthwardens. It is a short greeting, one rank recommendation, who to look at, who to involve more, and one practical thing drawn from the public purpose of the fellowship. The recommendation uses the private standing score only as orientation. Wayfarer is in view from 60, Kindler from 70, Hearthkeeper from 80, and Hearthwarden from 90. A name is used only when that day's keyword agrees. Otherwise the note says the ranks look in order. The note does not print the score, does not quote chat, and does not change a rank. The channel id stays in the local Discord config, beside the announcements channel. If that post fails, the public announcement still goes out.
+The same run posts one more message, in the Hearthkeeper channel, for Hearthkeepers and Hearthwardens. It is a short greeting, the rank recommendations, who to look at, who to involve more, and one practical thing drawn from the public purpose of the fellowship. The recommendation uses the private standing score only as orientation. Wayfarer is in view from 60, Kindler from 90, Hearthkeeper from 150, and Hearthwarden from 200. A promotion is recommended when the member's overall positivity is at least 75%, and a demotion when it is under 50%; see [ROSTER.md](ROSTER.md). Otherwise the note says the ranks look in order. The note does not print the score, does not quote chat, and does not change a rank. The channel id stays in the local Discord config, beside the announcements channel. If that post fails, the public announcement still goes out.
 
 ## Where it can be posted
 

@@ -4,13 +4,63 @@ A concise record of meaningful creative and structural decisions.
 
 Entries are listed newest first.
 
+## 2026-11-20 — Ranks by overall positivity, on a 0–200 scale
+
+**Decision:** The private score runs from 0 to 200. Wayfarer is in view at 60, Kindler at 90, Hearthkeeper at 150, and Hearthwarden at 200; the founder's score is set to 200 so the founder stays Hearthwarden. A promotion is recommended when the score reaches the next rank and the member's overall positivity is at least 75%. A demotion is recommended when the score is below the current rank and positivity is under 50%. Positivity counts every day since the member was first recorded, and each day with a negative keyword lowers it; silent days count as good ones.
+
+**Why:** The note used to need that day's keyword. A member was recommended at 20:31 and only named to look at after a second preparation, which found no new chat. A member's whole record should decide, not one day.
+
+**Boundary:** This amends Q53 and Q58's 0–100 range. The note still only recommends; promotions are decided in the guild, and Q49 and Q63 still govern demotion.
+
+## 2026-11-20 — The daily run in steps
+
+**Decision:** The daily run is split into steps that can also be run one at a time: `prepare`, `quests`, `replies`, `announce`, `ranks` and `choose`. A full run does them in that order. A step that fails or does not fit its window is logged, and the others still run. Rank recommendations stay in the one Hearth Keepers note; two messages are acceptable later if that works better.
+
+**Why:** On 20 November the scheduled run stopped entirely because the proclamation's estimate did not fit, and a manual run posted the Hearth Keepers note but not the announcement. Re-running meant posting the note again.
+
+**Next, not yet decided:** smaller reading per task. Fire items and world zones by the character's level for quests, no fire-item catalog for the announcement, and an audit of the core.
+
+## 2026-11-20 — One character per member, and member quests without an end date
+
+**Decision:** The Character Forge takes one character per member. It no longer asks how many. A member who registered several keeps only the one they confirm next time they use the Forge; the creator, the only member with several, re-registers with one. Eldgrim's local roster unlinks a character the Forge no longer lists, so it becomes its own in-game member again.
+
+**Member quests:** A member quest has no end date. It stays until its creator deletes it. Once it is completed for a character, it leaves that character's list and stays for everyone else.
+
+**Status:** The bot was deployed on 20 November 2026 and the posted Forge panel updated. At that moment 7 members had completed the Forge with 11 characters; only the creator had several. The addon and the daily run pass their mock tests. Not tested in game.
+
+## 2026-11-20 — Quests on the hearth board are confirmed, not self-marked
+
+**Decision:** The weekly ember is completed only through Discord, the same way as an Eldgrim quest: a screenshot in the Eldgrim channel with @Eldgrim and the word ember, then a Roar from another Amberhearth member. A member with several characters chooses which in a private thread. The daily run records it on the founder's computer, adds one standing point per member per week, and writes the completions into the installed addon, so Jasmine Amberbrew's next login passes them to the guild. The board has no button to complete the ember.
+
+**Member quests:** No proof is chosen. Whoever takes the quest marks it complete, and the creator confirms it. Member quests give no standing, and no record of them is kept once they end: there is no history, and an expired quest is removed.
+
+**Boundary:** The only lasting record is who completed which weekly ember, kept on the founder's computer. `EldgrimVerified.lua` holds the week and the character name. The daily run writes that one file in the installed addon; the model does not choose what goes into it.
+
+**Status:** Implemented and passing mock tests in the addon, the bot and the daily run. The bot was deployed on 20 November 2026. Not tested in game.
+
+## 2026-11-20 — The bot lives in this project
+
+**Decision:** Eldgrim has one public repository. The Discord bot source lives in `bot/private` inside this project. That directory is gitignored.
+
+**Boundary:** The bot source holds live Discord identifiers. It is not committed, and neither are credentials, server snapshots, or runtime data. The earlier local history had no remote. It was kept beside the project and was not imported into this repository.
+
+**Status:** The working copy is in `bot/private`. The server installation was not changed.
+
+## 2026-11-20 — The addon is written in this project
+
+**Decision:** Eldgrim's Forever addon is written in `addon/Eldgrim` in this repository. A local test runs `addon/install-local.sh`, which copies that directory into the Forever client's `Interface/AddOns/Eldgrim`. The game folder is not a second source.
+
+**Boundary:** The install does not copy the game folder back into the repository. It leaves an installed copy in place when that copy is newer than the project copy. `--force` is the explicit replace. The first-milestone recorder remains the source in `addon/` until that scope changes.
+
+**Status:** The copies differ, and neither was overwritten. The project copy is version 0.1.0-alpha. The installed copy is version 0.3.0-alpha.
+
 ## 2026-11-19 — The in-game chat belongs to Amberhearth
 
 **Decision:** The in-game chat on Discord is for Amberhearth, the new guild. The channel is named in-game and sits in the Roar and Amberhearth category. The Amberhearth role may see it and write there. Roar and the ranks are denied on that channel, so a rank alone does not open it.
 
 **Boundary:** A role with Administrator still sees every channel. Discord does not allow a channel lock to keep an administrator out. The shared chat channels are unchanged.
 
-**Status:** Created on Discord on 19 November 2026. Access was checked from the live role overwrites. No one was watched opening it in the app.
+**Status:** Created on Discord on 19 November 2026, then removed the same night. The game's Discord list had offered #chat before that channel existed. With the new channel present, the list was empty. After the removal, every channel and role matched the earlier layout, and #chat was unchanged. The game still showed no channels.
 
 ## 2026-11-19 — Characters, not the people who play them
 
@@ -106,7 +156,7 @@ Entries are listed newest first.
 
 **Decision:** Every model call carries Eldgrim's core self in full, then only the rule pages approved for that task. The model does not choose the pages. The core is character/SELF.md, the profile, the voice, the lore, the interaction principles, governance chapters 01, 02, and 15, and agent/CAPABILITIES.md. The proclamation also reads chapters 03, 06, 08, and 09. A guild-chat keyword also reads chapters 03, 07, and 12. Choosing the next moment also reads chapter 06. Every call may read the private origin on this computer. It does not say those roots.
 
-**Boundary:** If a prompt would overflow its window, that call does not run and the log says so. Nothing is cut. A failed check still saves a fallback moment on the next day, with no model, so the wake timer stays armed. The guild brief is kept only in last-brief.txt, which each run overwrites. All three tasks share one window of 24576 tokens, so the model is not reloaded between them. 16384 does not hold the largest keyword input, and 20480 does not hold the proclamation once the fire-item catalog is included. The live run read the full rulebook until the comparison was approved.
+**Boundary:** If a prompt would overflow its window, that call does not run and the log says so. Nothing is cut. A failed check still saves a fallback moment on the next day, with no model, so the wake timer stays armed. The guild brief is kept only in last-brief.txt, which each run overwrites. All three tasks share one window of 28672 tokens, so the model is not reloaded between them. 16384 does not hold the largest keyword input, 20480 does not hold the proclamation once the fire-item catalog is included, and 24576 stopped holding it on 2026-11-20 (about 24725 tokens needed). The live run read the full rulebook until the comparison was approved.
 
 **Status:** The lists are approved. After two blind comparisons, the creative approved the switch on 2026-11-13, and the three live calls now use this reading. The full-rulebook reading is removed. A real call without posting measured 8,749 prompt tokens for the proclamation, 10,444 for a keyword and 5,793 for the next moment.
 

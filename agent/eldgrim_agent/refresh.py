@@ -221,7 +221,7 @@ def refresh_guild(
             level_lines(db, census),
             quest_lines(db),
         )
-        result.note = render_note(recommend(db, chat.polarity, reviewed=reviewed), census)
+        result.note = render_note(recommend(db, chat.polarity, reviewed=reviewed, now=now), census)
         return result
     finally:
         db.close()

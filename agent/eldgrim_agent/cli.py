@@ -1,4 +1,4 @@
-"""Commands: run (write, post, choose the next moment) and post (send a kept announcement)."""
+"""Commands: run (every step of the day, or one step) and post (send a kept announcement)."""
 
 from __future__ import annotations
 
@@ -17,18 +17,27 @@ from eldgrim_agent.discord_post import (
     uncertain,
 )
 from eldgrim_agent.paths import ANNOUNCEMENTS, MODEL
-from eldgrim_agent.run import execute
+from eldgrim_agent.run import STEP_HELP, STEPS, execute
 from eldgrim_agent.store import connect, set_opt_out, summary
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="eldgrim")
     sub = parser.add_subparsers(dest="command", required=True)
-    run = sub.add_parser("run", help="refresh the guild, write one announcement, post it, and choose the next day")
+    steps = "\n".join(f"  {name:<9} {text}" for name, text in STEP_HELP.items())
+    run = sub.add_parser(
+        "run",
+        help="every step of the daily run in order, or one step",
+        description="With no step, every step runs in this order. A step that fails or does not fit is "
+        "logged, and the others still run. A single step leaves tomorrow's moment alone, except choose.",
+        epilog="steps:\n" + steps,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    run.add_argument("step", nargs="?", choices=STEPS, metavar="STEP", help="one step: " + ", ".join(STEPS))
     run.add_argument(
         "--scheduled",
         action="store_true",
-        help="used by the wake timer; records the post as scheduled rather than started by hand",
+        help="used by the wake timer for the full run; records the posts as scheduled rather than started by hand",
     )
     post = sub.add_parser("post", help="post the newest announcement that has not been posted")
     post.add_argument(
@@ -73,7 +82,9 @@ def main(argv: list[str] | None = None) -> int:
         return context_check()
     if args.command == "compare":
         return run_compare(args.runs, args.brief, args.against)
-    report = execute(scheduled=args.scheduled)
+    if args.scheduled and args.step:
+        parser.error("--scheduled is only for the full run")
+    report = execute(scheduled=args.scheduled, step=args.step)
     print(_format_run(report))
     return 1 if report.get("error") else 0
 
@@ -158,12 +169,16 @@ def run_compare(runs: int, sample: Path | None, against: str) -> int:
 
 
 def _format_run(report: dict[str, object]) -> str:
-    lines = [
-        f"Model: {MODEL}",
-        "Posted: yes" if report.get("posted") else "Posted: no",
-        "Officer note: yes" if report.get("officer_posted") else "Officer note: no",
-        "",
-    ]
+    steps = report.get("steps") or {}
+    lines = [f"Model: {MODEL}"]
+    lines.extend(f"{name}: {outcome}" for name, outcome in steps.items())
+    if report.get("prepared") and "prepare" not in steps:
+        lines.append(f"Guild information prepared: {report['prepared']}")
+    if "announce" in steps:
+        lines.append("Posted: yes" if report.get("posted") else "Posted: no")
+    if "ranks" in steps:
+        lines.append("Officer note: yes" if report.get("officer_posted") else "Officer note: no")
+    lines.append("")
     if report.get("announcement"):
         lines.append(str(report["announcement"]).strip())
     if report.get("forge"):
@@ -172,15 +187,13 @@ def _format_run(report: dict[str, object]) -> str:
         lines.append(f"Guild chat: {report['chat']}")
     if report.get("error"):
         lines.append(f"Problem: {report['error']}")
-    lines.extend(
-        [
-            "",
-            f"Next run: {report.get('next_at') or 'not saved'} ({report.get('next_source') or '-'})",
-            "The wake timer re-arms itself from that choice.",
-        ]
-    )
+    lines.append("")
+    if "choose" in steps:
+        lines.append(f"Next run: {report.get('next_at') or 'not saved'} ({report.get('next_source') or '-'})")
+        lines.append("The wake timer re-arms itself from that choice.")
+    else:
+        lines.append("Next run: unchanged")
     return "\n".join(lines)
-
 
 if __name__ == "__main__":
     sys.exit(main())

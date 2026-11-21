@@ -1,8 +1,10 @@
 # Eldgrim Addon — First-Milestone Specification
 
-**Status:** Approved scope; initial Lua/TOC implementation created. In-game verification pending.  
+**Status:** Approved scope for the archive. The hearth board added in 0.4.0-alpha is specified in [HEARTH.md](HEARTH.md). In-game verification pending.  
 **Target:** World of Warcraft Forever only.  
 **Research baseline:** Version 1.60.1, interface 16001; latest public build found during research: 1.60.1.70862.
+
+The rules below still govern the guild-chat archive. The hearth board is the later interface, slash command, and addon-message path. It does not turn a relayed line into a keyword or a standing change.
 
 ## 1. Purpose
 

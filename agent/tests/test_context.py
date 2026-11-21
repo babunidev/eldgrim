@@ -238,7 +238,7 @@ class ContextTests(unittest.TestCase):
         for task, (system, instruction, data) in samples.items():
             built = build(task, data=data, system=system, instruction=instruction)
             windows.add(built.num_ctx)
-        self.assertEqual(windows, {24576})
+        self.assertEqual(windows, {28672})
 
     def test_proclamation_ends_by_forbidding_invented_news(self):
         built = build("proclamation", data="Newcomers: none", system=STANDING, instruction=WRITE)
@@ -363,7 +363,7 @@ class ContextTests(unittest.TestCase):
         self.assertEqual([entry["task"] for entry in records], ["chat-keyword", "choose-moment", "proclamation"])
         for entry in records:
             self.assertIn("character/SELF.md", entry["pages"])
-            self.assertEqual(entry["num_ctx"], 24576)
+            self.assertEqual(entry["num_ctx"], 28672)
         keyword_messages, keyword_options = sent[0]
         self.assertEqual(keyword_messages[0]["content"], PROMPT)
         self.assertTrue(keyword_messages[1]["content"].endswith(INSTRUCTION))

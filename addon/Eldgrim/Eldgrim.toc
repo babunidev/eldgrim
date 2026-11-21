@@ -1,8 +1,13 @@
 ## Interface: 16001
 ## Title: Eldgrim
-## Notes: Silent local guild-chat archive for World of Warcraft Forever.
+## Notes: Hearth board, guild-chat archive, daily roster, and a target invite whisper for World of Warcraft Forever.
 ## Author: Babuni
-## Version: 0.1.0-alpha
-## SavedVariables: EldgrimDB
+## Version: 0.4.0-alpha
+## SavedVariables: EldgrimDB, EldgrimRoster, EldgrimQuests
 
+EldgrimEmbers.lua
+EldgrimVerified.lua
 Eldgrim.lua
+EldgrimSync.lua
+EldgrimSkin.lua
+EldgrimBoard.lua
