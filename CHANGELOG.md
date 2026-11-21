@@ -4,6 +4,7 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-21
 
+- A later quest is shown only the fire items the character's level allows, judged by the catalog's Needs column, or the item level when Needs is empty. The rows come with the character, without links and under their section headings; the quest reads only the opening of `lore/FIRE_ITEMS.md` and what Eldgrim may ask. An item above the level is refused and a fitting spare is used. When nothing fits, the model is not asked. A character with no recorded level still sees the whole catalog. The quest's reading fell from about 18,300 tokens to 13,100 at level 1 and 15,900 at level 60. Claude Code (Claude Opus 5.5).
 - A task in `agent/context.toml` may name the `##` sections it reads from a page; it then gets the page's opening and those sections in page order. The core is always read whole. A section name the page does not have stops the run. Every task now leaves out the governance chapters' refinement queues, and the proclamation reads from `lore/FIRE_ITEMS.md` only what Eldgrim may ask, small flames, campfires and one-evening items. With the largest allowed brief, the proclamation's estimate fell from about 24,900 to 19,300 tokens; the window stays 28,672. Claude Code (Claude Opus 5.5).
 
 ## 2026-11-20

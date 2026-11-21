@@ -98,7 +98,10 @@ pages = [
     "The daily quest",
     "Deadlines and rewards (Q109–110)",
   ] },
-  "lore/FIRE_ITEMS.md",
+  # The catalog rows come with the character, only those its level allows (quests.py).
+  { page = "lore/FIRE_ITEMS.md", sections = [
+    "What Eldgrim may ask",
+  ] },
   "lore/WORLD.md",
 ]
 private_origin = true

@@ -26,6 +26,10 @@ from eldgrim_agent.quests import (
     bonfire_message,
     catalog,
     catalog_kinds,
+    catalog_levels,
+    catalog_rows,
+    catalog_text,
+    fitting,
     choose_character,
     run_daily_quests,
     settle,
@@ -87,6 +91,37 @@ class CatalogTests(unittest.TestCase):
         self.assertIsNone(accept_offer(WAND, items, "Alliance"))
         self.assertEqual(accept_offer(FLINT, items, "Alliance")[0], "Flint and Tinder")
 
+    def test_the_level_a_character_needs_comes_from_needs_then_item_level(self):
+        page = Path(__file__).resolve().parents[2] / "lore" / "FIRE_ITEMS.md"
+        levels = catalog_levels(page)
+        self.assertEqual(levels["Dim Torch"], 5)
+        self.assertEqual(levels["Pyrestone Orb"], 55)
+        self.assertEqual(levels["Basic Campfire Kit"], 4)
+        self.assertNotIn("Torch of the Eternal Flame", levels)
+        self.assertEqual(set(levels), set(catalog(page)))
+
+    def test_a_level_keeps_only_what_it_allows_and_no_level_keeps_all(self):
+        path = Path(tempfile.mkdtemp()) / "items.md"
+        path.write_text(TINY, encoding="utf-8")
+        items, levels = catalog(path), catalog_levels(path)
+        self.assertEqual(set(fitting(items, levels, 10)), {"Flint and Tinder", "Basic Campfire Kit", "Ember Stone"})
+        self.assertEqual(fitting(items, levels, None), items)
+        self.assertEqual(set(fitting(items, levels, 3)), set())
+
+    def test_the_catalog_text_has_no_links_and_keeps_its_sections(self):
+        path = Path(tempfile.mkdtemp()) / "items.md"
+        path.write_text("## Lights\n" + TINY, encoding="utf-8")
+        text = catalog_text(catalog_rows(path), {"Flint and Tinder"})
+        self.assertIn("### Lights", text)
+        self.assertIn("| Flint and Tinder | 5 |", text)
+        self.assertNotIn("http", text)
+        self.assertNotIn("Cinder Wand", text)
+        self.assertEqual(catalog_text(catalog_rows(path), set()), "")
+
+
+def _offer_text(item: str) -> str:
+    return f"Item: {item}\n\nBring it to a fire. Post a picture and write Eldgrim's name. Another member adds the Roar."
+
 
 class ChoiceTests(unittest.TestCase):
     def test_the_highest_level_is_chosen_and_a_tie_is_random(self):
@@ -144,7 +179,7 @@ class SettleTests(unittest.TestCase):
         db.commit()
         db.close()
 
-    def go(self, staged, ask=None, rng=None, mark=None):
+    def go(self, staged, ask=None, rng=None, mark=None, shelf=False):
         db = connect(self.db_path)
         try:
             return settle(
@@ -156,6 +191,8 @@ class SettleTests(unittest.TestCase):
                 rng=rng or random.Random(0),
                 items=catalog(self.catalog),
                 mark=mark,
+                levels=catalog_levels(self.catalog) if shelf else None,
+                rows=catalog_rows(self.catalog) if shelf else None,
             )
         finally:
             db.close()
@@ -234,6 +271,43 @@ class SettleTests(unittest.TestCase):
         self.go({"requests": [{"id": 5, "member": 5, "kind": "ask"}], "proofs": []}, ask=horde)
         self.assertEqual(self.quests(5)[-1]["item"], "Red Fireworks Rocket")
         self.assertNotIn(BONFIRE_ITEM, [row["item"] for row in self.quests(5)[1:]])
+
+    def test_a_later_quest_shows_and_accepts_only_what_the_level_allows(self):
+        self.seed(5, [{"name": "Low", "race": "Gnome", "class": "Mage", "faction": "Alliance"}])
+        self.levels(Low=10)
+        self.go({"requests": [{"id": 1, "member": 5, "kind": "ask"}], "proofs": []})
+        self.go({"requests": [{"id": 2, "member": 5, "kind": "cancel"}], "proofs": []})
+        asked = []
+
+        def ask(data):
+            asked.append(data)
+            return _offer_text("Red Fireworks Rocket")
+
+        self.go({"requests": [{"id": 3, "member": 5, "kind": "ask"}], "proofs": []}, ask=ask, shelf=True)
+        self.assertIn("| Flint and Tinder |", asked[0])
+        self.assertIn("| Ember Stone |", asked[0])
+        self.assertNotIn("Red Fireworks Rocket", asked[0])
+        self.assertNotIn("Cinder Wand", asked[0])
+        self.assertNotIn("| Basic Campfire Kit |", asked[0])
+        # The model named a level 20 item for a level 10 character: a fitting spare instead.
+        item = self.quests(5)[-1]["item"]
+        self.assertIn(item, {"Flint and Tinder", "Ember Stone"})
+
+    def test_when_nothing_fits_the_model_is_not_asked(self):
+        self.seed(5, [{"name": "Tiny", "race": "Gnome", "class": "Mage", "faction": "Alliance"}])
+        self.levels(Tiny=1)
+        self.go({"requests": [{"id": 1, "member": 5, "kind": "ask"}], "proofs": []})
+        self.go({"requests": [{"id": 2, "member": 5, "kind": "cancel"}], "proofs": []})
+        asked = []
+        outcome = self.go(
+            {"requests": [{"id": 3, "member": 5, "kind": "ask"}], "proofs": []},
+            ask=lambda data: asked.append(data) or FLINT,
+            shelf=True,
+        )
+        self.assertEqual(asked, [])
+        self.assertEqual(outcome["requests"], [3])
+        self.assertEqual(len(self.quests(5)), 1)
+        self.assertIn("Tiny", self.sent[-1][1])
 
     def test_a_later_quest_is_not_a_repeat_and_the_kind_changes(self):
         self.seed(5, [{"name": "High", "race": "Dwarf", "class": "Warrior", "faction": "Alliance"}])
@@ -616,6 +690,9 @@ class QuestContextTests(unittest.TestCase):
         names = [page.name for page in built.pages]
         self.assertIn("lore/FIRE_ITEMS.md", names)
         self.assertIn("lore/WORLD.md", names)
+        # The rows come with the character, not with the page.
+        self.assertIn("## What Eldgrim may ask", built.messages[1]["content"])
+        self.assertNotIn("## Weapons", built.messages[1]["content"])
         self.assertNotIn("The characters of Amberhearth", names)
         self.assertIn("Riverglades", built.messages[1]["content"])
         self.assertNotIn("Designer Island", built.messages[1]["content"])

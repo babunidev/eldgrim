@@ -29,8 +29,8 @@ QUEST_SYSTEM = (
     "You are Eldgrim. Write one private quest for the one character named in the data. "
     "Address that character. Do not name any other character. "
     "Suit it to that character's race, class, and level. "
-    "Name one item from the fire catalog, and only an item whose place, maker, seller, or quest "
-    "is written there. Do not use an item from the list of quest flames that are given up. "
+    "Name one item from the fire catalog in the data, and only an item whose place, maker, seller, or quest "
+    "is written there. The data lists only what suits this character's level. Do not use an item from the list of quest flames that are given up. "
     "Do not ask for an epic, a legendary, or anything that only a raid can yield. "
     "If the character's faction is named, do not send them to the other faction's city or quest. "
     "A wish may name a place or a mood. Use it only when the world page and the catalog allow it. "
@@ -53,6 +53,9 @@ QUEST_INSTRUCTION = "Write that one quest. Output only the item line and the mes
 
 BONFIRE_ITEM = "Basic Campfire Kit"
 _REQUEST: contextvars.ContextVar = contextvars.ContextVar("eldgrim_quest_request", default=None)
+# The catalog's levels and rows for this settle, so a quest offers only what the character can use.
+_SHELF: contextvars.ContextVar = contextvars.ContextVar("eldgrim_quest_shelf", default=None)
+LINK = re.compile(r"\[([^\]]+)\]\([^)]*\)")
 
 
 def bonfire_message(name: str) -> str:
@@ -124,6 +127,53 @@ def _catalog_lines(path=None) -> list[tuple[str, str]]:
         if match is not None:
             rows.append((match.group(1), line))
     return rows
+
+
+def catalog_levels(path=None) -> dict[str, int | None]:
+    """The level a character needs: the Needs column when it has a number, else the item level."""
+    levels: dict[str, int | None] = {}
+    for name, line in _catalog_lines(path):
+        cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
+        needs = cells[2] if len(cells) > 2 else ""
+        level = cells[1] if len(cells) > 1 else ""
+        levels[name] = int(needs) if needs.isdigit() else int(level) if level.isdigit() else None
+    return levels
+
+
+def catalog_rows(path=None) -> list[tuple[str, str, str]]:
+    """Section heading, item name, and the row without its link, for the quest's data."""
+    text = (path or CATALOG_PATH).read_text(encoding="utf-8").split(GIVEN_UP, 1)[0]
+    rows = []
+    section = ""
+    for line in text.splitlines():
+        if line.startswith("## "):
+            section = line[3:].strip()
+            continue
+        match = ROW.match(line)
+        if match is not None:
+            rows.append((section, match.group(1), LINK.sub(r"\1", line)))
+    return rows
+
+
+def fitting(items: dict[str, str], levels: dict[str, int | None], level: int | None) -> dict[str, str]:
+    """Only items the character's level allows. An unknown level keeps the whole catalog."""
+    if level is None or not levels:
+        return dict(items)
+    return {name: side for name, side in items.items() if (levels.get(name) or 0) <= level}
+
+
+def catalog_text(rows: list[tuple[str, str, str]], names: set[str]) -> str:
+    """The rows this character may be offered, under their section headings."""
+    lines = ["Fire catalog for this character's level:"]
+    current = None
+    for section, name, row in rows:
+        if name not in names:
+            continue
+        if section != current:
+            lines.extend(["", f"### {section}", "| Item | Level | Needs | Carried as | Where |"])
+            current = section
+        lines.append(row)
+    return "\n".join(lines) if current is not None else ""
 
 
 def catalog(path=None) -> dict[str, str]:
@@ -292,6 +342,8 @@ def run_daily_quests(
             items=catalog(catalog_path),
             kinds=catalog_kinds(catalog_path),
             mark=mark if mark is not None else mark_open,
+            levels=catalog_levels(catalog_path),
+            rows=catalog_rows(catalog_path),
         )
         db.commit()
         # The witnessed embers, for Jasmine Amberbrew's client to send on.
@@ -302,7 +354,15 @@ def run_daily_quests(
     return outcome["counts"]
 
 
-def settle(db, now, staged, *, ask, deliver, rng, items, kinds=None, mark=None) -> dict[str, object]:
+def settle(db, now, staged, *, ask, deliver, rng, items, kinds=None, mark=None, levels=None, rows=None) -> dict[str, object]:
+    shelf = _SHELF.set((levels or {}, rows or []))
+    try:
+        return _settle(db, now, staged, ask=ask, deliver=deliver, rng=rng, items=items, kinds=kinds, mark=mark)
+    finally:
+        _SHELF.reset(shelf)
+
+
+def _settle(db, now, staged, *, ask, deliver, rng, items, kinds=None, mark=None) -> dict[str, object]:
     counts = {
         "sent": 0,
         "reminded": 0,
@@ -422,8 +482,20 @@ def _compose(character, ask, items, kinds, prior, *, later: bool) -> tuple[str, 
     name = str(character["name"])
     if not later and BONFIRE_ITEM not in used:
         return BONFIRE_ITEM, "bonfire", bonfire_message(name)
+    levels, rows = _SHELF.get() or ({}, [])
+    level = character["level"]
+    items = fitting(items, levels, None if level is None else int(level))
+    card = _character_card(character, prior)
+    listed = ""
+    if rows:
+        side = faction.lower()
+        open_items = {item for item, lock in items.items() if item not in used and (not lock or lock.lower() == side)}
+        listed = catalog_text(rows, open_items)
+        if listed:
+            card = card + "\n" + listed
     try:
-        raw = ask(_character_card(character, prior))
+        # Nothing on the shelf fits: no model call, and the spare below finds nothing either.
+        raw = ask(card) if listed or not rows else ""
     except Exception:
         raw = ""
     accepted = accept_offer(raw or "", items, faction, used)

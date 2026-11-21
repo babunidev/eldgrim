@@ -2,6 +2,12 @@
 
 A concise account of meaningful project development, written from the human creative's perspective.
 
+## 2026-11-21 — Fire items by level
+
+Chapter 08 already said a later quest names an item that fits the character's level, but the quest read the whole fire catalog and nothing checked the level. That was the next step I had named. Claude Code (Claude Opus 5.5) made the quest show only the rows the character's level allows, by the level the catalog says an item needs, and made the run refuse an item above it and use a fitting spare. When nothing fits, the model is not asked.
+
+**Result:** 122 agent tests passed, 5 of them new. The quest's reading fell from about 18,300 tokens to 13,100 at level 1 and 15,900 at level 60. At level 1 the catalog still offers the Night Watchman's Torch, whose quest the page tags level 60, and the Smoky Torch, which the page says has no named source; the catalog rows decide that, not the filter. No live run was made.
+
 ## 2026-11-21 — Reading only what a task needs
 
 The proclamation on 20 November did not fit: it needed about 24,725 tokens in a window of 24,576. The window had already been raised twice to keep up, and a larger window needs more memory while the model runs. Smaller reading for each task was the step I had named, so that is what came next. Claude Code (Claude Opus 5.5) let each task name the sections it reads from a page, while Eldgrim's core self stays whole. It proposed the sections: the confirmed rules each task acts on, without the refinement queues of open questions, and for the proclamation only the fire items anyone can bring to a guild fire, not the gear lists. The choice lives in `agent/context.toml`, where I can change it.
