@@ -42,13 +42,7 @@ pages = [
     "Confirmed decisions — questions 111–115",
     "Member-organized activities — question 157",
   ] },
-  # One invitation to the whole guild: the objects anyone can bring, not the gear lists.
-  { page = "lore/FIRE_ITEMS.md", sections = [
-    "What Eldgrim may ask",
-    "Small flames",
-    "Campfires, and what can be laid beside them",
-    "For one evening",
-  ] },
+  # No fire catalog for the announcement (decision of 20 November 2026). Quests read it.
   "lore/WORLD.md",
 ]
 people = true

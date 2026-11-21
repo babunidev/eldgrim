@@ -11,11 +11,11 @@
 | Community               | Alliance Roleplay                                                                  |
 | Eldgrim's position      | Initiator of Amberhearth, outside ordinary guild ranks                             |
 | Guild philosophy        | Welcoming, voluntary, creative, socially inclusive                                 |
-| Membership              | Multiple characters per player; no fixed membership limit                          |
+| Membership              | Several characters per player in the guild; one registered with Eldgrim in the Character Forge (2026-11-20); no fixed membership limit |
 | Expectations            | No mandatory attendance, performance, progression, gold, or resource contributions |
 | Guild ranks             | Ember → Wayfarer → Kindler → Hearthkeeper → Hearthwarden                           |
 | Rank meaning            | Recognition and social standing, not command over other members                    |
-| Eldgrim's authority     | Autonomous administration within defined rules and technical permissions           |
+| Eldgrim's authority     | Approved future goal (Q143): autonomous administration within defined rules and technical permissions. Not active until founder deployment authorization (Q170) |
 | Current technical model | Always-online Discord bot, locally operated daily AI agent, separate WoW addon     |
 | Current policy status   | Eldgrim's precise governing goals and enforceable rules are not yet finalized      |
 

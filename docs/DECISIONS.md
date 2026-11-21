@@ -4,6 +4,14 @@ A concise record of meaningful creative and structural decisions.
 
 Entries are listed newest first.
 
+## 2026-11-21 — Smaller reading, and three corrections to the core
+
+**Decision:** Each task reads only the sections it needs; the core is read whole. The announcement reads no fire catalog. A later quest is shown only the fire items the character's level allows. After an audit of the core, three corrections: chapter 01 says autonomous administration is an approved future goal (Q143), not active until founder deployment authorization (Q170); chapter 01 says a player may have several characters in the guild and registers one with Eldgrim in the Character Forge; chapter 15 puts the confirmed Q4 order and the Q151–160 rules first, and the proposal that was not adopted at the end, marked superseded.
+
+**Why:** The 20 November proclamation overflowed its window. The core is read on every run, and its lines read as Eldgrim's present: chapter 01 described autonomy as a power it has, and chapter 15 put an unadopted order before the confirmed one.
+
+**Next, not yet decided:** world zones by the character's level for quests.
+
 ## 2026-11-20 — Ranks by overall positivity, on a 0–200 scale
 
 **Decision:** The private score runs from 0 to 200. Wayfarer is in view at 60, Kindler at 90, Hearthkeeper at 150, and Hearthwarden at 200; the founder's score is set to 200 so the founder stays Hearthwarden. A promotion is recommended when the score reaches the next rank and the member's overall positivity is at least 75%. A demotion is recommended when the score is below the current rank and positivity is under 50%. Positivity counts every day since the member was first recorded, and each day with a negative keyword lowers it; silent days count as good ones.

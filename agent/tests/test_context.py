@@ -156,15 +156,14 @@ class ContextTests(unittest.TestCase):
             with self.assertRaises(ContextError):
                 build("sample", system="s", instruction="i", manifest=manifest, root=root)
 
-    def test_the_proclamation_reads_no_refinement_queue_and_no_gear_lists(self):
+    def test_the_proclamation_reads_no_refinement_queue_and_no_fire_catalog(self):
         built = build("proclamation", data="Newcomers: none", system=STANDING, instruction=WRITE)
         text = built.messages[1]["content"]
         tasks = text[text.index("## governance/03-social-rules.md"):]
         self.assertNotIn("## Refinement queue", tasks)
-        self.assertIn("## What Eldgrim may ask", text)
-        self.assertIn("## Campfires, and what can be laid beside them", text)
-        self.assertNotIn("## Weapons", text)
-        self.assertNotIn("## Quest flames that are usually given up", text)
+        self.assertNotIn("lore/FIRE_ITEMS.md", [page.name for page in built.pages])
+        self.assertNotIn("## What Eldgrim may ask", text)
+        self.assertIn("lore/WORLD.md", [page.name for page in built.pages])
 
     def test_unknown_missing_and_outside_paths_fail(self):
         root, manifest = self._manifest({"note.md": "a public note"}, core=["note.md"], tasks={"sample": []})

@@ -2,6 +2,14 @@
 
 A concise account of meaningful project development, written from the human creative's perspective.
 
+## 2026-11-21 — What Eldgrim reads about itself
+
+The last planned step was an audit of the core, the ten pages every task reads whole. Claude Code (Claude Opus 5.5) read them against the current decisions and the code. The capabilities page matched what was checked against the code. Three lines elsewhere did not. Chapter 01 called autonomous administration Eldgrim's authority, as if it were a power it has today; it is an approved goal that waits for my deployment authorization. The same table said several characters per player, which needed my 20 November decision beside it: several characters may stay in the guild, and one is registered with Eldgrim in the Forge. Chapter 15 opened with a priority order I never adopted, before the one I did. I chose to reorder that chapter rather than delete the old proposal, so it stays as a record at the end.
+
+Reading the decision log, Claude Code also noticed that I had planned no fire catalog for the announcement at all, while its first change that day had kept four sections of it. The announcement now reads none.
+
+**Result:** 122 agent tests passed. The proclamation's estimate with the largest brief is about 17,200 tokens. No live run was made.
+
 ## 2026-11-21 — Fire items by level
 
 Chapter 08 already said a later quest names an item that fits the character's level, but the quest read the whole fire catalog and nothing checked the level. That was the next step I had named. Claude Code (Claude Opus 5.5) made the quest show only the rows the character's level allows, by the level the catalog says an item needs, and made the run refuse an item above it and use a fitting spare. When nothing fits, the model is not asked.

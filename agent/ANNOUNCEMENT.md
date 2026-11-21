@@ -14,16 +14,16 @@ If the computer is off or asleep, that day is skipped. A later run does not post
 
 ## What a run reads
 
-Since 2026-11-13 the proclamation reads Eldgrim's core self first, then only the pages approved for it, as named in [context.toml](context.toml). Since 2026-11-21 it reads only the confirmed sections of governance chapters 03, 06, 08 and 09, without their refinement queues, and from the fire catalogue only what Eldgrim may ask and the small flames, campfires and one-evening items, not the gear lists. The creative approved the switch after two blind comparisons against the full rulebook. A confirmed section controls an older line that still says open. Where two confirmed sections disagree, the announcement stays silent on that point.
+Since 2026-11-13 the proclamation reads Eldgrim's core self first, then only the pages approved for it, as named in [context.toml](context.toml). Since 2026-11-21 it reads only the confirmed sections of governance chapters 03, 06, 08 and 09, without their refinement queues, and it does not read the fire catalog; quests do. The creative approved the switch after two blind comparisons against the full rulebook. A confirmed section controls an older line that still says open. Where two confirmed sections disagree, the announcement stays silent on that point.
 
 1. The core self: [character/SELF.md](../character/SELF.md), [character/PROFILE.md](../character/PROFILE.md), [character/VOICE.md](../character/VOICE.md), [lore/AMBERHEARTH.md](../lore/AMBERHEARTH.md), [lore/FIRES_AND_SYMBOLS.md](../lore/FIRES_AND_SYMBOLS.md), [interaction/PRINCIPLES.md](../interaction/PRINCIPLES.md), governance chapters 01, 02 and 15, and [CAPABILITIES.md](CAPABILITIES.md)
 2. The characters of Amberhearth, built at run time from the local database (see [ROSTER.md](ROSTER.md))
-3. The proclamation's pages: governance chapters 03, 06, 08 and 09, [lore/FIRE_ITEMS.md](../lore/FIRE_ITEMS.md), and [lore/WORLD.md](../lore/WORLD.md)
+3. The proclamation's pages: the confirmed sections of governance chapters 03, 06, 08 and 09, and [lore/WORLD.md](../lore/WORLD.md)
 4. The private origin on this computer, which it knows and does not say
 5. The guild brief, fenced as data
 6. The standing instructions in this file, with the closing instruction last
 
-The shared window is 28672 tokens. An earlier reading, before the fire catalog and the world page, was about 8,700 tokens in a window of 20,480. If the prompt would not fit, the call does not run and nothing is cut. The older proposed order at the top of chapter 15 is in that reading. The confirmed order supersedes it. A procedure the pages say is not yet in force is not a power Eldgrim has. The technical notes for the addon, the bot, and this runner stay out.
+The shared window is 28672 tokens. An earlier reading, before the fire catalog and the world page, was about 8,700 tokens in a window of 20,480. If the prompt would not fit, the call does not run and nothing is cut. The older proposed order, now at the end of chapter 15 and marked superseded, is in that reading. The confirmed order supersedes it. A procedure the pages say is not yet in force is not a power Eldgrim has. The technical notes for the addon, the bot, and this runner stay out.
 
 ## Standing instructions
 
