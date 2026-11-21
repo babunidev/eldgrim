@@ -51,6 +51,7 @@ class RunStepTests(unittest.TestCase):
             "LOCK_PATH": self.root / "run.lock",
             "ensure_runtime": lambda: None,
             "ensure_server": lambda: calls.append("server"),
+            "server_version": lambda: "0.0-test",
             "stop_server": lambda server: None,
             "unload": lambda: None,
             "refresh_guild": refresh,
@@ -88,10 +89,43 @@ class RunStepTests(unittest.TestCase):
             ["prepare", "quests", "replies", "announce:Newcomers: none", "posted", "ranks:A note.", ],
         )
         self.assertEqual(self.calls.count("server"), 1)
+        self.assertEqual(report["model"], run.MODEL)
+        self.assertEqual(report["ollama_version"], "0.0-test")
         self.assertEqual(self.chosen, ["model"])
         self.assertEqual(report["error"], "")
         saved = json.loads(self.prepared.read_text(encoding="utf-8"))
         self.assertEqual(saved["brief"], "Newcomers: none")
+
+    def test_a_silent_server_is_logged_as_unknown_and_the_summary_names_it(self):
+        from eldgrim_agent.cli import _format_run
+
+        self._start(server_version=lambda: None)
+        report = run.execute(scheduled=True)
+        self.assertEqual(report["ollama_version"], "unknown")
+        self.assertIn("Ollama: unknown", _format_run(report))
+
+    def test_the_server_version_is_read_from_the_version_endpoint(self):
+        from io import BytesIO
+        from eldgrim_agent import ollama
+
+        class Reply(BytesIO):
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *exc):
+                return False
+
+        seen = []
+
+        def opened(url, timeout):
+            seen.append(url)
+            return Reply(b'{"version": "0.12.3"}')
+
+        with patch("eldgrim_agent.ollama.urllib.request.urlopen", opened):
+            self.assertEqual(ollama.server_version(), "0.12.3")
+        self.assertEqual(seen, [ollama.HOST + "/api/version"])
+        with patch("eldgrim_agent.ollama.urllib.request.urlopen", side_effect=OSError("down")):
+            self.assertIsNone(ollama.server_version())
 
     def test_an_announcement_that_does_not_fit_stops_only_itself(self):
         self.overflow = {"proclamation"}

@@ -171,6 +171,8 @@ def run_compare(runs: int, sample: Path | None, against: str) -> int:
 def _format_run(report: dict[str, object]) -> str:
     steps = report.get("steps") or {}
     lines = [f"Model: {MODEL}"]
+    if report.get("ollama_version"):
+        lines.append(f"Ollama: {report['ollama_version']}")
     lines.extend(f"{name}: {outcome}" for name, outcome in steps.items())
     if report.get("prepared") and "prepare" not in steps:
         lines.append(f"Guild information prepared: {report['prepared']}")

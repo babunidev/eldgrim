@@ -19,8 +19,8 @@ from eldgrim_agent.context import find_problems, save_last_brief, take_records
 from eldgrim_agent.discord_post import PostError, approval_for, post_file, post_officer
 from eldgrim_agent.keywords import ask_keyword
 from eldgrim_agent.mentions import run_daily_replies
-from eldgrim_agent.ollama import OllamaError, ensure_server, stop_server, unload
-from eldgrim_agent.paths import LOCK_PATH, LOGS, OFFICER_NOTES, PREPARED_PATH, ensure_runtime
+from eldgrim_agent.ollama import OllamaError, ensure_server, server_version, stop_server, unload
+from eldgrim_agent.paths import LOCK_PATH, LOGS, MODEL, OFFICER_NOTES, PREPARED_PATH, ensure_runtime
 from eldgrim_agent.quests import run_daily_quests
 from eldgrim_agent.refresh import refresh_guild
 from eldgrim_agent.schedule import save_choice
@@ -88,6 +88,9 @@ class _Run:
         if not self._model:
             self._server = ensure_server()
             self._model = True
+            # Evidence for the run log: the model tag and the Ollama server that ran it.
+            self.report["model"] = MODEL
+            self.report["ollama_version"] = server_version() or "unknown"
 
     def close(self) -> None:
         if not self._model:
@@ -140,6 +143,8 @@ def _execute_locked(scheduled: bool, step: str | None) -> dict[str, object]:
         "announcement": "",
         "officer_posted": False,
         "error": "",
+        "model": "",
+        "ollama_version": "",
         "next_at": "",
         "next_source": "",
         "context": [],

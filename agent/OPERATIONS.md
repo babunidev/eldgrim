@@ -114,7 +114,7 @@ The current local Qwen3 8B model is an initial candidate. The exact tag, install
 
 ## 9. Logs and diagnostics
 
-The wake path logs to the system journal. Each run also writes `~/.local/share/eldgrim/logs/run-*.json` with each step's outcome, the announcement, any problem, and the next moment. A rejected announcement is logged with which check stopped it (the motto, a private root, or an empty draft), never with its text. Logs contain no tokens.
+The wake path logs to the system journal. Each run also writes `~/.local/share/eldgrim/logs/run-*.json` with each step's outcome, the announcement, any problem, and the next moment. When a step used the model, the log also names the model tag and the version the Ollama server reported, or `unknown` if it did not answer; the summary printed after the run shows both. A rejected announcement is logged with which check stopped it (the motto, a private root, or an empty draft), never with its text. Logs contain no tokens.
 
 ~~~bash
 systemctl list-timers eldgrim-daily.timer

@@ -4,6 +4,12 @@ A concise account of meaningful project development, written from the human crea
 
 Entries before 14 November 2026 that say only "AI", or name no tool, did not record which tool or model did the work. The [collaboration record](AI_COLLABORATION.md) lists them as earlier AI help, tool and model not recorded.
 
+## 2026-11-21 — Which Ollama ran it
+
+The documentation guide asks every agent record to name the Ollama version, and the run logs named only the model. Claude Code (Claude Opus 5.5) explained the difference between Ollama's background server and the command I type, then made each run ask the server for its version when it starts the model and write that beside the model tag.
+
+**Result:** 131 agent tests passed, 2 of them new. Started briefly on my computer without loading a model, the server reported 0.40.6 and stopped again. No live run was made.
+
 ## 2026-11-21 — Places by level, and the documentation set straight
 
 The last part of my 20 November plan was world zones by the character's level. Claude Code (Claude Opus 5.5) made a quest see only the places that character's level and side allow, from the world page's own level bands, and made the run refuse a quest that names a place outside them. The world page already said a row with no level is not an errand, so those are never shown either. The two catalog rows the level filter could not fix were mine to correct, and I asked for them: the Night Watchman's Torch now needs its quest's level, 60, and the torches and the fish with no named source wait under Not an errand yet.

@@ -113,7 +113,7 @@ The addon stays within addon/SPECIFICATION.md and addon/HEARTH.md until the crea
 - [x] Recommend rank changes to the Hearth Keepers by score and overall positivity.
 - [x] Read only the pages and sections each task needs, from agent/context.toml (2026-11-21).
 - [x] Wake the computer at the moment Eldgrim chooses with a root-owned system timer, proven by `eldgrim wake-test` on 12 November 2026, and leave sleep to the desktop.
-- [ ] Record the Ollama server version with the run evidence, as docs/DOCUMENTATION.md asks.
+- [x] Record the model tag and the Ollama server version in each run log, as docs/DOCUMENTATION.md asks (2026-11-21). The server reported 0.40.6.
 - [ ] Test rate limits, missed runs and restart recovery against live Discord.
 - [ ] Add migrations and a tested backup of the database, within Q137's 30-day limit.
 

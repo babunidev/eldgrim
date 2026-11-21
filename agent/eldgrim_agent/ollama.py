@@ -26,6 +26,17 @@ def healthy() -> bool:
         return False
 
 
+def server_version() -> str | None:
+    """The version the running Ollama server reports, for the run log. None if it does not answer."""
+    try:
+        with urllib.request.urlopen(HOST + "/api/version", timeout=3) as response:
+            data = json.loads(response.read().decode())
+    except (OSError, urllib.error.URLError, ValueError):
+        return None
+    version = data.get("version") if isinstance(data, dict) else None
+    return str(version) if version else None
+
+
 def ensure_server() -> subprocess.Popen[bytes] | None:
     """Start ollama serve only when nothing is already listening. The caller stops what this started."""
     if healthy():
