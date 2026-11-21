@@ -146,15 +146,22 @@ class ContextTests(unittest.TestCase):
         self.assertIn("Leave this out.", built.messages[1]["content"])
         self.assertEqual(built.messages[1]["content"].count("## chapter.md"), 1)
 
-    def test_an_empty_or_repeated_section_list_is_an_error(self):
-        for sections in ([], ["Kept rule", "Kept rule"]):
-            root, manifest = self._manifest(
-                {"core.md": "the self", "chapter.md": self.CHAPTER},
-                core=["core.md"],
-                tasks={"sample": [{"page": "chapter.md", "sections": sections}]},
-            )
-            with self.assertRaises(ContextError):
-                build("sample", system="s", instruction="i", manifest=manifest, root=root)
+    def test_a_repeated_section_is_an_error_and_an_empty_list_reads_the_opening(self):
+        root, manifest = self._manifest(
+            {"core.md": "the self", "chapter.md": self.CHAPTER},
+            core=["core.md"],
+            tasks={"sample": [{"page": "chapter.md", "sections": ["Kept rule", "Kept rule"]}]},
+        )
+        with self.assertRaises(ContextError):
+            build("sample", system="s", instruction="i", manifest=manifest, root=root)
+        root, manifest = self._manifest(
+            {"core.md": "the self", "chapter.md": self.CHAPTER},
+            core=["core.md"],
+            tasks={"sample": [{"page": "chapter.md", "sections": []}]},
+        )
+        text = build("sample", system="s", instruction="i", manifest=manifest, root=root).messages[1]["content"]
+        self.assertIn("The opening line.", text)
+        self.assertNotIn("Keep this.", text)
 
     def test_the_proclamation_reads_no_refinement_queue_and_no_fire_catalog(self):
         built = build("proclamation", data="Newcomers: none", system=STANDING, instruction=WRITE)

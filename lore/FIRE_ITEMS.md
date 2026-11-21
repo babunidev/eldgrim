@@ -10,15 +10,13 @@ The Dim Torch and the Smoky Torch are the other plain lights a person can hold i
 
 Eldgrim may invite someone to bring one of these objects to a fellowship fire. The object is for the fire. It is not handed to Eldgrim, it is not a payment, and it is not owed. Declining changes nothing. One invitation is enough, and only when it fits the person and the day. Eldgrim uses an object whose place, maker, seller, or quest is named below. It does not explain a private reason. A private motive was discussed and is not written on this page. Eldgrim does not ask for an epic or a legendary, and it does not ask for something that only a raid can yield.
 
-The objects a person can bring are listed first. The Dim Torch and the Smoky Torch are included because they can be held, even though the page does not name a seller or a creature. Eldgrim does not send someone after either of them until a source is named. A second list, checked the same way, adds campfires a person can place, materials that can be shown at the fire, and further flames that can be worn. Quest items that are given up, used, or locked to a quest come last and are not bonfire keepsakes. A material is shown, not taken. A campfire kit and a firework are used up when they are used.
+The objects a person can bring are listed first. The Dim Torch and the Smoky Torch can be held, but their pages name no seller or creature, so they are under Not an errand yet until a source is named. A second list, checked the same way, adds campfires a person can place, materials that can be shown at the fire, and further flames that can be worn. Quest items that are given up, used, or locked to a quest come last and are not bonfire keepsakes. A material is shown, not taken. A campfire kit and a firework are used up when they are used.
 
 ## Lights and things held in the hand
 
 | Item | Level | Needs | Carried as | Where |
 | --- | ---: | ---: | --- | --- |
-| [Night Watchman's Torch](https://zugzugdb.com/item/280612) (Forever) | 1 | — | Lit from the bag and carried | Quest reward from An Unfortunate End, at a slain Night Watch Guard in Duskwood. It costs no gold. Wowhead Forever and Warcraft Wiki; the ZugZugDB page does not name the quest. |
-| [Dim Torch](https://zugzugdb.com/item/6182) | 10 | 5 | Off-hand | The page says it can come from a drop or a vendor, and names neither. |
-| [Smoky Torch](https://zugzugdb.com/item/2410) | 1 | — | Off-hand | World drop. The page marks this as beta-build data and names no creature. |
+| [Night Watchman's Torch](https://zugzugdb.com/item/280612) (Forever) | 1 | 60 | Lit from the bag and carried | Quest reward from An Unfortunate End, at a slain Night Watch Guard in Duskwood. It costs no gold. Wowhead Forever and Warcraft Wiki; the ZugZugDB page does not name the quest. Needs is the quest's level on Wowhead; the torch itself asks no level. |
 | [Everglow Lantern](https://zugzugdb.com/item/5323) | 25 | — | Off-hand | Reward from the quest Weapons of Choice and 1 other quest |
 | [Eerie Stable Lantern](https://zugzugdb.com/item/6341) | 21 | 19 | Off-hand | Dropped by Fel Steed |
 | [Torch of Holy Flame](https://zugzugdb.com/item/7344) | 33 | — | Off-hand | Reward from the quest Morbent Fel |
@@ -134,7 +132,6 @@ A campfire kit is placed and used up. Flint, wood, and the elemental pieces can 
 | [Thick Logs](https://zugzugdb.com/item/272941) (Forever) | 60 | — | Shown, not worn | Sold by Reagent Bot |
 | [Elemental Fire](https://zugzugdb.com/item/7068) | 25 | — | Shown, not worn | Dropped by Baron Charr and 41 other creatures |
 | [Fire Oil](https://zugzugdb.com/item/6371) | 25 | — | Shown, not worn | Crafted with Alchemy |
-| [Firefin Snapper](https://zugzugdb.com/item/6359) | 25 | — | Shown, not worn | A trade good used in a recipe. The item page does not name the water. |
 | [Small Flame Sac](https://zugzugdb.com/item/4402) | 25 | — | Shown, not worn | Dropped by Jade and 21 other creatures |
 | [Burning Charm](https://zugzugdb.com/item/4479) | 35 | 25 | Shown, not worn | Dropped by Burning Exile |
 | [Heart of Fire](https://zugzugdb.com/item/7077) | 45 | — | Shown, not worn | Dropped by Baron Charr and 37 other creatures |
@@ -179,6 +176,9 @@ These are spent when they are used. They suit a gathering. They are not relics t
 
 These are in the Forever item data, and the page does not say where a person goes to get them. Eldgrim does not send anyone after them until a source is known.
 
+- [Dim Torch](https://zugzugdb.com/item/6182), level 10, needs 5, off-hand. The page says it can come from a drop or a vendor, and names neither.
+- [Smoky Torch](https://zugzugdb.com/item/2410), level 1, off-hand. A world drop; the page marks this as beta-build data and names no creature.
+- [Firefin Snapper](https://zugzugdb.com/item/6359), level 25, shown and not worn. A trade good used in a recipe; the item page does not name the water.
 - A few low-level copies of raid weapons and jewels were rewards from a beta goodbye event and are not in WoW Forever. Their item numbers, kept here so they are not added back, are 289295, 288926, and 288929. Epic and legendary pieces are left out of this catalog, including the live raid versions of those same objects.
 - Items 240044 through 240051 are epic and name no source, so they are not listed.
 - Several Classic item numbers returned no Forever page, so those pieces are not listed. The numbers checked were 18805, 18806, 18816, 18823, 18824, 19136, 19142, 19143, 19144, 19145, and 19356.

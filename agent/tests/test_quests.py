@@ -94,7 +94,11 @@ class CatalogTests(unittest.TestCase):
     def test_the_level_a_character_needs_comes_from_needs_then_item_level(self):
         page = Path(__file__).resolve().parents[2] / "lore" / "FIRE_ITEMS.md"
         levels = catalog_levels(page)
-        self.assertEqual(levels["Dim Torch"], 5)
+        # The torch asks no level, but its quest is level 60, so Needs says 60.
+        self.assertEqual(levels["Night Watchman's Torch"], 60)
+        # No named source: under Not an errand yet, so never offered.
+        for name in ("Dim Torch", "Smoky Torch", "Firefin Snapper"):
+            self.assertNotIn(name, levels)
         self.assertEqual(levels["Pyrestone Orb"], 55)
         self.assertEqual(levels["Basic Campfire Kit"], 4)
         self.assertNotIn("Torch of the Eternal Flame", levels)
@@ -292,6 +296,39 @@ class SettleTests(unittest.TestCase):
         # The model named a level 20 item for a level 10 character: a fitting spare instead.
         item = self.quests(5)[-1]["item"]
         self.assertIn(item, {"Flint and Tinder", "Ember Stone"})
+
+    def test_a_quest_sees_only_its_places_and_one_that_names_another_is_refused(self):
+        from eldgrim_agent.world import read
+
+        world = Path(self.tmp.name) / "WORLD.md"
+        world.write_text(
+            "# World\n\n## Eastern Kingdoms\n\n| Place | Levels | Side | Land |\n| --- | --- | --- | --- |\n"
+            "| Elwynn Forest | 5–10 | Alliance | Woods |\n| Burning Steppes | 50–59 | — | Ash |\n",
+            encoding="utf-8",
+        )
+        self.seed(5, [{"name": "Low", "race": "Gnome", "class": "Mage", "faction": "Alliance"}])
+        self.levels(Low=10)
+        self.go({"requests": [{"id": 1, "member": 5, "kind": "ask"}], "proofs": []})
+        self.go({"requests": [{"id": 2, "member": 5, "kind": "cancel"}], "proofs": []})
+        asked = []
+
+        def ask(data):
+            asked.append(data)
+            return FLINT.replace("Bring flint to a fire.", "Bring flint to a fire in the Burning Steppes.")
+
+        db = connect(self.db_path)
+        try:
+            settle(
+                db, NOW, {"requests": [{"id": 3, "member": 5, "kind": "ask"}], "proofs": []},
+                ask=ask, deliver=self.deliver, rng=random.Random(0), items=catalog(self.catalog),
+                levels=catalog_levels(self.catalog), rows=catalog_rows(self.catalog), world=read(world),
+            )
+        finally:
+            db.close()
+        self.assertIn("| Elwynn Forest |", asked[0])
+        self.assertNotIn("Burning Steppes", asked[0])
+        self.assertNotIn("Burning Steppes", self.sent[-1][1])
+        self.assertIn("seek", self.sent[-1][1])
 
     def test_when_nothing_fits_the_model_is_not_asked(self):
         self.seed(5, [{"name": "Tiny", "race": "Gnome", "class": "Mage", "faction": "Alliance"}])

@@ -216,7 +216,8 @@ def _entry(entry: object, label: str) -> tuple[str, tuple[str, ...] | None]:
         return entry, None
     if isinstance(entry, dict) and set(entry) == {"page", "sections"} and isinstance(entry["page"], str):
         name, sections = entry["page"], entry["sections"]
-        if not isinstance(sections, list) or not sections or not all(isinstance(item, str) for item in sections):
+        # An empty list reads only the page's opening, before its first ## heading.
+        if not isinstance(sections, list) or not all(isinstance(item, str) for item in sections):
             raise ContextError(f"{name} in {label} needs a list of section headings.")
         if len(set(sections)) != len(sections):
             raise ContextError(f"{name} in {label} names a section twice.")

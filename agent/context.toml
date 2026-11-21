@@ -3,7 +3,8 @@
 # The core is always read whole. A task may name the ## sections it reads from a page:
 # { page = "...", sections = ["Heading", ...] }. It then gets the page's opening, before
 # the first ## heading, and those sections in page order. A heading the page does not
-# have stops the run. "Refinement queue" sections hold open questions and are left out.
+# have stops the run. An empty list reads only the opening. "Refinement queue" sections
+# hold open questions and are left out.
 # A page listed twice in the same list is an error.
 # Future tasks stay comments so nothing can load them yet.
 
@@ -92,11 +93,12 @@ pages = [
     "The daily quest",
     "Deadlines and rewards (Q109–110)",
   ] },
-  # The catalog rows come with the character, only those its level allows (quests.py).
+  # The catalog rows and the places come with the character, only those its level and
+  # side allow (quests.py, world.py). The world page gives only its opening here.
   { page = "lore/FIRE_ITEMS.md", sections = [
     "What Eldgrim may ask",
   ] },
-  "lore/WORLD.md",
+  { page = "lore/WORLD.md", sections = [] },
 ]
 private_origin = true
 num_ctx = 28672
