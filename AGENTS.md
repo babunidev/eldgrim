@@ -6,7 +6,7 @@ Follow [the documentation standard](docs/DOCUMENTATION.md) for first-person auth
 
 Eldgrim is a character and narrative project in the World of Warcraft Forever roleplaying setting. The repository also contains three distinct technical workstreams:
 
-- addon/ — the Forever-only addon: the passive guild-chat recorder, since 0.4.0-alpha the hearth board, and since 0.5.0-alpha the Sunday gathering record.
+- addon/ — the Forever-only addon: the passive guild-chat recorder, since 0.4.0-alpha the hearth board, since 0.5.0-alpha the Sunday gathering record, and since 0.6.0-alpha the quest notebook on the board.
 - agent/ — the developing design for a once-daily local Discord agent using Ollama.
 - bot/ — the always-online Eldgrim Discord bot, running on the creative's server.
 

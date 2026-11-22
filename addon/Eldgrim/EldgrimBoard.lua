@@ -9,11 +9,17 @@ local C = Skin.C
 local EMBER_PROOF = "To complete it, post a screenshot in the Eldgrim channel with @Eldgrim and the word ember. "
     .. "When another Amberhearth member Roars it, the next daily run marks it here."
 
-local function questHow(creator)
-    return "Whoever takes this quest marks it complete when it is done. Then "
+local function questHow(creator, mode)
+    local who = mode == "one"
+        and "This quest is for one member: the first to accept it takes it off the board. "
+        or "Every member may complete this quest once. "
+    return who .. "Whoever takes it marks it complete when it is done. Then "
         .. (creator or "its creator") .. " confirms it, and it is completed. "
+        .. "You can be on one quest at a time. "
         .. "The quest stays until " .. (creator or "its creator") .. " deletes it."
 end
+
+local MODE_WORDS = { one = "for one member", all = "for everyone" }
 -- Window and column sizes, in UI units.
 local WIDTH, HEIGHT = 900, 600
 local SIDE, TOP, FOOT = 46, 78, 46
@@ -29,7 +35,11 @@ local ember = {}
 local list = {}
 local detail = {}
 local form = {}
+local notes = {}
 local selectedId
+-- While on a quest the middle column is the notebook. "board" shows the list instead.
+local middleView = "notebook"
+local onQuest
 
 -- The full "First Surname", as the sync knows it.
 local function ownName()
@@ -170,7 +180,9 @@ local function fillRows(scroll, store, quests, ended, empty)
         if quest then
             row.questId = quest.id
             row.title:SetText(quest.title or "")
-            local sub = "Set by " .. (quest.creator or "?")
+            -- A quest for one member says so first, so a long name cannot hide it.
+            local sub = quest.mode == "one" and ("One member  ·  " .. (quest.creator or "?"))
+                or ("Set by " .. (quest.creator or "?"))
             if not quest.confirmed then
                 sub = sub .. "  ·  unconfirmed"
             end
@@ -193,17 +205,33 @@ end
 
 local function buildList(parent)
     local inner = MIDDLE_W - PAD * 2
-    list.header = Skin.Header(parent, "Open quests", inner)
-    list.header:SetPoint("TOPLEFT", parent, "TOPLEFT", PAD, -PAD)
-    list.open = Skin.Scroll(parent, inner, ROW_H * 9)
+    local panel = CreateFrame("Frame", nil, parent)
+    panel:SetAllPoints(parent)
+    list.panel = panel
+    list.header = Skin.Header(panel, "Open quests", inner)
+    list.header:SetPoint("TOPLEFT", panel, "TOPLEFT", PAD, -PAD)
+    list.open = Skin.Scroll(panel, inner, ROW_H * 9)
     list.open:SetPoint("TOPLEFT", list.header, "BOTTOMLEFT", 0, -8)
-    list.openEmpty = textBlock(parent, "small", inner - 10)
+    list.openEmpty = textBlock(panel, "small", inner - 10)
     list.openEmpty:SetPoint("TOPLEFT", list.open, "TOPLEFT", 4, -8)
     list.openEmpty:SetText("No open quests. Set the first one.")
     list.openRows = {}
 
-    list.create = Skin.Button(parent, "Create quest", inner, 28)
-    list.create:SetPoint("BOTTOMLEFT", parent, "BOTTOMLEFT", PAD, PAD)
+    -- Back to the notebook, shown only while on a quest.
+    list.back = Skin.Button(panel, "Notebook", inner, 28)
+    list.back:SetPoint("BOTTOMLEFT", panel, "BOTTOMLEFT", PAD, PAD + 28 + 8)
+    list.back.tooltip = "Back to the quest you are on."
+    list.back:SetScript("OnClick", function()
+        middleView = "notebook"
+        selectedId = onQuest
+        if form.panel then
+            form.panel:Hide()
+        end
+        EldgrimRefreshHearth()
+    end)
+
+    list.create = Skin.Button(panel, "Create quest", inner, 28)
+    list.create:SetPoint("BOTTOMLEFT", panel, "BOTTOMLEFT", PAD, PAD)
     list.create:SetScript("OnClick", function()
         EldgrimOpenQuestForm()
     end)
@@ -212,6 +240,112 @@ end
 local function refreshList(data)
     fillRows(list.open, list.openRows, data.open or {}, false, list.openEmpty)
     list.header:SetHeading("Open quests  (" .. #(data.open or {}) .. ")")
+    if data.current then
+        list.back:Show()
+    else
+        list.back:Hide()
+    end
+end
+
+-- Quest notebook (middle column, while on a quest) ---------------------------
+
+local NOTE_GAP = 4
+
+local function makeNoteRows(count)
+    local width = MIDDLE_W - PAD * 2 - 12
+    for index = #notes.rows + 1, count do
+        local row = CreateFrame("Frame", nil, notes.scroll.content)
+        row:SetWidth(width)
+        local bullet = Skin.Glyph(row, "diamond", "ARTWORK", 10)
+        bullet:SetPoint("TOPLEFT", row, "TOPLEFT", 2, -5)
+        local text = textBlock(row, "body", width - 46)
+        text:SetPoint("TOPLEFT", row, "TOPLEFT", 18, -3)
+        local check = Skin.IconButton(row, "check", "check", 20, "Done. Check it off.")
+        check:SetPoint("TOPRIGHT", row, "TOPRIGHT", -2, -1)
+        check.icon:SetVertexColor(0.36, 0.86, 0.38)
+        check:SetScript("OnClick", function(self)
+            if self.index then
+                EldgrimSync.CheckNote(self.index)
+            end
+        end)
+        local rule = row:CreateTexture(nil, "BACKGROUND")
+        rule:SetColorTexture(C.orange[1], C.orange[2], C.orange[3], 0.12)
+        rule:SetHeight(1)
+        rule:SetPoint("BOTTOMLEFT", row, "BOTTOMLEFT", 16, 0)
+        rule:SetPoint("BOTTOMRIGHT", row, "BOTTOMRIGHT", -4, 0)
+        row.text = text
+        row.check = check
+        notes.rows[index] = row
+    end
+end
+
+local function buildNotebook(parent)
+    local inner = MIDDLE_W - PAD * 2
+    local panel = CreateFrame("Frame", nil, parent)
+    panel:SetAllPoints(parent)
+    panel:Hide()
+    notes.panel = panel
+    notes.header = Skin.Header(panel, "Quest notebook", inner)
+    notes.header:SetPoint("TOPLEFT", panel, "TOPLEFT", PAD, -PAD)
+
+    -- From the bottom up: the way back to the board, the field, the notes.
+    notes.board = Skin.Button(panel, "Board", inner, 28)
+    notes.board:SetPoint("BOTTOMLEFT", panel, "BOTTOMLEFT", PAD, PAD)
+    notes.board.tooltip = "See the quest list. You stay on your quest."
+    notes.board:SetScript("OnClick", function()
+        middleView = "board"
+        EldgrimRefreshHearth()
+    end)
+    notes.field = Skin.Field(panel, inner, 26, {
+        placeholder = "Write a note, then press Enter",
+        maxLetters = 120,
+    })
+    notes.field:SetPoint("BOTTOMLEFT", notes.board, "TOPLEFT", 0, 26)
+    notes.field.edit:SetScript("OnEnterPressed", function(self)
+        local ok = EldgrimSync.AddNote(notes.field:GetValue())
+        if ok then
+            notes.field:SetValue("")
+        end
+        self:SetFocus()
+    end)
+
+    notes.scroll = Skin.Scroll(panel, inner + 6, nil)
+    notes.scroll:SetPoint("TOPLEFT", notes.header, "BOTTOMLEFT", 0, -10)
+    notes.scroll:SetPoint("BOTTOM", notes.field, "TOP", 0, 26)
+    notes.empty = textBlock(panel, "small", inner - 10)
+    notes.empty:SetPoint("TOPLEFT", notes.scroll, "TOPLEFT", 4, -6)
+    notes.empty:SetText("Nothing written yet. What you write here stays on this computer, and goes when the quest ends.")
+    notes.rows = {}
+end
+
+local function refreshNotebook()
+    local items = EldgrimSync.Notes and EldgrimSync.Notes() or {}
+    makeNoteRows(#items)
+    local y = 0
+    for index = 1, #notes.rows do
+        local row = notes.rows[index]
+        local item = items[index]
+        if item then
+            row.text:SetText(item.text or "")
+            local height = math.max(24, row.text:GetStringHeight() + 10)
+            row:SetHeight(height)
+            row:ClearAllPoints()
+            row:SetPoint("TOPLEFT", notes.scroll.content, "TOPLEFT", 0, -y)
+            row.check.index = index
+            row:Show()
+            y = y + height + NOTE_GAP
+        else
+            row.check.index = nil
+            row:Hide()
+        end
+    end
+    notes.scroll:SetContentHeight(y)
+    notes.header:SetHeading("Quest notebook  (" .. #items .. ")")
+    if #items == 0 then
+        notes.empty:Show()
+    else
+        notes.empty:Hide()
+    end
 end
 
 -- Quest detail (right column) ------------------------------------------------
@@ -243,6 +377,14 @@ local function buildDetail(parent)
             EldgrimSync.AcceptQuest(selectedId)
         elseif self.action == "complete" then
             EldgrimSync.CompleteQuest(selectedId)
+        end
+    end)
+    detail.abandon = Skin.Button(panel, "Abandon", 88, 28)
+    detail.abandon:SetPoint("BOTTOMRIGHT", panel, "BOTTOMRIGHT", -PAD, PAD)
+    detail.abandon.tooltip = "Give up this quest. You can take another."
+    detail.abandon:SetScript("OnClick", function()
+        if selectedId then
+            EldgrimSync.AbandonQuest(selectedId)
         end
     end)
     detail.delete = Skin.Button(panel, "Delete", 88, 28)
@@ -310,8 +452,12 @@ local function refreshDetail()
     detail.empty:Hide()
     detail.panel:Show()
     detail.title:SetText(quest.title or "")
-    detail.meta:SetText("Set by " .. (quest.creator or "?"))
-    detail.help.tooltip = questHow(quest.creator)
+    local meta = "Set by " .. (quest.creator or "?") .. "  ·  " .. (MODE_WORDS[quest.mode] or MODE_WORDS.all)
+    if quest.mode == "one" and quest.holder then
+        meta = meta .. "\nTaken by " .. quest.holder
+    end
+    detail.meta:SetText(meta)
+    detail.help.tooltip = questHow(quest.creator, quest.mode)
     detail.body:ClearAllPoints()
     detail.body:SetPoint("BOTTOMLEFT", detail.panel, "BOTTOMLEFT", PAD, PAD + 28 + 8 + 28 + 12)
     if quest.confirmed then
@@ -365,9 +511,15 @@ local function refreshDetail()
     local inner = RIGHT_W - PAD * 2
     if state and state.delete then
         detail.delete:Show()
+        detail.abandon:Hide()
+        detail.action:SetWidth(inner - 96)
+    elseif state and state.abandon then
+        detail.delete:Hide()
+        detail.abandon:Show()
         detail.action:SetWidth(inner - 96)
     else
         detail.delete:Hide()
+        detail.abandon:Hide()
         detail.action:SetWidth(inner)
     end
 
@@ -405,7 +557,7 @@ local function buildForm(parent)
     })
     form.title:SetPoint("TOPLEFT", header, "BOTTOMLEFT", 0, -26)
 
-    form.story = Skin.Field(panel, inner, 84, {
+    form.story = Skin.Field(panel, inner, 72, {
         label = "Story",
         placeholder = "What is happening, and why it matters",
         maxLetters = 400,
@@ -421,9 +573,18 @@ local function buildForm(parent)
     })
     form.objective:SetPoint("TOPLEFT", form.story, "BOTTOMLEFT", 0, -26)
 
+    local modeLabel = Skin.Text(panel, "label")
+    modeLabel:SetPoint("TOPLEFT", form.objective, "BOTTOMLEFT", 1, -12)
+    modeLabel:SetText("Who can complete it")
+    form.mode = Skin.Choice(panel, inner, {
+        { "all", "Everyone, once each", "Every member may take it up and complete it once." },
+        { "one", "One member", "The first to accept it takes it off the board." },
+    }, 1)
+    form.mode:SetPoint("TOPLEFT", modeLabel, "BOTTOMLEFT", -1, -4)
+
     local how = textBlock(panel, "small", inner)
-    how:SetPoint("TOPLEFT", form.objective, "BOTTOMLEFT", 0, -12)
-    how:SetText("Whoever takes the quest marks it complete when it is done. Then you confirm it, and it is completed. The quest stays until you delete it.")
+    how:SetPoint("TOPLEFT", form.mode, "BOTTOMLEFT", 0, -10)
+    how:SetText("Whoever takes the quest marks it complete when it is done. Then you confirm it. It stays until you delete it.")
 
     form.error = textBlock(panel, "small", inner)
     form.error:SetTextColor(C.warn[1], C.warn[2], C.warn[3])
@@ -442,7 +603,7 @@ local function buildForm(parent)
         EldgrimRefreshHearth()
     end)
     form.create:SetScript("OnClick", function()
-        local id, err = EldgrimSync.CreateQuest(form.title:GetValue(), form.story:GetValue(), form.objective:GetValue())
+        local id, err = EldgrimSync.CreateQuest(form.title:GetValue(), form.story:GetValue(), form.objective:GetValue(), form.mode.value)
         if not id then
             form.error:SetText(err or "That quest was refused.")
             return
@@ -458,6 +619,7 @@ function EldgrimOpenQuestForm()
     form.title:SetValue("")
     form.story:SetValue("")
     form.objective:SetValue("")
+    form.mode:SetValue("all")
     form.error:SetText("")
     detail.panel:Hide()
     detail.empty:Hide()
@@ -532,6 +694,7 @@ local function build()
     local right = column(SIDE + LEFT_W + GAP + MIDDLE_W + GAP, RIGHT_W, "detail")
     buildEmber(left)
     buildList(middle)
+    buildNotebook(middle)
     buildDetail(right)
     buildForm(right)
 
@@ -552,6 +715,23 @@ local function refresh()
     end
     local data = EldgrimSync.BoardData()
     refreshEmber(data.ember)
+    -- On a quest: the notebook in the middle and that quest on the right.
+    if data.current ~= onQuest then
+        onQuest = data.current
+        middleView = "notebook"
+        if onQuest then
+            selectedId = onQuest
+        end
+    end
+    if onQuest and middleView == "notebook" then
+        selectedId = onQuest
+        list.panel:Hide()
+        notes.panel:Show()
+        refreshNotebook()
+    else
+        notes.panel:Hide()
+        list.panel:Show()
+    end
     refreshList(data)
     if form.panel:IsShown() then
         detail.panel:Hide()
@@ -564,6 +744,11 @@ end
 local function show()
     build()
     form.panel:Hide()
+    -- Opening the window on a quest always starts at its notebook.
+    middleView = "notebook"
+    if onQuest then
+        selectedId = onQuest
+    end
     hearth:Show()
     if hearth.opening then
         hearth.opening:Play()

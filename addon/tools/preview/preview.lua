@@ -3,7 +3,7 @@
 --   luajit addon/tools/preview/preview.lua <scene> [ember file] > scene.json
 --   python3 addon/tools/preview/render.py scene.json out.png
 --
--- Scenes: board, form, empty. Every name and text here is sample data.
+-- Scenes: board, form, empty, notebook. Every name and text here is sample data.
 
 local here = (arg[0]:match("^(.*)/[^/]*$") or ".")
 local addon = here .. "/../../Eldgrim"
@@ -39,6 +39,8 @@ local quests = {
     },
     {
         id = "Sample Hale#2",
+        mode = "one",
+        holder = "Sample Wren",
         title = "Bring three bundles of dry wood to the hearth",
         creator = "Sample Hale",
         expires = NOW + 20 * DAY,
@@ -72,6 +74,8 @@ local quests = {
     },
 }
 local empty = scene == "empty"
+-- In the notebook scene this character is on the second quest, with notes.
+local onQuest = scene == "notebook" and "Sample Hale#2" or nil
 -- An ember file given as the second argument replaces the sample card.
 local emberFile = arg[2]
 if emberFile then
@@ -98,6 +102,7 @@ function EldgrimSync.BoardData()
             completedBy = { { name = "Sample Brannoc" }, { name = "Sample Hale" }, { name = "Sample Ivo" } },
         },
         open = quests,
+        current = onQuest,
     }
 end
 function EldgrimSync.QuestDetail(id)
@@ -117,13 +122,24 @@ function EldgrimSync.QuestDetail(id)
         end
     end
 end
+local sampleNotes = {
+    { text = "Ask the innkeeper in Kharanos where the dry wood is kept" },
+    { text = "Two bundles so far" },
+    { text = "Bring a third before the Sunday fire, and do not let the rain at it on the way back up the hill" },
+}
+function EldgrimSync.Notes()
+    return onQuest and sampleNotes or {}
+end
 function EldgrimSync.Button(id)
+    if id == onQuest then
+        return { label = "Mark complete", enabled = true, action = "complete", abandon = true }
+    end
     if id == "Sample Torva#1" then
         return { label = "Waiting for Sample Torva", enabled = false }
     end
     return { label = "Accept", enabled = true, action = "accept" }
 end
-for _, name in ipairs({ "FinishEmber", "AcceptQuest", "CompleteQuest", "ConfirmQuest", "DeleteQuest" }) do
+for _, name in ipairs({ "FinishEmber", "AcceptQuest", "CompleteQuest", "ConfirmQuest", "DeleteQuest", "AbandonQuest", "AddNote", "CheckNote" }) do
     EldgrimSync[name] = function() end
 end
 function EldgrimSync.CreateQuest()
@@ -177,7 +193,7 @@ elseif scene == "form" then
     EldgrimOpenQuestForm()
     local fields = {}
     find(hearth, function(r)
-        if r.kind == "EditBox" then
+        if r.kind == "EditBox" and r:IsVisible() then
             fields[#fields + 1] = r
         end
     end)
@@ -187,6 +203,12 @@ elseif scene == "form" then
     local cancel = byText("Cancel")
     cancel.held = true
     cancel.scripts.OnMouseDown(cancel)
+elseif scene == "notebook" then
+    local field = find(hearth, function(r)
+        return r.kind == "EditBox" and r:IsVisible()
+    end)
+    field:SetText("Look behind the stable")
+    field:SetFocus()
 end
 
 io.write(Mock.Dump())

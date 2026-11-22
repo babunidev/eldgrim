@@ -4,6 +4,12 @@ A concise account of meaningful project development, written from the human crea
 
 Entries before 14 November 2026 that say only "AI", or name no tool, did not record which tool or model did the work. The [collaboration record](AI_COLLABORATION.md) lists them as earlier AI help, tool and model not recorded.
 
+## 2026-11-22 — One quest at a time, with a notebook
+
+I wanted a member quest to say whether it is for everyone or for just one person, with the first to accept taking it off the board. I also wanted members on one quest at a time, with the quest staying on the right and a small notebook in the middle where notes can be added with Enter and checked off. Claude Code (Claude Opus 5.5) built that in the addon. It added an Abandon button so nobody is stuck on a quest whose creator never confirms, frees a member once they mark a quest complete, and kept a Board button in the notebook so a creator on a quest can still confirm their own. When two members accept a one-member quest at the same moment, the earlier one keeps it on every client. Creators still cannot accept their own quests, so it added a test quest set by Eldgrim that shows only on my client: a lantern along the road that has forgotten its name.
+
+**Result:** The board and hearth mock suites passed with the new checks, and the other addon suites still pass. The preview renders the notebook and the new form. The addon was installed with `addon/install-local.sh`; the toc changed, so the client needs a full restart. Not tested in game.
+
 ## 2026-11-22 — Seven o'clock, Central European time
 
 The gathering is every Sunday at 19:00 CET, so the hour is now written that way everywhere instead of as Swedish time; the recording window itself did not change. Members need no separate notice for it: /say, guild chat and group chat are public in the game, and whispers are never recorded. Claude Code (Claude Opus 5.5) put the hour on the governance page Eldgrim always reads, so it can answer when someone asks, and into the announcement brief, where Eldgrim may name it and need not. The `info` reply and the #eldgrim channel description now give it too.

@@ -339,6 +339,121 @@ assertTrue(EldgrimSync.DeleteQuest(oneQuest), "the creator deletes it when they 
 assertTrue(#EldgrimSync.BoardData().open == 2 and EldgrimSync.QuestDetail(oneQuest) == nil, "a deleted quest is gone")
 assertTrue(EldgrimSync.CreateQuest("Four", "Story", "Go"), "deleting makes room for another")
 
+-- Log in as another character, keeping what is saved. The sync caches a
+-- two-part name, so changing characters means loading it again.
+local function as(name)
+    player = name
+    local saved = EldgrimQuests
+    frames = {}
+    EldgrimSync = nil
+    dofile(root .. "/EldgrimSync.lua")
+    EldgrimQuests = saved
+end
+-- Who can complete it: for everyone, or for the first member to accept.
+local function sentText()
+    local all = {}
+    for index = 1, #EldgrimSync.Sent do
+        all[#all + 1] = EldgrimSync.Sent[index].text
+    end
+    return table.concat(all, "\n")
+end
+local function listedFor(name, id)
+    if player ~= name then
+        as(name)
+    end
+    for _, row in ipairs(EldgrimSync.BoardData().open) do
+        if row.id == id then
+            return true
+        end
+    end
+    return false
+end
+boot()
+EldgrimTestQuestFile = nil
+player = "Maker Moss"
+now = 1700007000
+local solo = EldgrimSync.CreateQuest("Solo", "Story", "Go", "one")
+local open = EldgrimSync.CreateQuest("Open", "Story", "Go")
+pump()
+assertTrue(sentText():find("|one", 1, true) ~= nil, "a one-member quest is sent with its mode")
+assertTrue(EldgrimSync.QuestDetail(open).mode == "all", "a quest is for everyone unless set otherwise")
+as("Cara Vell")
+assertTrue(EldgrimSync.AcceptQuest(solo), "the first member accepts the one-member quest")
+assertTrue(EldgrimSync.CurrentQuest() == solo, "the one who accepted is on it")
+assertTrue(not listedFor("Ned Ash", solo), "a taken one-member quest leaves the board for others")
+assertTrue(listedFor("Maker Moss", solo), "it stays on its creator's board")
+as("Ned Ash")
+assertTrue(EldgrimSync.AcceptQuest(solo) == nil, "a second member cannot take a one-member quest")
+assertTrue(EldgrimSync.Button(solo).label == "Taken by Cara Vell", "others see who took it")
+
+-- One quest at a time.
+as("Cara Vell")
+assertTrue(EldgrimSync.AcceptQuest(open) == nil, "a member on a quest cannot accept another")
+assertTrue(EldgrimSync.Button(open).label == "On another quest", "the button says why")
+assertTrue(EldgrimSync.Button(solo).abandon == true, "the quest on offers Abandon")
+
+-- The notebook belongs to the quest this character is on.
+assertTrue(EldgrimSync.AddNote("  Ask the innkeeper  "), "a note is added")
+EldgrimSync.AddNote("Find the lamplighter")
+assertTrue(EldgrimSync.AddNote("   ") == nil, "an empty note is refused")
+local written = EldgrimSync.Notes()
+assertTrue(#written == 2 and written[1].text == "Ask the innkeeper", "notes are listed in order, trimmed")
+assertTrue(EldgrimSync.CheckNote(1) and EldgrimSync.Notes()[1].text == "Find the lamplighter", "a checked note is removed")
+pump()
+assertTrue(sentText():find("lamplighter", 1, true) == nil, "notes are never sent")
+as("Ned Ash")
+assertTrue(#EldgrimSync.Notes() == 0 and EldgrimSync.AddNote("x") == nil, "another character has no notebook without a quest")
+
+-- Abandon puts a one-member quest back on the board and frees the member.
+as("Cara Vell")
+assertTrue(EldgrimSync.AbandonQuest(solo), "the member abandons the quest")
+assertTrue(EldgrimSync.CurrentQuest() == nil, "after abandoning, the member is on no quest")
+assertTrue(#EldgrimSync.Notes() == 0, "the notes go with the quest")
+assertTrue(listedFor("Ned Ash", solo), "an abandoned one-member quest is back on the board")
+as("Ned Ash")
+assertTrue(EldgrimSync.AcceptQuest(solo), "another member can take it now")
+as("Cara Vell")
+assertTrue(EldgrimSync.AcceptQuest(open), "the member who abandoned can take another quest")
+
+-- A forged abandon is ignored; the member's own counts.
+boot()
+EldgrimTestQuestFile = nil
+player = "Cara Vell"
+now = 1700008000
+EldgrimSync.Handle("GUILD", "Maker Moss", wire("RECS|Q|Maker Moss|Maker Moss#1|T|S|O|creator|0|" .. tostring(now) .. "|one"))
+EldgrimSync.Handle("GUILD", "Ned Ash", wire("RECS|A|Maker Moss#1|Ned Ash|" .. tostring(now)))
+assertTrue(EldgrimSync.Button("Maker Moss#1").label == "Taken by Ned Ash", "a one-member quest taken elsewhere shows who holds it")
+EldgrimSync.Handle("GUILD", "Peer Bly", wire("RECS|W|Maker Moss#1|Ned Ash|" .. tostring(now + 5)))
+assertTrue(EldgrimSync.QuestDetail("Maker Moss#1").holder == "Ned Ash", "an abandon passed on by someone else does not count")
+EldgrimSync.Handle("GUILD", "Ned Ash", wire("RECS|W|Maker Moss#1|Ned Ash|" .. tostring(now + 6)))
+assertTrue(EldgrimSync.QuestDetail("Maker Moss#1").holder == nil, "the member's own abandon frees it")
+EldgrimSync.Handle("GUILD", "Old Fen", wire("RECS|Q|Old Fen|Old Fen#1|T|S|O|creator|0|" .. tostring(now)))
+assertTrue(EldgrimSync.QuestDetail("Old Fen#1").mode == "all", "a quest from an older client is for everyone")
+-- Two accepts of a one-member quest: the earlier one holds it on every client.
+EldgrimSync.Handle("GUILD", "Pia Rook", wire("RECS|A|Maker Moss#1|Pia Rook|" .. tostring(now + 20)))
+EldgrimSync.Handle("GUILD", "Ned Ash", wire("RECS|A|Maker Moss#1|Ned Ash|" .. tostring(now + 19)))
+assertTrue(EldgrimSync.QuestDetail("Maker Moss#1").holder == "Ned Ash", "the earlier accept holds a one-member quest")
+
+-- The test quest: only on the master's client, never sent, confirmed by Eldgrim.
+boot()
+dofile(root .. "/EldgrimTestQuest.lua")
+local testId = EldgrimTestQuestFile.quest.id
+as("Cara Vell")
+assertTrue(not listedFor("Cara Vell", testId), "the test quest is not on a member's board")
+as("Jasmine Amberbrew")
+roster = { { name = "Jasmine Amberbrew", rankIndex = 0, online = true } }
+assertTrue(listedFor("Jasmine Amberbrew", testId), "the test quest is on the master's board")
+local test = EldgrimSync.QuestDetail(testId)
+assertTrue(test.creator == "Eldgrim" and test.test and test.mode == "one", "the test quest is Eldgrim's, for one member")
+assertTrue(EldgrimSync.AcceptQuest(testId), "the master can accept the test quest")
+assertTrue(EldgrimSync.CurrentQuest() == testId and EldgrimSync.AddNote("Try the Kharanos lamp"), "the master is on it and can write notes")
+assertTrue(EldgrimSync.CompleteQuest(testId), "the test quest is marked complete")
+assertTrue(EldgrimSync.QuestDetail(testId).done["Jasmine Amberbrew"], "Eldgrim confirms its test quest at once")
+assertTrue(not listedFor("Jasmine Amberbrew", testId), "a completed test quest leaves the board")
+pump()
+assertTrue(sentText():find(testId, 1, true) == nil, "nothing about the test quest is sent")
+EldgrimTestQuestFile = nil
+
 -- Ember completions come only from the master, from the verified file.
 boot()
 player = "Jasmine Amberbrew"

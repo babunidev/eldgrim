@@ -4,7 +4,7 @@ A separate technical workstream for the Eldgrim World of Warcraft Forever addon.
 
 ## Current scope
 
-The archive is still the guild-chat recorder in [SPECIFICATION.md](SPECIFICATION.md). Version 0.4.0-alpha adds the hearth board in [HEARTH.md](HEARTH.md): a weekly ember that only Jasmine Amberbrew can publish, member quests, and a one-way relay of guild chat. Version 0.5.0-alpha adds the Sunday gathering record, also in [HEARTH.md](HEARTH.md). Neither has been tested in game.
+The archive is still the guild-chat recorder in [SPECIFICATION.md](SPECIFICATION.md). Version 0.4.0-alpha adds the hearth board in [HEARTH.md](HEARTH.md): a weekly ember that only Jasmine Amberbrew can publish, member quests, and a one-way relay of guild chat. Version 0.5.0-alpha adds the Sunday gathering record, also in [HEARTH.md](HEARTH.md). Version 0.6.0-alpha adds one-member quests, one quest at a time, the quest notebook and a test quest on the founder's client. None of these has been tested in game.
 
 The archive does not record officer chat or other channels. A guild line relayed by one member is kept with the name of the person who passed it on, and the daily run does not score it.
 

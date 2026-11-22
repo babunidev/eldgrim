@@ -167,8 +167,99 @@ check(button("7 d") == nil and #fields == 3, "the form has no end date")
 local set = button("Set quest")
 set.scripts.OnClick(set)
 local sent = calls[#calls]
-check(sent[1] == "create" and sent[2] == "Sample title" and sent[4] == "Sample objective." and sent[5] == nil,
-    "the form sends what was written, with no end date")
+check(sent[1] == "create" and sent[2] == "Sample title" and sent[4] == "Sample objective." and sent[5] == "all",
+    "the form sends what was written, for everyone by default, with no end date")
+create = button("Create quest")
+create.scripts.OnClick(create)
+local single = button("One member")
+check(single ~= nil and button("Everyone, once each") ~= nil, "the form asks who can complete the quest")
+single.scripts.OnClick(single)
+fields[1]:SetText("Only one")
+fields[3]:SetText("Sample objective.")
+set = button("Set quest")
+set.scripts.OnClick(set)
+check(calls[#calls][1] == "create" and calls[#calls][5] == "one", "a quest for one member is sent as one")
+
+-- On a quest: the notebook takes the middle column, the quest stays on the right.
+local current = quest.id
+local written = {}
+local boardData = EldgrimSync.BoardData
+EldgrimSync.BoardData = function()
+    local data = boardData()
+    data.current = current
+    return data
+end
+EldgrimSync.Button = function(id)
+    if id == current then
+        return { label = "Mark complete", enabled = true, action = "complete", abandon = true }
+    end
+    return { label = "On another quest", enabled = false }
+end
+EldgrimSync.Notes = function()
+    local copy = {}
+    for index, text in ipairs(written) do
+        copy[index] = { text = text }
+    end
+    return copy
+end
+EldgrimSync.AddNote = function(text)
+    written[#written + 1] = text
+    EldgrimRefreshHearth()
+    return true
+end
+EldgrimSync.CheckNote = function(index)
+    table.remove(written, index)
+    EldgrimRefreshHearth()
+    return true
+end
+EldgrimSync.AbandonQuest = function(id)
+    calls[#calls + 1] = { "abandon", id }
+end
+EldgrimRefreshHearth()
+local function visibleText(text)
+    return find(function(r)
+        return r.kind == "FontString" and r:IsVisible() and (r.text or ""):find(text, 1, true)
+    end)
+end
+check(visibleText("QUEST NOTEBOOK") ~= nil, "on a quest the middle column is the notebook")
+check(visibleText("OPEN QUESTS") == nil, "the quest list is not shown while on a quest")
+check(button("Mark complete") ~= nil and button("Abandon") ~= nil, "the quest stays on the right, with Mark complete and Abandon")
+local abandon = button("Abandon")
+abandon.scripts.OnClick(abandon)
+check(calls[#calls][1] == "abandon" and calls[#calls][2] == quest.id, "Abandon gives up the quest on the right")
+
+local noteBox = find(function(r)
+    return r.kind == "EditBox" and r:IsVisible()
+end)
+check(noteBox ~= nil, "the notebook has a field to write in")
+noteBox:SetText("Ask the innkeeper about the lantern")
+noteBox.scripts.OnEnterPressed(noteBox)
+check(written[1] == "Ask the innkeeper about the lantern", "Enter adds the note")
+check((noteBox:GetText() or "") == "", "the field is empty again after Enter")
+check(visibleText("Ask the innkeeper") ~= nil, "the note is listed")
+noteBox:SetText("Wait for the lamplighter")
+noteBox.scripts.OnEnterPressed(noteBox)
+local tick = find(function(r)
+    return r.kind == "Button" and r:IsVisible() and r.tooltip == nil and r.index == 1
+end)
+check(tick ~= nil, "each note has a check mark")
+tick.scripts.OnClick(tick)
+check(#written == 1 and written[1] == "Wait for the lamplighter", "checking a note off removes it")
+check(visibleText("Ask the innkeeper") == nil, "a checked note disappears")
+
+local toBoard = button("Board")
+toBoard.scripts.OnClick(toBoard)
+check(visibleText("OPEN QUESTS") ~= nil, "Board shows the quest list while on a quest")
+local other = button("My sample quest")
+other.scripts.OnClick(other)
+local back = button("Notebook")
+check(back ~= nil, "the list offers the way back to the notebook")
+back.scripts.OnClick(back)
+check(visibleText("QUEST NOTEBOOK") ~= nil and button("Abandon") ~= nil, "Notebook returns to the notebook and the quest on it")
+
+current = nil
+EldgrimRefreshHearth()
+check(visibleText("OPEN QUESTS") ~= nil and visibleText("QUEST NOTEBOOK") == nil, "off a quest the list comes back")
 
 -- The guild window loads later. Its crest overlay sits high above the
 -- portrait; the flame must still land in front of it.

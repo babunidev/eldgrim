@@ -16,6 +16,10 @@ local STORY_MAX = 400
 local OBJECTIVE_MAX = 200
 local OPEN_LIMIT = 3
 local HISTORY_LIMIT = 4
+local NOTE_MAX = 120
+local NOTE_LIMIT = 40
+-- The test quest is set by Eldgrim, lives only on the master's client and is never sent.
+local TEST_CREATOR = "Eldgrim"
 -- A member quest is completed when the one who took it marks it complete
 -- and its creator confirms. There is no other proof.
 local PROOF = "creator"
@@ -257,6 +261,9 @@ local function db()
     end
     if type(saved.gathering) ~= "table" then
         saved.gathering = {}
+    end
+    if type(saved.notes) ~= "table" then
+        saved.notes = {}
     end
     return saved
 end
@@ -512,8 +519,8 @@ end
 local function knownIds()
     local ids = {}
     local saved = db()
-    for id in pairs(saved.quests) do
-        if type(id) == "string" then
+    for id, quest in pairs(saved.quests) do
+        if type(id) == "string" and not (type(quest) == "table" and quest.test) then
             ids[#ids + 1] = id
         end
     end
@@ -863,6 +870,9 @@ local function applyQuest(sender, fields)
     local objective = fields[6]
     local proof = fields[7]
     local created = tonumber(fields[9])
+    -- Field 10, since 0.6.0: "one" when the first to accept takes it off the board.
+    -- Anything else, and a record from an older client, is for everyone.
+    local mode = fields[10] == "one" and "one" or "all"
     if type(id) ~= "string" or id == "" or type(creator) ~= "string" or creator == "" then
         return
     end
@@ -880,6 +890,9 @@ local function applyQuest(sender, fields)
     if type(existing) == "table" and existing.confirmed and confirmed then
         return
     end
+    if type(existing) == "table" and existing.test then
+        return
+    end
     db().quests[id] = {
         id = id,
         creator = creator,
@@ -887,11 +900,13 @@ local function applyQuest(sender, fields)
         story = type(story) == "string" and story or "",
         objective = type(objective) == "string" and objective or "",
         proof = proof,
+        mode = mode,
         created = created,
         confirmed = confirmed,
         accepts = type(existing) == "table" and existing.accepts or {},
         claims = type(existing) == "table" and existing.claims or {},
         completions = type(existing) == "table" and existing.completions or {},
+        withdrawals = type(existing) == "table" and existing.withdrawals or {},
     }
 end
 
@@ -909,7 +924,8 @@ local function applyAccept(sender, fields)
     quest.accepts = quest.accepts or {}
     local existing = quest.accepts[claimant]
     local confirmed = sender == claimant
-    if type(existing) == "table" and existing.confirmed then
+    -- A newer accept from the member themselves follows an abandon.
+    if type(existing) == "table" and existing.confirmed and not (confirmed and at > existing.at) then
         return
     end
     if not confirmed and type(existing) == "table" then
@@ -969,6 +985,32 @@ local function applyFinish(sender, fields)
     quest.completions[claimant] = { at = at, confirmed = confirmed }
 end
 
+-- W: the one who took the quest abandons it. It counts when they sent it,
+-- and not after they marked it complete.
+local function applyWithdraw(sender, fields)
+    local id = fields[2]
+    local claimant = fields[3]
+    local at = tonumber(fields[4])
+    local quest = db().quests[id]
+    if type(quest) ~= "table" or type(claimant) ~= "string" or not at then
+        return
+    end
+    local claim = quest.claims and quest.claims[claimant]
+    if type(claim) == "table" and claim.confirmed then
+        return
+    end
+    quest.withdrawals = quest.withdrawals or {}
+    local existing = quest.withdrawals[claimant]
+    local confirmed = sender == claimant
+    if type(existing) == "table" and existing.confirmed and not (confirmed and at > existing.at) then
+        return
+    end
+    if not confirmed and type(existing) == "table" then
+        return
+    end
+    quest.withdrawals[claimant] = { at = at, confirmed = confirmed }
+end
+
 local function applyDelete(sender, fields)
     local id = fields[2]
     local at = tonumber(fields[3]) or serverNow()
@@ -996,6 +1038,8 @@ local function applyRecord(sender, record)
         applyClaim(sender, fields)
     elseif kind == "F" then
         applyFinish(sender, fields)
+    elseif kind == "W" then
+        applyWithdraw(sender, fields)
     elseif kind == "D" then
         applyDelete(sender, fields)
     end
@@ -1030,10 +1074,10 @@ local function recordsExcept(skip)
     local chunks = {}
     local saved = db()
     for id, quest in pairs(saved.quests) do
-        if quest.confirmed and not skip[id] then
+        if quest.confirmed and not quest.test and not skip[id] then
             chunks[#chunks + 1] = encode({
                 "Q", quest.creator, id, quest.title, quest.story, quest.objective,
-                quest.proof, 0, quest.created,
+                quest.proof, 0, quest.created, quest.mode == "one" and "one" or "all",
             })
             for name, accept in pairs(quest.accepts or {}) do
                 if accept.confirmed then
@@ -1050,10 +1094,15 @@ local function recordsExcept(skip)
                     chunks[#chunks + 1] = encode({ "F", id, name, done.at })
                 end
             end
+            for name, gone in pairs(quest.withdrawals or {}) do
+                if gone.confirmed then
+                    chunks[#chunks + 1] = encode({ "W", id, name, gone.at })
+                end
+            end
         end
     end
     for id, stone in pairs(saved.tombstones) do
-        if not skip[id] then
+        if not skip[id] and not stone.test then
             chunks[#chunks + 1] = encode({ "D", id, stone.at })
         end
     end
@@ -1822,7 +1871,122 @@ local function openCount(creator)
     return count
 end
 
-function EldgrimSync.CreateQuest(title, story, objective)
+local function questMode(quest)
+    return quest.mode == "one" and "one" or "all"
+end
+
+local function confirmedIn(map, name)
+    local entry = type(map) == "table" and map[name] or nil
+    return type(entry) == "table" and entry.confirmed and entry or nil
+end
+
+-- An accept that still stands: confirmed, and not abandoned since.
+local function standingAccept(quest, name)
+    local accept = confirmedIn(quest.accepts, name)
+    if not accept then
+        return nil
+    end
+    local gone = confirmedIn(quest.withdrawals, name)
+    if gone and gone.at >= accept.at then
+        return nil
+    end
+    return accept
+end
+
+-- Who holds a one-member quest: whoever completed it, else the earliest
+-- standing accept (by server time, then name). Nil for a quest for everyone.
+local function holder(quest)
+    if questMode(quest) ~= "one" then
+        return nil
+    end
+    local best, bestAt
+    for name, done in pairs(quest.completions or {}) do
+        if type(done) == "table" and done.confirmed and (not best or done.at < bestAt or (done.at == bestAt and name < best)) then
+            best, bestAt = name, done.at
+        end
+    end
+    if best then
+        return best
+    end
+    for name in pairs(quest.accepts or {}) do
+        local accept = standingAccept(quest, name)
+        if accept and (not best or accept.at < bestAt or (accept.at == bestAt and name < best)) then
+            best, bestAt = name, accept.at
+        end
+    end
+    return best
+end
+
+-- The quest this character is on: accepted, not abandoned, not yet marked
+-- complete, and for a one-member quest, held by them. One at a time.
+local function currentQuest(name)
+    if not name then
+        return nil
+    end
+    local found, foundAt
+    for id, quest in pairs(db().quests) do
+        if type(quest) == "table" and not tombstoned(id) then
+            local accept = standingAccept(quest, name)
+            if accept and not confirmedIn(quest.claims, name) and not confirmedIn(quest.completions, name) then
+                local held = holder(quest)
+                if questMode(quest) ~= "one" or held == name then
+                    if not found or accept.at < foundAt or (accept.at == foundAt and id < found) then
+                        found, foundAt = id, accept.at
+                    end
+                end
+            end
+        end
+    end
+    return found
+end
+
+function EldgrimSync.CurrentQuest()
+    return currentQuest(ownName())
+end
+
+-- The test quest from EldgrimTestQuest.lua, on the master's client only.
+-- It is never sent, never answered for, and Eldgrim confirms it at once.
+local function installTestQuest()
+    local quests = db().quests
+    local file = type(EldgrimTestQuestFile) == "table" and EldgrimTestQuestFile.quest or nil
+    local wanted = type(file) == "table" and type(file.id) == "string" and file.id ~= "" and isMaster()
+    for id, quest in pairs(quests) do
+        if type(quest) == "table" and quest.test and (not wanted or id ~= file.id) then
+            quests[id] = nil
+        end
+    end
+    if not wanted or tombstoned(file.id) then
+        return
+    end
+    local quest = quests[file.id]
+    if type(quest) ~= "table" then
+        quest = {
+            id = file.id,
+            creator = TEST_CREATOR,
+            proof = PROOF,
+            created = 0,
+            confirmed = true,
+            test = true,
+            accepts = {},
+            claims = {},
+            completions = {},
+            withdrawals = {},
+        }
+        quests[file.id] = quest
+    end
+    quest.title = tostring(file.title or ""):sub(1, TITLE_MAX)
+    quest.story = tostring(file.story or ""):sub(1, STORY_MAX)
+    quest.objective = tostring(file.objective or ""):sub(1, OBJECTIVE_MAX)
+    quest.mode = file.mode == "all" and "all" or "one"
+end
+
+local function questRecord(quest, record)
+    if not quest.test then
+        broadcastRecord(record)
+    end
+end
+
+function EldgrimSync.CreateQuest(title, story, objective, mode)
     local creator = ownName()
     local now = serverNow()
     if not creator then
@@ -1836,6 +2000,9 @@ function EldgrimSync.CreateQuest(title, story, objective)
     end
     if type(objective) ~= "string" or objective == "" or #objective > OBJECTIVE_MAX then
         return nil, "The objective needs 1 to 200 characters."
+    end
+    if mode ~= "one" then
+        mode = "all"
     end
     if openCount(creator) >= OPEN_LIMIT then
         return nil, "Three open quests is the limit."
@@ -1853,14 +2020,16 @@ function EldgrimSync.CreateQuest(title, story, objective)
         story = story,
         objective = objective,
         proof = PROOF,
+        mode = mode,
         created = now,
         confirmed = true,
         accepts = {},
         claims = {},
         completions = {},
+        withdrawals = {},
     }
     broadcastRecord(encode({
-        "Q", creator, id, title, story, objective, PROOF, 0, now,
+        "Q", creator, id, title, story, objective, PROOF, 0, now, mode,
     }))
     refreshBoard()
     return id
@@ -1876,19 +2045,62 @@ function EldgrimSync.AcceptQuest(id)
     if name == quest.creator then
         return nil, "The creator cannot accept it."
     end
-    local existing = quest.accepts and quest.accepts[name]
-    if type(existing) == "table" and existing.confirmed then
+    if standingAccept(quest, name) then
         return nil, "Already accepted."
     end
+    if confirmedIn(quest.completions, name) or confirmedIn(quest.claims, name) then
+        return nil, "Already done."
+    end
+    if currentQuest(name) then
+        return nil, "Finish or abandon your quest first."
+    end
+    local held = holder(quest)
+    if held and held ~= name then
+        return nil, "Someone has already taken it."
+    end
     quest.accepts = quest.accepts or {}
+    local before = quest.accepts[name]
+    -- Server seconds can repeat after an abandon in the same second.
+    if type(before) == "table" and before.at and now <= before.at then
+        now = before.at + 1
+    end
+    local gone = confirmedIn(quest.withdrawals, name)
+    if gone and now <= gone.at then
+        now = gone.at + 1
+    end
     quest.accepts[name] = { at = now, confirmed = true }
-    broadcastRecord(encode({ "A", id, name, now }))
+    questRecord(quest, encode({ "A", id, name, now }))
+    refreshBoard()
+    return true
+end
+
+-- The one on the quest gives it up. A one-member quest goes back on the board.
+function EldgrimSync.AbandonQuest(id)
+    local name = ownName()
+    local quest = db().quests[id]
+    local now = serverNow()
+    if not name or type(quest) ~= "table" then
+        return nil, "That quest is not here."
+    end
+    local accept = standingAccept(quest, name)
+    if not accept then
+        return nil, "You are not on it."
+    end
+    if confirmedIn(quest.claims, name) then
+        return nil, "Already marked complete."
+    end
+    if now < accept.at then
+        now = accept.at
+    end
+    quest.withdrawals = quest.withdrawals or {}
+    quest.withdrawals[name] = { at = now, confirmed = true }
+    questRecord(quest, encode({ "W", id, name, now }))
     refreshBoard()
     return true
 end
 
 -- The one who took the quest marks it complete. It is completed once the
--- creator confirms.
+-- creator confirms. Eldgrim confirms its own test quest at once.
 function EldgrimSync.CompleteQuest(id)
     local name = ownName()
     local quest = db().quests[id]
@@ -1896,17 +2108,24 @@ function EldgrimSync.CompleteQuest(id)
     if not name or type(quest) ~= "table" then
         return nil, "That quest is not here."
     end
-    local accept = quest.accepts and quest.accepts[name]
-    if type(accept) ~= "table" or not accept.confirmed then
+    if not standingAccept(quest, name) then
         return nil, "Accept it first."
     end
-    local claim = quest.claims and quest.claims[name]
-    if type(claim) == "table" and claim.confirmed then
+    if confirmedIn(quest.claims, name) then
         return nil, "Already marked complete."
+    end
+    local held = holder(quest)
+    if held and held ~= name then
+        return nil, "Someone else holds it."
     end
     quest.claims = quest.claims or {}
     quest.claims[name] = { at = now, confirmed = true }
-    broadcastRecord(encode({ "C", id, name, now }))
+    if quest.test then
+        quest.completions = quest.completions or {}
+        quest.completions[name] = { at = now, confirmed = true }
+    else
+        broadcastRecord(encode({ "C", id, name, now }))
+    end
     refreshBoard()
     return true
 end
@@ -1922,12 +2141,10 @@ function EldgrimSync.ConfirmQuest(id, claimant)
     if name ~= quest.creator then
         return nil, "Only the creator confirms it."
     end
-    local claim = quest.claims and quest.claims[claimant]
-    if type(claim) ~= "table" or not claim.confirmed then
+    if not confirmedIn(quest.claims, claimant) then
         return nil, "They have not marked it complete."
     end
-    local done = quest.completions and quest.completions[claimant]
-    if type(done) == "table" and done.confirmed then
+    if confirmedIn(quest.completions, claimant) then
         return nil, "Already completed."
     end
     quest.completions = quest.completions or {}
@@ -1948,8 +2165,78 @@ function EldgrimSync.DeleteQuest(id)
         return nil, "Only the creator or an invite rank can delete it."
     end
     db().quests[id] = nil
-    db().tombstones[id] = { by = name, at = now }
-    broadcastRecord(encode({ "D", id, now }))
+    db().tombstones[id] = { by = name, at = now, test = quest.test or nil }
+    questRecord(quest, encode({ "D", id, now }))
+    refreshBoard()
+    return true
+end
+
+-- The quest notebook ---------------------------------------------------------
+--
+-- Notes are this character's own, for the quest they are on. They stay on this
+-- computer, are never sent, and go when the quest ends: completed, abandoned,
+-- or deleted.
+
+local function notebook()
+    local name = ownName()
+    if not name or not name:find(" ", 1, true) then
+        return nil
+    end
+    local notes = db().notes
+    local current = currentQuest(name)
+    if not current then
+        notes[name] = nil
+        return nil
+    end
+    local book = notes[name]
+    if type(book) ~= "table" or book.quest ~= current or type(book.items) ~= "table" then
+        book = { quest = current, items = {} }
+        notes[name] = book
+    end
+    return book
+end
+
+function EldgrimSync.Notes()
+    local book = notebook()
+    local copy = {}
+    if book then
+        for index, item in ipairs(book.items) do
+            copy[index] = { text = item.text }
+        end
+    end
+    return copy
+end
+
+function EldgrimSync.AddNote(text)
+    local book = notebook()
+    if not book then
+        return nil, "Accept a quest first."
+    end
+    if type(text) ~= "string" then
+        return nil, "Write something first."
+    end
+    text = text:gsub("[%c]", " "):gsub("^%s+", ""):gsub("%s+$", "")
+    if text == "" then
+        return nil, "Write something first."
+    end
+    if #text > NOTE_MAX then
+        text = text:sub(1, NOTE_MAX)
+    end
+    if #book.items >= NOTE_LIMIT then
+        return nil, "The notebook is full. Check some off first."
+    end
+    book.items[#book.items + 1] = { text = text, at = serverNow() }
+    refreshBoard()
+    return true
+end
+
+-- A checked note is done and leaves the list.
+function EldgrimSync.CheckNote(index)
+    local book = notebook()
+    if not book or type(index) ~= "number" or not book.items[index] then
+        return nil
+    end
+    table.remove(book.items, index)
     refreshBoard()
     return true
 end
@@ -1970,6 +2257,7 @@ end
 
 function EldgrimSync.BoardData()
     promote()
+    installTestQuest()
     local now = serverNow()
     local ember = db().ember
     local card = ember.current
@@ -1993,17 +2281,21 @@ function EldgrimSync.BoardData()
         }
     end
     dropOldQuests()
-    -- A quest leaves this character's list once it is completed for them. It
-    -- stays for everyone else, and for its creator until they delete it.
+    -- A quest leaves this character's list once it is completed for them. A
+    -- one-member quest leaves everyone's list once someone holds it, except its
+    -- creator's. A quest stays for its creator until they delete it.
     local me = ownName()
     local open = {}
     for _, quest in pairs(db().quests) do
-        local mine = quest.completions and me and quest.completions[me]
-        if not (type(mine) == "table" and mine.confirmed) then
+        local held = holder(quest)
+        local doneByMe = me and confirmedIn(quest.completions, me)
+        local takenByOther = held and held ~= me and quest.creator ~= me
+        if not doneByMe and not takenByOther then
             open[#open + 1] = {
                 id = quest.id,
                 title = quest.title,
                 creator = quest.creator,
+                mode = questMode(quest),
                 confirmed = quest.confirmed == true,
             }
         end
@@ -2012,6 +2304,7 @@ function EldgrimSync.BoardData()
     return {
         ember = shown,
         open = open,
+        current = currentQuest(me),
     }
 end
 
@@ -2021,22 +2314,22 @@ function EldgrimSync.QuestDetail(id)
         return nil
     end
     local accepts = {}
-    for name, accept in pairs(quest.accepts or {}) do
-        if accept.confirmed then
+    local done = {}
+    for name, completion in pairs(quest.completions or {}) do
+        if type(completion) == "table" and completion.confirmed then
+            done[name] = true
+        end
+    end
+    for name in pairs(quest.accepts or {}) do
+        if standingAccept(quest, name) or done[name] then
             accepts[#accepts + 1] = name
         end
     end
     table.sort(accepts)
-    local done = {}
-    for name, completion in pairs(quest.completions or {}) do
-        if completion.confirmed then
-            done[name] = true
-        end
-    end
     -- Marked complete by the one who took it, not yet confirmed by the creator.
     local waiting = {}
     for name, claim in pairs(quest.claims or {}) do
-        if claim.confirmed and not done[name] then
+        if type(claim) == "table" and claim.confirmed and not done[name] then
             waiting[#waiting + 1] = name
         end
     end
@@ -2047,6 +2340,9 @@ function EldgrimSync.QuestDetail(id)
         story = quest.story,
         objective = quest.objective,
         creator = quest.creator,
+        mode = questMode(quest),
+        holder = holder(quest),
+        test = quest.test == true,
         waiting = waiting,
         confirmed = quest.confirmed == true,
         accepts = accepts,
@@ -2063,19 +2359,23 @@ function EldgrimSync.Button(id)
     if name == quest.creator then
         return { delete = true }
     end
-    local completion = quest.completions and quest.completions[name]
-    if type(completion) == "table" and completion.confirmed then
+    if confirmedIn(quest.completions, name) then
         return { label = "Completed", enabled = false }
     end
-    local claim = quest.claims and quest.claims[name]
-    if type(claim) == "table" and claim.confirmed then
+    if confirmedIn(quest.claims, name) then
         return { label = "Waiting for " .. quest.creator, enabled = false }
     end
-    local accept = quest.accepts and quest.accepts[name]
-    if type(accept) ~= "table" or not accept.confirmed then
-        return { label = "Accept", enabled = true, action = "accept" }
+    local held = holder(quest)
+    if held and held ~= name then
+        return { label = "Taken by " .. held, enabled = false }
     end
-    return { label = "Mark complete", enabled = true, action = "complete" }
+    if standingAccept(quest, name) then
+        return { label = "Mark complete", enabled = true, action = "complete", abandon = true }
+    end
+    if currentQuest(name) then
+        return { label = "On another quest", enabled = false }
+    end
+    return { label = "Accept", enabled = true, action = "accept" }
 end
 
 local function requestRoster()

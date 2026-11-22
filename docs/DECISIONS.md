@@ -4,6 +4,14 @@ A concise record of meaningful creative and structural decisions.
 
 Entries are listed newest first.
 
+## 2026-11-22 — One-member quests, one quest at a time, and a notebook
+
+**Decision:** The creator of a member quest chooses who can complete it: everyone, once each, or one member, in which case the first to accept takes it off the board. A member is on one quest at a time. While on it, the board's middle column is a quest notebook: short notes added with Enter and checked off with a green mark. The quest stays on the right.
+
+**Kept:** A creator still cannot accept their own quest. For testing, a quest set by Eldgrim shows only on the founder's client.
+
+**Added by Claude Code:** Abandon, so that a member is never stuck on a quest whose creator does not confirm; a member is free again once they mark a quest complete; and a Board button in the notebook so a creator on a quest can still confirm or delete their own. Notes stay on the member's computer and go when the quest ends.
+
 ## 2026-11-22 — Sunday at 19:00 CET, and public chat
 
 **Decision:** The gathering is every Sunday at 19:00 CET. Eldgrim knows the hour and may say it when asked; its announcement may name it and need not. The #eldgrim channel description and the `info` reply give it.

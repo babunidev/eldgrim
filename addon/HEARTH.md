@@ -1,7 +1,7 @@
 # Eldgrim hearth board
 
 **Status:** Implemented in `Eldgrim/`. Mock tests passed. Not tested in World of Warcraft Forever.  
-**Version:** 0.5.0-alpha.  
+**Version:** 0.6.0-alpha.  
 **Client:** Forever 1.60.1, interface 16001. The build used for a future in-game test still has to be recorded.
 
 The weekly ember is written on the master's machine. Only **Jasmine Amberbrew** may publish it, and only when `CHAT_MSG_ADDON` reports her as the sender. A name written inside the payload is ignored. Other clients may show the last ember they saved. They never send that copy on.
@@ -44,7 +44,7 @@ On the master, delivered lines stay in `EldgrimDB`. SavedVariables are written a
 
 ## Member quests
 
-Any addon user can create one: title (60), story (400), and objective (200). A quest has no end date: it stays until its creator deletes it, which the creator may do at any time (decided by the creator on 20 November 2026). At most 3 quests per creator. The creator cannot accept their own quest.
+Any addon user can create one: title (60), story (400), objective (200), and who can complete it. A quest has no end date: it stays until its creator deletes it, which the creator may do at any time (decided by the creator on 20 November 2026). At most 3 quests per creator. The creator cannot accept their own quest.
 
 A member quest has no proof to choose (decided by the creator on 20 November 2026). Whoever takes it marks it complete when it is done. Then the creator confirms, and it is completed.
 
@@ -53,9 +53,24 @@ A member quest has no proof to choose (decided by the creator on 20 November 202
 - **Confirm** (`F`) counts when the sender is the creator, for someone who marked it complete. Only the creator sees that button. A confirmation passed on by anyone else stays unconfirmed.
 - A deletion counts when the sender is the creator, or an officer deleting as themselves. Rank index 0 is the only invite rank on the list; `GuildControlGetRankFlags` is not the check.
 
+**Who can complete it** (decided by the creator on 22 November 2026). The creator chooses one of two:
+
+- **Everyone, once each:** every member may take it up and complete it once. This is the default, and a quest from a client older than 0.6.0 is read this way.
+- **One member:** the first to accept takes it off the board. The quest record carries `one` as its tenth field. When two accepts cross on the wire, the earlier server time holds it on every client, then the name in sort order. It stays on its creator's board, with who took it. Whoever completed it keeps it.
+
+**One quest at a time** (same decision). A member who has accepted a quest and not yet marked it complete is on it, and cannot accept another. Once they mark it complete they are free again, even while it waits for the creator. **Abandon** (`W`, counted only when the sender is the one abandoning, and not after marking complete) gives the quest up. A one-member quest then goes back on the board. A later accept by the same member, with a newer time, counts again. An older client ignores `W` and keeps showing that member as having taken the quest up.
+
 Quest ids use `#` between the creator's name and the timestamp. A character can complete a given member quest once. The button reads **Accept**, then **Mark complete**, then **Waiting for** the creator, then **Completed**.
 
 Once a quest is completed for a character, it leaves that character's list. It stays for everyone else, and for its creator. Member quests give no standing, and nothing about them is kept once the creator deletes them. There is no history. A quest saved in the older format, with a witness, officer, screenshot or Discord proof, is removed.
+
+### The quest notebook
+
+While a character is on a quest, the middle column is that quest's notebook (same decision). A field at the bottom takes a note of up to 120 letters; Enter adds it to the list. Each note has a green check mark, and checking it removes it. At most 40 notes. Notes are saved in `EldgrimQuests.notes`, under the character's full name and the quest id. They stay on this computer, are never sent, and are deleted when the character is no longer on that quest: completed, abandoned, or deleted. The daily run does not read them.
+
+### The test quest
+
+`EldgrimTestQuest.lua` holds one test quest, set by Eldgrim, for one member (creator's request, 22 November 2026). It shows only on Jasmine Amberbrew's client, is never sent or answered for, and leaves nothing on other clients. A creator still cannot accept their own quest; this one has Eldgrim as its creator so the founder can try the whole path. Eldgrim confirms it the moment it is marked complete. To try it again from the start, change its `id`; to remove it, set `quest` to nil.
 
 ## The weekly ember is completed in Discord
 
@@ -91,8 +106,8 @@ No minimap button. The flame emblem is attached to the guild window (`Communitie
 The look is in `EldgrimSkin.lua`. The window's frame has cut corners. A triangle sits in each cut-away corner. From the outside in, the frame lines are one thick orange line, a gold line broken at random, a thinner red line that runs the whole way, a gap with small triangles at the corners, and an amber line. Each corner holds a small octagon with an upright flame and two flame-tipped scrolls. The flame emblem sits on the top edge over the lines and glows slowly. Each column has a lighter two-line frame with the same cut corners.
 
 - The left column is Eldgrim's Ember: the card, its story in a scroll area, and who completed it. Its question mark shows the card's hint, then how to complete the ember in Discord. Those instructions appear nowhere else on the board (decided by the creator on 20 November 2026).
-- The middle column lists open quests, except those this character has completed. Each row shows the title and who set it. **Create quest** is at the bottom.
-- The right column shows the chosen quest: who set it, the story, the objective, and who took it up, marked complete, or completed. Its question mark says how a member quest is completed. Its buttons are below. **Create quest** opens the form in this column. The form has fields for the title, story and objective with letter counts.
+- The middle column lists open quests, except those this character has completed and one-member quests someone else has taken. Each row shows the title and who set it, with **One member** first for a one-member quest. **Create quest** is at the bottom. While the character is on a quest the middle column is the quest notebook instead, with a **Board** button to look at the list; the list then has a **Notebook** button back. The creator of a quest uses that to confirm or delete their own quests while on someone else's.
+- The right column shows the chosen quest: who set it, whether it is for everyone or one member, who holds a one-member quest, the story, the objective, and who took it up, marked complete, or completed. On a quest, that quest stays here, with **Mark complete** and **Abandon**. Its question mark says how a member quest is completed. Its buttons are below. **Create quest** opens the form in this column. The form has fields for the title, story and objective with letter counts, and a choice of **Everyone, once each** or **One member**.
 
 Buttons light on hover, sink when pressed and grey out when they cannot be used. Text fields are sunk wells that glow when focused, with a placeholder. Tab moves to the next field. Escape closes the window.
 
@@ -108,6 +123,7 @@ The textures are drawn by `addon/tools/hearth_art.py`. Its frame geometry must m
 - The ember ends at the first Sunday 00:00 UTC after it was published.
 - A peer answers with only the missing member-quest records, after a 5–20 second wait.
 - Relayed lines land in the guild-chat lists. She asks the oldest online holder first. A speaker who is not on the roster is dropped. Two copies within 10 seconds match.
+- A one-member quest leaves the other client's board when accepted and returns after Abandon. Two members accepting at once settle on the same holder. A member on a quest sees the notebook, and its notes survive `/reload` and are gone after Mark complete.
 - Mark complete then the creator's Confirm completes a member quest, and it leaves only that member's list. The creator cannot accept it. A deleted quest disappears on every client.
 - A split that stops halfway is discarded. Lines stay until the ack for that batch, and only that batch is deleted.
 - The summary arrives before the lines. Lines newer than `online since` are not whispered. Held lines older than 7 days are deleted.
