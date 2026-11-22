@@ -33,9 +33,9 @@ The addon is developed only here, in `addon/Eldgrim/`, as part of the Eldgrim pr
 
 1. Edit the files in `addon/Eldgrim/`.
 2. Run the mock tests (below) from the repository root.
-3. Run `addon/install-local.sh` to copy the addon into the Forever client's `Interface/AddOns/Eldgrim/`.
+3. Run `addon/install-local.sh` to copy the addon into the Forever client's `Interface/AddOns/Eldgrim/`. It also rebuilds the members' download, `addon/downloads/Eldgrim.zip`.
 4. Restart the client, or `/reload` when no texture changed, and test in game.
-5. Record what was and was not tested in game, then commit and push.
+5. Record what was and was not tested in game, then commit and push, with the zip.
 
 Mock tests, from the repository root:
 
@@ -46,6 +46,12 @@ lua addon/tests/test_board.lua addon/Eldgrim
 lua addon/tests/test_names.lua addon/Eldgrim
 lua addon/tests/test_gathering.lua addon/Eldgrim
 ```
+
+## Download for members
+
+[`downloads/Eldgrim.zip`](downloads/Eldgrim.zip) is the install zip, also linked from the Eldgrim tile on [babuni.dev](https://www.babuni.dev/projects/eldgrim/). Extract it into the Forever client's `Interface/AddOns/`; it already holds the `Eldgrim` folder the game expects. It contains only what the game loads: `Eldgrim.toc`, the files the toc lists and the textures. The test quest file is empty in it.
+
+`python3 addon/build-zip.py` builds it, and gives the same bytes for the same source, so the zip changes in git only when the addon does. `python3 addon/build-zip.py --check` exits with an error when the zip no longer matches `addon/Eldgrim/`.
 
 ## Install for local testing
 

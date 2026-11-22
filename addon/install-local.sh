@@ -73,3 +73,7 @@ for file in "$src"/*; do
     cp -p "$file" "$dest/"
 done
 echo "Eldgrim: copied the project addon into the Forever AddOns folder."
+
+# The download members install from. Rebuilt with every install, so a change
+# tested in game is also the change in the zip; commit it with the change.
+python3 "$root/addon/build-zip.py"

@@ -4,6 +4,12 @@ A concise account of meaningful project development, written from the human crea
 
 Entries before 14 November 2026 that say only "AI", or name no tool, did not record which tool or model did the work. The [collaboration record](AI_COLLABORATION.md) lists them as earlier AI help, tool and model not recorded.
 
+## 2026-11-23 — A zip to install
+
+I wanted members to download the addon from the website, as a zip that holds only what the game needs and stays current with every update. Claude Code (Claude Opus 5.5) wrote `addon/build-zip.py`, which packs the `Eldgrim` folder from the toc, the files it lists and the textures, and ships the test quest file empty. The same source always gives the same zip, so it changes in git only when the addon does, and the local install script rebuilds it each time. It added an Addon download module to the Eldgrim tile on babuni.dev, linking the zip in this repository, following the downloads of my Classic addons.
+
+**Result:** The zip holds 15 files in one `Eldgrim/` folder; two builds gave identical bytes. Extracting it into a game folder was not tried.
+
 ## 2026-11-22 — One quest at a time, with a notebook
 
 I wanted a member quest to say whether it is for everyone or for just one person, with the first to accept taking it off the board. I also wanted members on one quest at a time, with the quest staying on the right and a small notebook in the middle where notes can be added with Enter and checked off. Claude Code (Claude Opus 5.5) built that in the addon. It added an Abandon button so nobody is stuck on a quest whose creator never confirms, frees a member once they mark a quest complete, and kept a Board button in the notebook so a creator on a quest can still confirm their own. When two members accept a one-member quest at the same moment, the earlier one keeps it on every client. Creators still cannot accept their own quests, so it added a test quest set by Eldgrim that shows only on my client: a lantern along the road that has forgotten its name.

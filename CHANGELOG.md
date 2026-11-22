@@ -2,6 +2,10 @@
 
 Meaningful repository and documentation changes are recorded here.
 
+## 2026-11-23
+
+- `addon/downloads/Eldgrim.zip` is the members' install zip, built by `addon/build-zip.py` from the toc, the files it lists and the textures, with the test quest file empty. The build is reproducible, `--check` reports a stale zip, and `addon/install-local.sh` rebuilds it. Linked from the Eldgrim tile on babuni.dev. Claude Code (Claude Opus 5.5).
+
 ## 2026-11-22
 
 - The ember's question-mark tooltip no longer mentions the daily run: it says Eldgrim adds the member to the ones who completed it within a day or two. Claude Code (Claude Opus 5.5).

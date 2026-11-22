@@ -23,6 +23,7 @@ The human creative owns the concept, canon, tone, scope, priorities, and final d
 ## WoW Forever addon rules
 
 - Edit the addon in addon/Eldgrim/ in this repository (2026-11-20). After a change that should be tested in game, run addon/install-local.sh. That copies addon/Eldgrim/ into the Forever client's Interface/AddOns/Eldgrim on this machine. Do not edit the game folder as the source. The install stops when the installed copy is newer than the project copy. The source in addon/Eldgrim/ is the one copy to edit.
+- The members' download is addon/downloads/Eldgrim.zip, linked from the Eldgrim tile on babuni.dev (2026-11-23). It holds only the Eldgrim/ folder the game loads: the toc, the files it lists and the textures, with the test quest file empty. addon/install-local.sh rebuilds it; otherwise run `python3 addon/build-zip.py`. Commit the zip in the same change as any addon change. `python3 addon/build-zip.py --check` fails when it is stale.
 - Develop for World of Warcraft Forever only. Current baseline: version 1.60.1, interface 16001. Record the exact client build used for research and testing; reverify after updates.
 - Do not add Retail, Classic Era, Vanilla, Burning Crusade, or other-client compatibility or fallback branches.
 - Verify every API against Forever-specific documentation or the current Forever client. Distinguish API-documented behavior, inference, and in-game verification. An API's presence in documentation does not prove that the intended event flow works in-game.
