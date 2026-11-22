@@ -19,7 +19,11 @@ The proposed in-game addon may eventually help trusted witnesses record activity
 
 ## Founder decision — 22 November 2026
 
-The gathering hour is **Sunday 19:00–20:00 Swedish time**. Every copy of the addon records who is there during that hour, and only then: guild members who speak in /say near an addon user, and guild members in an addon user's group or raid. When the founder cannot attend, the other members' addons record it and pass it to her client when she next logs in. Each member present receives one point on the private standing score, once per Sunday. Absence costs nothing (Q115, Q157). The say lines serve only to see who was there and are cleared after the daily run records the day. Specified in [addon/HEARTH.md](../addon/HEARTH.md#the-sunday-gathering). Built and covered by mock tests; not yet tested in game.
+The gathering hour is **Sunday 19:00–20:00 CET**. Every copy of the addon records who is there during that hour, and only then: guild members who speak in /say near an addon user, and guild members in an addon user's group or raid. When the founder cannot attend, the other members' addons record it and pass it to her client when she next logs in. Each member present receives one point on the private standing score, once per Sunday. Absence costs nothing (Q115, Q157). The say lines serve only to see who was there and are cleared after the daily run records the day. Specified in [addon/HEARTH.md](../addon/HEARTH.md#the-sunday-gathering). Built and covered by mock tests; not yet tested in game.
+
+The founder also decided that what is said in public in the game, such as /say, guild chat and group chat, may be recorded without a separate notice to members: anyone nearby can see it. Whispers and other private messages are never recorded.
+
+Eldgrim knows the hour and may say it when someone asks. Its announcement may name it and need not. The #eldgrim channel description gives it.
 
 ## Member-organized activities — question 157
 
@@ -29,8 +33,8 @@ Eldgrim's Sunday hearth tradition does **not** reserve the guild calendar. Membe
 
 - [x] Define who chooses regions, announces gatherings and lights fires (Q111–113).
 - [x] Establish simultaneous fires, accessibility and attendance safeguards (Q114–115).
-- [x] Choose the specific weekly start time: Sunday 19:00–20:00 Swedish time (2026-11-22). The announcement procedure is still open.
-- [ ] Specify witness recording, consent and privacy handling before deployment.
+- [x] Choose the specific weekly start time: Sunday 19:00–20:00 CET (2026-11-22). The announcement procedure is still open.
+- [x] Specify witness recording, consent and privacy handling: public game chat may be recorded without separate notice; whispers never (2026-11-22).
 
 ---
 

@@ -71,7 +71,7 @@ The board shows the names as "Completed by". `EldgrimVerified.lua` holds only th
 
 ## The Sunday gathering
 
-Founder decision, 22 November 2026. Every copy of the addon records who is at the Sunday gathering, and only during it: **Sunday 19:00 to 20:00 Swedish time** (Europe/Stockholm, which follows summer time). The hour is worked out from `GetServerTime()`, so it is the same for every member wherever they live. Nothing is recorded outside that hour.
+Founder decision, 22 November 2026. Every copy of the addon records who is at the Sunday gathering, and only during it: **Sunday 19:00 to 20:00 CET** (Central European time, which follows summer time; Europe/Stockholm in code). The hour is worked out from `GetServerTime()`, so it is the same for every member wherever they live. Nothing is recorded outside that hour.
 
 - **/say:** a `CHAT_MSG_SAY` line from a character on the guild roster is kept with the speaker, the text and the time. A speaker who is not in the guild is skipped. The payload is not read during chat lockdown.
 - **Group:** when the hour opens, and at every `GROUP_ROSTER_UPDATE` during it, each guild member in this character's party or raid is marked once, without text. A unit name without a surname is matched to the only roster name that starts with it.
@@ -114,5 +114,5 @@ The textures are drawn by `addon/tools/hearth_art.py`. Its frame geometry must m
 - A confirmation passed on by a peer stays unconfirmed. The creator's own confirmation settles it.
 - A Roared ember picture reaches the board: bot export, daily run, `EldgrimVerified.lua`, Jasmine Amberbrew's login, then other members.
 - Addon whispers reach `Jasmine Amberbrew`, and the live message cap and rate are written down.
-- On a Sunday from 19:00 Swedish time, /say from a guild member and the guild members in the group are recorded; a stranger's /say is not; nothing is recorded at 20:00 or later.
+- On a Sunday from 19:00 CET, /say from a guild member and the guild members in the group are recorded; a stranger's /say is not; nothing is recorded at 20:00 or later.
 - A member's held gathering record reaches Jasmine Amberbrew at her next login and is deleted from the member only after her acknowledgement.

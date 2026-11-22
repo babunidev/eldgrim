@@ -1,6 +1,6 @@
 """The Sunday gathering: one standing point per member per Sunday attended.
 
-The addon records, on Sunday from 19:00 to 20:00 Swedish time, the guild members
+The addon records, on Sunday from 19:00 to 20:00 CET, the guild members
 who spoke in /say near an addon user and the guild members in an addon user's
 group or raid. The record arrives in `EldgrimGathering`, keyed by the Sunday's
 date. A member counts as present when Jasmine Amberbrew's client saw them
@@ -29,7 +29,7 @@ RULE = "sunday gathering"
 
 
 def finished(day: str, now: datetime) -> bool:
-    """Whether that Sunday's hour is over, by Swedish time."""
+    """Whether that Sunday's hour is over, by CET."""
     try:
         date = datetime.strptime(day, "%Y-%m-%d").date()
     except ValueError:

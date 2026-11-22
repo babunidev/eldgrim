@@ -1291,7 +1291,7 @@ local function onAck(sender, payload)
 end
 
 -- The Sunday gathering (founder decision, 22 November 2026). Every addon
--- records, on Sunday from 19:00 to 20:00 Swedish time, the guild members who
+-- records, on Sunday from 19:00 to 20:00 CET, the guild members who
 -- speak in /say near this character and the guild members in this
 -- character's group or raid. Nothing is recorded outside that hour, and a
 -- speaker or group member who is not on the guild roster is skipped.
@@ -1331,7 +1331,7 @@ local function civilFromDays(days)
     return year, month, day
 end
 
--- The last Sunday of a month, at 01:00 UTC, when Swedish summer time starts or ends.
+-- The last Sunday of a month, at 01:00 UTC, when Central European summer time starts or ends.
 local function lastSundayChange(year, month)
     local nextYear, nextMonth = year, month + 1
     if nextMonth > 12 then
@@ -1342,7 +1342,7 @@ local function lastSundayChange(year, month)
     return sunday * 86400 + 3600
 end
 
--- Seconds Swedish time is ahead of UTC at this moment: 7200 in summer time, else 3600.
+-- Seconds CET is ahead of UTC at this moment: 7200 in summer time, else 3600.
 function EldgrimSync.StockholmOffset(utc)
     local year = civilFromDays(math.floor(utc / 86400))
     if utc >= lastSundayChange(year, 3) and utc < lastSundayChange(year, 10) then
@@ -1351,7 +1351,7 @@ function EldgrimSync.StockholmOffset(utc)
     return 3600
 end
 
--- The gathering's date ("2026-11-29") while Sunday 19:00-20:00 Swedish time lasts, else nil.
+-- The gathering's date ("2026-11-29") while Sunday 19:00-20:00 CET lasts, else nil.
 function EldgrimSync.GatheringDay(utc)
     if type(utc) ~= "number" or utc <= 0 then
         return nil

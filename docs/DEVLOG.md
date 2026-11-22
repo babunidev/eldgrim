@@ -4,11 +4,17 @@ A concise account of meaningful project development, written from the human crea
 
 Entries before 14 November 2026 that say only "AI", or name no tool, did not record which tool or model did the work. The [collaboration record](AI_COLLABORATION.md) lists them as earlier AI help, tool and model not recorded.
 
+## 2026-11-22 — Seven o'clock, Central European time
+
+The gathering is every Sunday at 19:00 CET, so the hour is now written that way everywhere instead of as Swedish time; the recording window itself did not change. Members need no separate notice for it: /say, guild chat and group chat are public in the game, and whispers are never recorded. Claude Code (Claude Opus 5.5) put the hour on the governance page Eldgrim always reads, so it can answer when someone asks, and into the announcement brief, where Eldgrim may name it and need not. The `info` reply and the #eldgrim channel description now give it too.
+
+**Result:** 141 agent tests, 110 bot tests and the five addon mock suites passed. The bot passed its tests on the server and restarted, and the channel description was refreshed.
+
 ## 2026-11-22 — Cinder, and who came to the fire
 
 Six of us lit fires along the road from the Valley of Kings to the North Gate pass, and the guild named the second rank Cinder in chat that evening. Faenra Greenleaf and Galandor Levalois were promoted to it. Claude Code (Claude Opus 5.5) gave the five members who were there their point by hand, after backing up the database, and renamed Wayfarer to Cinder in the agent, the bot and the documents. After I approved its preview, the bot renamed the Discord role. The bot was deployed with the new info text at the same time.
 
-Nothing recorded attendance yet, so it built that next. Every copy of the addon now notes guild members who speak in /say, and guild members in the group, on Sunday from 19:00 to 20:00 Swedish time. The other members' addons pass their notes to mine when I log in, and the daily run turns each Sunday into one point per member. It also found why the promotions were missing from the saved roster: the roster was saved at most once a day. It is now saved as soon as a rank changes or someone joins. The addon is developed in this project and installed into the game with `addon/install-local.sh`; the addon README now spells out that workflow.
+Nothing recorded attendance yet, so it built that next. Every copy of the addon now notes guild members who speak in /say, and guild members in the group, on Sunday from 19:00 to 20:00 CET. The other members' addons pass their notes to mine when I log in, and the daily run turns each Sunday into one point per member. It also found why the promotions were missing from the saved roster: the roster was saved at most once a day. It is now saved as soon as a rank changes or someone joins. The addon is developed in this project and installed into the game with `addon/install-local.sh`; the addon README now spells out that workflow.
 
 **Result:** 141 agent tests, 109 bot tests and five addon mock suites passed, including 33 new gathering checks. The bot passed its tests on the server and restarted. The role reads Cinder with its permissions unchanged. The addon was installed into the game folder with `addon/install-local.sh` and is not yet tested in game.
 

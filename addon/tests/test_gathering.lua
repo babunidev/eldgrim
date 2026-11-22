@@ -4,7 +4,7 @@
 local root = arg and arg[1] or "addon/Eldgrim"
 local frames = {}
 local player = "Bob Hill"
-local now = 1795372200 -- Sunday 22 November 2026, 19:30 Swedish time
+local now = 1795372200 -- Sunday 22 November 2026, 19:30 CET
 local clock = 1000
 local roster = {}
 local group = {}
@@ -134,11 +134,11 @@ end
 -- The hour, in winter and in summer time.
 boot()
 local day = EldgrimSync.GatheringDay
-check(day(1795372200) == "2026-11-22", "Sunday 19:30 Swedish winter time is in the gathering")
+check(day(1795372200) == "2026-11-22", "Sunday 19:30 CET is in the gathering")
 check(day(1795370340) == nil, "Sunday 18:59 is before the gathering")
 check(day(1795374000) == nil, "Sunday 20:00 is after the gathering")
 check(day(1795285800) == nil, "Saturday 19:30 is not a gathering")
-check(day(1780853400) == "2026-06-07", "Sunday 19:30 Swedish summer time is in the gathering")
+check(day(1780853400) == "2026-06-07", "Sunday 19:30 CEST (summer time) is in the gathering")
 check(day(1780857000) == nil, "Sunday 20:30 summer time is after the gathering")
 check(day(1774805400) == "2026-03-29", "the day summer time starts uses summer time")
 check(day(1792953000) == "2026-10-25", "the day summer time ends uses winter time")

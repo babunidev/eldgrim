@@ -708,6 +708,7 @@ class DayAndThanksTests(unittest.TestCase):
 
         text = with_day(datetime(2026, 11, 22, 18, 0, tzinfo=STOCKHOLM), "")
         self.assertIn("Today is Sunday, so the gathering is today.", text)
+        self.assertIn("The gathering begins at 19:00 CET. You may give that hour, and you need not.", text)
 
     def test_the_thanks_names_the_quest(self):
         self.assertEqual(

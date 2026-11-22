@@ -247,6 +247,9 @@ def draft(brief: str, *, model: str | None = None, way: str | None = None) -> st
     return text
 
 
+HOUR = "The gathering begins at 19:00 CET. You may give that hour, and you need not."
+
+
 def with_day(now: datetime, brief: str) -> str:
     """Name today and the coming Sunday. The gathering is that Sunday, not tonight."""
     local = now.astimezone()
@@ -267,6 +270,8 @@ def with_day(now: datetime, brief: str) -> str:
                 f"The coming Sunday is {sunday.strftime('%A')} {sunday.day} {sunday.strftime('%B')}. "
                 "Invite to that Sunday. Do not say this evening, tonight, or today."
             )
+    # The hour is fixed (founder decision, 22 November 2026). Saying it is allowed, not required.
+    gathering += f" {HOUR}"
     return f"Today is {today}. {gathering}\n{brief}".strip()
 
 

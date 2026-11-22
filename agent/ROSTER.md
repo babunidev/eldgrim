@@ -64,7 +64,7 @@ The client currently being played also writes `EldgrimRoster` into the same file
 
 ## The Sunday gathering
 
-Founder decision, 22 November 2026. The same file may hold `EldgrimGathering`, written by Jasmine Amberbrew's client: for each Sunday, keyed by its date, the guild members who spoke in /say near an addon user and the guild members in an addon user's group or raid between 19:00 and 20:00 Swedish time. See [addon/HEARTH.md](../addon/HEARTH.md#the-sunday-gathering).
+Founder decision, 22 November 2026. The same file may hold `EldgrimGathering`, written by Jasmine Amberbrew's client: for each Sunday, keyed by its date, the guild members who spoke in /say near an addon user and the guild members in an addon user's group or raid between 19:00 and 20:00 CET. See [addon/HEARTH.md](../addon/HEARTH.md#the-sunday-gathering).
 
 Once that Sunday's hour is over, the run gives each member present one standing point, with the rule `sunday gathering`. A record counts when her client saw it, when two members passed it on, or when the one member who passed it on is someone else. The table `gathering_attended` keeps the member and the date, so the same Sunday never counts twice, even when a clear fails. The say lines are not scored for keywords and are not kept: the day is removed from the file in the same fixed rewrite that clears guild chat, under the same checks. The run log shows only how many members each Sunday counted.
 

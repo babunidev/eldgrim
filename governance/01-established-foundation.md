@@ -12,6 +12,7 @@
 | Eldgrim's position      | Initiator of Amberhearth, outside ordinary guild ranks                             |
 | Guild philosophy        | Welcoming, voluntary, creative, socially inclusive                                 |
 | Membership              | Several characters per player in the guild; one registered with Eldgrim in the Character Forge (2026-11-20); no fixed membership limit |
+| Sunday gathering        | Every Sunday at 19:00 CET (Central European time, summer time included) (2026-11-22) |
 | Expectations            | No mandatory attendance, performance, progression, gold, or resource contributions |
 | Guild ranks             | Ember → Cinder → Kindler → Hearthkeeper → Hearthwarden                           |
 | Rank meaning            | Recognition and social standing, not command over other members                    |

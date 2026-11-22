@@ -4,11 +4,17 @@ A concise record of meaningful creative and structural decisions.
 
 Entries are listed newest first.
 
+## 2026-11-22 — Sunday at 19:00 CET, and public chat
+
+**Decision:** The gathering is every Sunday at 19:00 CET. Eldgrim knows the hour and may say it when asked; its announcement may name it and need not. The #eldgrim channel description and the `info` reply give it.
+
+**Decision:** What is said in public in the game (/say, guild chat, group chat) may be recorded for the gathering without a separate notice to members, because anyone nearby can see it. Whispers and other private messages are never recorded.
+
 ## 2026-11-22 — Cinder, and a point for the Sunday gathering
 
 **Decision:** The second guild rank, Wayfarer, is renamed Cinder, in game, on Discord, in Eldgrim's code and in the documents. Its meaning and its minimum of 60 stay.
 
-**Decision:** The Sunday gathering is Sunday 19:00–20:00 Swedish time. Every copy of the addon records who is there in that hour and only then: guild members who speak in /say near the addon user, and guild members in the addon user's group or raid. Jasmine Amberbrew's client keeps the record. Other clients hold theirs and pass it to her when she is next online, so a gathering she misses is still recorded. Each member present gets one point on the private standing score, once per Sunday. Nobody witnesses themselves alone.
+**Decision:** The Sunday gathering is Sunday 19:00–20:00 CET. Every copy of the addon records who is there in that hour and only then: guild members who speak in /say near the addon user, and guild members in the addon user's group or raid. Jasmine Amberbrew's client keeps the record. Other clients hold theirs and pass it to her when she is next online, so a gathering she misses is still recorded. Each member present gets one point on the private standing score, once per Sunday. Nobody witnesses themselves alone.
 
 **Amends:** Q44, which said promotions do not reward attendance. Absence still costs nothing, and there is no quota.
 
