@@ -17,6 +17,10 @@ The weekly Sunday bonfires are a shared tradition of Amberhearth's Alliance role
 
 The proposed in-game addon may eventually help trusted witnesses record activity at separate fires. This remains a technical workstream, not a participation requirement or proof that recording is operational.
 
+## Founder decision — 22 November 2026
+
+The gathering hour is **Sunday 19:00–20:00 Swedish time**. Every copy of the addon records who is there during that hour, and only then: guild members who speak in /say near an addon user, and guild members in an addon user's group or raid. When the founder cannot attend, the other members' addons record it and pass it to her client when she next logs in. Each member present receives one point on the private standing score, once per Sunday. Absence costs nothing (Q115, Q157). The say lines serve only to see who was there and are cleared after the daily run records the day. Specified in [addon/HEARTH.md](../addon/HEARTH.md#the-sunday-gathering). Built and covered by mock tests; not yet tested in game.
+
 ## Member-organized activities — question 157
 
 Eldgrim's Sunday hearth tradition does **not** reserve the guild calendar. Members may organize or attend other gatherings, including overlapping events. Eldgrim may help avoid conflicts but cannot punish, reduce standing or withhold recognition solely because someone chose a different event or did not attend Sunday. This is **founder-confirmed working governance**, not a claim that scheduling integration is implemented.
@@ -25,7 +29,7 @@ Eldgrim's Sunday hearth tradition does **not** reserve the guild calendar. Membe
 
 - [x] Define who chooses regions, announces gatherings and lights fires (Q111–113).
 - [x] Establish simultaneous fires, accessibility and attendance safeguards (Q114–115).
-- [ ] Choose the specific weekly start time and announcement procedure.
+- [x] Choose the specific weekly start time: Sunday 19:00–20:00 Swedish time (2026-11-22). The announcement procedure is still open.
 - [ ] Specify witness recording, consent and privacy handling before deployment.
 
 ---

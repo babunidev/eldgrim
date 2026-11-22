@@ -4,6 +4,13 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-22
 
+- The second rank is Cinder instead of Wayfarer: in the agent's ranks and standing minimums, a database migration, the bot's rank map, the governance pages, the lore page, the roster and announcement docs, and the Discord role, renamed through the bot's preview and approval. Claude Code (Claude Opus 5.5).
+- Addon 0.5.0-alpha records the Sunday gathering: on Sunday 19:00–20:00 Swedish time, /say from guild members and guild members in the group or raid. Other clients pass their record to Jasmine Amberbrew by addon whisper when she is next heard, and delete it after her acknowledgement. New SavedVariable `EldgrimGathering`. Mock tests in `addon/tests/test_gathering.lua`. Not tested in game. Claude Code (Claude Opus 5.5).
+- The addon saves the guild roster as soon as a roster update shows a changed rank or a new member, instead of waiting up to a day. Claude Code (Claude Opus 5.5).
+- The daily run gives one standing point per member per Sunday gathering attended (`agent/eldgrim_agent/gathering.py`), never twice for one Sunday, and clears that day from the file. Q44 amended by the founder. The five members at the 22 November event received their point by hand. Claude Code (Claude Opus 5.5).
+- The bot was deployed with the Cinder rank and the new info text and Eldgrim channel description. Claude Code (Claude Opus 5.5).
+- `addon/README.md` describes the development workflow: edit in `addon/Eldgrim/`, run the mock tests, install with `addon/install-local.sh`, test in game. Claude Code (Claude Opus 5.5).
+
 - Eldgrim's quests are roleplay only: the quest instructions no longer ask for the proof, and a quest that mentions a screenshot, Discord, an emoji or the Roar emoji is refused and the spare text is sent. The bonfire and spare quests no longer explain the proof. The `info` reply and the Eldgrim channel description say how every quest ends, as numbered steps: a screenshot posted in Discord, best in #roar-screenshots, with @Eldgrim in the same message, and a Roar from another Amberhearth member. The channel description is now a short text of its own that fits Discord's limit. Not yet deployed to the server. Claude Code (Claude Opus 5.5).
 
 ## 2026-11-21

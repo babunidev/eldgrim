@@ -41,6 +41,11 @@ local nextMessageId = 1
 local pendingReply = nil
 local summarySentFor = nil
 local sessionStart = nil
+-- The Sunday gathering: set further down, used by noteMaster.
+local sendGathering = nil
+local gatheringOpen = nil
+local gatheringCheckAt = 0
+local nextGatheringId = 1
 
 EldgrimSync = EldgrimSync or {}
 EldgrimSync.Sent = {}
@@ -249,6 +254,9 @@ local function db()
     end
     if type(saved.inbox) ~= "table" then
         saved.inbox = {}
+    end
+    if type(saved.gathering) ~= "table" then
+        saved.gathering = {}
     end
     return saved
 end
@@ -686,6 +694,9 @@ end
 
 local function noteMaster(since)
     masterHeard = true
+    if sendGathering then
+        sendGathering()
+    end
     if type(since) == "number" then
         dropHeldAfter(since)
         if summarySentFor ~= since then
@@ -1279,6 +1290,366 @@ local function onAck(sender, payload)
     db().pendingBatch = nil
 end
 
+-- The Sunday gathering (founder decision, 22 November 2026). Every addon
+-- records, on Sunday from 19:00 to 20:00 Swedish time, the guild members who
+-- speak in /say near this character and the guild members in this
+-- character's group or raid. Nothing is recorded outside that hour, and a
+-- speaker or group member who is not on the guild roster is skipped.
+-- The master keeps the record in EldgrimGathering. Everyone else holds it and
+-- whispers it to her when she is next heard, and she acknowledges each batch.
+
+local GATHERING_HOUR = 19
+local GATHERING_HOLD = 14 * 24 * 60 * 60
+local GATHERING_BATCH_LINES = 25
+local GATHERING_BATCH_BYTES = 6000
+
+local function daysFromCivil(year, month, day)
+    if month <= 2 then
+        year = year - 1
+    end
+    local era = math.floor(year / 400)
+    local yoe = year - era * 400
+    local mp = (month + 9) % 12
+    local doy = math.floor((153 * mp + 2) / 5) + day - 1
+    local doe = yoe * 365 + math.floor(yoe / 4) - math.floor(yoe / 100) + doy
+    return era * 146097 + doe - 719468
+end
+
+local function civilFromDays(days)
+    days = days + 719468
+    local era = math.floor(days / 146097)
+    local doe = days - era * 146097
+    local yoe = math.floor((doe - math.floor(doe / 1460) + math.floor(doe / 36524) - math.floor(doe / 146096)) / 365)
+    local year = yoe + era * 400
+    local doy = doe - (365 * yoe + math.floor(yoe / 4) - math.floor(yoe / 100))
+    local mp = math.floor((5 * doy + 2) / 153)
+    local day = doy - math.floor((153 * mp + 2) / 5) + 1
+    local month = mp < 10 and mp + 3 or mp - 9
+    if month <= 2 then
+        year = year + 1
+    end
+    return year, month, day
+end
+
+-- The last Sunday of a month, at 01:00 UTC, when Swedish summer time starts or ends.
+local function lastSundayChange(year, month)
+    local nextYear, nextMonth = year, month + 1
+    if nextMonth > 12 then
+        nextYear, nextMonth = year + 1, 1
+    end
+    local last = daysFromCivil(nextYear, nextMonth, 1) - 1
+    local sunday = last - (last + 4) % 7
+    return sunday * 86400 + 3600
+end
+
+-- Seconds Swedish time is ahead of UTC at this moment: 7200 in summer time, else 3600.
+function EldgrimSync.StockholmOffset(utc)
+    local year = civilFromDays(math.floor(utc / 86400))
+    if utc >= lastSundayChange(year, 3) and utc < lastSundayChange(year, 10) then
+        return 7200
+    end
+    return 3600
+end
+
+-- The gathering's date ("2026-11-29") while Sunday 19:00-20:00 Swedish time lasts, else nil.
+function EldgrimSync.GatheringDay(utc)
+    if type(utc) ~= "number" or utc <= 0 then
+        return nil
+    end
+    local localTime = utc + EldgrimSync.StockholmOffset(utc)
+    local days = math.floor(localTime / 86400)
+    if (days + 4) % 7 ~= 0 then
+        return nil
+    end
+    local hour = math.floor((localTime - days * 86400) / 3600)
+    if hour ~= GATHERING_HOUR then
+        return nil
+    end
+    local year, month, day = civilFromDays(days)
+    return string.format("%04d-%02d-%02d", year, month, day)
+end
+
+local function gatheringStore()
+    if type(EldgrimGathering) ~= "table" then
+        EldgrimGathering = {}
+    end
+    return EldgrimGathering
+end
+
+-- Keep one line per speaker and text within MATCH_WINDOW seconds, and one group
+-- mark per member and gathering. A mark seen by the master herself, or passed
+-- on by two different members, loses its passedBy.
+local function storeGathering(day, speaker, kind, text, received, passer)
+    local store = gatheringStore()
+    local list = store[day]
+    if type(list) ~= "table" then
+        list = {}
+        store[day] = list
+    end
+    for _, row in ipairs(list) do
+        local same = row.speaker == speaker and row.kind == kind
+        if same and kind == "say" then
+            same = row.text == text and type(row.received) == "number" and math.abs(row.received - received) <= MATCH_WINDOW
+        end
+        if same then
+            if row.passedBy and row.passedBy ~= passer then
+                row.passedBy = nil
+            end
+            return
+        end
+    end
+    local row = {
+        speaker = speaker,
+        kind = kind,
+        received = received,
+    }
+    if kind == "say" then
+        row.text = text
+    end
+    row.passedBy = passer
+    list[#list + 1] = row
+end
+
+local function purgeGatheringHeld()
+    local now = serverNow()
+    local kept = {}
+    for _, line in ipairs(db().gathering) do
+        if type(line.received) == "number" and now - line.received < GATHERING_HOLD then
+            kept[#kept + 1] = line
+        end
+    end
+    db().gathering = kept
+end
+
+local function recordGathering(speaker, kind, text)
+    local now = serverNow()
+    local day = EldgrimSync.GatheringDay(now)
+    if not day or not speaker or not onRoster(speaker) then
+        return
+    end
+    if kind == "say" and (type(text) ~= "string" or text == "") then
+        return
+    end
+    if isMaster() then
+        storeGathering(day, speaker, kind, text, now, nil)
+        return
+    end
+    local held = db().gathering
+    for _, line in ipairs(held) do
+        if line.day == day and line.speaker == speaker and line.kind == kind then
+            if kind == "group" or (line.text == text and line.received == now) then
+                return
+            end
+        end
+    end
+    held[#held + 1] = {
+        id = "g" .. tostring(now) .. "x" .. tostring(nextGatheringId),
+        day = day,
+        speaker = speaker,
+        kind = kind,
+        text = kind == "say" and text or nil,
+        received = now,
+    }
+    nextGatheringId = nextGatheringId + 1
+end
+
+-- A group member's full name. Forever may give only the first name for a unit,
+-- so a short name is matched to the only roster name that starts with it.
+local function rosterNameFor(name)
+    name = stripRealm(name)
+    if not name then
+        return nil
+    end
+    if name:find(" ", 1, true) then
+        return name
+    end
+    if type(GetNumGuildMembers) ~= "function" or type(GetGuildRosterInfo) ~= "function" then
+        return nil
+    end
+    local countOk, count = pcall(GetNumGuildMembers)
+    if not countOk or type(count) ~= "number" then
+        return nil
+    end
+    local prefix = name .. " "
+    local match = nil
+    local matches = 0
+    for index = 1, count do
+        local ok, memberName = pcall(GetGuildRosterInfo, index)
+        memberName = ok and stripRealm(memberName) or nil
+        if memberName and memberName:sub(1, #prefix) == prefix then
+            match = memberName
+            matches = matches + 1
+        end
+    end
+    if matches == 1 then
+        return match
+    end
+    return nil
+end
+
+local function noteGroup()
+    if locked() or not EldgrimSync.GatheringDay(serverNow()) then
+        return
+    end
+    if type(GetNumGroupMembers) ~= "function" or type(UnitName) ~= "function" then
+        return
+    end
+    local ok, count = pcall(GetNumGroupMembers)
+    if not ok or type(count) ~= "number" or count < 1 then
+        return
+    end
+    local raid = type(IsInRaid) == "function" and IsInRaid() and true or false
+    local units = {}
+    if raid then
+        for index = 1, count do
+            units[#units + 1] = "raid" .. index
+        end
+    else
+        units[1] = "player"
+        for index = 1, count - 1 do
+            units[#units + 1] = "party" .. index
+        end
+    end
+    for _, unit in ipairs(units) do
+        local nameOk, name = pcall(UnitName, unit)
+        if nameOk and type(name) == "string" then
+            local full = unit == "player" and ownName() or rosterNameFor(name)
+            if full then
+                recordGathering(full, "group", nil)
+            end
+        end
+    end
+end
+
+function EldgrimSync.HeardSay(message, sender)
+    if locked() or not EldgrimSync.GatheringDay(serverNow()) then
+        return
+    end
+    sender = stripRealm(sender)
+    if sender == nil then
+        return
+    end
+    if not sender:find(" ", 1, true) then
+        sender = rosterNameFor(sender)
+    end
+    recordGathering(sender, "say", message)
+end
+
+function EldgrimSync.GroupChanged()
+    if locked() then
+        return
+    end
+    noteGroup()
+end
+
+sendGathering = function()
+    if isMaster() or locked() or not masterIsOnline() then
+        return
+    end
+    local saved = db()
+    if type(saved.pendingGathering) == "table" then
+        return
+    end
+    purgeGatheringHeld()
+    local held = saved.gathering
+    if #held == 0 then
+        return
+    end
+    local batchId = "g" .. tostring(serverNow()) .. "x" .. tostring(nextBatchId)
+    nextBatchId = nextBatchId + 1
+    local chunks = {}
+    local ids = {}
+    local size = 0
+    for index = 1, #held do
+        local line = held[index]
+        local chunk = encode({ line.day, line.speaker, line.kind, line.text or "", line.received })
+        if #ids > 0 and (#ids >= GATHERING_BATCH_LINES or size + #chunk > GATHERING_BATCH_BYTES) then
+            break
+        end
+        chunks[#chunks + 1] = chunk
+        ids[#ids + 1] = line.id
+        size = size + #chunk + 1
+    end
+    saved.pendingGathering = {
+        id = batchId,
+        ids = ids,
+        sentAt = mono(),
+    }
+    transmit("WHISPER", MASTER, "GATH", encode({ batchId }) .. "|" .. table.concat(chunks, "^"))
+end
+
+local function onGathering(sender, payload)
+    if not isMaster() or not onRoster(sender) then
+        return
+    end
+    local batchId, rest = payload:match("^([^|]*)|(.*)$")
+    if not batchId then
+        return
+    end
+    batchId = unescape(batchId)
+    if rest and rest ~= "" then
+        for _, chunk in ipairs(splitSep(rest, "^")) do
+            local fields = decode(chunk)
+            local day, speaker, kind, text = fields[1], fields[2], fields[3], fields[4]
+            local received = tonumber(fields[5])
+            -- A mark counts only for the hour it names, and only for someone on the roster.
+            if received and day and EldgrimSync.GatheringDay(received) == day
+                and (kind == "say" or kind == "group") and onRoster(speaker)
+                and (kind == "group" or (type(text) == "string" and text ~= "")) then
+                storeGathering(day, speaker, kind, text, received, sender)
+            end
+        end
+    end
+    transmit("WHISPER", sender, "GACK", encode({ batchId }))
+end
+
+local function onGatheringAck(sender, payload)
+    if sender ~= MASTER then
+        return
+    end
+    local batchId = decode(payload)[1]
+    local saved = db()
+    local pending = saved.pendingGathering
+    if type(pending) ~= "table" or pending.id ~= batchId or type(pending.ids) ~= "table" then
+        return
+    end
+    local drop = {}
+    for index = 1, #pending.ids do
+        drop[pending.ids[index]] = true
+    end
+    local kept = {}
+    for _, line in ipairs(saved.gathering) do
+        if not drop[line.id] then
+            kept[#kept + 1] = line
+        end
+    end
+    saved.gathering = kept
+    saved.pendingGathering = nil
+    sendGathering()
+end
+
+-- Once a second: note the group when the hour opens, send what is held when it
+-- closes, and give up on a batch that was never acknowledged.
+local function gatheringTick()
+    local now = mono()
+    if now < gatheringCheckAt then
+        return
+    end
+    gatheringCheckAt = now + 1
+    local day = EldgrimSync.GatheringDay(serverNow())
+    if day and day ~= gatheringOpen then
+        gatheringOpen = day
+        noteGroup()
+    elseif not day and gatheringOpen then
+        gatheringOpen = nil
+        sendGathering()
+    end
+    local pending = db().pendingGathering
+    if type(pending) == "table" and (type(pending.sentAt) ~= "number" or now - pending.sentAt > 120 or now < pending.sentAt) then
+        db().pendingGathering = nil
+    end
+end
+
 local function dispatch(channel, sender, kind, payload)
     if kind == "HELLO" and channel == "GUILD" then
         onHello(sender, payload)
@@ -1301,6 +1672,10 @@ local function dispatch(channel, sender, kind, payload)
         onBatch(sender, payload)
     elseif kind == "ACK" and channel == "WHISPER" then
         onAck(sender, payload)
+    elseif kind == "GATH" and channel == "WHISPER" then
+        onGathering(sender, payload)
+    elseif kind == "GACK" and channel == "WHISPER" then
+        onGatheringAck(sender, payload)
     end
 end
 
@@ -1372,6 +1747,7 @@ end
 
 function EldgrimSync.Pump()
     expirePartials()
+    gatheringTick()
     if promote() then
         refreshBoard()
     end
@@ -1738,6 +2114,8 @@ local function onLogin()
     sessionStart = serverNow()
     db()
     purgeHeld()
+    purgeGatheringHeld()
+    db().pendingGathering = nil
     promote()
     dropOldQuests()
     requestRoster()
@@ -1769,9 +2147,24 @@ if type(CreateFrame) == "function" then
     frame:RegisterEvent("PLAYER_LOGIN")
     frame:RegisterEvent("CHAT_MSG_ADDON")
     frame:RegisterEvent("GUILD_ROSTER_UPDATE")
+    frame:RegisterEvent("CHAT_MSG_SAY")
+    frame:RegisterEvent("GROUP_ROSTER_UPDATE")
     frame:SetScript("OnEvent", function(_, event, ...)
         if event == "PLAYER_LOGIN" then
             onLogin()
+            return
+        end
+        if event == "CHAT_MSG_SAY" then
+            -- Read nothing from the event until the chat restriction check passes.
+            if locked() then
+                return
+            end
+            local message, sender = ...
+            EldgrimSync.HeardSay(message, sender)
+            return
+        end
+        if event == "GROUP_ROSTER_UPDATE" then
+            EldgrimSync.GroupChanged()
             return
         end
         if event == "GUILD_ROSTER_UPDATE" then

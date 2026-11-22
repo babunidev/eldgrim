@@ -22,6 +22,7 @@ class Refresh:
     note: str = ""
     newcomers: list[str] = field(default_factory=list)
     cleared: list[str] = field(default_factory=list)
+    gatherings: dict[str, int] = field(default_factory=dict)
 
 
 BRIEF_LIMIT = 2000
@@ -195,6 +196,7 @@ def refresh_guild(
         result.chat_error = chat.error
         result.chat_skipped = chat.skipped
         result.cleared = list(chat.cleared)
+        result.gatherings = {day: len(names) for day, names in chat.gatherings.items()}
         census = take_census(db, now)
         result.brief = guild_brief(
             describe_newcomers(db, result.newcomers),

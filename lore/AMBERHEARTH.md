@@ -11,7 +11,7 @@ The fellowship was founded by Jasmine Amberbrew, who gathered signatures in Khar
 ## Rank names
 The current recorded rank names are:
 1. Ember
-2. Wayfarer
+2. Cinder
 3. Kindler
 4. Hearthkeeper
 5. Hearthwarden

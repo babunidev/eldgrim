@@ -11,10 +11,11 @@ from pathlib import Path
 
 from eldgrim_agent.paths import DATABASE_PATH, ensure_runtime
 
-RANKS = ("Ember", "Wayfarer", "Kindler", "Hearthkeeper", "Hearthwarden")
+RANKS = ("Ember", "Cinder", "Kindler", "Hearthkeeper", "Hearthwarden")
 # Minimum standing before that rank is in view. Ember is the entry rank.
 # Founder decision 2026-11-20: 60, 90, 150 and 200, on a 0–200 scale.
-RANK_MINIMUM = {"Wayfarer": 60, "Kindler": 90, "Hearthkeeper": 150, "Hearthwarden": 200}
+# Founder decision 2026-11-22: the second rank, Wayfarer, is renamed Cinder.
+RANK_MINIMUM = {"Cinder": 60, "Kindler": 90, "Hearthkeeper": 150, "Hearthwarden": 200}
 STARTING_STANDING = 50
 STANDING_MAX = 200
 
@@ -97,6 +98,12 @@ CREATE TABLE IF NOT EXISTS quest_seen (
     remote_id INTEGER NOT NULL,
     PRIMARY KEY (kind, remote_id)
 );
+CREATE TABLE IF NOT EXISTS gathering_attended (
+    person_id INTEGER NOT NULL REFERENCES person(id),
+    day TEXT NOT NULL,
+    created TEXT NOT NULL,
+    PRIMARY KEY (person_id, day)
+);
 CREATE TABLE IF NOT EXISTS mention_seen (
     remote_id INTEGER PRIMARY KEY
 );
@@ -133,6 +140,9 @@ def _migrate(db: sqlite3.Connection) -> None:
     if "census_level" not in columns:
         db.execute("ALTER TABLE character ADD COLUMN census_level INTEGER")
     db.execute("UPDATE character SET level = 1 WHERE level IS NULL")
+    # The second rank was renamed in game and on Discord on 22 November 2026.
+    db.execute("UPDATE person SET rank = 'Cinder' WHERE rank = 'Wayfarer'")
+    db.execute("UPDATE character SET game_rank = 'Cinder' WHERE game_rank = 'Wayfarer'")
     quest_columns = {str(row["name"]) for row in db.execute("PRAGMA table_info(quest)").fetchall()}
     if quest_columns and "kind" not in quest_columns:
         db.execute("ALTER TABLE quest ADD COLUMN kind TEXT NOT NULL DEFAULT 'other'")

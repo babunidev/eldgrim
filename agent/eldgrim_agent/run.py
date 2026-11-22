@@ -181,6 +181,9 @@ def _prepare(run: _Run) -> str:
         run.report["forge"] = refreshed.forge_error
     if refreshed.chat_error:
         run.report["chat"] = refreshed.chat_error
+    if refreshed.gatherings:
+        # How many members each Sunday gathering counted. Names stay in the database.
+        run.report["gatherings"] = refreshed.gatherings
     run.prepared = {
         "date": run.started.date().isoformat(),
         "at": run.started.isoformat(timespec="minutes"),

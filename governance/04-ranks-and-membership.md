@@ -8,7 +8,7 @@ Rank names established · Promotion and demotion rules confirmed (Q43–51)
 | Rank | Progression |
 | --- | --- |
 | Ember | Entry rank through the Forge |
-| Wayfarer | Undefined |
+| Cinder | Undefined |
 | Kindler | Undefined |
 | Hearthkeeper | Undefined |
 | Hearthwarden | Undefined |
@@ -31,14 +31,20 @@ Eldgrim may assign specific, revocable event coordination, moderation-assistance
 
 ## Confirmed rank and membership decisions — questions 43–52
 
-- **Q43:** Ember — welcomed fellowship member; Wayfarer — established fellow traveler; Kindler — someone who brings people together; Hearthkeeper — trusted contributor who cares for the fellowship; Hearthwarden — exceptional trust, kindness and service. Ranks signify recognition, not command.
+- **Q43:** Ember — welcomed fellowship member; Cinder (Wayfarer until 22 November 2026) — established fellow traveler; Kindler — someone who brings people together; Hearthkeeper — trusted contributor who cares for the fellowship; Hearthwarden — exceptional trust, kindness and service. Ranks signify recognition, not command.
 - **Q44–47:** Promotions recognize helpfulness, kindness, reliability, creativity, companionship and positive contributions, never attendance quotas, wealth, level or gameplay performance. Eldgrim may promote spontaneously. Members may request consideration without penalty; Eldgrim evaluates documented conduct and explains its decision without shaming comparisons. Repeated requests do not improve priority.
 - **Q48:** Members may refuse a promotion or request a lower rank without penalty.
 - **Q49:** Demotion is reserved for serious misconduct, repeated rule violations or abuse of delegated responsibilities; it is proportionate, documented, explained and appealable. Inactivity and refusal of optional activities do not justify demotion.
 
+## Founder decision — 22 November 2026
+
+**Established.** The second rank is renamed **Cinder** (formerly Wayfarer), in game and on Discord. Its meaning, its standing minimum of 60 and its place between Ember and Kindler are unchanged.
+
+**Amends Q44.** Attending a Sunday gathering adds one point to the private standing score, once per Sunday. Because the score is the orientation for promotion, attendance now counts toward it. Staying away still costs nothing: nobody loses standing, is demoted or is passed over for not attending (Q115, Q157), and there is no attendance quota. The rest of Q44–47 stands.
+
 ## Founder decision — 20 November 2026
 
-**Established.** Supersedes the minimums and the day's-keyword condition of 12 November below. The private score runs from 0 to 200. Wayfarer is in view at 60, Kindler at 90, Hearthkeeper at 150, and Hearthwarden at 200. The founder holds 200 and remains Hearthwarden. Positivity is the share of a member's days in Eldgrim's database without a negative keyword, counting every day since the member was first recorded; a silent day counts as a good one (Q60). The note to Hearthkeepers and Hearthwardens recommends a promotion when the score reaches the next rank's minimum and positivity is at least 75%, and a demotion when the score is below the current rank's minimum and positivity is under 50%. Anyone else past a minimum is named only to look at. It may name more than one person. Whether someone is promoted is still decided in the guild, for example by a vote; an actual demotion remains the Q49 decision of the keepers and wardens.
+**Established.** Supersedes the minimums and the day's-keyword condition of 12 November below. The private score runs from 0 to 200. Cinder is in view at 60, Kindler at 90, Hearthkeeper at 150, and Hearthwarden at 200. The founder holds 200 and remains Hearthwarden. Positivity is the share of a member's days in Eldgrim's database without a negative keyword, counting every day since the member was first recorded; a silent day counts as a good one (Q60). The note to Hearthkeepers and Hearthwardens recommends a promotion when the score reaches the next rank's minimum and positivity is at least 75%, and a demotion when the score is below the current rank's minimum and positivity is under 50%. Anyone else past a minimum is named only to look at. It may name more than one person. Whether someone is promoted is still decided in the guild, for example by a vote; an actual demotion remains the Q49 decision of the keepers and wardens.
 
 ## Founder decision — 12 November 2026 (minimums superseded on 20 November)
 

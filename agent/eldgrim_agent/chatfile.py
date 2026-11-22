@@ -9,6 +9,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 
+from eldgrim_agent.gathering import award as award_gatherings
 from eldgrim_agent.keywords import validate_keyword
 from eldgrim_agent.lua_saved import (
     Table,
@@ -51,6 +52,7 @@ class ChatOutcome:
     cleared: list[str] = field(default_factory=list)
     departed: list[str] = field(default_factory=list)
     pending_hashes: list[str] = field(default_factory=list)
+    gatherings: dict[str, list[str]] = field(default_factory=dict)
 
 
 def saved_path(path: Path | None = None) -> Path | None:
@@ -135,13 +137,16 @@ def reduce_chat(
         outcome.skipped = "empty"
     else:
         _reduce_characters(db, characters, ask, now, outcome)
-        if outcome.cleared:
-            if _clear_finished(path, original, tables, outcome.cleared):
-                forget_hashes(db, outcome.pending_hashes)
-                db.commit()
-            else:
-                outcome.error = outcome.error or "The guild-chat file changed before it could be cleared."
-                outcome.cleared = []
+    # The Sunday gathering. A day already recorded is never counted twice, so
+    # a clear that fails only leaves the day in the file for the next run.
+    days, outcome.gatherings = award_gatherings(db, tables.get("EldgrimGathering"), now)
+    if outcome.cleared or days:
+        if _clear_finished(path, original, tables, outcome.cleared, days):
+            forget_hashes(db, outcome.pending_hashes)
+            db.commit()
+        else:
+            outcome.error = outcome.error or "The guild-chat file changed before it could be cleared."
+            outcome.cleared = []
     roster = tables.get("EldgrimRoster")
     if isinstance(roster, Table):
         updated, names = _roster_members(roster)
@@ -232,15 +237,29 @@ def normalize_key(name: str) -> str:
     return normalize(name)
 
 
-def _clear_finished(path: Path, original: bytes, tables: dict[str, Table], cleared: list[str]) -> bool:
+def _clear_finished(
+    path: Path,
+    original: bytes,
+    tables: dict[str, Table],
+    cleared: list[str],
+    days: list[str] | None = None,
+) -> bool:
     characters = tables.get("EldgrimDB")
-    if not isinstance(characters, Table) or not cleared:
+    days = list(days or [])
+    if not cleared and not days:
         return False
+    if cleared and not isinstance(characters, Table):
+        return False
+    if not isinstance(characters, Table):
+        characters = Table()
     before = {name: _without_messages(table) for name, table in _named(characters)}
     roster_before = tables.get("EldgrimRoster")
     for name, table in _named(characters):
         if name in cleared:
             empty_messages(table)
+    gatherings = tables.get("EldgrimGathering")
+    if isinstance(gatherings, Table) and days:
+        gatherings.items = [(key, value) for key, value in gatherings.items if key not in days]
     payload = dump_saved(tables).encode("utf-8")
     temporary = path.with_name(path.name + ".eldgrim-tmp")
     try:
@@ -249,10 +268,10 @@ def _clear_finished(path: Path, original: bytes, tables: dict[str, Table], clear
             return False
         temporary.write_bytes(payload)
         checked = parse_saved(temporary.read_text(encoding="utf-8"))
-        _verify_rewrite(checked, before, roster_before, cleared)
+        _verify_rewrite(checked, before, roster_before, cleared, days)
         os.replace(temporary, path)
         written = parse_saved(path.read_text(encoding="utf-8"))
-        _verify_rewrite(written, before, roster_before, cleared)
+        _verify_rewrite(written, before, roster_before, cleared, days)
         return True
     except (OSError, ValueError):
         return False
@@ -264,10 +283,21 @@ def _named(characters: Table) -> list[tuple[str, Table]]:
     return [(key, value) for key, value in characters.items if isinstance(key, str) and isinstance(value, Table)]
 
 
-def _verify_rewrite(tables: dict[str, Table], before: dict, roster_before: Table | None, cleared: list[str]) -> None:
+def _verify_rewrite(
+    tables: dict[str, Table],
+    before: dict,
+    roster_before: Table | None,
+    cleared: list[str],
+    days: list[str] | None = None,
+) -> None:
+    gatherings = tables.get("EldgrimGathering")
+    if isinstance(gatherings, Table) and any(key in (days or []) for key, _ in gatherings.items):
+        raise ValueError("A gathering day was still present after the clear.")
     characters = tables.get("EldgrimDB")
     if not isinstance(characters, Table):
-        raise ValueError("EldgrimDB missing after rewrite.")
+        if cleared or before:
+            raise ValueError("EldgrimDB missing after rewrite.")
+        characters = Table()
     found = dict(_named(characters))
     for name in cleared:
         messages = character_messages(found[name])

@@ -79,7 +79,7 @@ EldgrimRoster = {
 },
 ["Élodie Marsh"] = {
 ["class"] = "Druid",
-["rank"] = "Wayfarer",
+["rank"] = "Cinder",
 ["online"] = false,
 ["rankIndex"] = 3,
 },
@@ -102,7 +102,7 @@ def member(discord_id, name, rank, characters, fellowship="Amberhearth", owner=F
 def people():
     return [
         member(1, "Mira", "Ember", [{"name": "Mira Stone", "faction": "Alliance", "race": "Human", "class": "Mage"}]),
-        member(2, "Élodie", "Wayfarer", [{"name": "Élodie Marsh", "faction": "Alliance", "race": "Night Elf", "class": "Druid"}]),
+        member(2, "Élodie", "Cinder", [{"name": "Élodie Marsh", "faction": "Alliance", "race": "Night Elf", "class": "Druid"}]),
         member(3, "Owner", "Hearthwarden", [{"name": "Owner Ash", "faction": "Alliance", "race": "Human", "class": "Paladin"}], owner=True),
     ]
 
@@ -242,7 +242,7 @@ class RosterTests(unittest.TestCase):
             (NOW.isoformat(),),
         )
         self.db.commit()
-        person_id = ensure_member(self.db, "Quiet Glen", {"game_rank": "Wayfarer"}, NOW)
+        person_id = ensure_member(self.db, "Quiet Glen", {"game_rank": "Cinder"}, NOW)
         self.db.commit()
         rows = self.db.execute("SELECT person_id, link FROM character WHERE name = 'Quiet Glen'").fetchall()
         self.assertEqual(len(rows), 1)
@@ -253,7 +253,7 @@ class RosterTests(unittest.TestCase):
     def test_discord_registration_attaches_to_the_existing_member(self):
         from eldgrim_agent.store import ensure_member
 
-        ensure_member(self.db, "Quiet Glen", {"game_rank": "Wayfarer", "class_name": "Hunter"}, NOW)
+        ensure_member(self.db, "Quiet Glen", {"game_rank": "Cinder", "class_name": "Hunter"}, NOW)
         self.db.commit()
         before = self.db.execute("SELECT COUNT(*) AS n FROM person").fetchone()["n"]
         upsert_forge(
@@ -270,7 +270,7 @@ class RosterTests(unittest.TestCase):
         ).fetchone()
         self.assertEqual(person["display_name"], "Glen")
         self.assertEqual(person["standing"], 60)
-        self.assertEqual(person["rank"], "Wayfarer")
+        self.assertEqual(person["rank"], "Cinder")
 
     def test_a_character_no_longer_declared_becomes_its_own_in_game_member(self):
         five = [{"name": name, "faction": "Alliance", "race": "Human", "class": "Mage"}
@@ -342,7 +342,7 @@ EldgrimDB = {
         later = ARCHIVE.replace('["updated"] = 100', '["updated"] = 200').replace(
             """["Élodie Marsh"] = {
 ["class"] = "Druid",
-["rank"] = "Wayfarer",
+["rank"] = "Cinder",
 ["online"] = false,
 ["rankIndex"] = 3,
 },

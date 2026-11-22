@@ -42,10 +42,16 @@ class StandingTests(unittest.TestCase):
         return person_id
 
     def test_new_minimums_and_cap(self):
-        self.assertEqual(store.RANK_MINIMUM, {"Wayfarer": 60, "Kindler": 90, "Hearthkeeper": 150, "Hearthwarden": 200})
+        self.assertEqual(store.RANK_MINIMUM, {"Cinder": 60, "Kindler": 90, "Hearthkeeper": 150, "Hearthwarden": 200})
         person = self.person("High", 199)
         self.assertEqual(store.adjust_standing(self.db, person, 5, "test", None, NOW), 1)
         self.assertEqual(self.db.execute("SELECT standing FROM person WHERE id = ?", (person,)).fetchone()[0], 200)
+
+    def test_the_old_wayfarer_rank_becomes_cinder(self):
+        person = self.person("Renamed", 61, "Wayfarer")
+        store._migrate(self.db)
+        rank = self.db.execute("SELECT rank FROM person WHERE id = ?", (person,)).fetchone()[0]
+        self.assertEqual(rank, "Cinder")
 
     def test_positivity_counts_member_days_and_each_negative_day_once(self):
         person = self.person("Ten Days", 50, days=10, negative_days=(0, 0, 3))
@@ -69,8 +75,8 @@ class StandingTests(unittest.TestCase):
         self.assertEqual(result.promote, ["Bright"])
 
     def test_demotion_needs_a_low_score_and_under_50_percent(self):
-        self.person("Falling", 55, "Wayfarer", days=4, negative_days=(0, 1, 2))  # 25%
-        self.person("Below", 55, "Wayfarer", days=4, negative_days=(1, 2))  # 50%
+        self.person("Falling", 55, "Cinder", days=4, negative_days=(0, 1, 2))  # 25%
+        self.person("Below", 55, "Cinder", days=4, negative_days=(1, 2))  # 50%
         self.person("Ember Low", 10, days=4, negative_days=(0, 1, 2))
         result = recommend(self.db, {}, reviewed=True, now=NOW)
         self.assertEqual(result.demote, ["Falling"])
@@ -88,7 +94,7 @@ class StandingTests(unittest.TestCase):
 
     def test_note_lines_and_no_score_or_share_printed(self):
         self.person("Bright", 61, days=4)
-        self.person("Falling", 55, "Wayfarer", days=4, negative_days=(0, 1, 2))
+        self.person("Falling", 55, "Cinder", days=4, negative_days=(0, 1, 2))
         note = render_note(recommend(self.db, {}, reviewed=True, now=NOW))
         self.assertIn("Consider Bright for promotion.\nConsider Falling for demotion.", note)
         for private in ("61", "55", "25", "%"):

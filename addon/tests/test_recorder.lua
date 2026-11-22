@@ -184,4 +184,36 @@ local function inspectSavedData(value)
 end
 
 inspectSavedData(EldgrimDB)
+
+-- A rank change is saved at the next roster update, without waiting a day.
+local guildRoster = {
+    { "Ran Estuary", "Ember", 4 },
+    { "Faenra Greenleaf", "Ember", 4 },
+}
+function GetNumGuildMembers()
+    return #guildRoster
+end
+function GetGuildRosterInfo(index)
+    local row = guildRoster[index]
+    return row[1], row[2], row[3], 30, "Druid", "Ironforge", "", "", 1
+end
+function IsInGuild()
+    return true
+end
+EldgrimRoster.updated = nil
+frame.onEvent(frame, "GUILD_ROSTER_UPDATE", false)
+assert(EldgrimRoster.members["Faenra Greenleaf"].rank == "Ember", "the first roster is saved")
+local firstSaved = EldgrimRoster.updated
+guildRoster[2] = { "Faenra Greenleaf", "Cinder", 3 }
+frame.onEvent(frame, "GUILD_ROSTER_UPDATE", false)
+assert(EldgrimRoster.members["Faenra Greenleaf"].rank == "Cinder", "a promotion is saved at the next roster update")
+guildRoster[3] = { "New Friend", "Ember", 4 }
+frame.onEvent(frame, "GUILD_ROSTER_UPDATE", false)
+assert(EldgrimRoster.members["New Friend"] ~= nil, "a new member is saved at the next roster update")
+local before = EldgrimRoster.members
+guildRoster = { { "Ran Estuary", "Ember", 4 } }
+frame.onEvent(frame, "GUILD_ROSTER_UPDATE", false)
+assert(EldgrimRoster.members == before, "a shorter roster waits for the daily refresh")
+assert(type(firstSaved) == "number")
+
 print("Eldgrim mock tests passed. These are not in-game tests.")

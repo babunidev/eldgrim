@@ -4,6 +4,14 @@ A concise account of meaningful project development, written from the human crea
 
 Entries before 14 November 2026 that say only "AI", or name no tool, did not record which tool or model did the work. The [collaboration record](AI_COLLABORATION.md) lists them as earlier AI help, tool and model not recorded.
 
+## 2026-11-22 — Cinder, and who came to the fire
+
+Six of us lit fires along the road from the Valley of Kings to the North Gate pass, and the guild named the second rank Cinder in chat that evening. Faenra Greenleaf and Galandor Levalois were promoted to it. Claude Code (Claude Opus 5.5) gave the five members who were there their point by hand, after backing up the database, and renamed Wayfarer to Cinder in the agent, the bot and the documents. After I approved its preview, the bot renamed the Discord role. The bot was deployed with the new info text at the same time.
+
+Nothing recorded attendance yet, so it built that next. Every copy of the addon now notes guild members who speak in /say, and guild members in the group, on Sunday from 19:00 to 20:00 Swedish time. The other members' addons pass their notes to mine when I log in, and the daily run turns each Sunday into one point per member. It also found why the promotions were missing from the saved roster: the roster was saved at most once a day. It is now saved as soon as a rank changes or someone joins. The addon is developed in this project and installed into the game with `addon/install-local.sh`; the addon README now spells out that workflow.
+
+**Result:** 141 agent tests, 109 bot tests and five addon mock suites passed, including 33 new gathering checks. The bot passed its tests on the server and restarted. The role reads Cinder with its permissions unchanged. The addon was installed into the game folder with `addon/install-local.sh` and is not yet tested in game.
+
 ## 2026-11-22 — Quests without the rules in them
 
 Every quest Eldgrim wrote ended with the same out-of-character paragraph about pictures, Discord and the Roar, because the quest instructions required it and a quest without it was refused. The way to finish an Eldgrim quest never changes, so it belongs in one place. Claude Code (Claude Opus 5.5) turned the rule around: the quest is written in character only, and one that mentions screenshots, Discord, emoji or the Roar emoji is refused and the fixed spare text is sent. The bonfire and spare texts lost their proof paragraph. The `info` reply and the Eldgrim channel description now carry the finishing steps as a numbered list, pointing to #roar-screenshots. The description became its own shorter text, because the full info had been cut off partway through the quest paragraph.

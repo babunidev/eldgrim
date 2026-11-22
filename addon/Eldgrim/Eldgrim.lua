@@ -1,5 +1,6 @@
 -- Eldgrim - World of Warcraft Forever
--- Passive local archive: full guild-chat lines, plus a guild roster refreshed once a day.
+-- Passive local archive: full guild-chat lines, plus a guild roster refreshed once a day
+-- and again when a rank changes or a member joins.
 -- /eldgrim whispers the guild invitation to the current target.
 
 local GUILD_CLUB_TYPE = 2
@@ -467,6 +468,45 @@ local function saveGuildRoster()
     return true
 end
 
+-- A promotion or a new member should not wait a day. When the client reports a
+-- roster update anyway, compare ranks and names with the saved roster, and save
+-- at once if a listed member's rank changed or a new member appeared. A shorter
+-- list waits for the daily refresh, so a partly loaded roster removes nobody.
+local function rosterChanged()
+    local saved = EldgrimRoster.members
+    if type(saved) ~= "table" then
+        return false
+    end
+    if type(GetNumGuildMembers) ~= "function" or type(GetGuildRosterInfo) ~= "function" then
+        return false
+    end
+    local countOk, count = pcall(GetNumGuildMembers)
+    if not countOk or type(count) ~= "number" or count <= 0 then
+        return false
+    end
+    local savedCount = 0
+    for _ in pairs(saved) do
+        savedCount = savedCount + 1
+    end
+    if count < savedCount then
+        return false
+    end
+    for index = 1, count do
+        local ok, name, rankName = pcall(GetGuildRosterInfo, index)
+        name = ok and characterName(name) or nil
+        if name then
+            local member = saved[name]
+            if type(member) ~= "table" then
+                return true
+            end
+            if type(rankName) == "string" and rankName ~= "" and member.rank ~= rankName then
+                return true
+            end
+        end
+    end
+    return false
+end
+
 local function requestRosterIfDue()
     if rosterRequestPending or not rosterIsDue() or not playerInGuild() then
         return
@@ -564,7 +604,7 @@ eventFrame:SetScript("OnEvent", function(_, event, ...)
             return
         end
 
-        if rosterRequestPending or rosterIsDue() then
+        if rosterRequestPending or rosterIsDue() or rosterChanged() then
             if saveGuildRoster() then
                 rosterRequestPending = false
             end

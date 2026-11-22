@@ -4,6 +4,20 @@ A concise record of meaningful creative and structural decisions.
 
 Entries are listed newest first.
 
+## 2026-11-22 — Cinder, and a point for the Sunday gathering
+
+**Decision:** The second guild rank, Wayfarer, is renamed Cinder, in game, on Discord, in Eldgrim's code and in the documents. Its meaning and its minimum of 60 stay.
+
+**Decision:** The Sunday gathering is Sunday 19:00–20:00 Swedish time. Every copy of the addon records who is there in that hour and only then: guild members who speak in /say near the addon user, and guild members in the addon user's group or raid. Jasmine Amberbrew's client keeps the record. Other clients hold theirs and pass it to her when she is next online, so a gathering she misses is still recorded. Each member present gets one point on the private standing score, once per Sunday. Nobody witnesses themselves alone.
+
+**Amends:** Q44, which said promotions do not reward attendance. Absence still costs nothing, and there is no quota.
+
+**Why:** The first lit-road event on 22 November had six members, and the addon did not record attendance at all. The rank was renamed in guild chat that evening.
+
+**Boundary:** The say lines are used only to see who was there. They are not scored for keywords and are cleared after the daily run. A stranger's /say is never recorded. The five members at the 22 November event (Galandor Levalois, Entai Dreamfall, Ran Estuary, Faenra Greenleaf and Grimaldus Cragblade) received their point by hand, after a database backup; the founder's score was already at the 200 cap.
+
+**Status:** The rank rename is live on Discord and in the bot, which was deployed on 22 November 2026. The addon record and the daily run's point are built and covered by mock tests, and not yet tested in game.
+
 ## 2026-11-22 — A quest is roleplay; how it ends is told once
 
 **Decision:** The quest Eldgrim writes is in character only. It does not say how a quest is finished or proven. Every Eldgrim quest ends the same way, and that is told in the Eldgrim channel description and in the `info` reply, as numbered steps: take a screenshot in the game, post it in Discord with @Eldgrim mentioned in the same message, best in #roar-screenshots though any channel works, and another member of Amberhearth adds the Roar emoji. Any rank may witness, and the member's own Roar does not count.
@@ -12,7 +26,7 @@ Entries are listed newest first.
 
 **Boundary:** The proof itself is unchanged. The thanks after the Roar and the reminder for an unfinished quest stay as they were.
 
-**Status:** Written into the local agent and the server bot, with tests. The bot is not yet deployed with it, so the live channel description and info reply still show the old text.
+**Status:** Written into the local agent and the server bot, with tests. The bot was deployed with it on 22 November 2026.
 
 ## 2026-11-21 — The announcement is a call to the fire
 

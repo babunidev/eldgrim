@@ -1,7 +1,7 @@
 # Eldgrim hearth board
 
 **Status:** Implemented in `Eldgrim/`. Mock tests passed. Not tested in World of Warcraft Forever.  
-**Version:** 0.4.0-alpha.  
+**Version:** 0.5.0-alpha.  
 **Client:** Forever 1.60.1, interface 16001. The build used for a future in-game test still has to be recorded.
 
 The weekly ember is written on the master's machine. Only **Jasmine Amberbrew** may publish it, and only when `CHAT_MSG_ADDON` reports her as the sender. A name written inside the payload is ignored. Other clients may show the last ember they saved. They never send that copy on.
@@ -15,6 +15,8 @@ The weekly ember is written on the master's machine. Only **Jasmine Amberbrew** 
 Week boundaries use `GetServerTime()`. Sunday is 00:00 UTC. The current ember ends at the first Sunday 00:00 UTC strictly after `starts`. At that moment `next` becomes `current`, even if `next.starts` says something else. If the current ember has ended and there is no next, the card stays up, with its completed-by list, and says the next ember has not arrived. Saved history keeps the last 4 weeks. There is no ember score.
 
 An alt of the same account is not the master. Logging in on an alt publishes nothing and does not take the relay.
+
+A roster update that shows a changed rank or a new member is saved at once, without waiting for the daily refresh; a shorter list still waits for the daily refresh, so a partly loaded roster removes nobody (2026-11-22).
 
 In Forever, `UnitName("player")` returned only the first name ("Jasmine") on 20 November 2026, while guild chat and `GetGuildRosterInfo` use "First Surname" (**in-game observed**: the saved roster and a test quest). The sync takes this client's full name from its own roster entry, matched by `UnitGUID("player")` against the roster's GUID, or else from the only roster name that starts with the first name and a space. The GUID is compared and dropped, never saved. Until the roster arrives the master's duties wait; a `GUILD_ROSTER_UPDATE` starts them and sends one more hello. **Unverified:** that the roster's 17th value is the GUID in Forever, and that `CHAT_MSG_ADDON` names the sender "Jasmine Amberbrew".
 
@@ -67,6 +69,21 @@ Nobody completes the ember on the board, and the board has no button for it (dec
 
 The board shows the names as "Completed by". `EldgrimVerified.lua` holds only the week and the character name.
 
+## The Sunday gathering
+
+Founder decision, 22 November 2026. Every copy of the addon records who is at the Sunday gathering, and only during it: **Sunday 19:00 to 20:00 Swedish time** (Europe/Stockholm, which follows summer time). The hour is worked out from `GetServerTime()`, so it is the same for every member wherever they live. Nothing is recorded outside that hour.
+
+- **/say:** a `CHAT_MSG_SAY` line from a character on the guild roster is kept with the speaker, the text and the time. A speaker who is not in the guild is skipped. The payload is not read during chat lockdown.
+- **Group:** when the hour opens, and at every `GROUP_ROSTER_UPDATE` during it, each guild member in this character's party or raid is marked once, without text. A unit name without a surname is matched to the only roster name that starts with it.
+
+On Jasmine Amberbrew's client the record goes straight into `EldgrimGathering`, keyed by the Sunday's date. Any other client holds it in `EldgrimQuests.gathering` and whispers it to her (`GATH`) when she is next heard: her hello at login, her answer to a hello, or the end of the hour while she is online. Batches are at most 25 lines and about 6,000 bytes. She checks that the sender and the named member are on her roster and that the time falls inside the hour the batch names, stores it, and acknowledges (`GACK`). The sender deletes exactly that batch and sends the next. An unacknowledged batch is sent again after two minutes or at the next login. Held records older than 14 days are deleted.
+
+A record she saw herself has no `passedBy`. A record passed on by one member keeps that member's name. The same say line within 10 seconds, or the same group mark, passed on by a second member loses `passedBy`.
+
+The daily run gives one standing point per member per Sunday attended, never twice for the same Sunday, once that Sunday's hour is over. A record counts when she saw it herself, when two members passed it on, or when the one member who passed it on is someone else: nobody witnesses themselves alone. The say lines are used only to see who was there. They are not scored for keywords and are cleared from the file with the day.
+
+**Unverified in Forever 1.60.1:** that `CHAT_MSG_SAY` names the speaker "First Surname", that `UnitName` on a party or raid unit gives the first name only, and that `GROUP_ROSTER_UPDATE` fires as in other clients.
+
 ## The window
 
 No minimap button. The flame emblem is attached to the guild window (`CommunitiesFrame`), centred on its top-left portrait, and glows on hover. The tooltip says "Eldgrim's Hearth". The guild crest is drawn as an overlay above the portrait, so the flame is raised above the highest frame in the guild window whenever the window opens or changes view, and once more a frame later. The portrait and the crest overlay under it are faded with `SetAlpha(0)` and are not reparented. **Unverified in Forever 1.60.1:** the key names `PortraitContainer` and `PortraitOverlay` on the guild window. Other installed Forever addons use `PortraitContainer` on other windows. If neither is found, the flame sits at the window's top-left.
@@ -97,3 +114,5 @@ The textures are drawn by `addon/tools/hearth_art.py`. Its frame geometry must m
 - A confirmation passed on by a peer stays unconfirmed. The creator's own confirmation settles it.
 - A Roared ember picture reaches the board: bot export, daily run, `EldgrimVerified.lua`, Jasmine Amberbrew's login, then other members.
 - Addon whispers reach `Jasmine Amberbrew`, and the live message cap and rate are written down.
+- On a Sunday from 19:00 Swedish time, /say from a guild member and the guild members in the group are recorded; a stranger's /say is not; nothing is recorded at 20:00 or later.
+- A member's held gathering record reaches Jasmine Amberbrew at her next login and is deleted from the member only after her acknowledgement.

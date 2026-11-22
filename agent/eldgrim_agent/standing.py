@@ -31,7 +31,7 @@ class Recommendation:
 
 def _next_rank(rank: str) -> str:
     if rank not in RANKS:
-        return "Wayfarer"
+        return "Cinder"
     index = RANKS.index(rank)
     if index + 1 >= len(RANKS):
         return ""

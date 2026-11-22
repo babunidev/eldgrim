@@ -4,7 +4,7 @@ A separate technical workstream for the Eldgrim World of Warcraft Forever addon.
 
 ## Current scope
 
-The archive is still the guild-chat recorder in [SPECIFICATION.md](SPECIFICATION.md). Version 0.4.0-alpha adds the hearth board in [HEARTH.md](HEARTH.md): a weekly ember that only Jasmine Amberbrew can publish, member quests, and a one-way relay of guild chat. The board has not been tested in game.
+The archive is still the guild-chat recorder in [SPECIFICATION.md](SPECIFICATION.md). Version 0.4.0-alpha adds the hearth board in [HEARTH.md](HEARTH.md): a weekly ember that only Jasmine Amberbrew can publish, member quests, and a one-way relay of guild chat. Version 0.5.0-alpha adds the Sunday gathering record, also in [HEARTH.md](HEARTH.md). Neither has been tested in game.
 
 The archive does not record officer chat or other channels. A guild line relayed by one member is kept with the name of the person who passed it on, and the daily run does not score it.
 
@@ -25,7 +25,27 @@ The installable addon source is in `Eldgrim/`:
 
 `tools/hearth_art.py` draws every texture. `tools/preview/preview.sh <folder>` renders the board from sample data, for checking the layout outside the game.
 
-Mocked checks live in `tests/test_recorder.lua`, `tests/test_hearth.lua` and `tests/test_board.lua`. They passed locally. That does not establish that the APIs or the event sequence work in game.
+Mocked checks live in `tests/test_recorder.lua`, `tests/test_hearth.lua`, `tests/test_board.lua`, `tests/test_names.lua` and `tests/test_gathering.lua`. They passed locally. That does not establish that the APIs or the event sequence work in game.
+
+## Development workflow
+
+The addon is developed only here, in `addon/Eldgrim/`, as part of the Eldgrim project. The game folder is never the source.
+
+1. Edit the files in `addon/Eldgrim/`.
+2. Run the mock tests (below) from the repository root.
+3. Run `addon/install-local.sh` to copy the addon into the Forever client's `Interface/AddOns/Eldgrim/`.
+4. Restart the client, or `/reload` when no texture changed, and test in game.
+5. Record what was and was not tested in game, then commit and push.
+
+Mock tests, from the repository root:
+
+```sh
+texlua addon/tests/test_recorder.lua addon/Eldgrim/Eldgrim.lua
+lua addon/tests/test_hearth.lua addon/Eldgrim
+lua addon/tests/test_board.lua addon/Eldgrim
+lua addon/tests/test_names.lua addon/Eldgrim
+lua addon/tests/test_gathering.lua addon/Eldgrim
+```
 
 ## Install for local testing
 

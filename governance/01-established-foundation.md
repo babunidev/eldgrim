@@ -13,7 +13,7 @@
 | Guild philosophy        | Welcoming, voluntary, creative, socially inclusive                                 |
 | Membership              | Several characters per player in the guild; one registered with Eldgrim in the Character Forge (2026-11-20); no fixed membership limit |
 | Expectations            | No mandatory attendance, performance, progression, gold, or resource contributions |
-| Guild ranks             | Ember → Wayfarer → Kindler → Hearthkeeper → Hearthwarden                           |
+| Guild ranks             | Ember → Cinder → Kindler → Hearthkeeper → Hearthwarden                           |
 | Rank meaning            | Recognition and social standing, not command over other members                    |
 | Eldgrim's authority     | Approved future goal (Q143): autonomous administration within defined rules and technical permissions. Not active until founder deployment authorization (Q170) |
 | Current technical model | Always-online Discord bot, locally operated daily AI agent, separate WoW addon     |
