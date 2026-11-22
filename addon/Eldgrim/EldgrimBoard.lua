@@ -7,7 +7,7 @@ local C = Skin.C
 -- An ember is completed only through Discord, never on the board. How is
 -- said only in the question-mark tooltip, after the card's own hint.
 local EMBER_PROOF = "To complete it, post a screenshot in the Eldgrim channel with @Eldgrim and the word ember. "
-    .. "When another Amberhearth member Roars it, the next daily run marks it here."
+    .. "When another Amberhearth member Roars it, Eldgrim adds you to the ones who completed it within a day or two."
 
 local function questHow(creator, mode)
     local who = mode == "one"
