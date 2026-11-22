@@ -4,6 +4,16 @@ A concise record of meaningful creative and structural decisions.
 
 Entries are listed newest first.
 
+## 2026-11-22 — A quest is roleplay; how it ends is told once
+
+**Decision:** The quest Eldgrim writes is in character only. It does not say how a quest is finished or proven. Every Eldgrim quest ends the same way, and that is told in the Eldgrim channel description and in the `info` reply, as numbered steps: take a screenshot in the game, post it in Discord with @Eldgrim mentioned in the same message, best in #roar-screenshots though any channel works, and another member of Amberhearth adds the Roar emoji. Any rank may witness, and the member's own Roar does not count.
+
+**Supersedes:** The 19 November line "The channel description is the info text". The description is now its own short text, so the finishing steps are never cut at Discord's 1024-character limit; before, the description stopped partway through the quest paragraph.
+
+**Boundary:** The proof itself is unchanged. The thanks after the Roar and the reminder for an unfinished quest stay as they were.
+
+**Status:** Written into the local agent and the server bot, with tests. The bot is not yet deployed with it, so the live channel description and info reply still show the old text.
+
 ## 2026-11-21 — The announcement is a call to the fire
 
 **Decision:** The daily announcement is roleplay: Eldgrim's one call of the day to bring the fellowship to the fire and make people want to come, take part and bring someone along. Its wish to have people at the fire shows in what it writes. It no longer reports level-ups; they stay in the note for Hearthkeepers and Hearthwardens. A completed quest may be honoured, not counted out. Each day the run gives it one way in, chosen at random. Eldgrim speaks as a voice at the fires and does not give itself a body there.

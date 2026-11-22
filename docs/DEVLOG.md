@@ -4,6 +4,12 @@ A concise account of meaningful project development, written from the human crea
 
 Entries before 14 November 2026 that say only "AI", or name no tool, did not record which tool or model did the work. The [collaboration record](AI_COLLABORATION.md) lists them as earlier AI help, tool and model not recorded.
 
+## 2026-11-22 — Quests without the rules in them
+
+Every quest Eldgrim wrote ended with the same out-of-character paragraph about pictures, Discord and the Roar, because the quest instructions required it and a quest without it was refused. The way to finish an Eldgrim quest never changes, so it belongs in one place. Claude Code (Claude Opus 5.5) turned the rule around: the quest is written in character only, and one that mentions screenshots, Discord, emoji or the Roar emoji is refused and the fixed spare text is sent. The bonfire and spare texts lost their proof paragraph. The `info` reply and the Eldgrim channel description now carry the finishing steps as a numbered list, pointing to #roar-screenshots. The description became its own shorter text, because the full info had been cut off partway through the quest paragraph.
+
+**Result:** 136 agent tests and 109 bot tests passed, one new in each. The context check passed. The bot has not been deployed with the new texts, and no live run was made.
+
 ## 2026-11-21 — A call to the fire, not a census
 
 Today's announcement listed fourteen level-ups and a quest count, which is the keepers' census and not Eldgrim. Its wish to bring people to the fire, which is its whole role, had not shown in any announcement. Claude Code (Claude Opus 5.5) found the cause in the run itself: the public brief carried every level-up since the last keepers' note, and the instructions told Eldgrim twice to name them all. It took the level-ups out of the public brief, rewrote the instructions to open with what Eldgrim wants, gave each day a random way in such as a dare, a riddle or an empty seat, and added checks that send back a draft listing levels or saying what Sunday lacks. The reason Eldgrim wants the fire full stays in the private roots.

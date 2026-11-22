@@ -2,6 +2,10 @@
 
 Meaningful repository and documentation changes are recorded here.
 
+## 2026-11-22
+
+- Eldgrim's quests are roleplay only: the quest instructions no longer ask for the proof, and a quest that mentions a screenshot, Discord, an emoji or the Roar emoji is refused and the spare text is sent. The bonfire and spare quests no longer explain the proof. The `info` reply and the Eldgrim channel description say how every quest ends, as numbered steps: a screenshot posted in Discord, best in #roar-screenshots, with @Eldgrim in the same message, and a Roar from another Amberhearth member. The channel description is now a short text of its own that fits Discord's limit. Not yet deployed to the server. Claude Code (Claude Opus 5.5).
+
 ## 2026-11-21
 
 - The daily announcement is a call to the fire instead of a guild report. Its instructions open with Eldgrim's wish to have the fellowship at the fire, ask for a first-person voice with one concrete image, name worn phrases to avoid, and keep it a voice at the fires rather than a body beside them. The public brief no longer carries level-ups; they stay in the keepers' note. A completed quest may be honoured, not counted out. Each call gets one of twelve ways in, chosen at random. A draft that lists levels, or tells the guild that Sunday has no theme, region or place, is sent back once and is not posted if the retry fails too. On a Saturday the brief says Sunday is tomorrow. `agent/ANNOUNCEMENT.md` and `agent/CAPABILITIES.md` updated. Claude Code (Claude Opus 5.5).

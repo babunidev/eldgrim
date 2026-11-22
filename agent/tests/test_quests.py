@@ -51,12 +51,12 @@ TINY = """
 """
 FLINT = (
     "Item: Flint and Tinder\n\n"
-    "Bring flint to a fire. Post a picture and write Eldgrim's name. "
-    "Another member adds the Roar.\n\nKeep the fire."
+    "Bring flint to a fire on the road, and strike it where the wind is low."
+    "\n\nKeep the fire."
 )
 WAND = (
     "Item: Cinder Wand\n\n"
-    "Find the wand. Post a picture and write Eldgrim's name. Another member adds the Roar."
+    "Find the wand that sleeps in the cinders, and wake it."
 )
 
 
@@ -87,9 +87,22 @@ class CatalogTests(unittest.TestCase):
         path = Path(tempfile.mkdtemp()) / "items.md"
         path.write_text(TINY, encoding="utf-8")
         items = catalog(path)
-        self.assertIsNone(accept_offer("Item: Torch of the Eternal Flame\n\nPost a picture. Roar.", items, "Alliance"))
+        self.assertIsNone(accept_offer("Item: Torch of the Eternal Flame\n\nCarry the torch home.", items, "Alliance"))
         self.assertIsNone(accept_offer(WAND, items, "Alliance"))
         self.assertEqual(accept_offer(FLINT, items, "Alliance")[0], "Flint and Tinder")
+
+    def test_a_quest_that_explains_the_proof_is_refused(self):
+        path = Path(tempfile.mkdtemp()) / "items.md"
+        path.write_text(TINY, encoding="utf-8")
+        items = catalog(path)
+        for meta in (
+            "Then post a screenshot.",
+            "Share it on Discord.",
+            "Another member adds the Roar to it.",
+            "Post a picture and mention Eldgrim.",
+        ):
+            text = f"Item: Flint and Tinder\n\nBring flint to a fire on the road. {meta}"
+            self.assertIsNone(accept_offer(text, items, "Alliance"), meta)
 
     def test_the_level_a_character_needs_comes_from_needs_then_item_level(self):
         page = Path(__file__).resolve().parents[2] / "lore" / "FIRE_ITEMS.md"
@@ -124,7 +137,7 @@ class CatalogTests(unittest.TestCase):
 
 
 def _offer_text(item: str) -> str:
-    return f"Item: {item}\n\nBring it to a fire. Post a picture and write Eldgrim's name. Another member adds the Roar."
+    return f"Item: {item}\n\nBring it to a fire, and let the road see it burn."
 
 
 class ChoiceTests(unittest.TestCase):
@@ -237,7 +250,8 @@ class SettleTests(unittest.TestCase):
         self.assertEqual(row["character_name"], "High")
         self.assertEqual(row["item"], BONFIRE_ITEM)
         self.assertIn("bonfire", self.sent[0][1].lower())
-        self.assertIn("Roar", self.sent[0][1])
+        self.assertNotIn("Roar", self.sent[0][1])
+        self.assertNotIn("picture", self.sent[0][1].lower())
         self.assertNotIn("<@", self.sent[0][1])
         self.assertEqual(marked, [(5, True, thanks_line(BONFIRE_ITEM))])
 
@@ -314,7 +328,7 @@ class SettleTests(unittest.TestCase):
 
         def ask(data):
             asked.append(data)
-            return FLINT.replace("Bring flint to a fire.", "Bring flint to a fire in the Burning Steppes.")
+            return FLINT.replace("Bring flint to a fire on the road", "Bring flint to a fire in the Burning Steppes")
 
         db = connect(self.db_path)
         try:
@@ -420,7 +434,7 @@ class SettleTests(unittest.TestCase):
         self.assertEqual(proved["counts"]["standing"], 1)
         self.assertEqual(self.standing(5), 51)
         self.assertEqual(self.quests(5)[0]["status"], "done")
-        self.assertIn("Amberhearth", bonfire_message("High"))
+        self.assertNotIn("Amberhearth", bonfire_message("High"))
         self.assertNotIn("Hearthkeeper", bonfire_message("High"))
 
     def test_a_roar_from_outside_amberhearth_leaves_the_quest_open(self):
