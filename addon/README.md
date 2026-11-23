@@ -49,7 +49,7 @@ lua addon/tests/test_gathering.lua addon/Eldgrim
 
 ## Download for members
 
-[`downloads/Eldgrim.zip`](downloads/Eldgrim.zip) is the install zip, also linked from the Eldgrim tile on [babuni.dev](https://www.babuni.dev/projects/eldgrim/). Extract it into the Forever client's `Interface/AddOns/`; it already holds the `Eldgrim` folder the game expects. It contains only what the game loads: `Eldgrim.toc`, the files the toc lists and the textures. The test quest file is empty in it.
+[`downloads/Eldgrim.zip`](downloads/Eldgrim.zip) is the install zip, also linked from the Eldgrim tile on [babuni.dev](https://www.babuni.dev/projects/eldgrim/). Extract it into the Forever client's `Interface/AddOns/`; it already holds the `Eldgrim` folder the game expects. It contains only what the game loads: `Eldgrim.toc`, the files the toc lists and the textures, plus `README.txt`, the members' guide to installing and using the addon. Its source is [`downloads/README.txt`](downloads/README.txt); update it when the board changes in a way members would notice. The test quest file is empty in the zip.
 
 `python3 addon/build-zip.py` builds it, and gives the same bytes for the same source, so the zip changes in git only when the addon does. `python3 addon/build-zip.py --check` exits with an error when the zip no longer matches `addon/Eldgrim/`.
 

@@ -4,6 +4,7 @@ Meaningful repository and documentation changes are recorded here.
 
 ## 2026-11-23
 
+- The install zip now carries `Eldgrim/README.txt`, a plain-text guide for members: installing and updating, opening the hearth, the Ember, member quests, the notebook, the invite whisper and common trouble. Its source is `addon/downloads/README.txt`. Claude Code (Claude Opus 5.5).
 - `addon/downloads/Eldgrim.zip` is the members' install zip, built by `addon/build-zip.py` from the toc, the files it lists and the textures, with the test quest file empty. The build is reproducible, `--check` reports a stale zip, and `addon/install-local.sh` rebuilds it. Linked from the Eldgrim tile on babuni.dev. Claude Code (Claude Opus 5.5).
 
 ## 2026-11-22

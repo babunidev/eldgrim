@@ -2,7 +2,8 @@
 """Build addon/downloads/Eldgrim.zip, the install zip members download.
 
 The zip holds one folder, Eldgrim/, with exactly what the game loads: the toc,
-every file the toc lists, and the textures. Nothing else from the project goes
+every file the toc lists, the textures, and README.txt from addon/downloads/:
+how to install and use the addon. Nothing else from the project goes
 in: no tests, tools, documents or saved data. The test quest file is shipped
 empty, so a member's copy never carries the founder's test quest.
 
@@ -23,6 +24,7 @@ from pathlib import Path
 ADDON = Path(__file__).resolve().parent
 SOURCE = ADDON / "Eldgrim"
 TARGET = ADDON / "downloads" / "Eldgrim.zip"
+README = ADDON / "downloads" / "README.txt"
 FOLDER = "Eldgrim"
 STAMP = (2026, 1, 1, 0, 0, 0)
 
@@ -56,6 +58,7 @@ def contents() -> list[tuple[str, bytes]]:
             raise SystemExit(f"Eldgrim: {name} is listed but missing.")
         data = EMPTY_TEST_QUEST if name == "EldgrimTestQuest.lua" else path.read_bytes()
         files.append((name, data))
+    files.append(("README.txt", README.read_bytes()))
     return files
 
 
