@@ -18,6 +18,8 @@ I wanted a member quest to say whether it is for everyone or for just one person
 
 **Result:** The board and hearth mock suites passed with the new checks, and the other addon suites still pass. The preview renders the notebook and the new form. The addon was installed with `addon/install-local.sh`; the toc changed, so the client needs a full restart. Not tested in game.
 
+![The quest form saying whether a quest is for everyone or for one person](https://www.babuni.dev/screenshots/eldgrim/2026-11-22/hearth-quest-form-mode.webp) ![The notebook for the one quest a member is on](https://www.babuni.dev/screenshots/eldgrim/2026-11-22/hearth-quest-notebook.webp)
+
 ## 2026-11-22 — Seven o'clock, Central European time
 
 The gathering is every Sunday at 19:00 CET, so the hour is now written that way everywhere instead of as Swedish time; the recording window itself did not change. Members need no separate notice for it: /say, guild chat and group chat are public in the game, and whispers are never recorded. Claude Code (Claude Opus 5.5) put the hour on the governance page Eldgrim always reads, so it can answer when someone asks, and into the announcement brief, where Eldgrim may name it and need not. The `info` reply and the #eldgrim channel description now give it too.
@@ -100,6 +102,8 @@ A member brings one character now. Since I am the only one who registered severa
 
 **Result:** 108 bot tests, 91 agent tests and the addon's mock tests passed. Then I asked for it live. The deploy script still archived a repository the bot no longer has, so Claude Code changed it to pack the bot folder itself, checked first that the server held no file the sync would delete, and deployed. Two runs stopped on the service's Python cache before the restart; the third restarted the bot at 02:51 UTC. The Forge panel was updated through the bot's preview and apply. Not tested in game.
 
+![Member quests without an end date](https://www.babuni.dev/screenshots/eldgrim/2026-11-20/hearth-quests-without-end-date.webp) ![Writing a new member quest](https://www.babuni.dev/screenshots/eldgrim/2026-11-20/hearth-board-new-quest-form.webp) ![A quest chosen on the board](https://www.babuni.dev/screenshots/eldgrim/2026-11-20/hearth-board-quest-chosen.webp)
+
 ## 2026-11-20 — Proof belongs in Discord
 
 Ticking a quest off for oneself was never what I meant. A weekly ember is proved the way every Eldgrim quest is: a screenshot in the Eldgrim channel with @Eldgrim, and another member's Roar. The guild accepts it first, then the record lands on my computer, the daily run brings it together, and my next login passes it on to everyone. Member quests became simpler: the one who took it marks it complete, the one who made it confirms, and nothing about them is kept afterwards. To tell the two kinds of screenshot apart, I chose the word ember; I also chose a private thread to ask which character, and one standing point for a witnessed ember.
@@ -107,6 +111,8 @@ Ticking a quest off for oneself was never what I meant. A weekly ember is proved
 Claude Code (Claude Opus 5.5) built it across all three parts: the bot stages ember proofs with their character, the daily run records them and writes `EldgrimVerified.lua` into the installed addon, and the addon takes completions only from Jasmine Amberbrew and drops the old proof choices. One early test run wrote an empty verified file into the installed addon through my real configuration; the file was removed, and the tests now write only to a temporary folder.
 
 **Result:** Mock tests passed in the addon, 107 bot tests and 90 agent tests. The bot is not deployed on the server, so ember screenshots are not yet staged. Not tested in game.
+
+![A quest asking for proof in Discord and another member's confirmation, sample members](https://www.babuni.dev/screenshots/eldgrim/2026-11-20/hearth-board-discord-proof-and-confirm.webp) ![The quest form without a choice of proof](https://www.babuni.dev/screenshots/eldgrim/2026-11-20/hearth-form-without-proof-choice.webp)
 
 ## 2026-11-20 — Why the ember stayed dark
 
@@ -120,6 +126,8 @@ With the board looking right, I wanted it to hold something. Claude Code (Claude
 
 **Result:** In a mock of two clients, the real sync published the card from Jasmine Amberbrew's file in five messages of at most 255 bytes, and the other client rebuilt the title, story and hint exactly. It has not been published in Forever yet.
 
+![The first weekly ember, A Fire of Your Own, on the board](https://www.babuni.dev/screenshots/eldgrim/2026-11-20/first-ember-a-fire-of-your-own.webp)
+
 ## 2026-11-20 — The hearth board gets its frame
 
 The first board opened from the guild panel, but it did not look like Eldgrim. The flame was a flat flask, the buttons were coloured boxes, and the text fields had no edge. The frame instructions had not come through either. What I had asked for was cut corners with triangles in them, and lines from the outside in: one thick line, one thin line broken at random, an even thinner line all the way round, a gap, and one more line.
@@ -127,6 +135,8 @@ The first board opened from the guild panel, but it did not look like Eldgrim. T
 Claude Code (Claude Opus 5.5) redrew it. It wrote `addon/tools/hearth_art.py`, which draws the textures: a new flame emblem, the four frame corners with a flame plaque and scrolls in each, and buttons, fields and glyphs. It split the look into `EldgrimSkin.lua` and rebuilt `EldgrimBoard.lua` on it. To see the work without the game, it wrote a small mock of the frame API that runs the real board code on sample data and renders it to PNG. A first corner flame pointed at the window's centre and read as a seed. Mirroring one corner texture would have turned the flames upside down at the bottom, so each corner is drawn on its own.
 
 **Result:** The preview renders, and the new mock test of the window's buttons and form passed, as did the existing mock tests. Nothing has been seen in Forever yet. The client must be restarted to load the new textures.
+
+![Eldgrim's Hearth board in its new coal-and-fire frame, still empty](https://www.babuni.dev/screenshots/eldgrim/2026-11-20/hearth-board-empty.webp) ![The flame emblem and the frame corners](https://www.babuni.dev/screenshots/eldgrim/2026-11-20/hearth-flame-emblem-and-corners.webp) ![The board at its normal size with sample quests](https://www.babuni.dev/screenshots/eldgrim/2026-11-20/hearth-board-at-1x.webp) ![The board with its help moved into tooltips](https://www.babuni.dev/screenshots/eldgrim/2026-11-20/hearth-board-help-only-in-tooltips.webp)
 
 ## 2026-11-20 — The hearth board is in the addon
 

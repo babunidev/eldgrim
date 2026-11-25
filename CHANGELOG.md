@@ -2,6 +2,10 @@
 
 Meaningful repository and documentation changes are recorded here.
 
+## 2026-11-25 — Development screenshots in the journal
+
+- `docs/DEVLOG.md`: 5 entries now show 12 development screenshots taken at the time. The hearth board screenshots use sample quests and members. The images are web-sized WebP copies served from the babuni.dev server's media folder (`https://www.babuni.dev/screenshots/eldgrim/…`), not stored in Git; on babuni.dev the journal shows them as small thumbnails that open large. No code changed. Claude Code (Claude Opus 5.5).
+
 ## 2026-11-23
 
 - The install zip now carries `Eldgrim/README.txt`, a plain-text guide for members: installing and updating, opening the hearth, the Ember, member quests, the notebook, the invite whisper and common trouble. Its source is `addon/downloads/README.txt`. Claude Code (Claude Opus 5.5).
